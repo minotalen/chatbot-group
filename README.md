@@ -1,2 +1,1 @@
-# chatadventure
-Chatbot group text adventure
+# chatbot group

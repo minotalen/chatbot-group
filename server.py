@@ -7,6 +7,6 @@ app.config["SECRET_KEY"] = "Elefantengeheimnis"
 
 socketio = SocketIO(app)
 
-if __name__ == "__server__" :
-    socketio.run(app)
+if __name__ == "__main__" :
+    socketio.run(app, port = 1337, debug = True)
     print("server started")

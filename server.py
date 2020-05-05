@@ -21,6 +21,6 @@ def disconnect():
 
 @socketio.on_error()
 def error_handler(e):
-    raise Exeption("Some error happened, no further notice")
+    raise Exception("Some error happened, no further notice")
 
 

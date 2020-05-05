@@ -15,7 +15,7 @@ if __name__ == "__main__" :
 def connect():
     print("You are now connected with the server")
 
-socketio.on('disconnect')
+@socketio.on('disconnect')
 def disconnect():
     print("You are disconneced from the server")
 

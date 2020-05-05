@@ -8,5 +8,19 @@ app.config["SECRET_KEY"] = "Elefantengeheimnis"
 socketio = SocketIO(app)
 
 if __name__ == "__main__" :
-    socketio.run(app, port = 1337, debug = True)
-    print("server started")
+    print("Try to start server...")
+    socketio.run(app, debug = True)
+
+@socketio.on('connect')
+def connect():
+    print("You are now connected with the server")
+
+socketio.on('disconnect')
+def disconnect():
+    print("You are disconneced from the server")
+
+@socketio.on_error()
+def error_handler(e):
+    raise Exeption("Some error happened, no further notice")
+
+

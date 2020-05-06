@@ -12,6 +12,11 @@ socketio.init_app(app, cors_allowed_origins="*")
 def send_index_page():
     return render_template('index.html')
 
+	@socketio.on('message')
+def handleMessage(msg): 
+print('Message: ' + msg)
+send(msg, broadcast=True)
+
 @socketio.on('connect')
 def connect():
     print("You are now connected with the server")

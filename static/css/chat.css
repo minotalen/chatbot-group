@@ -1,0 +1,101 @@
+/* 
+Main stylesheet for chat layout
+Authors: Kevin Katzkowski
+Last modified: 05.05.2020
+*/
+
+#chat-container {
+  background-color: var(--color-background);
+  width: 80%; /* replace with @media */
+  height: 95%;
+  margin: 1.45rem auto;
+  border: var(--border-chat);
+  border-radius: var(--border-radius);
+}
+
+#chat-content-container {
+  overflow-y: scroll;
+  max-height: 85%;
+  scrollbar-color: var(--color-surface) var(--color-background);
+  scrollbar-width: thin;
+}
+
+#chat-content-container::-webkit-scrollbar {
+  width: 0.5rem;
+}
+ 
+#chat-content-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  padding-right: 0.25rem;;
+  width: 1rem;
+}
+ 
+#chat-content-container::-webkit-scrollbar-thumb {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius);
+}
+
+.chat-message-user, .chat-message-bot {
+  /* width: 80%; */
+  margin: 1rem;
+  padding: 0.25rem;
+}
+
+.chat-message-user {
+  color: var(--color-message-user);
+  /* text-align: right;
+  margin-left: 20%;
+  width: auto; */
+}
+
+.chat-message-bot {
+  color: var(--color-message-bot);
+}
+
+#chat-input-user {
+  margin: 2rem 1rem 1rem 1rem;
+}
+
+#chat-input-user input[type="text"] {
+  background-color: var(--color-background);
+
+  border-radius: var(--border-radius);
+  border: var(--border-chat);
+  padding: 0.5rem 1rem;
+  color: var(--color-message-user);
+  flex-grow: 6;
+}
+
+#chat-input-user input[type="text"]::placeholder {
+  color: var(--color-text-placeholder);
+}
+
+/* does not work properly in Chrome -> grey instead of #fff */
+#chat-input-user input[type="text"]::selection {
+  color: var(--color-message-user);
+  background-color: var(--color-surface-light);
+}
+
+
+#chat-input-user input[type="submit"] {
+  background-color: var(--color-message-user);
+  transition: 0.2s;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-message-user);
+  transition: 0.2s;
+  color: var(--color-text);
+  font-weight: 600;
+  flex-grow: 0.75;
+  padding: 0.5rem 1rem;
+  /* width: 5%; */
+  margin: 0 0 0 1rem;
+}
+
+#chat-input-user input[type="submit"]:hover {
+  background-color: var(--color-primary-light);
+}
+
+form {
+  display: flex;
+  width: 100%;
+}

@@ -26,7 +26,7 @@ socket.on('json', (json) => {
   console.log('message received');
   msg = readJSON(json);
 
-  printMessage(msg, 'bot');
+  printMessage(msg);
 });
 
 
@@ -54,7 +54,7 @@ function sendMessage() {
     console.log('message ' + msg + ' has been sent!');
     userInput.value = null;
 
-    printMessage(msg, 'user');
+    printMessage(msg);
   } else {
     console.log('no message to send!');
   }

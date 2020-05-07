@@ -20,19 +20,21 @@ Hier nochmal zum Nachlesen in der [Flask Dokumentation](https://exploreflask.com
 
 ## Installieren
 
+Damit es läuft braucht jeder Python. Damit habt ihr auch pip und könnt in der Konsole folgende Befehle ausführen:
+
 -Python installieren, empfohlenerweise in einem virtual environment(https://docs.python.org/3/library/venv.html), z.B. conda(https://anaconda.org/anaconda/conda)
 
 -Konsole im git ordner öffnen
 
--Folgendes in die Konsole pasten und ausführen: pip install -r requirements.txt
+-Folgendes in die Konsole pasten und ausführen: `pip install -r requirements.txt`
 
-'''Damit es läuft braucht jeder Python. Damit habt ihr auch pip und könnt in der Konsole folgende Befehle ausführen:
+Oder einzeln nacheinander:
 
-'pip install Flask'
+`pip install Flask`
 
-'pip install flask-socketio'
+`pip install flask-socketio`
 
-'pip install eventlet' '''
+`pip install eventlet`
 
 Sonst schaut nochmal in die [Flask-SocketIO Doku](https://flask-socketio.readthedocs.io/en/latest/).
 

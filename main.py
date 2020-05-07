@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send
 
 app = Flask(__name__, static_url_path='/static')
@@ -8,9 +8,16 @@ app.config["SECRET_KEY"] = "Elefantengeheimnis"
 socketio = SocketIO(app)
 socketio.init_app(app, cors_allowed_origins="*")
 
+users = []
+
 @app.route('/')
 def send_index_page():
     return render_template('index.html')
+
+@socketio.on('json')
+def handleJson(payload):
+    print("sending: " + payload)
+    send(payload,broadcast=True)
 
 @socketio.on('message')
 def handleMessage(msg): 
@@ -32,3 +39,4 @@ def error_handler(e):
 if __name__ == "__main__" :
     print("Try to start server...")
     socketio.run(app, host='0.0.0.0',debug = True)
+

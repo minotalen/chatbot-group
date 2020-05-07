@@ -17,12 +17,14 @@ def send_index_page():
 @socketio.on('json')
 def handleJson(payload):
     print("sending: " + payload)
-    send(payload,broadcast=True)
+    send(payload,json=True)
 
+
+# this can be removed since it has been replaced by JSON
 @socketio.on('message')
 def handleMessage(msg): 
-	print('Message: ' + msg)
-	send(msg, broadcast=True)
+    print('Message: ' + msg)
+    send(msg, broadcast=True)
 
 @socketio.on('connect')
 def connect():

@@ -1,7 +1,7 @@
 /**
  * Client-side script to receive, send and display messages.
  * Authors: ?, Katja Schneider, Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modfidied: 06.05.2020
+ * Last modfidied: 07.05.2020
  */
 
 
@@ -43,15 +43,17 @@ chatForm.addEventListener('submit', (evt) => {
  * Sends the message from the chat input to the socket.
  */
 function sendMessage() {
-  let json, msg = userInput.value;
+  let json, msg = userInput.value;  
+
+  // TODO set senderName == 'user'  per default on outgoing messages
 
   // send JSON String to socket
   if(msg.trim() != '') {
     json = createJSON(msg);
-    socket.send(json);
-    userInput.value = null;
+    socket.emit('json',json);
     console.log('message ' + msg + ' has been sent!');
-    
+    userInput.value = null;
+
     printMessage(msg, 'user');
   } else {
     console.log('no message to send!');
@@ -62,15 +64,15 @@ function sendMessage() {
 /**
  * Prints the message into the chat.
  * @param {String} msg the message to print 
- * @param {String} msgType 'bot' or 'user'; defines which CSS class is added to the <li> element
  */
-function printMessage(msg, msgType) {
+function printMessage(msg) {
   let chat = document.getElementById('chat-content-container'),
     elem = window.document.createElement('li');
 
   elem.innerHTML = msg;
   
-  // set message type
+  // TODO set senderName == 'user'  per default on outgoing messages
+  // set message type depending on sender 
   switch (senderName) {
     case 'bot':
       elem.className = 'chat-message-bot';
@@ -99,7 +101,7 @@ function createJSON(msg) {
   // create object to parse into JSON
   obj = {
     level: levelID,
-    sender: senderName,
+    sender: senderName, 
     room: roomName,
     items: itemList,
     message: msg
@@ -107,10 +109,7 @@ function createJSON(msg) {
 
   // parse object into JSON String
   json = JSON.stringify(obj);
-  console.log(json);
-
-  // TODO remove
-  readJSON(json);
+  console.log('parsed JSON String: ' + json);
 
   return json;
 }
@@ -124,7 +123,7 @@ function createJSON(msg) {
 function readJSON(json) {
   // parse JSON String into JS object
   let message, obj = JSON.parse(json);
-  console.log(obj);
+  console.log('received JSON String: ' + JSON.stringify(obj));
 
   // update client variables
   levelID = obj.level;
@@ -133,7 +132,7 @@ function readJSON(json) {
   itemList = obj.items;
   message = obj.message;
 
-  console.log(message);
+  console.log('received message: ' + message);
   
   return message;
 }

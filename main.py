@@ -24,8 +24,9 @@ def handleJson(payload):
 
 @socketio.on('user_registration')
 def update_users(payload):
-    users.append({"user_id" : request.sid, "user_name" : payload['message']})
-    initial_data = {"level": 1,"sender": "bot","room":"First Hallway","items":[],"message": "Hello, " + payload['message'] +"!"}
+    readable_json = json.loads(payload)
+    users.append({"user_id": request.sid, "user_name": readable_json['message']})
+    initial_data = {"level": 1,"sender": "bot","room":"First Hallway","items":[],"message": "Hello, " + readable_json['message'] +"!"}
     json_data = json.dumps(initial_data)
     send(json_data, json=True)
     print("added user: " + payload['message'] + "with session id: " + request.sid)

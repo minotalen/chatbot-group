@@ -50,3 +50,9 @@ Wenn der Server gestartet ist, öffnet einen Browser unter addresse [http://loca
 
 Prüft die Connection, indem ihr die developer tools öffnet und den Reiter Console anklickt. Dort sollte wenn alles geklappt hat `connected client` stehen. 
 
+##Room.csv
+Und so ist die `rooms.csv` mit Syntax aufgebaut. Wichtig! Die Überschriften sind selbst nicht in der CSV drin:
+
+| ID | Room Name | Introduction | Triggers | Connections | Description | .....| Notes |
+| -- | --------- |--------------|----------|-------------|-------------|------|-------|
+| 0 | "room 1" | "As you go into this room you feel really weird. You see blabla" | "collect Key"&"Congrats you collected an old key";"use key"&"You open the door with a key" | "door"?"room 2";"trap door"?"hidden room"| "You look around the room and see two doors and an old lady."| .... | "use key" kann erst ausgeführt werden wenn key aufgesammelt wurde |

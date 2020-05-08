@@ -51,6 +51,8 @@ Wenn der Server gestartet ist, öffnet einen Browser unter addresse [http://loca
 Prüft die Connection, indem ihr die developer tools öffnet und den Reiter Console anklickt. Dort sollte wenn alles geklappt hat `connected client` stehen. 
 
 ## Rooms.csv
+Die `rooms.csv` beinhaltet die spielbaren Räume, in denen sich der Spieler befindet. Die Datei bietet Infos dazu, was man alles in welchem Raum machen kann und wie er aussieht.
+
 Und so ist die `rooms.csv` mit Syntax aufgebaut. Wichtig! Die Überschriften sind selbst nicht in der CSV drin:
 
 | ID | Room Name | Introduction | Triggers | Connections | Description | .....| Notes |

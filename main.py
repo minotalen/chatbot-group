@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send
 import json
+import csv
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -24,6 +25,9 @@ def handleJson(payload):
 @socketio.on('user_registration')
 def update_users(payload):
     users.append({"user_id" : request.sid, "user_name" : payload['message']})
+    initial_data = {"level": 1,"sender": "bot","room":"First Hallway","items":[],"message": "Hello, " + payload['message'] +"!"}
+    json_data = json.dumps(initial_data)
+    send(json_data, json=True)
     print("added user: " + payload['message'] + "with session id: " + request.sid)
 
 @socketio.on('connect')
@@ -40,6 +44,11 @@ def disconnect():
 @socketio.on_error()
 def error_handler(e):
     raise Exception("Some error happened, no further notice")
+
+# with open('rooms.csv') as csv_file:
+#     roomreader = csv.reader(csv_file)
+#     rows = list(roomreader)
+#     print(rows[1])
 
 if __name__ == "__main__" :
     print("Try to start server...")

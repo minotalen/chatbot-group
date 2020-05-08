@@ -26,11 +26,6 @@ def update_users(payload):
     users.append({"user_id" : request.sid, "user_name" : payload['message']})
     print("added user: " + payload['message'] + "with session id: " + request.sid)
 
-@socketio.on('username', namespace='/private')
-def receive_username(username):
-    users.append({username : request.sid})
-    print(users)
-
 @socketio.on('connect')
 def connect():
     initial_data = {"level": 1,"sender": "bot","room":"First Hallway","items":[],"message": "Welcome!"}

@@ -9,10 +9,10 @@ let socket = io.connect("http://127.0.0.1:5000"),
   sendButton = document.getElementById('send-button'),
   userInput = document.getElementById('input-user'),
   chatForm = document.getElementById('chat-input-form'),
-  levelID = 'test_level_ID', 
+  levelID = 'test_level_ID',
   senderName = 'test_sender_name',
-  roomName = 'test_room_name', 
-  itemList = [{item:'test_item_name1', action:'test_item_action1'},{item: 'test_item_name2', action: 'test_item_action2'}];
+  roomName = 'test_room_name',
+  itemList = [{ item: 'test_item_name1', action: 'test_item_action1' }, { item: 'test_item_name2', action: 'test_item_action2' }];
 
 
 socket.on('connect', function () {
@@ -29,12 +29,12 @@ socket.on('json', (json) => {
   printMessage(msg);
 });
 
-var private_socket =io('http://127.0.0.1:5000/private')
+// var private_socket =io('http://127.0.0.1:5000/private')
 
-$('#send_username').on('click', function() {
-  private_socket.emit('username', $('#username').val());
-}
-)
+// $('#send_username').on('click', function() {
+//   private_socket.emit('username', $('#username').val());
+// }
+// )
 
 sendButton.addEventListener('click', sendMessage, false);
 
@@ -49,14 +49,14 @@ chatForm.addEventListener('submit', (evt) => {
  * Sends the message from the chat input to the socket.
  */
 function sendMessage() {
-  let json, msg = userInput.value;  
+  let json, msg = userInput.value;
 
   // TODO set senderName == 'user'  per default on outgoing messages
 
   // send JSON String to socket
-  if(msg.trim() != '') {
+  if (msg.trim() != '') {
     json = createJSON(msg);
-    socket.emit('json',json);
+    socket.emit('json', json);
     console.log('message ' + msg + ' has been sent!');
     userInput.value = null;
 
@@ -76,18 +76,18 @@ function printMessage(msg) {
     elem = window.document.createElement('li');
 
   elem.innerHTML = msg;
-  
+
   // TODO set senderName == 'user'  per default on outgoing messages
   // set message type depending on sender 
   switch (senderName) {
     case 'bot':
       elem.className = 'chat-message-bot';
       break;
-  
+
     default:
       elem.className = 'chat-message-user';
       break;
-    }
+  }
 
   chat.appendChild(elem);
 
@@ -107,7 +107,7 @@ function createJSON(msg) {
   // create object to parse into JSON
   obj = {
     level: levelID,
-    sender: senderName, 
+    sender: senderName,
     room: roomName,
     items: itemList,
     message: msg
@@ -139,6 +139,6 @@ function readJSON(json) {
   message = obj.message;
 
   console.log('received message: ' + message);
-  
+
   return message;
 }

@@ -33,7 +33,7 @@ def receive_username(username):
 
 @socketio.on('connect')
 def connect():
-    initial_data = {"level": 1,"sender": "server","room":"First Hallway","items":[],"message": "Welcome!"}
+    initial_data = {"level": 1,"sender": "bot","room":"First Hallway","items":[],"message": "Welcome!"}
     json_data = json.dumps(initial_data)
     send(json_data, json=True)
     print("You are now connected with the server")

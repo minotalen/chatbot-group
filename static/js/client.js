@@ -9,6 +9,7 @@ let socket = io.connect("http://127.0.0.1:5000"),
   sendButton = document.getElementById('send-button'),
   userInput = document.getElementById('input-user'),
   chatForm = document.getElementById('chat-input-form'),
+  userName = undefined,
   levelID = 'test_level_ID',
   senderName = 'test_sender_name',
   roomName = 'test_room_name',
@@ -30,38 +31,44 @@ socket.on('json', (json) => {
 });
 
 
-document.getElementById('send-username').addEventListener('click', function() {
-  let json, userName = document.getElementById('username').value;
-
-  json = createJSON(userName);
-
-  console.log(JSON.stringify(json));
-  
-
-  socket.emit('user_registration',json);
-});
-
-sendButton.addEventListener('click', sendMessage, false);
+sendButton.addEventListener('click', () => {
+  if(userName == undefined) {    
+    sendUserName();
+  } else {
+    sendMessage();
+  }
+}, false);
 
 chatForm.addEventListener('submit', (evt) => {
   // prevents default reloading on submit
   evt.preventDefault();
-  sendMessage();
+  
+  if(userName == undefined) {    
+    sendUserName();
+  } else {
+    sendMessage();
+  }
 });
 
 
 /**
  * Sends the message from the chat input to the socket.
  */
-function sendMessage() {
+function sendMessage(evt='json') {
   let json, msg = userInput.value;
 
-  // TODO set senderName == 'user'  per default on outgoing messages
+  // set user as sender on outgoing messages
+  senderName = 'user';
+
+  // store user name in client variables
+  if(evt == 'user_registration') {
+    userName = msg;
+  }
 
   // send JSON String to socket
   if (msg.trim() != '') {
     json = createJSON(msg);
-    socket.emit('json', json);
+    socket.emit(evt, json);
     console.log('message ' + msg + ' has been sent!');
     userInput.value = null;
 
@@ -82,7 +89,6 @@ function printMessage(msg) {
 
   elem.innerHTML = msg;
 
-  // TODO set senderName == 'user'  per default on outgoing messages
   // set message type depending on sender 
   switch (senderName) {
     case 'bot':
@@ -146,4 +152,13 @@ function readJSON(json) {
   console.log('received message: ' + message);
 
   return message;
+}
+
+
+/**
+ * Sends the user name to the server and changes the placeholder text.
+ */
+function sendUserName() {
+  sendMessage('user_registration');
+  userInput.placeholder = 'What will you do?';
 }

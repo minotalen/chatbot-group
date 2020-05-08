@@ -1,7 +1,7 @@
 /**
  * Client-side script to receive, send and display messages.
  * Authors: ?, Katja Schneider, Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modfidied: 07.05.2020
+ * Last modfidied: 08.05.2020
  */
 
 
@@ -29,12 +29,17 @@ socket.on('json', (json) => {
   printMessage(msg);
 });
 
-// var private_socket =io('http://127.0.0.1:5000/private')
 
-// $('#send_username').on('click', function() {
-//   private_socket.emit('username', $('#username').val());
-// }
-// )
+document.getElementById('send-username').addEventListener('click', function() {
+  let json, userName = document.getElementById('username').value;
+
+  json = createJSON(userName);
+
+  console.log(JSON.stringify(json));
+  
+
+  socket.emit('user_registration',json);
+});
 
 sendButton.addEventListener('click', sendMessage, false);
 

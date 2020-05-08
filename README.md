@@ -50,9 +50,24 @@ Wenn der Server gestartet ist, öffnet einen Browser unter addresse [http://loca
 
 Prüft die Connection, indem ihr die developer tools öffnet und den Reiter Console anklickt. Dort sollte wenn alles geklappt hat `connected client` stehen. 
 
-##Room.csv
+## Room.csv
 Und so ist die `rooms.csv` mit Syntax aufgebaut. Wichtig! Die Überschriften sind selbst nicht in der CSV drin:
 
 | ID | Room Name | Introduction | Triggers | Connections | Description | .....| Notes |
 | -- | --------- |--------------|----------|-------------|-------------|------|-------|
 | 0 | "room 1" | "As you go into this room you feel really weird. You see blabla" | "collect Key"&"Congrats you collected an old key";"use key"&"You open the door with a key" | "door"?"room 2";"trap door"?"hidden room"| "You look around the room and see two doors and an old lady."| .... | "use key" kann erst ausgeführt werden wenn key aufgesammelt wurde |
+
+
+ID: Die Raum-ID, für jeden Raum einzigartig, gleich der Zeilenzahl.
+
+Room Name: Einzigartiger Name für den Raum als String.
+
+Introduction: Ein Text der beim Betreten des Raumes gezeigt wird
+
+Triggers: Raumspezifische Trigger-Sätze, nachdem diese aufgerufen wurden wird der Text hinter & gezeigt. "trigger sentence"&"what happens after".
+
+Connections: Die Räume, die mit dem in der Zeile gezeigten Raum verbunden sind. Der erste string zeigt den Alias des Raumes, die der Spieler im Text benutzen kann. Da der Spieler vor betreten des Raumes, nicht seinen richtigen Namen kennt. "that weird door"?"room 2"
+
+Description: Wird bei "look around" ausgeführt. Beschreibt den Raum, wenn man schon drinne steht. "This room is old and dirty. It is dark"
+
+Notes: Informationen, diese Spalte wird nicht vom code benutzt. Allerdings beschreibt sie beispielsweise boolische Werte, die eingebeut werden müssen.

@@ -8,18 +8,16 @@ def anwerHandler(json):
 
     room, msg = int(obj['room']), str(obj['msg'])
 
-    switch(classifyIntent(msg)):
-        case 1:
-            for elem in findentry(room, 4).split(';'):
-                if msg in elem.split('?')[0]:
-                    #changeRoom(session, getRoomId(msg))
-                    return getRoomIntroduction(elem.split('?')[1])
-
-        case 2: return getRoomDescription(room)
-
-        default:
-            for elem in findentry(room, 3).split(';'):
-                if msg in elem.split('?')[0]: return elem.split('?')[1]
+    if classifyIntent(msg) == 1:
+        for elem in findentry(room, 4).split(';'):
+            if msg in elem.split('?')[0]:
+                #changeRoom(session, getRoomId(msg))
+                return getRoomIntroduction(elem.split('?')[1])
+    else if classifyIntent(msg) == 2:
+        return getRoomDescription(room)
+    else:
+        for elem in findentry(room, 3).split(';'):
+            if msg in elem.split('?')[0]: return elem.split('?')[1]
 
     return "I have no idea what you want"
 

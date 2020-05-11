@@ -32,22 +32,14 @@ socket.on('json', (json) => {
 
 
 sendButton.addEventListener('click', () => {
-  if(userName == undefined) {    
-    sendUserName();
-  } else {
-    sendMessage();
-  }
+  userName == undefined ? sendUserName() : sendMessage();
 }, false);
 
 chatForm.addEventListener('submit', (evt) => {
   // prevents default reloading on submit
   evt.preventDefault();
   
-  if(userName == undefined) {    
-    sendUserName();
-  } else {
-    sendMessage();
-  }
+  userName == undefined ? sendUserName() : sendMessage();
 });
 
 

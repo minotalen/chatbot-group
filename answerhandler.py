@@ -3,20 +3,33 @@ import csv
 
 def answerHandler(inputjson):
     obj = json.loads(inputjson)
-    room, msg = int(obj['room']), str(obj['message'])
 
+    sender = "Chatbot"
+    
+    answer = findAnswer(str(obj['message']), getRoomId(str(obj['room'])))
+
+    #json wird wieder zusammen gepackt
+    fun = json.dumps({"level": 1,"sender": sender,"room":answer[1],"items":[],"message": answer[0]})                    
+    return fun
+
+
+#finds an answer to your message :)
+def findAnswer(msg, roomid):
+    
     if classifyIntent(msg) == 1:
-        for elem in findEntry(room, 4).split(';'):
+        for elem in findEntry(roomid, 4).split(';'):
             if msg in elem.split('?')[0]:
-                #changeRoom(session, getRoomId(msg))
-                return getRoomIntroduction(elem.split('?')[1])
+                roomid = elem.split('?')[1]
+                return (getRoomIntroduction(elem.split('?')[1]),getRoomName(roomid))
     elif classifyIntent(msg) == 2:
-        return getRoomDescription(room)
+         return (getRoomDescription(roomid), getRoomName(roomid))
     else:
-        for elem in findEntry(room, 3).split(';'):
-            if msg in elem.split('?')[0]: return elem.split('?')[1]
+        for elem in findEntry(roomid, 3).split(';'):
+            if msg in elem.split('?')[0]: return (elem.split('?')[1], getRoomName(roomid))
 
-    return "I have no idea what you want"
+    return ("I have no idea what you want",getRoomName(roomid))
+
+
 
 """
 Returns the csv file entry specified by the input coordinates
@@ -29,6 +42,8 @@ def findEntry(id, column):
         reader = csv.reader(file)
         rooms = [row for row in reader]
 
+    print(rooms)
+
     #necessary since we want specific int coordinates not slices
     if not isinstance(id, int) or not isinstance(column, int):
         raise ValueError("Parameter must be of type int")
@@ -37,22 +52,27 @@ def findEntry(id, column):
             return "csv table coordinates are out of range"
     else :
         return rooms[id][column]
+   
 
-def changeRoom(session, room):
-    pass
-
-def enterRoom():
-    pass
-
+#Get the room id by room name
 def getRoomId(msg):
-    pass
+    for i in len(rooms[id]):
+        if getRoomName(i) in msg: return findEntry(i,0)
+    else: return -1
 
-def getRoomIntroduction():
-    return "Hallo ich bin eine Einleitung"
+#Get the current room
+def getRoomName(id):
+    return findEntry(id, 1)
 
+#Get introduction of the room with id    
+def getRoomIntroduction(id):
+    return findEntry(id, 2)
+
+#Get description of the room with id
 def getRoomDescription(id):
-    return "Hallo ich bin ein Raum"
+    return findEntry(id, 5)
 
+#Classifies the messages "msg" into 3 different intents
 def classifyIntent(msg):
     if "go to" in msg : return 1
     elif "!look around" in msg: return 2

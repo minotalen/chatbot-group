@@ -55,9 +55,9 @@ Die `rooms.csv` beinhaltet die spielbaren Räume, in denen sich der Spieler befi
 
 Und so ist die `rooms.csv` mit Syntax aufgebaut. Wichtig! Die Überschriften sind selbst nicht in der CSV drin:
 
-| ID | Room Name | Introduction | Triggers | Connections | Description | .....| Notes |
-| -- | --------- |--------------|----------|-------------|-------------|------|-------|
-| 0 | "room 1" | "As you go into this room you feel really weird. You see blabla" | "collect Key"&"Congrats you collected an old key";"use key"&"You open the door with a key" | "door"?"room 2";"trap door"?"hidden room"| "You look around the room and see two doors and an old lady."| .... | "use key" kann erst ausgeführt werden wenn key aufgesammelt wurde |
+| ID | Room Name | Introduction | Description | Connections | Triggers |
+| -- | --------- |--------------|----------|-------------|-------------|
+| 0 | "room 1" | "As you go into this room you feel really weird. You see blabla" | "You look around the room and see two doors and an old lady." | "door"?"room 2";"trap door"?"hidden room"| "collect Key"&"Congrats you collected an old key";"use key"&"You open the door with a key" |
 
 
 ID: Die Raum-ID, für jeden Raum einzigartig, gleich der Zeilenzahl.

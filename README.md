@@ -57,7 +57,7 @@ Und so ist die `rooms.csv` mit Syntax aufgebaut. Wichtig! Die Überschriften sin
 
 | ID | Room Name | Introduction | Description | Connections | Triggers |
 | -- | --------- |--------------|----------|-------------|-------------|
-| 0 | "room 1" | "As you go into this room you feel really weird. You see blabla" | "You look around the room and see two doors and an old lady." | "door"?"room 2";"trap door"?"hidden room"| "collect Key"&"Congrats you collected an old key";"use key"&"You open the door with a key" |
+| 0 | room 1 | "As you go into this room you feel really weird. You see blabla" | "You look around the room and see two doors and an old lady." | door?1;trap door?2 | collect Key&"Congrats you collected an old key";use key&"You open the door with a key" |
 
 
 ID: Die Raum-ID, für jeden Raum einzigartig, gleich der Zeilenzahl.

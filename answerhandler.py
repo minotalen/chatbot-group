@@ -8,24 +8,27 @@ def answerHandler(inputjson):
     
     answer = findAnswer(str(obj['message']), getRoomId(str(obj['room'])))
 
-    #json wird wieder zusammen gepackt
-    fun = json.dumps({"level": 1,"sender": sender,"room":answer[1],"items":[],"message": answer[0]})                    
-    return fun
+    #json wird wieder zusammen gepackt                    
+    return json.dumps({"level": 1,"sender": sender,"room":answer[1],"items":[],"message": answer[0]})
 
 
 #finds an answer to your message :)
-def findAnswer(msg, roomid):
+def findAnswer(msg, roomid = -1):
+    if roomid == -1 : raise ValueError("Invalid room id!")
     
     if classifyIntent(msg) == 1:
         for elem in findEntry(roomid, 4).split(';'):
-            if msg in elem.split('?')[0]:
-                roomid = elem.split('?')[1]
-                return (getRoomIntroduction(elem.split('?')[1]),getRoomName(roomid))
+            print(elem.split('?')[0])
+            if elem.split('?')[0] in msg :
+                roomid = int(elem.split('?')[1])
+                return (getRoomIntroduction(roomid),getRoomName(roomid))
+            
     elif classifyIntent(msg) == 2:
          return (getRoomDescription(roomid), getRoomName(roomid))
+        
     else:
-        for elem in findEntry(roomid, 3).split(';'):
-            if msg in elem.split('?')[0]: return (elem.split('?')[1], getRoomName(roomid))
+        for elem in findEntry(roomid, 5).split(';'):
+            if elem.split('&')[0] in msg : return (elem.split('&')[1], getRoomName(roomid))
 
     return ("I have no idea what you want",getRoomName(roomid))
 
@@ -38,11 +41,10 @@ column = column / which represent a property of the rooms
 @throws ValueError if parameters ar not of type int
 """
 def findEntry(id, column):
-    with open('rooms.csv', 'r') as file:
-        reader = csv.reader(file)
+    with open('roomsGW2.csv', 'r') as file:
+        reader = csv.reader(file, delimiter='§')
         rooms = [row for row in reader]
 
-    print(rooms)
 
     #necessary since we want specific int coordinates not slices
     if not isinstance(id, int) or not isinstance(column, int):
@@ -70,7 +72,7 @@ def getRoomIntroduction(id):
 
 #Get description of the room with id
 def getRoomDescription(id):
-    return findEntry(id, 5)
+    return findEntry(id, 3)
 
 #Classifies the messages "msg" into 3 different intents
 def classifyIntent(msg):

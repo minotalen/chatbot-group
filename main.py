@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send
 import json
 import csv
+from answerhandler import answerHandler
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -19,7 +20,7 @@ def send_index_page():
 @socketio.on('json')
 def handleJson(payload):
     print("sending: " + payload)
-    send(payload,json=True)
+    send(answerHandler(payload),json=True)
 
 
 @socketio.on('user_registration')
@@ -29,7 +30,7 @@ def update_users(payload):
     initial_data = {"level": 1,"sender": "bot","room":"First Hallway","items":[],"message": "Hello, " + readable_json['message'] +"!"}
     json_data = json.dumps(initial_data)
     send(json_data, json=True)
-    print("added user: " + readable_json['message'] + " with session id: " + request.sid)
+    print("added user: " + payload['message'] + "with session id: " + request.sid)
 
 @socketio.on('connect')
 def connect():

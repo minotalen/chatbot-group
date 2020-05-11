@@ -1,10 +1,11 @@
 import json
 import csv
-
+import os
 def answerHandler(inputjson):
+    
     obj = json.loads(inputjson)
 
-    sender = "Chatbot"
+    sender = "bot"
     
     answer = findAnswer(str(obj['message']), getRoomId(str(obj['room'])))
 
@@ -41,6 +42,7 @@ column = column / which represent a property of the rooms
 @throws ValueError if parameters ar not of type int
 """
 def findEntry(id, column):
+    print(os.getcwd())
     with open('roomsGW2.csv', 'r') as file:
         reader = csv.reader(file, delimiter='§')
         rooms = [row for row in reader]
@@ -58,8 +60,14 @@ def findEntry(id, column):
 
 #Get the room id by room name
 def getRoomId(msg):
-    for i in len(rooms[id]):
-        if getRoomName(i) in msg: return findEntry(i,0)
+    print(os.getcwd())
+    with open('roomsGW2.csv', 'r') as file:
+        reader = csv.reader(file, delimiter='§')
+        rooms = [row for row in reader]
+        
+    for count in range(0,len(rooms)):
+        
+        if rooms[count][1] in msg: return int(findEntry(count,0))
     else: return -1
 
 #Get the current room

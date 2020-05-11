@@ -1,11 +1,8 @@
 import json
 import csv
 
-def answerHandler(json):
-    with open('example.json', 'r') as myfile:
-        data = myfile.read()
-        obj = json.loads(data)
-
+def answerHandler(inputjson):
+    obj = json.loads(inputjson)
     room, msg = int(obj['room']), str(obj['message'])
 
     if classifyIntent(msg) == 1:

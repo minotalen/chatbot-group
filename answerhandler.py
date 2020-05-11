@@ -6,14 +6,14 @@ def anwerHandler(json):
         data = myfile.read()
         obj = json.loads(data)
 
-    room, msg = int(obj['room']), str(obj['msg'])
+    room, msg = int(obj['room']), str(obj['message'])
 
     if classifyIntent(msg) == 1:
         for elem in findentry(room, 4).split(';'):
             if msg in elem.split('?')[0]:
                 #changeRoom(session, getRoomId(msg))
                 return getRoomIntroduction(elem.split('?')[1])
-    else if classifyIntent(msg) == 2:
+    elif classifyIntent(msg) == 2:
         return getRoomDescription(room)
     else:
         for elem in findentry(room, 3).split(';'):
@@ -60,4 +60,3 @@ def classifyIntent(msg):
     if "go to" in msg : return 1
     else if "!look around" in msg : return 2
     else: return 3
-

@@ -1,7 +1,7 @@
 import json
 import csv
 
-def anwerHandler(json):
+def answerHandler(json):
     with open('example.json', 'r') as myfile:
         data = myfile.read()
         obj = json.loads(data)
@@ -9,14 +9,14 @@ def anwerHandler(json):
     room, msg = int(obj['room']), str(obj['message'])
 
     if classifyIntent(msg) == 1:
-        for elem in findentry(room, 4).split(';'):
+        for elem in findEntry(room, 4).split(';'):
             if msg in elem.split('?')[0]:
                 #changeRoom(session, getRoomId(msg))
                 return getRoomIntroduction(elem.split('?')[1])
     elif classifyIntent(msg) == 2:
         return getRoomDescription(room)
     else:
-        for elem in findentry(room, 3).split(';'):
+        for elem in findEntry(room, 3).split(';'):
             if msg in elem.split('?')[0]: return elem.split('?')[1]
 
     return "I have no idea what you want"
@@ -27,7 +27,7 @@ id = row / which represent a room
 column = column / which represent a property of the rooms
 @throws ValueError if parameters ar not of type int
 """
-def findentry(id, column):
+def findEntry(id, column):
     with open('rooms.csv', 'r') as file:
         reader = csv.reader(file)
         rooms = [row for row in reader]

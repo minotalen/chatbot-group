@@ -58,5 +58,5 @@ def getRoomDescription(id):
 
 def classifyIntent(msg):
     if "go to" in msg : return 1
-    elif "!look around" in msg : return 2
+    elif "!look around" in msg: return 2
     else: return 3

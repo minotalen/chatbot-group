@@ -29,8 +29,11 @@ def findAnswer(msg, roomid=-1):
                 return (getRoomIntroduction(roomid), getRoomName(roomid))
 
     elif classifyIntent(msg) == 2:
-        return (getRoomDescription(roomid), getRoomName(roomid))
+         return (getRoomDescription(roomid), getRoomName(roomid))
 
+    elif classifyIntent(msg) == 3:
+         return (getRoomIntroduction(roomid), getRoomName(roomid))
+        
     else:
         for elem in findEntry(roomid, 5).split(';'):
             if elem.split('&')[0] in msg:
@@ -104,16 +107,13 @@ def getRoomIntroduction(id):
 def getRoomDescription(id):
     return findEntry(id, 3)
 
-# Classifies the messages "msg" into 3 different intents
 
-
+#Classifies the messages "msg" into 3 different intents
 def classifyIntent(msg):
-    if "go to" in msg:
-        return 1
-    elif "look around" in msg:
-        return 2
-    else:
-        return 3
+    if "go to" in msg : return 1
+    elif "look around" in msg: return 2
+    elif "enter" in msg: return 3
+    else: return 4
 
 # Check if Msg is a String
 

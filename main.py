@@ -30,6 +30,9 @@ def update_users(payload):
     initial_data = {"level": 1,"sender": "bot","room":"First Hallway","items":[],"message": "Hello, " + readable_json['message'] +"!"}
     json_data = json.dumps(initial_data)
     send(json_data, json=True)
+    intro_text = {"level": 1,"sender": "bot","room":"Introduction","items":[],"message": "enter"}
+    json_data = json.dumps(intro_text)
+    send(answerHandler(json_data),json=True)
     print("added user: " + readable_json['message'] + " with session id: " + request.sid)
 
 @socketio.on('connect')

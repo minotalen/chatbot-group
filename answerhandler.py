@@ -17,7 +17,8 @@ def answerHandler(inputjson):
 
 #finds an answer to your message :)
 def findAnswer(msg, roomid = -1):
-    if roomid == -1 : raise ValueError("Invalid room id!")
+    if roomid == -1 or not isisnstance(roomid, int) : raise ValueError("Invalid room id!")
+    checkMessage(msg)
     
     if classifyIntent(msg) == 1:
         for elem in findEntry(roomid, 4).split(';'):
@@ -49,7 +50,7 @@ def findEntry(id, column):
     file_location = script_location / 'roomsGW2.csv'
     file = file_location.open()
     
-    with open(file_location, 'r') as file:
+    with open(file_location, 'r', newline = '') as file:
         reader = csv.reader(file, delimiter='$')
         rooms = [row for row in reader]
 
@@ -66,12 +67,14 @@ def findEntry(id, column):
 
 #Get the room id by room name
 def getRoomId(msg):
+
+    checkMessage(msg)
     
     script_location = Path(__file__).absolute().parent
     file_location = script_location / 'roomsGW2.csv'
     file = file_location.open()
     
-    with open(file_location, 'r') as file:
+    with open(file_location, 'r', newline = '') as file:
         reader = csv.reader(file, delimiter='$' )
         rooms = [row for row in reader]
         
@@ -97,3 +100,9 @@ def classifyIntent(msg):
     if "go to" in msg : return 1
     elif "look around" in msg: return 2
     else: return 3
+
+#Check if Msg is a String
+def checkMessage(msg):
+    if not isinstance(msg, str) : raise ValueError("Message must be of type string")
+    
+    

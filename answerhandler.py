@@ -49,7 +49,7 @@ def findEntry(id, column):
     file_location = script_location / 'roomsGW2.csv'
     file = file_location.open()
     
-    with open(file_location, 'r',  newline = '', encoding = 'utf-8') as file:
+    with open(file_location, 'r') as file:
         reader = csv.reader(file, delimiter='§')
         rooms = [row for row in reader]
 
@@ -71,7 +71,7 @@ def getRoomId(msg):
     file_location = script_location / 'roomsGW2.csv'
     file = file_location.open()
     
-    with open(file_location, 'r',  newline = '', encoding = 'utf-8') as file:
+    with open(file_location, 'r') as file:
         reader = csv.reader(file, delimiter='§' )
         rooms = [row for row in reader]
         

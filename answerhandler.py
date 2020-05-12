@@ -1,6 +1,8 @@
 import json
 import csv
-import os
+from pathlib import Path
+
+
 def answerHandler(inputjson):
     
     obj = json.loads(inputjson)
@@ -26,6 +28,9 @@ def findAnswer(msg, roomid = -1):
             
     elif classifyIntent(msg) == 2:
          return (getRoomDescription(roomid), getRoomName(roomid))
+
+    elif classifyIntent(msg) == 3:
+         return (getRoomIntroduction(roomid), getRoomName(roomid))
         
     else:
         for elem in findEntry(roomid, 5).split(';'):
@@ -42,9 +47,13 @@ column = column / which represent a property of the rooms
 @throws ValueError if parameters ar not of type int
 """
 def findEntry(id, column):
-    print(os.getcwd())
-    with open('roomsGW2.csv', 'r') as file:
-        reader = csv.reader(file, delimiter='§')
+
+    script_location = Path(__file__).absolute().parent
+    file_location = script_location / 'roomsGW2.csv'
+    file = file_location.open()
+    
+    with open(file_location, 'r') as file:
+        reader = csv.reader(file, delimiter='$')
         rooms = [row for row in reader]
 
 
@@ -60,9 +69,13 @@ def findEntry(id, column):
 
 #Get the room id by room name
 def getRoomId(msg):
-    print(os.getcwd())
-    with open('roomsGW2.csv', 'r') as file:
-        reader = csv.reader(file, delimiter='§')
+    
+    script_location = Path(__file__).absolute().parent
+    file_location = script_location / 'roomsGW2.csv'
+    file = file_location.open()
+    
+    with open(file_location, 'r') as file:
+        reader = csv.reader(file, delimiter='$' )
         rooms = [row for row in reader]
         
     for count in range(0,len(rooms)):
@@ -82,8 +95,10 @@ def getRoomIntroduction(id):
 def getRoomDescription(id):
     return findEntry(id, 3)
 
+
 #Classifies the messages "msg" into 3 different intents
 def classifyIntent(msg):
     if "go to" in msg : return 1
-    elif "!look around" in msg: return 2
-    else: return 3
+    elif "look around" in msg: return 2
+    elif "current room" in msg: return 3
+    else: return 4

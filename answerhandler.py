@@ -1,5 +1,6 @@
 import json
 import csv
+import pandas as pd
 from pathlib import Path
 
 
@@ -30,6 +31,9 @@ def findAnswer(msg, roomid=-1):
 
     elif classifyIntent(msg) == 2:
         return (getRoomDescription(roomid), getRoomName(roomid))
+
+    elif classifyIntent(msg) == 4:
+        return (get_inventory(), getRoomName(roomid))
 
     else:
         for elem in findEntry(roomid, 5).split(';'):
@@ -112,6 +116,8 @@ def classifyIntent(msg):
         return 1
     elif "look around" in msg:
         return 2
+    elif "items" in msg:
+        return 4
     else:
         return 3
 
@@ -121,3 +127,38 @@ def classifyIntent(msg):
 def checkMessage(msg):
     if not isinstance(msg, str):
         raise ValueError("Message must be of type string")
+
+# manages a local saved inventory
+# if "items" in s:
+
+def get_inventory():
+    with open("inventory.csv") as csvfile:
+        csv_reader = csv.DictReader(csvfile)
+        line_count = 0
+        item_count = 0
+        data = ""
+        for row in csv_reader:
+            if line_count == 0:
+                line_count += 1
+            if row["Found"] == "True":
+                if item_count == 1:
+                    data += " and "
+                data += str(row["Item-Name"]) + ", " + str(row["Description"])
+                item_count = 1
+        if item_count == 1:
+            data += ". "
+        else:
+            data = "A yawning void looks at you from your inventory. "
+        return data
+        
+#adds a items to the inventory(sets the variable of the item from 'False' to 'True')
+#optional: add a quantity column in the csv
+
+def add_inventory(name):
+    with open("inventory.csv") as csvfile:
+        df = pd.read_csv("test.csv")
+        #df.head(3) #prints 3 heading rows
+        df.loc[df["Item-Name"]==name, "Found"] = "True"
+        #next line is not tested!
+        #df.loc[df["Item-Name"]==, "Item-Quantity"] = ([df["Item-Name"]==, "Item-Quantity"] +1)
+        df.to_csv("inventory.csv", index=False)

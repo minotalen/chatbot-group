@@ -22,7 +22,6 @@ def handleJson(payload):
     print("sending: " + payload)
     send(answerHandler(payload),json=True)
 
-
 @socketio.on('user_registration')
 def update_users(payload):
     readable_json = json.loads(payload)

@@ -1,6 +1,8 @@
 import json
 import csv
-import os
+from pathlib import Path
+
+
 def answerHandler(inputjson):
     
     obj = json.loads(inputjson)
@@ -42,8 +44,12 @@ column = column / which represent a property of the rooms
 @throws ValueError if parameters ar not of type int
 """
 def findEntry(id, column):
-    print(os.getcwd())
-    with open('roomsGW2.csv', 'r') as file:
+
+    script_location = Path(__file__).absolute().parent
+    file_location = script_location / 'roomsGW2.csv'
+    file = file_location.open()
+    
+    with open(file_location, 'r') as file:
         reader = csv.reader(file, delimiter='§')
         rooms = [row for row in reader]
 
@@ -60,8 +66,12 @@ def findEntry(id, column):
 
 #Get the room id by room name
 def getRoomId(msg):
-    print(os.getcwd())
-    with open('roomsGW2.csv', 'r') as file:
+    
+    script_location = Path(__file__).absolute().parent
+    file_location = script_location / 'roomsGW2.csv'
+    file = file_location.open()
+    
+    with open(file_location, 'r') as file:
         reader = csv.reader(file, delimiter='§')
         rooms = [row for row in reader]
         

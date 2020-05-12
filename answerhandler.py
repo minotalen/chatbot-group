@@ -50,7 +50,7 @@ def findEntry(id, column):
     file = file_location.open()
     
     with open(file_location, 'r') as file:
-        reader = csv.reader(file, delimiter='§')
+        reader = csv.reader(file, delimiter='$')
         rooms = [row for row in reader]
 
 
@@ -72,7 +72,7 @@ def getRoomId(msg):
     file = file_location.open()
     
     with open(file_location, 'r') as file:
-        reader = csv.reader(file, delimiter='§' )
+        reader = csv.reader(file, delimiter='$' )
         rooms = [row for row in reader]
         
     for count in range(0,len(rooms)):

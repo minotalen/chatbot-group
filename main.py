@@ -27,10 +27,10 @@ def handleJson(payload):
 def update_users(payload):
     readable_json = json.loads(payload)
     users.append({"user_id": request.sid, "user_name": readable_json['message']})
-    initial_data = {"level": 1,"sender": "bot","room":"First Hallway","items":[],"message": "Hello, " + readable_json['message'] +"!"}
+    initial_data = {"level": 1,"sender": "bot","room":"Introduction","items":[],"message": "Hello, " + readable_json['message'] +"!"}
     json_data = json.dumps(initial_data)
     send(json_data, json=True)
-    intro_text = {"level": 1,"sender": "bot","room":"Introduction","items":[],"message": "enter"}
+    intro_text = {"level": 1,"sender": "bot","room":"Introduction","items":[],"message": "current room"}
     json_data = json.dumps(intro_text)
     send(answerHandler(json_data),json=True)
     print("added user: " + readable_json['message'] + " with session id: " + request.sid)

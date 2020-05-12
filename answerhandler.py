@@ -4,32 +4,32 @@ from pathlib import Path
 
 
 def answerHandler(inputjson):
-    
+
     obj = json.loads(inputjson)
 
     sender = "bot"
-    
+
     answer = findAnswer(str(obj['message']), getRoomId(str(obj['room'])))
 
-    #json wird wieder zusammen gepackt                    
+    #json wird wieder zusammen gepackt
     return json.dumps({"level": 1,"sender": sender,"room":answer[1],"items":[],"message": answer[0]})
 
 
 #finds an answer to your message :)
 def findAnswer(msg, roomid = -1):
-    if roomid == -1 or not isisnstance(roomid, int) : raise ValueError("Invalid room id!")
+    if roomid == -1 or not isinstance(roomid, int) : raise ValueError("Invalid room id!")
     checkMessage(msg)
-    
+
     if classifyIntent(msg) == 1:
         for elem in findEntry(roomid, 4).split(';'):
             print(elem.split('?')[0])
             if elem.split('?')[0] in msg :
                 roomid = int(elem.split('?')[1])
                 return (getRoomIntroduction(roomid),getRoomName(roomid))
-            
+
     elif classifyIntent(msg) == 2:
          return (getRoomDescription(roomid), getRoomName(roomid))
-        
+
     else:
         for elem in findEntry(roomid, 5).split(';'):
             if elem.split('&')[0] in msg : return (elem.split('&')[1], getRoomName(roomid))
@@ -49,7 +49,7 @@ def findEntry(id, column):
     script_location = Path(__file__).absolute().parent
     file_location = script_location / 'roomsGW2.csv'
     file = file_location.open()
-    
+
     with open(file_location, 'r', newline = '') as file:
         reader = csv.reader(file, delimiter='$')
         rooms = [row for row in reader]
@@ -63,23 +63,23 @@ def findEntry(id, column):
             return "csv table coordinates are out of range"
     else :
         return rooms[id][column]
-   
+
 
 #Get the room id by room name
 def getRoomId(msg):
 
     checkMessage(msg)
-    
+
     script_location = Path(__file__).absolute().parent
     file_location = script_location / 'roomsGW2.csv'
     file = file_location.open()
-    
+
     with open(file_location, 'r', newline = '') as file:
         reader = csv.reader(file, delimiter='$' )
         rooms = [row for row in reader]
-        
+
     for count in range(0,len(rooms)):
-        
+
         if rooms[count][1] in msg: return int(findEntry(count,0))
     else: return -1
 
@@ -87,7 +87,7 @@ def getRoomId(msg):
 def getRoomName(id):
     return findEntry(id, 1)
 
-#Get introduction of the room with id    
+#Get introduction of the room with id
 def getRoomIntroduction(id):
     return findEntry(id, 2)
 
@@ -104,5 +104,3 @@ def classifyIntent(msg):
 #Check if Msg is a String
 def checkMessage(msg):
     if not isinstance(msg, str) : raise ValueError("Message must be of type string")
-    
-    

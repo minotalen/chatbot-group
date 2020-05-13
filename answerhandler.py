@@ -2,6 +2,7 @@ import json
 import csv
 import pandas as pd
 from pathlib import Path
+from intentclassificator import classifyIntent
 
 
 def answerHandler(inputjson):
@@ -98,20 +99,6 @@ def getRoomIntroduction(id):
 #Get description of the room with id
 def getRoomDescription(id):
     return findEntry(id, 3)
-
-
-#Classifies the messages "msg" into 4 different intents
-def classifyIntent(msg):
-    if "go to" in msg:
-        return 1
-    elif "look around" in msg:
-        return 2
-    elif "current room" in msg:
-        return 3
-    elif "items" in msg:
-        return 4
-    else:
-        return 0
 
 # Check if Msg is a String
 

@@ -1,3 +1,5 @@
 flask-socketio>=4.3.0
 gevent-websocket>=0.10.1
 eventlet>=0.25.2
+fuzzywuzzy>=0.18.0
+pandas>=1.0.3

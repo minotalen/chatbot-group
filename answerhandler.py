@@ -1,6 +1,8 @@
 import json
 import csv
+import pandas as pd
 from pathlib import Path
+from intentclassificator import classifyIntent
 
 
 def answerHandler(inputjson):
@@ -31,6 +33,9 @@ def findAnswer(msg, roomid = -1):
 
     elif classifyIntent(msg) == 3:
          return (getRoomIntroduction(roomid), getRoomName(roomid))
+         
+    elif classifyIntent(msg) == 4:
+        return (get_inventory(), getRoomName(roomid))
         
     else:
         for elem in findEntry(roomid, 5).split(';'):
@@ -52,7 +57,7 @@ def findEntry(id, column):
     file_location = script_location / 'roomsGW2.csv'
     file = file_location.open()
     
-    with open(file_location, 'r') as file:
+    with open(file_location, 'r', newline = '') as file:
         reader = csv.reader(file, delimiter='$')
         rooms = [row for row in reader]
 
@@ -74,7 +79,7 @@ def getRoomId(msg):
     file_location = script_location / 'roomsGW2.csv'
     file = file_location.open()
     
-    with open(file_location, 'r') as file:
+    with open(file_location, 'r', newline = '') as file:
         reader = csv.reader(file, delimiter='$' )
         rooms = [row for row in reader]
         
@@ -95,10 +100,46 @@ def getRoomIntroduction(id):
 def getRoomDescription(id):
     return findEntry(id, 3)
 
+# Check if Msg is a String
 
-#Classifies the messages "msg" into 3 different intents
-def classifyIntent(msg):
-    if "go to" in msg : return 1
-    elif "look around" in msg: return 2
-    elif "current room" in msg: return 3
-    else: return 4
+
+def checkMessage(msg):
+    if not isinstance(msg, str):
+        raise ValueError("Message must be of type string")
+    
+# manages a local saved inventory
+# if "items" in s:
+
+def get_inventory():
+    with open("inventory.csv") as csvfile:
+        csv_reader = csv.DictReader(csvfile)
+        line_count = 0
+        item_count = 0
+        data = ""
+        for row in csv_reader:
+            if line_count == 0:
+                line_count += 1
+            if row["Found"] == "True":
+                if item_count == 1:
+                    data += " and "
+                data += str(row["Item-Name"]) + ", " + str(row["Description"])
+                item_count = 1
+        if item_count == 1:
+            data += ". "
+        else:
+            data = "A yawning void looks at you from your inventory. "
+        return data
+        
+#adds a items to the inventory(sets the variable of the item from 'False' to 'True')
+#optional: add a quantity column in the csv
+
+def add_inventory(name):
+    with open("inventory.csv") as csvfile:
+        df = pd.read_csv("test.csv")
+        #df.head(3) #prints 3 heading rows
+        df.loc[df["Item-Name"]==name, "Found"] = "True"
+        #next line is not tested!
+        #df.loc[df["Item-Name"]==, "Item-Quantity"] = ([df["Item-Name"]==, "Item-Quantity"] +1)
+        df.to_csv("inventory.csv", index=False)
+
+    

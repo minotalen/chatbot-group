@@ -1,7 +1,6 @@
 import csv
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
-from answerhandler import checkMessage
 
 #Classifies the messages "msg" into 3 different intents with fuzzy wuzzy
 def classifyIntent(msg):
@@ -51,4 +50,8 @@ def writeMessagetoTrainingData(msg):
         writer.writerow(wordlist)        
         return True
 
+# Checks if Msg is a String
+def checkMessage(msg):
+    if not isinstance(msg, str):
+        raise ValueError("Message must be of type string")
 

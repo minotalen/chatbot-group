@@ -10,8 +10,8 @@ def answerHandler(inputjson):
     obj = json.loads(inputjson)
 
     sender = "bot"
-    
     answer = findAnswer(str(obj['message']), getRoomId(str(obj['room'])))
+    
     if writeMessagetoTrainingData(str(obj['message'])) : print("added message to training data")
     else : print("added nothing to training data")
 

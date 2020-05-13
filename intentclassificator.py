@@ -10,8 +10,7 @@ def classifyIntent(msg):
     choices = ["go to","look around","current room"]
     answer = process.extractOne(msg, choices, scorer=fuzz.partial_ratio)
 
-    if answer[1] >= 75 : return keyToNumber(answer[0])
-    else: return 4
+    return [4, keyToNumber(answer[0])][answer[1] >= 75]
 
 #Returns a number for a specific key
 def keyToNumber(argument):

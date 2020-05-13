@@ -56,7 +56,7 @@ def findEntry(id, column):
     file_location = script_location / 'roomsGW2.csv'
     file = file_location.open()
     
-    with open(file_location, 'r') as file:
+    with open(file_location, 'r', newline = '') as file:
         reader = csv.reader(file, delimiter='$')
         rooms = [row for row in reader]
 
@@ -78,7 +78,7 @@ def getRoomId(msg):
     file_location = script_location / 'roomsGW2.csv'
     file = file_location.open()
     
-    with open(file_location, 'r') as file:
+    with open(file_location, 'r', newline = '') as file:
         reader = csv.reader(file, delimiter='$' )
         rooms = [row for row in reader]
         
@@ -154,3 +154,5 @@ def add_inventory(name):
         #next line is not tested!
         #df.loc[df["Item-Name"]==, "Item-Quantity"] = ([df["Item-Name"]==, "Item-Quantity"] +1)
         df.to_csv("inventory.csv", index=False)
+
+    

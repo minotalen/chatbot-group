@@ -27,6 +27,8 @@ socket.on('json', (json) => {
   console.log('message received');
   msg = readJSON(json);
 
+  printRoomName(roomName);
+  printCurrentLevel(levelID);
   printMessage(msg);
 });
 
@@ -96,6 +98,24 @@ function printMessage(msg) {
 
   // scroll to bottom
   chat.scrollTop = chat.scrollHeight - chat.clientHeight;
+}
+
+/**
+ * Prints the room name.
+ * @param {String} room  name 
+ */
+function printRoomName(room){
+	let rName = document.getElementById('room-name');
+	rName.innerHTML = room;
+}
+
+/**
+ * Prints the currently level.
+ * @param {String} currently level
+ */
+function printCurrentLevel(level){
+	let currentLevel = document.getElementById('level');
+	currentLevel.innerHTML = level;
 }
 
 

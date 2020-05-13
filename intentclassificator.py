@@ -1,10 +1,12 @@
 import csv
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
+from answerhandler import checkMessage
 
 #Classifies the messages "msg" into 3 different intents with fuzzy wuzzy
 def classifyIntent(msg):
 
+    checkMessage(msg)
     choices = ["go to","look around","current room"]
 
     answer = process.extractOne(msg, choices, scorer=fuzz.partial_ratio)
@@ -17,6 +19,7 @@ def classifyIntent(msg):
 #Returns a number for a specific key
 def keyToNumber(argument):
     #all the intents
+    checkMessage(argument)
     switcher = {
         "go to":1,
         "look around":2,
@@ -26,7 +29,10 @@ def keyToNumber(argument):
     # Get the function from switcher dictionary
     return switcher.get(argument,0)
 
+#Returns True if user msg is put to trainingdata.csv otherwise it returns False
 def writeMessagetoTrainingData(msg):
+
+    checkMessage(msg)
 
     filteredchars = [ c.lower() for c in msg if c.isalnum() or c == ' ' ]
     wordlist = "".join().split()
@@ -41,13 +47,11 @@ def writeMessagetoTrainingData(msg):
 
     with open(file_location, 'w', newline = '') as file:
         writer = csv.writer(file, delimiter = '$')
-        similar = False
+        
         for string in stringlist:
-            if 80 <= fuzz.ratio("".join(filteredchars), string):
-                similar = True
-                break
-
-        if similar: writer.writerow(wordlist)        
-
+            if 80 <= fuzz.ratio("".join(filteredchars), string): return False
+        
+        writer.writerow(wordlist)        
+        return True
 
 

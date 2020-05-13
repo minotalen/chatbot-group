@@ -12,7 +12,7 @@ def answerHandler(inputjson):
     sender = "bot"
     
     answer = findAnswer(str(obj['message']), getRoomId(str(obj['room'])))
-    if writeMessagetoTrainingData(answer[0]) : print("added message to training data")
+    if writeMessagetoTrainingData(str(obj['message'])) : print("added message to training data")
     else : print("added nothing to training data")
 
     #json wird wieder zusammen gepackt                    

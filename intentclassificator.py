@@ -1,4 +1,5 @@
 import csv
+from pathlib import Path
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 
@@ -29,25 +30,24 @@ def keyToNumber(argument):
 def writeMessagetoTrainingData(msg):
 
     checkMessage(msg)
-
-    filteredchars = [ c.lower() for c in msg if c.isalnum() or c == ' ' ]
-    wordlist = "".join().split()
+    filteredmessage = "".join([ c.lower() for c in msg if c.isalnum() or c == ' ' ])
+    print(filteredmessage)
     
     script_location = Path(__file__).absolute().parent
     file_location = script_location / 'trainingdata.csv'
     file = file_location.open()
 
     with open(file_location, 'r', newline = '') as file:
-        reader = csv.reader(file, delimiter='$' )
+        reader = csv.reader(file)
         stringlist = [ " ".join(word) for word in [row for row in reader]]
 
-    with open(file_location, 'w', newline = '') as file:
-        writer = csv.writer(file, delimiter = '$')
+    with open(file_location, 'a', newline = '') as file:
+        writer = csv.writer(file)
         
         for string in stringlist:
-            if 80 <= fuzz.ratio("".join(filteredchars), string): return False
+            if 80 <= fuzz.ratio(filteredmessage, string): return False
         
-        writer.writerow(wordlist)        
+        writer.writerow(filteredmessage)        
         return True
 
 # Checks if Msg is a String

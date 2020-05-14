@@ -1,7 +1,7 @@
 /*
 Basic styling for page
 Authors: Kevin Katzkowski
-Last modified: 05.05.2020
+Last modified: 12.05.2020
 */
 
 * {
@@ -19,18 +19,28 @@ html, body {
 
 h1 {
   color: var(--color-text);
-  margin: 0.5rem 0;
-  text-align: center;
-  font-size: 1.8rem;
-}
-
-h2 {
-  color: var(--color-text);
-  margin: 0.5rem 0;
+  
   text-align: center;
   font-size: 1.8rem;
 }
 
 ul {
   list-style-type: none;
+}
+
+
+#top-bar {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-primary);
+
+  
+}
+
+#top-bar h1 {
+  flex-grow: 2;
+}
+
+#top-bar h1,h2 {
+  padding: 0.5rem 1rem;
 }

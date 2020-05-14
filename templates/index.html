@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <!-- 
   Chat interface page
   Authors: ?, Kevin Katzkowski
-  Las modified: 07.05.2020
+  Las modified: 13.05.2020
 -->
 
 <head>
@@ -24,9 +24,13 @@
 <body>
     
   <div id="chat-container">
-    <h1 id="room-name"></h1>
-	<h2>Level <a id="level"></a></h2>
+    
+    <div id="top-bar">
+      <h2>Chatbot</h2>
+      <h2 id="room_name">Room 3</h2>
+      <h2 id="level">Level 1</h2>
 
+    </div>
     <ul id="chat-content-container">
       <!-- example messages for chat -->
       <li class="chat-message-bot">

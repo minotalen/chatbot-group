@@ -38,6 +38,17 @@ Oder einzeln nacheinander:
 
 Sonst schaut nochmal in die [Flask-SocketIO Doku](https://flask-socketio.readthedocs.io/en/latest/).
 
+## Bekannte Fehler 
+
+`python -m pip install --upgrade pip`
+Schließt vor dem Ausführen des Befehls alle Fenster, die irgendeine Datei aus dem Virtual Environment geöffnet haben. Das führt sonst zu folgendem Fehler: 
+
+`File "C:\Users\Kevin Katzkowski\Documents\Uni\Chatbot\venv\lib\site-packages\pip__main__.py", line 16, in <module>
+    from pip._internal.cli.main import main as _main  # isort:skip # noqa
+ModuleNotFoundError: No module named 'pip._internal.cli'`
+
+Solltet ihr diesen Fehler bereits haben, müsst ihr das Virtual Enviroment löschen und ein neues anlegen. Das Virtual Enviroment sollte `venv` heißen, damit es von der gitignore erkannt wird.
+
 ## Ausführen
 
 Aktuell läuft der Server lokal.

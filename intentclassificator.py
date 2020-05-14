@@ -1,20 +1,16 @@
 import csv
+from pathlib import Path
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
-from answerhandler import checkMessage
 
 #Classifies the messages "msg" into 3 different intents with fuzzy wuzzy
 def classifyIntent(msg):
 
     checkMessage(msg)
     choices = ["go to","look around","current room"]
-
     answer = process.extractOne(msg, choices, scorer=fuzz.partial_ratio)
 
-    if answer[1] >= 75 :
-        return keyToNumber(answer[0])
-    
-    else: return 4
+    return [4, keyToNumber(answer[0])][answer[1] >= 75]
 
 #Returns a number for a specific key
 def keyToNumber(argument):
@@ -33,25 +29,27 @@ def keyToNumber(argument):
 def writeMessagetoTrainingData(msg):
 
     checkMessage(msg)
+    filteredmessage = "".join([ c.lower() for c in msg if c.isalnum() or c == ' ' ])
+    print(filteredmessage)
 
-    filteredchars = [ c.lower() for c in msg if c.isalnum() or c == ' ' ]
-    wordlist = "".join().split()
-    
     script_location = Path(__file__).absolute().parent
     file_location = script_location / 'trainingdata.csv'
     file = file_location.open()
 
     with open(file_location, 'r', newline = '') as file:
-        reader = csv.reader(file, delimiter='$' )
+        reader = csv.reader(file, delimiter = '$')
         stringlist = [ " ".join(word) for word in [row for row in reader]]
 
-    with open(file_location, 'w', newline = '') as file:
+    with open(file_location, 'a', newline = '') as file:
         writer = csv.writer(file, delimiter = '$')
-        
+
         for string in stringlist:
-            if 80 <= fuzz.ratio("".join(filteredchars), string): return False
-        
-        writer.writerow(wordlist)        
+            if 80 <= fuzz.ratio(filteredmessage, string): return False
+
+        writer.writerow([filteredmessage])
         return True
 
-
+# Checks if Msg is a String
+def checkMessage(msg):
+    if not isinstance(msg, str):
+        raise ValueError("Message must be of type string")

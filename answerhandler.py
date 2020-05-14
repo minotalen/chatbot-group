@@ -2,7 +2,7 @@ import json
 import csv
 import pandas as pd
 from pathlib import Path
-from intentclassificator import classifyIntent
+from intentclassificator import classifyIntent, writeMessagetoTrainingData
 
 
 def answerHandler(inputjson):
@@ -10,8 +10,10 @@ def answerHandler(inputjson):
     obj = json.loads(inputjson)
 
     sender = "bot"
-    
     answer = findAnswer(str(obj['message']), getRoomId(str(obj['room'])))
+    
+    if writeMessagetoTrainingData(str(obj['message'])) : print("added message to training data")
+    else : print("added nothing to training data")
 
     #json wird wieder zusammen gepackt                    
     return json.dumps({"level": 1,"sender": sender,"room":answer[1],"items":[],"message": answer[0]})
@@ -101,9 +103,7 @@ def getRoomDescription(id):
     return findEntry(id, 3)
 
 # Check if Msg is a String
-
-
-def checkMessage(msg):
+def checksMessage(msg):
     if not isinstance(msg, str):
         raise ValueError("Message must be of type string")
     

@@ -2,15 +2,29 @@ import csv
 from pathlib import Path
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
+from monkeylearn import MonkeyLearn
+from monkeylearn.exceptions import PlanQueryLimitError, MonkeyLearnException
 
-#Classifies the messages "msg" into 3 different intents with fuzzy wuzzy
+m1 = MonkeyLearn('9172f7ffa71ad34b35a6c60958566386059cae19')
+
+#Classifies the messages "msg" with fuzzywuzzy / monkey learn disabled see comment
 def classifyIntent(msg):
 
     checkMessage(msg)
     choices = ["go to","look around","current room"]
     answer = process.extractOne(msg, choices, scorer=fuzz.partial_ratio)
 
-    return [4, keyToNumber(answer[0])][answer[1] >= 75]
+    """
+    try: response = m1.classifiers.classify(model_id='cl_bEWrgUGS', data=[msg]).body[0].get("classifications")[0]
+    except PlanQueryLimitError as e: print(e.error_code, e.detail)
+    except MonkeyLearnException: raise Exception("Something went wrong with Monkey Learn")
+          
+    answer = [response.get("tag_name"), response.get("confidence")] 
+    if not isinstance(answer[0], str) or not isinstance(answer, list) or not isinstance(answer[1], float):
+        raise TypeError("MonkeyLearn error created wrong types in the answer")
+    """
+    
+    return [5, keyToNumber(answer[0])][answer[1] >= 75] #0.175
 
 #Returns a number for a specific key
 def keyToNumber(argument):
@@ -23,7 +37,7 @@ def keyToNumber(argument):
         "items":4
     }
     # Get the function from switcher dictionary
-    return switcher.get(argument,0)
+    return switcher.get(argument, 5)
 
 #Returns True if user msg is put to trainingdata.csv otherwise it returns False
 def writeMessagetoTrainingData(msg):

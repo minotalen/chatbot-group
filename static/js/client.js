@@ -174,3 +174,4 @@ function sendUserName() {
   sendMessage('user_registration');
   userInput.placeholder = 'What will you do?';
 }
+

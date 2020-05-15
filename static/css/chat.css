@@ -52,15 +52,16 @@ Last modified: 05.05.2020
 #chat-input-user {
   position: relative;
   margin: 2rem 1rem 1rem 1rem;
+
 }
 
 #chat-input-user input[type="text"] {
-  background-color: var(--color-background);
+  background-color: var(--color-surface);
   border-radius: var(--border-radius);
   border: var(--border-chat);
   padding: 0.5rem 1rem;
   color: var(--color-message-user);
-  flex-grow: 6;
+  width: 100%;
 }
 
 #chat-input-user input[type="text"]::placeholder {
@@ -82,7 +83,7 @@ Last modified: 05.05.2020
   transition: 0.2s;
   color: var(--color-text);
   font-weight: 600;
-  flex-grow: 0.75;
+  flex-grow: 1;
   padding: 0.5rem 1rem;
   margin: 0 0 0 1rem;
 }
@@ -91,7 +92,15 @@ Last modified: 05.05.2020
   background-color: var(--color-primary-light);
 }
 
-form {
+form#chat-input-form {
   display: flex;
+
   width: 100%;
+  flex-grow: 6;
 }
+
+#autocomplete-window {
+  flex-grow: 7;
+  margin-right: 2rem;
+}
+

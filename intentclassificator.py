@@ -3,7 +3,6 @@ from pathlib import Path
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 from monkeylearn import MonkeyLearn
-from monkeylearn.exceptions import PlanQueryLimitError, MonkeyLearnException
 
 m1 = MonkeyLearn('9172f7ffa71ad34b35a6c60958566386059cae19')
 

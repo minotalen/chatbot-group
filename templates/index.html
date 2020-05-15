@@ -56,11 +56,15 @@
 
     <div id="chat-input-user">
       <form id="chat-input-form">
-        <input id="input-user" type="text" placeholder="Enter your name" autofocus></input>
+        <div id="autocomplete-window">
+          <input id="input-user" type="text" placeholder="Enter your name" autofocus></input>
+
+        </div>
+        
+
         <button type="button" id="send-button">send</button>
       </form>
     </div>
-
   </div>
 
   <!-- load socket libary -->
@@ -69,6 +73,7 @@
 
   <!-- custom javascript -->
   <script src="../static/js/client.js"></script>
+  <script src="../static/js/autocomplete.js"></script>
 </body>
 
 </html>

@@ -27,8 +27,8 @@ socket.on('json', (json) => {
   console.log('message received');
   msg = readJSON(json);
 
-  printRoomName(roomName);
-  printCurrentLevel(levelID);
+  updateRoomName(roomName);
+  updateCurrentLevel(levelID);
   printMessage(msg);
 });
 
@@ -101,19 +101,19 @@ function printMessage(msg) {
 }
 
 /**
- * Prints the room name.
+ * Updates the room name.
  * @param {String} room  name 
  */
-function printRoomName(room){
-	let rName = document.getElementById('room-name');
+function updateRoomName(room){
+	let rName = document.getElementById('room_name');
 	rName.innerHTML = room;
 }
 
 /**
- * Prints the currently level.
+ * Updates the currently level.
  * @param {String} currently level
  */
-function printCurrentLevel(level){
+function updateCurrentLevel(level){
 	let currentLevel = document.getElementById('level');
 	currentLevel.innerHTML = level;
 }

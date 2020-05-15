@@ -50,6 +50,7 @@ Last modified: 05.05.2020
 }
 
 #chat-input-user {
+  position: relative;
   margin: 2rem 1rem 1rem 1rem;
 }
 

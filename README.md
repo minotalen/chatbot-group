@@ -38,6 +38,20 @@ Oder einzeln nacheinander:
 
 Sonst schaut nochmal in die [Flask-SocketIO Doku](https://flask-socketio.readthedocs.io/en/latest/).
 
+## Bekannte Fehler 
+
+Beim Upgrade von pip mit `python -m pip install --upgrade pip`:
+
+Schließt vor dem Ausführen des Befehls alle Fenster, die irgendeine Datei aus dem Virtual Environment geöffnet haben. Das führt sonst zu folgendem Fehler: 
+
+```
+  File "C:\Users\Kevin Katzkowski\Documents\Uni\Chatbot\venv\lib\site-packages\pip__main__.py", line 16, in <module>
+    from pip._internal.cli.main import main as _main  # isort:skip # noqa
+ModuleNotFoundError: No module named 'pip._internal.cli'
+```
+
+Solltet ihr diesen Fehler bereits haben, müsst ihr das Virtual Enviroment löschen und ein Neues anlegen. Das Virtual Enviroment sollte `venv` heißen, damit es von der gitignore ignoriert wird.
+
 ## Ausführen
 
 Aktuell läuft der Server lokal.
@@ -52,6 +66,8 @@ Prüft die Connection, indem ihr die developer tools öffnet und den Reiter Cons
 
 ## Rooms.csv
 Die `rooms.csv` beinhaltet die spielbaren Räume, in denen sich der Spieler befindet. Die Datei bietet Infos dazu, was man alles in welchem Raum machen kann und wie er aussieht.
+
+Spaltentrennung mit "$"!!!
 
 Und so ist die `rooms.csv` mit Syntax aufgebaut. Wichtig! Die Überschriften sind selbst nicht in der CSV drin:
 

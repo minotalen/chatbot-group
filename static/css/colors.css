@@ -17,3 +17,17 @@ Last modified: 06.05.2020
   --border-chat: 1px solid #E1E2E1;
   --border-radius: 5px;
 }
+
+[data-theme="light"] { 
+  --color-primary: #365fc5;
+  --color-primary-light: #6c91c9;
+  --color-background: #E1E2E1;
+  --color-surface: #edf0f7;
+  --color-surface-light: rgba(255, 255, 255, 0.99);
+  --color-text: #021D42;
+  --color-text-placeholder: #757575;
+  --color-message-user: var(--color-primary);
+  --color-message-bot: var(--color-text);
+  --border-chat: 1px solid #E1E2E1;
+  --border-radius: 5px;
+}

@@ -10,7 +10,7 @@ def answerHandler(inputjson):
     obj = json.loads(inputjson)
 
     sender = "bot"
-    answer = findAnswer(str(obj['message']), getRoomId(str(obj['room'])))
+    answer = findAnswer(str(obj['message'].lower()), getRoomId(str(obj['room'])))
     
     if writeMessagetoTrainingData(str(obj['message'])) : print("added message to training data")
     else : print("added nothing to training data")
@@ -38,7 +38,8 @@ def findAnswer(msg, roomid = -1):
          
     elif classifyIntent(msg) == 4:
         return (get_inventory(), getRoomName(roomid))
-        
+    elif classifyIntent(msg) == 5:
+        return (aboutHandler(msg), getRoomName(roomid))    
     else:
         for elem in findEntry(roomid, 5).split(';'):
             if elem.split('&')[0] in msg : return (elem.split('&')[1], getRoomName(roomid))
@@ -101,6 +102,16 @@ def getRoomIntroduction(id):
 #Get description of the room with id
 def getRoomDescription(id):
     return findEntry(id, 3)
+
+#Handles about questions
+def aboutHandler(msg):
+    if "who has" in msg : return "I am programmed by student members of the Chatbots:Talk-To-Me Team"
+    elif "who are" in msg :return "I am a Chatbotgame with a browser interface"
+    elif "why are" in msg: return "I was born because the virtualmarsexplporation Project has not enought places for all the students"
+    elif "when did" in msg: return "I was born during the summer semester of 2020"
+    elif "what are" in msg: return "I want to deliver fun and interesting facts about Bremen"
+    elif "where are" in msg: return "I was programmed in Bremen"
+    else: return "I didnt understand your about chatbot: question." 
 
 # Check if Msg is a String
 def checksMessage(msg):

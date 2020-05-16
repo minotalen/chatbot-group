@@ -4,13 +4,13 @@ from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 from monkeylearn import MonkeyLearn
 
-m1 = MonkeyLearn('9172f7ffa71ad34b35a6c60958566386059cae19')
+#m1 = MonkeyLearn('9172f7ffa71ad34b35a6c60958566386059cae19')
 
 #Classifies the messages "msg" with fuzzywuzzy / monkey learn disabled see comment
 def classifyIntent(msg):
 
     checkMessage(msg)
-    choices = ["go to","look around","current room"]
+    choices = ["go to","look around","current room", "items", "about chatbot:"]
     answer = process.extractOne(msg, choices, scorer=fuzz.partial_ratio)
 
     """
@@ -23,7 +23,7 @@ def classifyIntent(msg):
         raise TypeError("MonkeyLearn error created wrong types in the answer")
     """
     
-    return [5, keyToNumber(answer[0])][answer[1] >= 75] #0.175
+    return [6, keyToNumber(answer[0])][answer[1] >= 75] #0.175
 
 #Returns a number for a specific key
 def keyToNumber(argument):
@@ -33,10 +33,11 @@ def keyToNumber(argument):
         "go to":1,
         "look around":2,
         "current room":3,
-        "items":4
+        "items":4,
+        "about chatbot:":5
     }
     # Get the function from switcher dictionary
-    return switcher.get(argument, 5)
+    return switcher.get(argument, 6)
 
 #Returns True if user msg is put to trainingdata.csv otherwise it returns False
 def writeMessagetoTrainingData(msg):

@@ -10,6 +10,7 @@ Last modified: 06.05.2020
   --color-background: #010101;
   --color-surface: #E1E2E1;
   --color-surface-light: rgba(255, 255, 255, 0.99);
+  --color-surface-dark: #D6D8DB;
   --color-text: #E1E2E1;
   --color-text-placeholder: #757575;
   --color-message-user: var(--color-primary);
@@ -24,10 +25,12 @@ Last modified: 06.05.2020
   --color-background: #E1E2E1;
   --color-surface: #edf0f7;
   --color-surface-light: rgba(255, 255, 255, 0.99);
+  --color-surface-dark: #D6D8DB;
   --color-text: #021D42;
   --color-text-placeholder: #757575;
   --color-message-user: var(--color-primary);
   --color-message-bot: var(--color-text);
   --border-chat: 1px solid #E1E2E1;
   --border-radius: 5px;
+  --border-input: 1px solid #9EA7B8;
 }

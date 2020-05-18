@@ -1,7 +1,7 @@
 /**
  * Client-side script to receive, send and display messages.
  * Authors: ?, Katja Schneider, Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modfidied: 08.05.2020
+ * Last modfidied: 18.05.2020
  */
 
 
@@ -13,12 +13,19 @@ let socket = io.connect("http://127.0.0.1:5000"),
   levelID = 'test_level_ID',
   senderName = 'test_sender_name',
   roomName = 'test_room_name',
-  itemList = [{ item: 'test_item_name1', action: 'test_item_action1' }, { item: 'test_item_name2', action: 'test_item_action2' }];
+  itemList = [{ item: 'test_item_name1', action: 'test_item_action1' }, { item: 'test_item_name2', action: 'test_item_action2' }],
+  suggestions = [
+    {name: 'suggestion'}, 
+    {name: 'alpha suggestion'},
+    {name: 'suggestion test'}
+  ],
+  suggestionContainer = document.getElementById('suggestion-container');
 
 
 socket.on('connect', function () {
   console.log('connected client');
 });
+
 
 /**
  * Display received message from socket in chat interface.
@@ -37,11 +44,12 @@ sendButton.addEventListener('click', () => {
   userName == undefined ? sendUserName() : sendMessage();
 }, false);
 
+
 chatForm.addEventListener('submit', (evt) => {
   // prevents default reloading on submit
   evt.preventDefault();
-  
-  userName == undefined ? sendUserName() : sendMessage();
+
+  sendButton.click();
 });
 
 
@@ -65,6 +73,7 @@ function sendMessage(evt='json') {
     socket.emit(evt, json);
     console.log('message ' + msg + ' has been sent!');
     userInput.value = null;
+    closeSuggestions();
 
     printMessage(msg);
   } else {
@@ -174,3 +183,91 @@ function sendUserName() {
   sendMessage('user_registration');
   userInput.placeholder = 'What will you do?';
 }
+
+
+userInput.addEventListener('focus', showSuggestions, false);
+userInput.addEventListener('keydown', showSuggestions, false);
+userInput.addEventListener('keyup', showSuggestions, false);
+
+
+/**
+ * Shows suggestions in window above input field.
+ */
+function showSuggestions() {
+  // reset suggestions
+  suggestionContainer.innerHTML = '';
+
+  suggestions.forEach(suggestion => {
+    // create suggestion div and add to container
+    let div = document.createElement('div');
+    div.setAttribute('class', 'suggestion');
+    div.setAttribute('tabindex', '0'); // make focusable
+    div.innerHTML = suggestion.name;
+
+    // make suggestions clickable
+    div.addEventListener('click', () => {
+      userInput.value = suggestion.name;
+      sendButton.click();
+    });
+    
+    // append only match suggestions
+    if(userInput.value.trim() == '' || suggestion.name.includes(userInput.value)) {
+      // highlight matching substring
+      let sug = suggestion.name, val = userInput.value;
+      div.innerHTML = sug.slice(0, sug.indexOf(val)) + '<mark>' + val 
+        + '</mark>' + sug.slice(sug.indexOf(val) + val.length, sug.length); 
+
+      suggestionContainer.appendChild(div);
+    }
+  });
+  
+  // display container only when it contains suggestions
+  if(suggestionContainer.innerHTML != '') {
+    // create suggestion heading
+    let heading = document.createElement('div');
+    heading.setAttribute('id', 'suggestion-heading');
+    heading.innerHTML = 'SUGGESTIONS',
+
+    suggestionContainer.insertBefore(heading, suggestionContainer.firstChild);
+    suggestionContainer.style.display = 'block';
+  } else {
+    suggestionContainer.style.display = 'none';
+  }
+}
+
+
+/**
+ * Closes input field suggestions.
+ */
+function closeSuggestions() {
+  suggestionContainer.style.display = 'none';
+
+  // remove focus from textfield
+  userInput.blur();
+}
+
+
+/**
+ * Close input field suggestions on click outside of input field.
+ */
+window.addEventListener('click', (evt) => {
+  if(evt.target.id != 'input-user') closeSuggestions();
+}, false);
+
+
+window.addEventListener('keydown', (evt) => {
+  switch (evt.keyCode) {
+    case 38: // arrow key up
+      console.log('arrow up');
+      // TODO implement arrow key navigation for suggestions
+      break;
+    
+    case 40: // arrow key down
+      console.log('arrow down');
+      // TODO implement arrow key navigation for suggestions
+      break;
+    
+    default:
+      break;
+  }
+})

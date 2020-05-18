@@ -4,7 +4,7 @@
 <!-- 
   Chat interface page
   Authors: ?, Kevin Katzkowski
-  Las modified: 13.05.2020
+  Las modified: 18.05.2020
 -->
 
 <head>
@@ -52,28 +52,32 @@
       <li class="chat-message-bot">
         As you step out of the pot, you hear a strange sound from behind you. You see another guy stepping out of a pot, holding a camera and a pack of tissues, the chubby man tries hide his face behind his cap as he notices you. He escapes into a side alley.
       </li>
+
+      <!-- new messages are added here-->
     </ul>
-
-    <div id="chat-input-user">
-      <form id="chat-input-form">
-        <div id="autocomplete-window">
-          <input id="input-user" type="text" placeholder="Enter your name" autofocus></input>
-
-        </div>
-        
-
-        <button type="button" id="send-button">send</button>
-      </form>
-    </div>
   </div>
+  
+  <div id="chat-input-user">
+    <form id="chat-input-form">
+      <div id="chat-input-user-window">
 
+        <div id="suggestion-container">
+          <!-- suggestions are added here -->
+        </div>
+
+        <input id="input-user" type="text" placeholder="Enter your name" spellcheck="false"></input>
+      </div>
+
+      <button type="button" id="send-button">send</button>
+    </form>
+  </div>
+  
   <!-- load socket libary -->
   <script
       src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
 
   <!-- custom javascript -->
   <script src="../static/js/client.js"></script>
-  <script src="../static/js/autocomplete.js"></script>
 </body>
 
 </html>

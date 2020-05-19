@@ -9,15 +9,25 @@ import { sendButton } from './client.js';
 let suggestions = [
   {name: 'suggestion'}, 
   {name: 'alpha suggestion'},
-  {name: 'suggestion test'}
-  ],
+  {name: 'suggestion test'},
+  {name: 'pick up [object]'},
+  {name: 'open [object]'},
+  {name: 'use [object]'},
+  {name: 'inspect [object]'},
+  {name: 'give [object] '}, // two layers
+  {name: 'give [object] to [person]'},
+  {name: 'go to [location]'},
+  {name: 'talk to [person]'},
+  {name: 'about [any]'},
+  {name: 'look at [person, object]'}],
   userInput = document.getElementById('input-user'),
   chatForm = document.getElementById('chat-input-form'),
   visibleSuggestions,
   selectionIndex,
   currentSelection,
   arrowSelectionPriority = false,
-  suggestionContainer = document.getElementById('suggestion-container');
+  suggestionContainer = document.getElementById('suggestion-container'),
+  hideSuggestions = false; 
 
 
 /**
@@ -39,19 +49,35 @@ chatForm.addEventListener('submit', (evt) => {
     currentSelection = undefined; 
   } else {
     sendButton.click();
+    hideSuggestions = true;
   }
 });
 
 
 userInput.addEventListener('click', showSuggestions, false);
-userInput.addEventListener('keydown', showSuggestions, false);
-userInput.addEventListener('keyup', showSuggestions, false);
+
+userInput.addEventListener('keydown', toggleSuggestions, false);
+
+userInput.addEventListener('keyup', toggleSuggestions, false);
+ 
+
+/**
+ * Do not instantly reopen suggestion window after sending a message
+ */
+function toggleSuggestions() {
+  if(!hideSuggestions) {
+    showSuggestions();
+  } else {
+    hideSuggestions = false;
+  }
+}
 
 
 /**
- * Shows suggestions in window above input field.
+ * Shows suggestions in a window above input field.
  */
 function showSuggestions() {
+  hideSuggestions = false;
   visibleSuggestions = document.getElementsByClassName('suggestion');
 
   if(visibleSuggestions != undefined) {
@@ -249,4 +275,4 @@ window.addEventListener('keydown', (evt) => {
 });
 
 
-export { userInput, closeSuggestions  }
+export { closeSuggestions, userInput }

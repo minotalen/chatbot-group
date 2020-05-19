@@ -136,10 +136,11 @@ form#chat-input-form {
   padding: 0.25rem 1rem;
 }
 
-.suggestion:hover, 
+.suggestion.selected,
 .suggestion:focus {
   background-color: var(--color-surface);
   outline: none;
+  cursor: default;
 }
 
 mark {

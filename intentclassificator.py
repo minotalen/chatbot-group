@@ -63,8 +63,23 @@ def writeMessagetoTrainingData(msg: str) -> bool:
         writer.writerow([filteredmessage])
         return True
 
-#returns the synonyms of a word // use getWordtype to get the wordtype of a word
 """
+
+def getWordsofType(msg: str, wordtype: str) -> set:
+    result = set()
+    pos = nlp(msg)
+    for token in pos:
+        if str(token.pos_) == wordtype: result.add(token)
+    return result
+
+def checkSimilarity(word1: str, word2: str) -> int:
+    if not word1.isalpha() or not word2.isalpha():
+        raise ValueError("words shoud only have alpha chars")
+    synsofword1 = getSynonyms(word1, getWordtype(word1))
+    synsofword2 = getSynonyms(word2, getWordtype(word2))
+    return len(set(synsofword1).intersection(synsofword2))
+
+#returns the synonyms of a word // use getWordtype to get the wordtype of a word
 def getSynonyms(word: str, wordtype: str) -> set:
     synonyms = set()
     for syn in wn.synsets(str(word)):
@@ -72,14 +87,15 @@ def getSynonyms(word: str, wordtype: str) -> set:
             if getWordtype(str(lm.name())) == wordtype:
                 synonyms.add(lm.name())
     return sorted(synonyms)
-"""
+
 #returns the wordtype of a word // optional: in the given context of a sentence
-"""
 def getWordtype(word: str, sentence: str = None) -> str:
-    if not word.isalpha() and not '_' in word: raise ValueError("word should only contain alpha chars")
+    if not word.isalpha() and not '_' in word and not '-' in word:
+        raise ValueError("word should only contain alpha chars")
     if sentence == None : pos = nlp(word)
     else: pos = nlp(sentence)
     for token in pos:
         if str(token) == word: return str(token.pos_)
-    raise Exception("sentence does not contain the word")
-"""
+    return "UNKNOWN"
+
+"""    

@@ -10,6 +10,7 @@ let suggestions = [
   {name: 'suggestion'}, 
   {name: 'alpha suggestion'},
   {name: 'suggestion test'},
+  {name: 'look around'},
   {name: 'pick up [object]'},
   {name: 'open [object]'},
   {name: 'use [object]'},

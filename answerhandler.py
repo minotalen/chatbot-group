@@ -8,15 +8,13 @@ from intentclassificator import classifyIntent, writeMessagetoTrainingData
 def answerHandler(inputjson):
     
     obj = json.loads(inputjson)
-
-    sender = "bot"
     answer = findAnswer(str(obj['message'].lower()), getRoomId(str(obj['room'])))
     
     if writeMessagetoTrainingData(str(obj['message'])) : print("added message to training data")
     else : print("added nothing to training data")
 
     #json wird wieder zusammen gepackt                    
-    return json.dumps({"level": 1,"sender": sender,"room":answer[1],"items":[],"message": answer[0]})
+    return json.dumps({"level": 1,"sender": "bot","room":answer[1],"items":[],"message": answer[0]})
 
 
 #finds an answer to your message :)
@@ -54,7 +52,7 @@ id = row / which represent a room
 column = column / which represent a property of the rooms
 @throws ValueError if parameters ar not of type int
 """
-def findEntry(id, column):
+def findEntry(id: int, column: int) -> str:
 
     script_location = Path(__file__).absolute().parent
     file_location = script_location / 'roomsGW2.csv'
@@ -64,11 +62,6 @@ def findEntry(id, column):
         reader = csv.reader(file, delimiter='$')
         rooms = [row for row in reader]
 
-
-    #necessary since we want specific int coordinates not slices
-    if not isinstance(id, int) or not isinstance(column, int):
-        raise ValueError("Parameter must be of type int")
-
     if not len(rooms) > id >= 0 or not len(rooms[id]) > column >= 0:
             return "csv table coordinates are out of range"
     else :
@@ -76,7 +69,7 @@ def findEntry(id, column):
    
 
 #Get the room id by room name
-def getRoomId(msg):
+def getRoomId(msg: str) -> int:
     
     script_location = Path(__file__).absolute().parent
     file_location = script_location / 'roomsGW2.csv'
@@ -92,31 +85,27 @@ def getRoomId(msg):
     else: return -1
 
 #Get the current room
-def getRoomName(id):
+def getRoomName(id: int) -> str:
     return findEntry(id, 1)
 
 #Get introduction of the room with id    
-def getRoomIntroduction(id):
+def getRoomIntroduction(id: int) -> str:
     return findEntry(id, 2)
 
 #Get description of the room with id
-def getRoomDescription(id):
+def getRoomDescription(id: int) -> str:
     return findEntry(id, 3)
 
 #Handles about questions
-def aboutHandler(msg):
+def aboutHandler(msg: str) -> str:
     if "who has" in msg : return "I am programmed by student members of the Chatbots:Talk-To-Me Team"
-    elif "who are" in msg :return "I am a Chatbotgame with a browser interface"
-    elif "why are" in msg: return "I was born because the virtualmarsexplporation Project has not enought places for all the students"
-    elif "when did" in msg: return "I was born during the summer semester of 2020"
-    elif "what are" in msg: return "I want to deliver fun and interesting facts about Bremen"
-    elif "where are" in msg: return "I was programmed in Bremen"
+    elif "who" in msg :return "I am a Chatbotgame with a browser interface"
+    elif "why" in msg: return "I was born because the virtualmarsexplporation Project has not enought places for all the students"
+    elif "when" in msg: return "I was born during the summer semester of 2020"
+    elif "what" in msg: return "I want to deliver fun and interesting facts about Bremen"
+    elif "where" in msg: return "I was programmed in Bremen"
+    elif "do you like" in msg: "of course not"
     else: return "I didnt understand your about chatbot: question." 
-
-# Check if Msg is a String
-def checksMessage(msg):
-    if not isinstance(msg, str):
-        raise ValueError("Message must be of type string")
     
 # manages a local saved inventory
 # if "items" in s:

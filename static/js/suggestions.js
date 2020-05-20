@@ -1,10 +1,11 @@
 /**
  * Chat input suggestion implementation.
  * Authors: Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modfidied: 19.05.2020
+ * Last modfidied: 20.05.2020
  */
 
 import { sendButton } from './client.js';
+import { closeSettings } from './settings.js';
 
 let suggestions = [
   {name: 'suggestion'}, 
@@ -62,6 +63,7 @@ userInput.addEventListener('keydown', toggleSuggestions, false);
 userInput.addEventListener('keyup', toggleSuggestions, false);
  
 
+// TODO find a better name for this function
 /**
  * Do not instantly reopen suggestion window after sending a message
  */
@@ -268,6 +270,13 @@ window.addEventListener('keydown', (evt) => {
       currentSelection = visibleSuggestions[selectionIndex].innerText;
 
       arrowSelectionPriority = true;
+      break;
+    
+    case 27: // ESC key
+      closeSuggestions();
+      hideSuggestions = true;
+
+      closeSettings();
       break;
     
     default:

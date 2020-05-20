@@ -1,10 +1,11 @@
 /**
  * Client-side script to receive, send and display messages.
  * Authors: ?, Katja Schneider, Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modfidied: 19.05.2020
+ * Last modfidied: 20.05.2020
  */
 
 import { closeSuggestions, userInput } from './suggestions.js';
+import { closeSettings } from './settings.js';
 
 let socket = io.connect("http://127.0.0.1:5000"),
   sendButton = document.getElementById('send-button'),
@@ -29,7 +30,7 @@ socket.on('json', (json) => {
   msg = readJSON(json);
 
   updateRoomName(roomName);
-  updateCurrentLevel(levelID);
+  // updateCurrentLevel(levelID);
   printMessage(msg);
 });
 
@@ -104,7 +105,7 @@ function printMessage(msg) {
 
 /**
  * Updates the room name.
- * @param {String} room  name 
+ * @param {String} room  new room name 
  */
 function updateRoomName(room){
 	let rName = document.getElementById('room_name');
@@ -114,10 +115,12 @@ function updateRoomName(room){
 
 /**
  * Updates the currently level.
- * @param {String} currently level
+ * @param {String} level new level
  */
 function updateCurrentLevel(level){
-	let currentLevel = document.getElementById('level');
+  let currentLevel = document.getElementById('level');
+  console.log(currentLevel);
+  
 	currentLevel.innerHTML = level;
 }
 
@@ -183,8 +186,11 @@ function sendUserName() {
  * Close input field suggestions on click outside of input field.
  */
 window.addEventListener('click', (evt) => {
+  console.log(evt.target);
+  
   console.log('window click');
   if(evt.target.id != 'input-user') closeSuggestions();
+  if(!document.getElementById('settings-window').contains(evt.target) && evt.target.id != 'settings') closeSettings();
 }, false);
 
 

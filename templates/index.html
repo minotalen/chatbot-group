@@ -4,7 +4,7 @@
 <!-- 
   Chat interface page
   Authors: ?, Kevin Katzkowski
-  Las modified: 18.05.2020
+  Las modified: 20.05.2020
 -->
 
 <head>
@@ -12,10 +12,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no">
 
+  <!-- Google icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
   <!-- CSS files -->
   <link rel="stylesheet" href="../static/css/base.css">
   <link rel="stylesheet" href="../static/css/colors.css">
   <link rel="stylesheet" href="../static/css/chat.css">
+  <link rel="stylesheet" href="../static/css/settings.css">
 
   <!-- TODO change title -->
   <title>chatbot project</title>
@@ -28,9 +33,51 @@
     <div id="top-bar">
       <h2>Chatbot</h2>
       <h2 id="room_name">Room 3</h2>
-      <h2 id="level">Level 1</h2>
+      <!-- <h2 id="level">Level 1</h2> -->
+      <img src="../static/images/settings.svg" id="settings"></span>
 
     </div>
+
+    <div id="settings-window">
+      <h3>Settings</h3>
+
+      <!-- settings entries -->
+      <div class="settings-entry">
+        <label for="setting-suggestions" class="checkbox-container">
+          Show input suggestions
+          <input id="setting-suggestions" type="checkbox" checked>
+          <span class="checkmark"></span>
+        </label>
+      </div>
+
+      <div class="settings-entry">
+        <label for="setting-2" class="checkbox-container">
+          Dark Mode
+          <input id="setting-2" type="checkbox" disabled>
+          <span class="checkmark"></span>
+        </label>
+      </div>
+
+      <div class="settings-entry">
+        <label for="setting-3" class="checkbox-container">
+          Setting 3
+          <input id="setting-3" type="checkbox" disabled>
+          <span class="checkmark"></span>
+        </label>
+      </div>
+
+      <div class="settings-entry">
+        <label for="setting-4" class="checkbox-container">
+          Setting 4
+          <input id="setting-4" type="checkbox" disabled>
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      
+      <button id="close-settings">close</button>
+
+    </div>
+
     <ul id="chat-content-container">
       <!-- example messages for chat -->
       <li class="chat-message-bot">
@@ -83,6 +130,7 @@
   <!-- custom javascript -->
   <script type="module" src="../static/js/client.js"></script>
   <script type="module" src="../static/js/suggestions.js"></script>
+  <script type="module" src="../static/js/settings.js"></script>
 </body>
 
 </html>

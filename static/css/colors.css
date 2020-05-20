@@ -1,7 +1,7 @@
 /* 
 Color definitions prepared for different themes
 Authors: Kevin Katzkowski
-Last modified: 06.05.2020
+Last modified: 20.05.2020
 */
 
 :root {
@@ -17,6 +17,7 @@ Last modified: 06.05.2020
   --color-message-bot: var(--color-text);
   --border-chat: 1px solid #E1E2E1;
   --border-radius: 5px;
+  --shadow: 0px 4px 8px #757575;
 }
 
 [data-theme="light"] { 
@@ -30,7 +31,7 @@ Last modified: 06.05.2020
   --color-text-placeholder: #757575;
   --color-message-user: var(--color-primary);
   --color-message-bot: var(--color-text);
-  --border-chat: 1px solid #E1E2E1;
+  --border-chat: 1px solid var(--color-primary);
   --border-radius: 5px;
   --border-input: 1px solid #9EA7B8;
 }

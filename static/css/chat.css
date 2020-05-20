@@ -1,22 +1,23 @@
 /* 
 Main stylesheet for chat layout
 Authors: Kevin Katzkowski
-Last modified: 18.05.2020
+Last modified: 20.05.2020
 */
 
 #chat-container {
-  background-color: var(--color-background);
+  background-color: var(--color-surface-light);
   width: 80%; /* replace with @media */
-  height: 95%;
-  margin: 1.45rem auto;
+  height: 100%;
+  margin: 0 auto;
   border: var(--border-chat);
   border-radius: var(--border-radius);
+  overflow: hidden;
 }
 
 #chat-content-container {
   overflow-y: scroll;
   height: 90%;
-  scrollbar-color: var(--color-surface) var(--color-background);
+  scrollbar-color: var(--color-surface-light) var(--color-primary);
   scrollbar-width: thin;
   scroll-behavior: smooth;
   background-color: var(--color-surface-light);
@@ -24,16 +25,17 @@ Last modified: 18.05.2020
 
 #chat-content-container::-webkit-scrollbar {
   width: 0.5rem;
+ 
 }
  
 #chat-content-container::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0); */
   padding-right: 0.25rem;;
   width: 1rem;
 }
  
 #chat-content-container::-webkit-scrollbar-thumb {
-  background-color: var(--color-surface);
+  background-color: var(--color-surface-dark);
   border-radius: var(--border-radius);
 }
 
@@ -53,7 +55,7 @@ Last modified: 18.05.2020
 #chat-input-user {
   width: 80%;
   position: fixed;
-  margin: 1.45rem 10%;
+  margin: 0.75rem 10%;
   bottom: 0;
 
 }
@@ -88,13 +90,12 @@ Last modified: 18.05.2020
 
 #chat-input-user button {
   background-color: var(--color-message-user);
-  transition: 0.2s;
   border-radius: var(--border-radius);
   border: 1px solid var(--color-message-user);
   transition: 0.2s;
   color: var(--color-text);
   font-weight: 600;
-  flex-grow: 1;
+  flex-basis: calc(17.5% - 1rem);
   padding: 0.5rem 1rem;
   margin: 0 0 0 1rem;
 }
@@ -106,12 +107,12 @@ Last modified: 18.05.2020
 form#chat-input-form {
   display: flex;
   align-items: flex-end;
-  width: 100%;
-  flex-grow: 6;
+  max-width: 100%;
+  padding: 0 1.25rem;
 }
 
 #chat-input-user-window {
-  flex-grow: 7;
+  flex-basis: 82.5%;
   background-color: var(--color-surface-dark);
   border-radius: var(--border-radius);
   overflow: hidden;

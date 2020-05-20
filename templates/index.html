@@ -22,9 +22,9 @@
 </head>
 
 <body>
-    
+
   <div id="chat-container">
-    
+
     <div id="top-bar">
       <h2>Chatbot</h2>
       <h2 id="room_name">Room 3</h2>
@@ -34,29 +34,36 @@
     <ul id="chat-content-container">
       <!-- example messages for chat -->
       <li class="chat-message-bot">
-        You go down an alley and see a strange woman. <br> She checks her watch nervously multiple times and looks around, as if she doesn't want to be seen. She is standing betwen multiple big Flowerpots, but they are all empty.
+        You go down an alley and see a strange woman. <br> She checks her watch nervously multiple times and looks
+        around, as if she doesn't want to be seen. She is standing betwen multiple big Flowerpots, but they are all
+        empty.
       </li>
-      
+
       <li class="chat-message-user">
         I'll hide behind a big pot and observe.
       </li>
 
       <li class="chat-message-bot">
-        A tall man approraches her and the woman quickly jumps into one of the pots aswell, her head sticking out like a turnip. The man walks up to her and stops. "Come out little turnip" he says. The woman steps out and bows down before him. She hands him a white paper bag, which he almost rips out of her hand, and opens. smiles and nods at her, then they both walk away into two different directions. 
+        A tall man approraches her and the woman quickly jumps into one of the pots aswell, her head sticking out like a
+        turnip. The man walks up to her and stops. "Come out little turnip" he says. The woman steps out and bows down
+        before him. She hands him a white paper bag, which he almost rips out of her hand, and opens. smiles and nods at
+        her, then they both walk away into two different directions.
       </li>
 
       <li class="chat-message-user">
         Step out of the flower pot.
       </li>
-      
+
       <li class="chat-message-bot">
-        As you step out of the pot, you hear a strange sound from behind you. You see another guy stepping out of a pot, holding a camera and a pack of tissues, the chubby man tries hide his face behind his cap as he notices you. He escapes into a side alley.
+        As you step out of the pot, you hear a strange sound from behind you. You see another guy stepping out of a pot,
+        holding a camera and a pack of tissues, the chubby man tries hide his face behind his cap as he notices you. He
+        escapes into a side alley.
       </li>
 
       <!-- new messages are added here-->
     </ul>
   </div>
-  
+
   <div id="chat-input-user">
     <form id="chat-input-form">
       <div id="chat-input-user-window">
@@ -65,16 +72,13 @@
           <!-- suggestions are added here -->
         </div>
 
-        <input id="input-user" type="text" placeholder="Enter your name" spellcheck="false"></input>
-      </div>
-
-      <button type="button" id="send-button">send</button>
+        <input id="input-user" type="text" placeholder="Enter your name" spellcheck="false" autocomplete="off" </input>
+          </div> <button type="button" id="send-button">send</button>
     </form>
   </div>
-  
+
   <!-- load socket libary -->
-  <script 
-      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
 
   <!-- custom javascript -->
   <script type="module" src="../static/js/client.js"></script>

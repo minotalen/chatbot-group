@@ -96,3 +96,11 @@ Connections: Die Räume, die mit dem in der Zeile gezeigten Raum verbunden sind.
 Description: Wird bei "look around" ausgeführt. Beschreibt den Raum, wenn man schon drinne steht. "This room is old and dirty. It is dark"
 
 Notes: Informationen, diese Spalte wird nicht vom code benutzt. Allerdings beschreibt sie beispielsweise boolische Werte, die eingebeut werden müssen.
+
+## Server maintenance 
+
+Prozess von der SSH session trennen:
+
+-  into your remote box. type `screen` Then start the process you want.
+- Press Ctrl-A then Ctrl-D. This will **detach** your screen session but leave your processes running. You can now log out of the remote box.
+- If you want to come back later, log on again and type `screen -r` This will **resume** your screen session, and you can see the output of your process.

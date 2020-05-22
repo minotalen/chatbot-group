@@ -273,10 +273,13 @@ window.addEventListener('keydown', (evt) => {
       removeSuggestionSelection();
 
       // set new selection
-      visibleSuggestions[selectionIndex].classList.add('selected');
-      currentSelection = visibleSuggestions[selectionIndex].innerText;
-
-      arrowSelectionPriority = true;
+      if(visibleSuggestions.length != 0) {
+        visibleSuggestions[selectionIndex].classList.add('selected');
+        currentSelection = visibleSuggestions[selectionIndex].innerText;
+  
+        arrowSelectionPriority = true;
+      }
+      
       break;
 
     case 40: // arrow key down
@@ -296,10 +299,12 @@ window.addEventListener('keydown', (evt) => {
       removeSuggestionSelection();
 
       // set new selection
-      visibleSuggestions[selectionIndex].classList.add('selected');
-      currentSelection = visibleSuggestions[selectionIndex].innerText;
-
-      arrowSelectionPriority = true;
+      if(visibleSuggestions.length != 0) {
+        visibleSuggestions[selectionIndex].classList.add('selected');
+        currentSelection = visibleSuggestions[selectionIndex].innerText;
+  
+        arrowSelectionPriority = true;
+      }
       break;
 
     case 27: // ESC key

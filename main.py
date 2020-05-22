@@ -4,6 +4,8 @@ import json
 import csv
 from answerhandler import answerHandler
 
+# from answerhandler_withdatabase import answerHandler
+
 app = Flask(__name__, static_url_path='/static')
 
 app.config["SECRET_KEY"] = "x!\x84Iy\xf9#gE\xedBQqg+\xf3A+\xe3\xd3\x01\x1a\xdf\xd2"
@@ -23,6 +25,7 @@ def send_index_page():
 def handleJson(payload):
     print("sending: " + payload)
     send(answerHandler(payload), json=True)
+
 
 @socketio.on('user_registration')
 def update_users(payload):
@@ -58,6 +61,7 @@ def disconnect():
 @socketio.on_error()
 def error_handler(e):
     raise Exception("Some error happened, no further notice")
+
 
 # with open('rooms.csv') as csv_file:
 #     roomreader = csv.reader(csv_file)

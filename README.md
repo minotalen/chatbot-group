@@ -38,11 +38,18 @@ Oder einzeln nacheinander:
 
 Sonst schaut nochmal in die [Flask-SocketIO Doku](https://flask-socketio.readthedocs.io/en/latest/).
 
-## Bekannte Fehler 
+**Für nltk bitte wordnet installieren**
+Dazu einfach in die Python Konsole gehen und eintippen
+
+`import nltk` und danach
+
+`nltk.download('wordnet')`
+
+## Bekannte Fehler
 
 Beim Upgrade von pip mit `python -m pip install --upgrade pip`:
 
-Schließt vor dem Ausführen des Befehls alle Fenster, die irgendeine Datei aus dem Virtual Environment geöffnet haben. Das führt sonst zu folgendem Fehler: 
+Schließt vor dem Ausführen des Befehls alle Fenster, die irgendeine Datei aus dem Virtual Environment geöffnet haben. Das führt sonst zu folgendem Fehler:
 
 ```
   File "C:\Users\Kevin Katzkowski\Documents\Uni\Chatbot\venv\lib\site-packages\pip__main__.py", line 16, in <module>
@@ -62,7 +69,7 @@ Aktuell läuft der Server lokal.
 
 Wenn der Server gestartet ist, öffnet einen Browser unter addresse [http://localhost:5000](http://localhost:5000).
 
-Prüft die Connection, indem ihr die developer tools öffnet und den Reiter Console anklickt. Dort sollte wenn alles geklappt hat `connected client` stehen. 
+Prüft die Connection, indem ihr die developer tools öffnet und den Reiter Console anklickt. Dort sollte wenn alles geklappt hat `connected client` stehen.
 
 ## Rooms.csv
 Die `rooms.csv` beinhaltet die spielbaren Räume, in denen sich der Spieler befindet. Die Datei bietet Infos dazu, was man alles in welchem Raum machen kann und wie er aussieht.

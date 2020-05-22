@@ -1,16 +1,18 @@
 import csv
+#import spacy
+#from nltk.corpus import wordnet as wn
 from pathlib import Path
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 from monkeylearn import MonkeyLearn
 
-m1 = MonkeyLearn('9172f7ffa71ad34b35a6c60958566386059cae19')
+#m1 = MonkeyLearn('9172f7ffa71ad34b35a6c60958566386059cae19')
+#nlp = spacy.load("en_core_web_sm")
 
 #Classifies the messages "msg" with fuzzywuzzy / monkey learn disabled see comment
-def classifyIntent(msg):
+def classifyIntent(msg: str) -> int:
 
-    checkMessage(msg)
-    choices = ["go to","look around","current room"]
+    choices = ["go to","look around","current room", "items", "about chatbot:"]
     answer = process.extractOne(msg, choices, scorer=fuzz.partial_ratio)
 
     """
@@ -23,25 +25,24 @@ def classifyIntent(msg):
         raise TypeError("MonkeyLearn error created wrong types in the answer")
     """
     
-    return [5, keyToNumber(answer[0])][answer[1] >= 75] #0.175
+    return [6, keyToNumber(answer[0])][answer[1] >= 75] #0.175
 
 #Returns a number for a specific key
-def keyToNumber(argument):
+def keyToNumber(argument: str) -> int:
     #all the intents
-    checkMessage(argument)
     switcher = {
         "go to":1,
         "look around":2,
         "current room":3,
-        "items":4
+        "items":4,
+        "about chatbot:":5
     }
     # Get the function from switcher dictionary
-    return switcher.get(argument, 5)
+    return switcher.get(argument, 6)
 
 #Returns True if user msg is put to trainingdata.csv otherwise it returns False
-def writeMessagetoTrainingData(msg):
+def writeMessagetoTrainingData(msg: str) -> bool:
 
-    checkMessage(msg)
     filteredmessage = "".join([ c.lower() for c in msg if c.isalnum() or c == ' ' ])
     print(filteredmessage)
 
@@ -62,7 +63,39 @@ def writeMessagetoTrainingData(msg):
         writer.writerow([filteredmessage])
         return True
 
-# Checks if Msg is a String
-def checkMessage(msg):
-    if not isinstance(msg, str):
-        raise ValueError("Message must be of type string")
+"""
+
+def getWordsofType(msg: str, wordtype: str) -> set:
+    result = set()
+    pos = nlp(msg)
+    for token in pos:
+        if str(token.pos_) == wordtype: result.add(token)
+    return result
+
+def checkSimilarity(word1: str, word2: str) -> int:
+    if not word1.isalpha() or not word2.isalpha():
+        raise ValueError("words shoud only have alpha chars")
+    synsofword1 = getSynonyms(word1, getWordtype(word1))
+    synsofword2 = getSynonyms(word2, getWordtype(word2))
+    return len(set(synsofword1).intersection(synsofword2))
+
+#returns the synonyms of a word // use getWordtype to get the wordtype of a word
+def getSynonyms(word: str, wordtype: str) -> set:
+    synonyms = set()
+    for syn in wn.synsets(str(word)):
+        for lm in syn.lemmas():
+            if getWordtype(str(lm.name())) == wordtype:
+                synonyms.add(lm.name())
+    return sorted(synonyms)
+
+#returns the wordtype of a word // optional: in the given context of a sentence
+def getWordtype(word: str, sentence: str = None) -> str:
+    if not word.isalpha() and not '_' in word and not '-' in word:
+        raise ValueError("word should only contain alpha chars")
+    if sentence == None : pos = nlp(word)
+    else: pos = nlp(sentence)
+    for token in pos:
+        if str(token) == word: return str(token.pos_)
+    return "UNKNOWN"
+
+"""    

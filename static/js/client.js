@@ -1,24 +1,26 @@
 /**
  * Client-side script to receive, send and display messages.
  * Authors: ?, Katja Schneider, Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modfidied: 08.05.2020
+ * Last modfidied: 20.05.2020
  */
 
+import { closeSuggestions, userInput } from './suggestions.js';
+import { closeSettings } from './settings.js';
 
 let socket = io.connect("http://127.0.0.1:5000"),
   sendButton = document.getElementById('send-button'),
-  userInput = document.getElementById('input-user'),
-  chatForm = document.getElementById('chat-input-form'),
   userName = undefined,
   levelID = 'test_level_ID',
   senderName = 'test_sender_name',
   roomName = 'test_room_name',
-  itemList = [{ item: 'test_item_name1', action: 'test_item_action1' }, { item: 'test_item_name2', action: 'test_item_action2' }];
-
+  itemList = [{ item: 'test_item_name1', action: 'test_item_action1' }, { item: 'test_item_name2', action: 'test_item_action2' }],
+  msg;
+ 
 
 socket.on('connect', function () {
   console.log('connected client');
 });
+
 
 /**
  * Display received message from socket in chat interface.
@@ -28,28 +30,25 @@ socket.on('json', (json) => {
   msg = readJSON(json);
 
   updateRoomName(roomName);
-  updateCurrentLevel(levelID);
+  // updateCurrentLevel(levelID);
   printMessage(msg);
 });
 
 
+/**
+ * Handle send button click event.
+ */
 sendButton.addEventListener('click', () => {
   userName == undefined ? sendUserName() : sendMessage();
 }, false);
-
-chatForm.addEventListener('submit', (evt) => {
-  // prevents default reloading on submit
-  evt.preventDefault();
-  
-  userName == undefined ? sendUserName() : sendMessage();
-});
 
 
 /**
  * Sends the message from the chat input to the socket.
  */
 function sendMessage(evt='json') {
-  let json, msg = userInput.value;
+  let json;
+  msg = userInput.value;
 
   // set user as sender on outgoing messages
   senderName = 'user';
@@ -65,8 +64,11 @@ function sendMessage(evt='json') {
     socket.emit(evt, json);
     console.log('message ' + msg + ' has been sent!');
     userInput.value = null;
+    closeSuggestions();
 
     printMessage(msg);
+    userInput.focus();
+  
   } else {
     console.log('no message to send!');
   }
@@ -100,21 +102,25 @@ function printMessage(msg) {
   chat.scrollTop = chat.scrollHeight - chat.clientHeight;
 }
 
+
 /**
  * Updates the room name.
- * @param {String} room  name 
+ * @param {String} room  new room name 
  */
 function updateRoomName(room){
 	let rName = document.getElementById('room_name');
 	rName.innerHTML = room;
 }
 
+
 /**
  * Updates the currently level.
- * @param {String} currently level
+ * @param {String} level new level
  */
 function updateCurrentLevel(level){
-	let currentLevel = document.getElementById('level');
+  let currentLevel = document.getElementById('level');
+  console.log(currentLevel);
+  
 	currentLevel.innerHTML = level;
 }
 
@@ -174,3 +180,23 @@ function sendUserName() {
   sendMessage('user_registration');
   userInput.placeholder = 'What will you do?';
 }
+
+
+/**
+ * Close input field suggestions on click outside of input field.
+ */
+window.addEventListener('click', (evt) => {
+  console.log(evt.target);
+  
+  console.log('window click');
+  if(evt.target.id != 'input-user') closeSuggestions();
+  if(!document.getElementById('settings-window').contains(evt.target) && evt.target.id != 'settings') closeSettings();
+}, false);
+
+
+window.addEventListener('keyup', (evt) => {
+  evt.preventDefault(); //???????
+});
+
+
+export { sendButton }

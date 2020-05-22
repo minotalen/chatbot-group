@@ -1,0 +1,127 @@
+/* 
+Stylesheet for settings layout
+Authors: Kevin Katzkowski
+Last modified: 20.05.2020
+*/
+
+
+#settings {
+  margin: 0.5rem 1rem;
+  width: 1.5rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#settings-window {
+  display: none;
+
+  z-index: 1;
+  position: fixed;
+  background-color: var(--color-surface);
+  border: var(--border-chat);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+
+  right: 11%;
+  top: 2.5%;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#settings-window h3 {
+  text-align: center;
+}
+
+button#close-settings {
+  padding: 0.25rem 0.5rem;
+  background-color: var(--color-surface-dark);
+  border-radius: var(--border-radius);
+  border: none;
+  position: relative;
+  margin: 0.25rem 0.25rem;
+  width: 6rem;
+  transition: 0.2s;
+  left: calc(50% - 3rem);
+
+}
+
+button#close-settings:hover {
+  background-color: var(--color-primary-light);
+  transition: 0.2s;
+}
+
+.settings-entry {
+  background-color: var(--color-surface-light);
+  margin: 0.5rem 0.25rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.75rem;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+}
+
+.settings-entry label {
+  padding-right: 2.0rem;
+}
+
+.checkbox-container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  color: var(--color-text);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkbox-container input {
+  /* Hide the browser's default checkbox */
+  display: none;
+}
+
+
+.checkmark {
+  position: absolute;
+  
+  right: 0;
+  height: 1.1rem;
+  width: 1.1rem;
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius);
+  transition: 0.2s;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkmark {
+  background-color: var(--color-surface-dark);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-container .checkmark:after {
+  left: 0.275rem;
+  top: 0.05rem;
+  width: 0.4rem;
+  height: 0.7rem;
+  border: solid var(--color-text);
+  border-radius: 3px;
+  border-width: 0px 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

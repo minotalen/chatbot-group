@@ -4,8 +4,8 @@
  * Last modfidied: 20.05.2020
  */
 
-import { sendButton } from './client.js';
-import { closeSettings } from './settings.js';
+import { sendButton } from './client.mjs';
+import { closeSettings } from './settings.mjs';
 
 let suggestions = [
   {name: 'suggestion'}, 

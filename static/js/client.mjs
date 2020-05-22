@@ -4,8 +4,8 @@
  * Last modfidied: 20.05.2020
  */
 
-import { closeSuggestions, userInput } from './suggestions.js';
-import { closeSettings } from './settings.js';
+import { closeSuggestions, userInput } from './suggestions.mjs';
+import { closeSettings } from './settings.mjs';
 
 let socket = io.connect("http://127.0.0.1:5000"),
   sendButton = document.getElementById('send-button'),

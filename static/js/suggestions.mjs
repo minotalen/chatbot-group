@@ -88,7 +88,7 @@ function toggleSuggestions() {
  */
 function filterType(suggestionText) {
   let output;
-  var suggestionType = suggestionText.match(/\[(.*?)\]/);
+  var suggestionType = suggestionText.match(/\[(.*?)\]/); // filters the text between square bracket
   if (suggestionType) {
     // incomplete input, replace text field value and focus
     output = suggestionText.replace(`${suggestionType[0]}`,"");
@@ -96,7 +96,7 @@ function filterType(suggestionText) {
   } else {
     // complete input, send
     output = suggestionText;
-    suggestionType = "complete";
+    suggestionType = "complete"; // complete means that selection will be submitted immediately
   }
   return [output, suggestionType]
 }
@@ -126,6 +126,11 @@ function showSuggestions() {
     // make suggestions clickable
     div.addEventListener('click', () => {
       userInput.value = filterType(suggestion.name)[0];
+      // send if suggestion type is "complete"
+      if(filterType(visibleSuggestions[selectionIndex].innerText)[1] == "complete") {
+        sendButton.click();
+        hideSuggestions = true;
+      }
       userInput.focus();
     });
 

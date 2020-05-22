@@ -8,16 +8,15 @@ import { sendButton } from './client.mjs';
 import { closeSettings } from './settings.mjs';
 
 let suggestions = [
-  {name: 'suggestion'}, 
-  {name: 'alpha suggestion'},
-  {name: 'suggestion test'},
   {name: 'look around'},
   {name: 'pick up [object]'},
   {name: 'open [object]'},
   {name: 'use [object]'},
   {name: 'inspect [object]'},
+  {name: 'inspect chalk'},
+  {name: 'inspect hands'},
   {name: 'give [object] '}, // two layers
-  {name: 'give [object] to [person]'},
+  // {name: 'give [object] to [person]'}, //dual layer not yet properly working
   {name: 'go to [location]'},
   {name: 'talk to [person]'},
   {name: 'about [any]'},
@@ -29,7 +28,7 @@ let suggestions = [
   currentSelection,
   arrowSelectionPriority = false,
   suggestionContainer = document.getElementById('suggestion-container'),
-  hideSuggestions = false; 
+  hideSuggestions = false;
 
 
 /**
@@ -41,14 +40,21 @@ chatForm.addEventListener('submit', (evt) => {
 
   findSelectedSuggestion();
 
-  // if selection is active, insert selection text into input value 
+  // if selection is active, insert selection text into input value
   if(selectionIndex != undefined) {
-    userInput.value = visibleSuggestions[selectionIndex].innerText + ' ';
+    userInput.value = filterType(visibleSuggestions[selectionIndex].innerText)[0];
+
+    // send if suggestion type is "complete"
+    if(filterType(visibleSuggestions[selectionIndex].innerText)[1] == "complete") {
+      sendButton.click();
+      hideSuggestions = true;
+    }
 
     // reset selection
     removeSuggestionSelection();
     selectionIndex = undefined;
-    currentSelection = undefined; 
+    currentSelection = undefined;
+
   } else {
     sendButton.click();
     hideSuggestions = true;
@@ -61,7 +67,7 @@ userInput.addEventListener('click', showSuggestions, false);
 userInput.addEventListener('keydown', toggleSuggestions, false);
 
 userInput.addEventListener('keyup', toggleSuggestions, false);
- 
+
 
 // TODO find a better name for this function
 /**
@@ -75,6 +81,25 @@ function toggleSuggestions() {
   }
 }
 
+/**
+ * Filters out the object type (text in square brackets)
+ * TODO figure out how to deal with multiple types (like "give [object] to [person]")
+ * returns array with filtered text and object type
+ */
+function filterType(suggestionText) {
+  let output;
+  var suggestionType = suggestionText.match(/\[(.*?)\]/);
+  if (suggestionType) {
+    // incomplete input, replace text field value and focus
+    output = suggestionText.replace(`${suggestionType[0]}`,"");
+    console.log("text:", output, "type:", suggestionType[0]);
+  } else {
+    // complete input, send
+    output = suggestionText;
+    suggestionType = "complete";
+  }
+  return [output, suggestionType]
+}
 
 /**
  * Shows suggestions in a window above input field.
@@ -84,10 +109,10 @@ function showSuggestions() {
   visibleSuggestions = document.getElementsByClassName('suggestion');
 
   if(visibleSuggestions != undefined) {
-    // find already selected element 
+    // find already selected element
     findSelectedSuggestion();
   }
-  
+
   // reset suggestions
   suggestionContainer.innerHTML = '';
 
@@ -100,21 +125,21 @@ function showSuggestions() {
 
     // make suggestions clickable
     div.addEventListener('click', () => {
-      userInput.value = suggestion.name;
+      userInput.value = filterType(suggestion.name)[0];
       userInput.focus();
     });
-    
+
     // append only match suggestions
     if(userInput.value.trim() == '' || suggestion.name.includes(userInput.value)) {
       // highlight matching substring
       let sug = suggestion.name, val = userInput.value;
-      div.innerHTML = sug.slice(0, sug.indexOf(val)) + '<mark>' + val 
-        + '</mark>' + sug.slice(sug.indexOf(val) + val.length, sug.length); 
+      div.innerHTML = sug.slice(0, sug.indexOf(val)) + '<mark>' + val
+        + '</mark>' + sug.slice(sug.indexOf(val) + val.length, sug.length);
 
       suggestionContainer.appendChild(div);
     }
   });
-  
+
   // display container only when it contains suggestions
   if(suggestionContainer.innerHTML != '') {
     // create suggestion heading
@@ -129,19 +154,19 @@ function showSuggestions() {
     // set old selection again
     if(selectionIndex != undefined) {
 
-      // update suggestions 
+      // update suggestions
       visibleSuggestions = document.getElementsByClassName('suggestion');
-    
+
       // if old suggestion exist in new suggestions, calculate selectionIndex
       for (let suggestion of visibleSuggestions) {
-        if(suggestion.innerText == currentSelection) { 
+        if(suggestion.innerText == currentSelection) {
           selectionIndex = Array.from(visibleSuggestions).indexOf(suggestion);
           break;
         } else {
           selectionIndex = undefined;
         }
       }
-      
+
       // set old selection on new suggestions if old selection still exists
       if(selectionIndex != undefined) {
         visibleSuggestions[selectionIndex].classList.add('selected');
@@ -235,7 +260,7 @@ window.addEventListener('keydown', (evt) => {
         removeSuggestionSelection();
         selectionIndex = undefined;
       } else if(selectionIndex != undefined) {
-        selectionIndex == 0 ? selectionIndex = visibleSuggestions.length - 1 : selectionIndex--; 
+        selectionIndex == 0 ? selectionIndex = visibleSuggestions.length - 1 : selectionIndex--;
       } else {
         selectionIndex = visibleSuggestions.length - 1;
       }
@@ -248,7 +273,7 @@ window.addEventListener('keydown', (evt) => {
 
       arrowSelectionPriority = true;
       break;
-    
+
     case 40: // arrow key down
       evt.preventDefault();
       findSelectedSuggestion();
@@ -258,7 +283,7 @@ window.addEventListener('keydown', (evt) => {
         removeSuggestionSelection();
         selectionIndex = undefined;
       } else if(selectionIndex != undefined) {
-        selectionIndex == visibleSuggestions.length - 1 ? selectionIndex = 0 : selectionIndex++; 
+        selectionIndex == visibleSuggestions.length - 1 ? selectionIndex = 0 : selectionIndex++;
       } else {
         selectionIndex = 0;
       }
@@ -271,14 +296,14 @@ window.addEventListener('keydown', (evt) => {
 
       arrowSelectionPriority = true;
       break;
-    
+
     case 27: // ESC key
       closeSuggestions();
       hideSuggestions = true;
 
       closeSettings();
       break;
-    
+
     default:
       break;
   }

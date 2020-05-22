@@ -71,4 +71,4 @@ def error_handler(e):
 
 if __name__ == "__main__":
     print("Try to start server...")
-    socketio.run(app, host='0.0.0.0', debug=True)
+    socketio.run(app, host='134.102.201.46/24', debug=True)

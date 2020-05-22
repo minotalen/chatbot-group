@@ -7,7 +7,7 @@
 import { closeSuggestions, userInput } from './suggestions.mjs';
 import { closeSettings } from './settings.mjs';
 
-let socket = io.connect("http://127.0.0.1:5000"),
+let socket = io.connect("http://134.102.201.46/24:5000"),
   sendButton = document.getElementById('send-button'),
   userName = undefined,
   levelID = 'test_level_ID',
@@ -15,7 +15,7 @@ let socket = io.connect("http://127.0.0.1:5000"),
   roomName = 'test_room_name',
   itemList = [{ item: 'test_item_name1', action: 'test_item_action1' }, { item: 'test_item_name2', action: 'test_item_action2' }],
   msg;
- 
+
 
 socket.on('connect', function () {
   console.log('connected client');
@@ -46,7 +46,7 @@ sendButton.addEventListener('click', () => {
 /**
  * Sends the message from the chat input to the socket.
  */
-function sendMessage(evt='json') {
+function sendMessage(evt = 'json') {
   let json;
   msg = userInput.value;
 
@@ -54,7 +54,7 @@ function sendMessage(evt='json') {
   senderName = 'user';
 
   // store user name in client variables
-  if(evt == 'user_registration') {
+  if (evt == 'user_registration') {
     userName = msg;
   }
 
@@ -68,7 +68,7 @@ function sendMessage(evt='json') {
 
     printMessage(msg);
     userInput.focus();
-  
+
   } else {
     console.log('no message to send!');
   }
@@ -107,9 +107,9 @@ function printMessage(msg) {
  * Updates the room name.
  * @param {String} room  new room name 
  */
-function updateRoomName(room){
-	let rName = document.getElementById('room_name');
-	rName.innerHTML = room;
+function updateRoomName(room) {
+  let rName = document.getElementById('room_name');
+  rName.innerHTML = room;
 }
 
 
@@ -117,11 +117,11 @@ function updateRoomName(room){
  * Updates the currently level.
  * @param {String} level new level
  */
-function updateCurrentLevel(level){
+function updateCurrentLevel(level) {
   let currentLevel = document.getElementById('level');
   console.log(currentLevel);
-  
-	currentLevel.innerHTML = level;
+
+  currentLevel.innerHTML = level;
 }
 
 
@@ -187,10 +187,10 @@ function sendUserName() {
  */
 window.addEventListener('click', (evt) => {
   console.log(evt.target);
-  
+
   console.log('window click');
-  if(evt.target.id != 'input-user') closeSuggestions();
-  if(!document.getElementById('settings-window').contains(evt.target) && evt.target.id != 'settings') closeSettings();
+  if (evt.target.id != 'input-user') closeSuggestions();
+  if (!document.getElementById('settings-window').contains(evt.target) && evt.target.id != 'settings') closeSettings();
 }, false);
 
 

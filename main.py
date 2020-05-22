@@ -71,4 +71,5 @@ def error_handler(e):
 
 if __name__ == "__main__":
     print("Try to start server...")
-    socketio.run(app, host='134.102.201.46/24', port=5000, debug=True)
+    socketio.run(app, host='elephanture.informatik.uni-bremen.de',
+                 port=5000, debug=True)

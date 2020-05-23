@@ -25,7 +25,7 @@ def classifyIntent(msg: str) -> int:
         raise TypeError("MonkeyLearn error created wrong types in the answer")
     """
     
-    return [6, keyToNumber(answer[0])][answer[1] >= 75] #0.175
+    return [6, keyToNumber(answer[0])][answer[1] >= 75] #0.175 // replace 6 with keyToNumber(checkSynonyms(msg)) to add synonym checking
 
 #Returns a number for a specific key
 def keyToNumber(argument: str) -> int:
@@ -40,10 +40,30 @@ def keyToNumber(argument: str) -> int:
     # Get the function from switcher dictionary
     return switcher.get(argument, 6)
 
+def filterMessage(msg: str) -> str: return "".join([ c.lower() for c in msg if c.isalnum() or c == ' ' ])
+
+"""
+def checkSynonyms(msg: str) -> str:
+    listofwords = filterMessage(msg).split()
+    typeofwords =  list(map(lambda x: getWordtype(x, ' '.join(listofwords)), listofwords))
+    wordsandtype = list(zip(listofwords, typeofwords))
+    choices = ["go to","look around","current room", "items", "about chatbot:"] 
+    listofchoices = list(map(lambda x: filterMessage(x).split(), choices))
+    results = []
+    #to test
+    for elem in listofchoices:
+        results.append(0)
+        for x in elem:
+            for tup in worddsandtype:
+                if tup[1] == getWordtype(x):
+                   results[len(results)-1] += checkSimilarity(x, tup[0])
+    if max(results) > 0: return choices[results.index(max(results))]
+    else: return "I dont know"
+"""
 #Returns True if user msg is put to trainingdata.csv otherwise it returns False
 def writeMessagetoTrainingData(msg: str) -> bool:
 
-    filteredmessage = "".join([ c.lower() for c in msg if c.isalnum() or c == ' ' ])
+    filteredmessage = filterMessage(msg)
     print(filteredmessage)
 
     script_location = Path(__file__).absolute().parent
@@ -64,7 +84,7 @@ def writeMessagetoTrainingData(msg: str) -> bool:
         return True
 
 """
-
+#Returns all words of a given type in a string // wordtype must be a valid spacy wordtype
 def getWordsofType(msg: str, wordtype: str) -> set:
     result = set()
     pos = nlp(msg)
@@ -72,6 +92,7 @@ def getWordsofType(msg: str, wordtype: str) -> set:
         if str(token.pos_) == wordtype: result.add(token)
     return result
 
+#checks the similarity of two words // returns the number of similar synonyms of two words
 def checkSimilarity(word1: str, word2: str) -> int:
     if not word1.isalpha() or not word2.isalpha():
         raise ValueError("words shoud only have alpha chars")
@@ -97,5 +118,4 @@ def getWordtype(word: str, sentence: str = None) -> str:
     for token in pos:
         if str(token) == word: return str(token.pos_)
     return "UNKNOWN"
-
-"""    
+"""

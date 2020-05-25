@@ -54,9 +54,11 @@ def checkSynonyms(msg: str) -> str:
     for elem in listofchoices:
         results.append(0)
         for x in elem:
+            a = [0]
             for tup in worddsandtype:
                 if tup[1] == getWordtype(x):
-                   results[len(results)-1] += checkSimilarity(x, tup[0])
+                   a.append(checkSimilarity(x, tup[0]))
+                   results[len(results)-1] += max(a)
     if max(results) > 0: return choices[results.index(max(results))]
     else: return "I dont know"
 """

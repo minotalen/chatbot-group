@@ -89,7 +89,7 @@ Last modified: 20.05.2020
 
 
 #chat-input-user button {
-  background-color: var(--color-message-user);
+  background-color: var(--color-primary);
   border-radius: var(--border-radius);
   border: 1px solid var(--color-message-user);
   transition: 0.2s;
@@ -135,6 +135,7 @@ form#chat-input-form {
 
 .suggestion {
   padding: 0.25rem 1rem;
+  color: var(--color-text);
 }
 
 .suggestion.selected,

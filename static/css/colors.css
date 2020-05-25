@@ -5,22 +5,6 @@ Last modified: 20.05.2020
 */
 
 :root {
-  --color-primary: #4F2EFF;
-  --color-primary-light: rgb(95, 67, 255);
-  --color-background: #010101;
-  --color-surface: #E1E2E1;
-  --color-surface-light: rgba(255, 255, 255, 0.99);
-  --color-surface-dark: #D6D8DB;
-  --color-text: #E1E2E1;
-  --color-text-placeholder: #757575;
-  --color-message-user: var(--color-primary);
-  --color-message-bot: var(--color-text);
-  --border-chat: 1px solid #E1E2E1;
-  --border-radius: 5px;
-  --shadow: 0px 4px 8px #757575;
-}
-
-[data-theme="light"] { 
   --color-primary: #365fc5;
   --color-primary-light: #6c91c9;
   --color-background: #E1E2E1;
@@ -34,4 +18,31 @@ Last modified: 20.05.2020
   --border-chat: 1px solid var(--color-primary);
   --border-radius: 5px;
   --border-input: 1px solid #9EA7B8;
+}
+
+[data-theme="dark"] { 
+  --color-primary: #9A97F3;
+  --color-primary-light: #818cab;
+  --color-background: #161625;
+  --color-surface: #434370;
+  --color-surface-light: #1d1d30;
+  --color-surface-dark: #06060711;
+  --color-text: #e1e1ff;
+  --color-text-placeholder: #757575;
+  --color-message-user: var(--color-primary);
+  --color-message-bot: var(--color-text);
+  --border-chat: 1px solid #1C2541;
+  --border-radius: 5px;
+  --shadow: 0px 4px 8px #757575;
+}
+
+[data-theme="d"] {
+    --primary-color: #9A97F3;
+    --secondary-color: #818cab;
+    --font-color: #e1e1ff;
+    --bg-color: #161625;
+    --heading-color: #818cab;
+    --font-size:100%;
+    --summary-color: #818cab25;
+    --details-color: #818cab11;
 }

@@ -10,6 +10,8 @@ let settingsButton = document.getElementById('settings'),
   settingsEntries,
   settings = {}; // settings object, stores settings as key/value pairs
 
+const toggleSwitch = document.getElementById('setting-dark-mode'),
+  currentTheme = getStoredTheme();
 
 // get all settings entries
 settingsEntries = Array.from(document.getElementsByClassName('settings-entry'));
@@ -32,6 +34,51 @@ if (localStorage.getItem('settings')) {
 } else {
   storeSettings();
 }
+
+
+/**
+ * Switches between dark and light theme
+ */
+function switchTheme() {
+  let toggle = document.getElementById('setting-dark-mode');
+  console.log(toggle);
+  if (toggle.checked) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light'); 
+  }    
+}
+
+/**
+ * Returns the stored theme, user system preference theme, or null.
+ */
+function getStoredTheme() {
+  let theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+
+  // check for user system preference
+  if (theme == null) {
+    if (!window.matchMedia) {
+      theme = null;
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      theme = 'dark';
+    } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+      theme = 'light';
+    }
+  }
+  return theme;
+}
+
+// check checkbox on page load
+if (currentTheme) {
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  if (currentTheme === 'dark') {
+    toggleSwitch.checked = true;
+  }
+}
+
+toggleSwitch.addEventListener('change', switchTheme, false);
 
 
 /**
@@ -91,6 +138,11 @@ function closeSettings() {
 function getSettingValue(id) {
   return settings[id];
 }
+
+
+
+
+
 
 
 export { closeSettings }

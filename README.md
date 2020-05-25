@@ -45,6 +45,12 @@ Dazu einfach in die Python Konsole gehen und eintippen
 
 `nltk.download('wordnet')`
 
+**Für spacy bitte in der Konsole eingeben**
+
+`python -m spacy download en_core_web_sm`
+Genauen befehl für betriebssystem
+Link zur Anleitung `https://spacy.io/usage/models`
+
 ## Bekannte Fehler
 
 Beim Upgrade von pip mit `python -m pip install --upgrade pip`:

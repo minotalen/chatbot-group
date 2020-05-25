@@ -1,7 +1,7 @@
 /**
  * Client-side script to receive, send and display messages.
  * Authors: ?, Katja Schneider, Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modfidied: 20.05.2020
+ * Last modfidied: 25.05.2020
  */
 
 import { closeSuggestions, userInput } from './suggestions.mjs';
@@ -186,9 +186,9 @@ function sendUserName() {
  * Close input field suggestions on click outside of input field.
  */
 window.addEventListener('click', (evt) => {
-  console.log(evt.target);
+  // console.log(evt.target);
   
-  console.log('window click');
+  // console.log('window click');
   if(evt.target.id != 'input-user') closeSuggestions();
   if(!document.getElementById('settings-window').contains(evt.target) && evt.target.id != 'settings') closeSettings();
 }, false);

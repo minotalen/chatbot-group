@@ -1,13 +1,13 @@
 import csv
-#import spacy
-#from nltk.corpus import wordnet as wn
+import spacy
+from nltk.corpus import wordnet as wn
 from pathlib import Path
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 from monkeylearn import MonkeyLearn
 
 #m1 = MonkeyLearn('9172f7ffa71ad34b35a6c60958566386059cae19')
-#nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_sm")
 
 #Classifies the messages "msg" with fuzzywuzzy / monkey learn disabled see comment
 def classifyIntent(msg: str) -> int:
@@ -25,7 +25,7 @@ def classifyIntent(msg: str) -> int:
         raise TypeError("MonkeyLearn error created wrong types in the answer")
     """
     
-    return [6, keyToNumber(answer[0])][answer[1] >= 75] #0.175 // replace 6 with keyToNumber(checkSynonyms(msg)) to add synonym checking
+    return [keyToNumber(checkSynonyms(msg, choices)), keyToNumber(answer[0])][answer[1] >= 75] #0.175
 
 #Returns a number for a specific key
 def keyToNumber(argument: str) -> int:
@@ -42,12 +42,11 @@ def keyToNumber(argument: str) -> int:
 
 def filterMessage(msg: str) -> str: return "".join([ c.lower() for c in msg if c.isalnum() or c == ' ' ])
 
-"""
-def checkSynonyms(msg: str) -> str:
+# check with of the given intents are possibly meant // returns it
+def checkSynonyms(msg: str, choices: list) -> str:
     listofwords = filterMessage(msg).split()
     typeofwords =  list(map(lambda x: getWordtype(x, ' '.join(listofwords)), listofwords))
-    wordsandtype = list(zip(listofwords, typeofwords))
-    choices = ["go to","look around","current room", "items", "about chatbot:"] 
+    wordsandtype = list(zip(listofwords, typeofwords)) 
     listofchoices = list(map(lambda x: filterMessage(x).split(), choices))
     results = []
     #to test
@@ -55,13 +54,13 @@ def checkSynonyms(msg: str) -> str:
         results.append(0)
         for x in elem:
             a = [0]
-            for tup in worddsandtype:
+            for tup in wordsandtype:
                 if tup[1] == getWordtype(x):
                    a.append(checkSimilarity(x, tup[0]))
                    results[len(results)-1] += max(a)
     if max(results) > 0: return choices[results.index(max(results))]
     else: return "I dont know"
-"""
+
 #Returns True if user msg is put to trainingdata.csv otherwise it returns False
 def writeMessagetoTrainingData(msg: str) -> bool:
 
@@ -85,7 +84,7 @@ def writeMessagetoTrainingData(msg: str) -> bool:
         writer.writerow([filteredmessage])
         return True
 
-"""
+
 #Returns all words of a given type in a string // wordtype must be a valid spacy wordtype
 def getWordsofType(msg: str, wordtype: str) -> set:
     result = set()
@@ -120,4 +119,4 @@ def getWordtype(word: str, sentence: str = None) -> str:
     for token in pos:
         if str(token) == word: return str(token.pos_)
     return "UNKNOWN"
-"""
+

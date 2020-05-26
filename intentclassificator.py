@@ -49,17 +49,15 @@ def checkSynonyms(msg: str, choices: list) -> str:
     wordsandtype = list(zip(listofwords, typeofwords)) 
     listofchoices = list(map(lambda x: filterMessage(x).split(), choices))
     results = []
-    #to test
-    for elem in listofchoices:
+    for intent in listofchoices:
         results.append(0)
-        for x in elem:
-            a = [0]
+        for body in intent:
+            wordratings = [0]
             for tup in wordsandtype:
-                if tup[1] == getWordtype(x):
-                   a.append(checkSimilarity(x, tup[0]))
-                   results[len(results)-1] += max(a)
-    if max(results) > 0: return choices[results.index(max(results))]
-    else: return "I dont know"
+                if tup[1] == getWordtype(body):
+                   wordratings.append(checkSimilarity(body, tup[0]))
+                   results[len(results)-1] += max(wordratings)
+    return ["i dont know", choices[results.index(max(results))]][max(results) > 0]               
 
 #Returns True if user msg is put to trainingdata.csv otherwise it returns False
 def writeMessagetoTrainingData(msg: str) -> bool:

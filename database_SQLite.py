@@ -2,6 +2,7 @@ import sqlite3
 
 conn = sqlite3.connect("elephanture.db")
 
+
 def execute_database(query, arguments):
     conn = sqlite3.connect("elephanture.db")
     c = conn.cursor()
@@ -23,9 +24,9 @@ save all the user who've played our game into "users" table. For example:
 ==========================================
 user_id | user_name       | password     |
 --------+-----------------+--------------+
-0       | "Alex"          |"123456"      |
-1       | "Johnson"       |"abcdef"      |
-2       | "Sabrina"       |"elephanture" |
+1       | "Alex"          |"123456"      |
+2       | "Johnson"       |"abcdef"      |
+3       | "Sabrina"       |"elephanture" |
 --------+-----------------+--------------+
 """
 
@@ -115,10 +116,10 @@ save all the items that the user needs to complete our game into the "items" tab
 ===============================
 item_id | item_name |room_id  |
 --------+-----------+---------|
-0       | "key"     | 0       |
-1       | "key"     | 1       |
-2       | "book"    | 4       |
-3       | "map"     | 3       |
+1       | "key"     | 0       |
+2       | "key"     | 1       |
+3       | "book"    | 4       |
+4       | "map"     | 3       |
 --------+-----------+---------+
 """
 
@@ -220,16 +221,16 @@ save all the items that the player collected during play into "items_users" tabl
 =========================================
 item_user_id |   item_id      | user_id | 
 -------------+----------------+---------+
-0            | 1              | 0       |
-1            | 2              | 2       | 
+1            | 1              | 0       |
+2            | 2              | 2       | 
 -------------+----------------+---------+
 """
 
 
 # Insert one record into items_users table
-def insert_item_user(username, password, room_id):
+def insert_item_user(username, password, room_id, item_name):
     user_id = get_user_id(username, password)
-    item_id = get_user_id(room_id)
+    item_id = get_item_id(item_name, room_id)
     query = """INSERT INTO items_users VALUES (?,?,?)"""
     execute_database(query, (None, item_id, user_id))
 
@@ -278,19 +279,109 @@ save all states
 =======================
 state_id | state_name | 
 ---------+------------+
-0        | "level1"   |
-1        | "level2"   |
-2        | "level3"   |
-3        | "level4"   |
-4        | "level5"   |
+1        | "level1"   |
+2        | "level2"   |
+3        | "level3"   |
+4        | "level4"   |
+5        | "level5"   |
 ---------+------------+ 
 """
+
+
+def find_all_states():
+    # Connect to database
+    conn = sqlite3.connect("elephanture.db")
+    # create a cursor
+    c = conn.cursor()
+    # Query to database
+    query = """SELECT * FROM states"""
+    c.execute(query)
+    items_users = c.fetchall()
+    for user_item in items_users:
+        print(user_item)
+    # Commit our command
+    conn.commit()
+    # Close the connection
+    conn.close()
+
+
+def is_state_already_exists(state):
+    result = False
+    # Connect to database
+    conn = sqlite3.connect("elephanture.db")
+    # create a cursor
+    c = conn.cursor()
+    # Query to database
+    query = """SELECT * FROM states WHERE state_name = ?"""
+    c.execute(query, (state,))
+    item = c.fetchone()
+    if item is not None:
+        result = True
+    # Commit our command
+    conn.commit()
+    # Close the connection
+    conn.close()
+    return result
+
+
+def insert_state(state_name):
+    if not is_state_already_exists(state_name):
+        query = """INSERT INTO states VALUES (?,?)"""
+        execute_database(query, (None, state_name))
+    else:
+        print("That state is already exists")
+
+
+def get_state_id_by_name(state_name):
+    # Connect to database
+    conn = sqlite3.connect("elephanture.db")
+    # create a cursor
+    c = conn.cursor()
+    # Query to database
+    query = """SELECT state_id FROM states WHERE state_name = ?"""
+    c.execute(query, (state_name,))
+    id = c.fetchone()
+    state_id = id[0]
+    # Commit our command
+    conn.commit()
+    # Close the connection
+    conn.close()
+    return state_id
+
 
 """
 save 
 ==================================================
 state_user_id | user_id | state_id | state_value |
 --------------+---------+----------+-------------+
- 0            | 1       | 0        | "false"     |
+ 1            | 1       | 2        | "False"     |
 --------------+---------+----------+-------------+
 """
+
+
+def find_all_states_user_():
+    # Connect to database
+    conn = sqlite3.connect("elephanture.db")
+    # create a cursor
+    c = conn.cursor()
+    # Query to database
+    query = """SELECT * FROM states_users"""
+    c.execute(query)
+    states_users = c.fetchall()
+    for state_user in states_users:
+        print(state_user)
+    # Commit our command
+    conn.commit()
+    # Close the connection
+    conn.close()
+
+
+# Insert one record into items_users table
+def insert_state_user(user_name, password, state_name, state_value):
+    user_id = get_user_id(user_name, password)
+    state_id = get_state_id_by_name(state_name)
+    query = """INSERT INTO states_users VALUES (?,?,?,?)"""
+    execute_database(query, (None, user_id, state_id, state_value))
+
+
+

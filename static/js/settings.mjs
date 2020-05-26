@@ -47,8 +47,8 @@ function switchTheme() {
     localStorage.setItem('theme', 'dark');
   } else {
     document.documentElement.setAttribute('data-theme', 'light');
-    localStorage.setItem('theme', 'light'); 
-  }    
+    localStorage.setItem('theme', 'light');
+  }
 }
 
 /**
@@ -104,7 +104,7 @@ function loadSettings() {
   let entryID;
 
   settingsEntries.forEach(entry => {
-    entryID = entry.children[0].children[0].id; 
+    entryID = entry.children[0].children[0].id;
     entry.children[0].children[0].checked = settings[entryID];
   });
 }
@@ -133,14 +133,11 @@ function closeSettings() {
 
 /**
  * Returns the value of the setting specified by the its id.
- * @param id setting id 
+ * @param id setting id
  */
 function getSettingValue(id) {
   return settings[id];
 }
-
-
-
 
 
 

@@ -13,8 +13,6 @@ let suggestions = [
   {name: 'open [object]'},
   {name: 'use [object]'},
   {name: 'inspect [object]'},
-  {name: 'inspect chalk'},
-  {name: 'inspect hands'},
   {name: 'give [object] '}, // two layers
   // {name: 'give [object] to [person]'}, //dual layer not yet properly working
   {name: 'go to [location]'},
@@ -45,7 +43,7 @@ chatForm.addEventListener('submit', (evt) => {
     userInput.value = filterType(visibleSuggestions[selectionIndex].innerText)[0];
 
     // send if suggestion type is "complete"
-    if(filterType(visibleSuggestions[selectionIndex].innerText)[1] == "complete") {
+    if(filterType(visibleSuggestions[selectionIndex].innerText)[1] == 'complete') {
       sendButton.click();
       hideSuggestions = true;
     }
@@ -83,7 +81,6 @@ function toggleSuggestions() {
 
 /**
  * Filters out the object type (text in square brackets)
- * TODO figure out how to deal with multiple types (like "give [object] to [person]")
  * returns array with filtered text and object type
  */
 function filterType(suggestionText) {
@@ -105,83 +102,87 @@ function filterType(suggestionText) {
  * Shows suggestions in a window above input field.
  */
 function showSuggestions() {
-  hideSuggestions = false;
-  visibleSuggestions = document.getElementsByClassName('suggestion');
+  const suggestionSwitch = document.getElementById('setting-suggestions');
+  if(suggestionSwitch.checked){
 
-  if(visibleSuggestions != undefined) {
-    // find already selected element
-    findSelectedSuggestion();
-  }
+    hideSuggestions = false;
+    visibleSuggestions = document.getElementsByClassName('suggestion');
 
-  // reset suggestions
-  suggestionContainer.innerHTML = '';
+    if(visibleSuggestions != undefined) {
+      // find already selected element
+      findSelectedSuggestion();
+    }
 
-  suggestions.forEach(suggestion => {
-    // create suggestion div and add to container
-    let div = document.createElement('div');
-    div.setAttribute('class', 'suggestion');
-    div.setAttribute('tabindex', '0'); // make focusable
-    div.innerHTML = suggestion.name;
+    // reset suggestions
+    suggestionContainer.innerHTML = '';
 
-    // make suggestions clickable
-    div.addEventListener('click', () => {
-      userInput.value = filterType(suggestion.name)[0];
-      // send if suggestion type is "complete"
-      if(filterType(visibleSuggestions[selectionIndex].innerText)[1] == "complete") {
-        sendButton.click();
-        hideSuggestions = true;
+    suggestions.forEach(suggestion => {
+      // create suggestion div and add to container
+      let div = document.createElement('div');
+      div.setAttribute('class', 'suggestion');
+      div.setAttribute('tabindex', '0'); // make focusable
+      div.innerHTML = suggestion.name;
+
+      // make suggestions clickable
+      div.addEventListener('click', () => {
+        userInput.value = filterType(suggestion.name)[0];
+        // send if suggestion type is "complete"
+        if(filterType(visibleSuggestions[selectionIndex].innerText)[1] == "complete") {
+          sendButton.click();
+          hideSuggestions = true;
+        }
+        userInput.focus();
+      });
+
+      // append only match suggestions
+      if(userInput.value.trim() == '' || suggestion.name.includes(userInput.value)) {
+        // highlight matching substring
+        let sug = suggestion.name, val = userInput.value;
+        div.innerHTML = sug.slice(0, sug.indexOf(val)) + '<mark>' + val
+          + '</mark>' + sug.slice(sug.indexOf(val) + val.length, sug.length);
+
+        suggestionContainer.appendChild(div);
       }
-      userInput.focus();
     });
 
-    // append only match suggestions
-    if(userInput.value.trim() == '' || suggestion.name.includes(userInput.value)) {
-      // highlight matching substring
-      let sug = suggestion.name, val = userInput.value;
-      div.innerHTML = sug.slice(0, sug.indexOf(val)) + '<mark>' + val
-        + '</mark>' + sug.slice(sug.indexOf(val) + val.length, sug.length);
+    // display container only when it contains suggestions
+    if(suggestionContainer.innerHTML != '') {
+      // create suggestion heading
+      let heading = document.createElement('div');
+      heading.setAttribute('id', 'suggestion-heading');
+      heading.innerHTML = 'SUGGESTIONS',
 
-      suggestionContainer.appendChild(div);
-    }
-  });
+      // insert suggestions headline
+      suggestionContainer.insertBefore(heading, suggestionContainer.firstChild);
+      suggestionContainer.style.display = 'block';
 
-  // display container only when it contains suggestions
-  if(suggestionContainer.innerHTML != '') {
-    // create suggestion heading
-    let heading = document.createElement('div');
-    heading.setAttribute('id', 'suggestion-heading');
-    heading.innerHTML = 'SUGGESTIONS',
+      // set old selection again
+      if(selectionIndex != undefined) {
 
-    // insert suggestions headline
-    suggestionContainer.insertBefore(heading, suggestionContainer.firstChild);
-    suggestionContainer.style.display = 'block';
+        // update suggestions
+        visibleSuggestions = document.getElementsByClassName('suggestion');
 
-    // set old selection again
-    if(selectionIndex != undefined) {
+        // if old suggestion exist in new suggestions, calculate selectionIndex
+        for (let suggestion of visibleSuggestions) {
+          if(suggestion.innerText == currentSelection) {
+            selectionIndex = Array.from(visibleSuggestions).indexOf(suggestion);
+            break;
+          } else {
+            selectionIndex = undefined;
+          }
+        }
 
-      // update suggestions
-      visibleSuggestions = document.getElementsByClassName('suggestion');
-
-      // if old suggestion exist in new suggestions, calculate selectionIndex
-      for (let suggestion of visibleSuggestions) {
-        if(suggestion.innerText == currentSelection) {
-          selectionIndex = Array.from(visibleSuggestions).indexOf(suggestion);
-          break;
+        // set old selection on new suggestions if old selection still exists
+        if(selectionIndex != undefined) {
+          visibleSuggestions[selectionIndex].classList.add('selected');
+          currentSelection =  visibleSuggestions[selectionIndex].innerText;
         } else {
-          selectionIndex = undefined;
+          currentSelection = undefined;
         }
       }
-
-      // set old selection on new suggestions if old selection still exists
-      if(selectionIndex != undefined) {
-        visibleSuggestions[selectionIndex].classList.add('selected');
-        currentSelection =  visibleSuggestions[selectionIndex].innerText;
-      } else {
-        currentSelection = undefined;
-      }
+    } else {
+      closeSuggestions();
     }
-  } else {
-    closeSuggestions();
   }
 }
 
@@ -273,13 +274,10 @@ window.addEventListener('keydown', (evt) => {
       removeSuggestionSelection();
 
       // set new selection
-      if(visibleSuggestions.length != 0) {
-        visibleSuggestions[selectionIndex].classList.add('selected');
-        currentSelection = visibleSuggestions[selectionIndex].innerText;
-  
-        arrowSelectionPriority = true;
-      }
-      
+      visibleSuggestions[selectionIndex].classList.add('selected');
+      currentSelection = visibleSuggestions[selectionIndex].innerText;
+
+      arrowSelectionPriority = true;
       break;
 
     case 40: // arrow key down
@@ -299,12 +297,10 @@ window.addEventListener('keydown', (evt) => {
       removeSuggestionSelection();
 
       // set new selection
-      if(visibleSuggestions.length != 0) {
-        visibleSuggestions[selectionIndex].classList.add('selected');
-        currentSelection = visibleSuggestions[selectionIndex].innerText;
-  
-        arrowSelectionPriority = true;
-      }
+      visibleSuggestions[selectionIndex].classList.add('selected');
+      currentSelection = visibleSuggestions[selectionIndex].innerText;
+
+      arrowSelectionPriority = true;
       break;
 
     case 27: // ESC key

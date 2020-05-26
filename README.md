@@ -51,6 +51,14 @@ Dazu einfach in die Python Konsole gehen und eintippen
 Genauen befehl für betriebssystem
 Link zur Anleitung `https://spacy.io/usage/models`
 
+**Genaue Anleitung Windows**
+Zuerst `pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.5/en_core_web_sm-2.2.5.tar.gz`
+
+Danach `pip install -r requirements.txt`
+
+Zuletzt die nltk-Geschichte installieren
+
+
 ## Bekannte Fehler
 
 Beim Upgrade von pip mit `python -m pip install --upgrade pip`:

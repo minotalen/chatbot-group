@@ -103,7 +103,7 @@ function filterType(suggestionText) {
  */
 function showSuggestions() {
   const suggestionSwitch = document.getElementById('setting-suggestions');
-  if(suggestionSwitch.checked){
+  if(suggestionSwitch.checked) {
 
     hideSuggestions = false;
     visibleSuggestions = document.getElementsByClassName('suggestion');
@@ -183,6 +183,8 @@ function showSuggestions() {
     } else {
       closeSuggestions();
     }
+  } else {
+    selectionIndex = undefined;
   }
 }
 

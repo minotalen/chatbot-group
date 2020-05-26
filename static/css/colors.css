@@ -1,4 +1,4 @@
-/* 
+/*
 Color definitions prepared for different themes
 Authors: Kevin Katzkowski
 Last modified: 20.05.2020
@@ -20,13 +20,13 @@ Last modified: 20.05.2020
   --border-input: 1px solid #9EA7B8;
 }
 
-[data-theme="dark"] { 
+[data-theme="dark"] {
   --color-primary: #9A97F3;
   --color-primary-light: #818cab;
   --color-background: #161625;
   --color-surface: #434370;
   --color-surface-light: #1d1d30;
-  --color-surface-dark: #06060711;
+  --color-surface-dark: #060607;
   --color-text: #e1e1ff;
   --color-text-placeholder: #757575;
   --color-message-user: var(--color-primary);

@@ -20,21 +20,13 @@ Hier nochmal zum Nachlesen in der [Flask Dokumentation](https://exploreflask.com
 
 ## Installieren
 
-Damit es läuft braucht jeder Python. Damit habt ihr auch pip und könnt in der Konsole folgende Befehle ausführen:
+Damit es läuft, braucht jeder Python installieren, empfohlenerweise in einem virtual environment(https://docs.python.org/3/library/venv.html), z.B. conda(https://anaconda.org/anaconda/conda)
 
--Python installieren, empfohlenerweise in einem virtual environment(https://docs.python.org/3/library/venv.html), z.B. conda(https://anaconda.org/anaconda/conda)
+Damit habt ihr auch pip und könnt in der Konsole im Git Ordner folgende Befehle ausführen:
 
--Konsole im git ordner öffnen
+`pip install -r requirements.txt`
 
--Folgendes in die Konsole pasten und ausführen: `pip install -r requirements.txt`
-
-Oder einzeln nacheinander:
-
-`pip install Flask`
-
-`pip install flask-socketio`
-
-`pip install eventlet`
+Falls möglich, schreibt alle benötigten python-module in die pip, die how-to-requirements im glitch ist für so Fälle wie `en_core_web_sm` geupdatet
 
 Sonst schaut nochmal in die [Flask-SocketIO Doku](https://flask-socketio.readthedocs.io/en/latest/).
 
@@ -53,17 +45,9 @@ Link zur Anleitung `https://spacy.io/usage/models`
 
 **Anleitung Windows mit Python 3.8.2 64-Bit**
 
-Zuerst `pip install -r requirements.txt`. Folgender Fehler: 
-```
-ERROR: Could not find a version that satisfies the requirement en-core-web-sm~=2.2.5 (from -r requirements.txt (line 11)) (from versions: none)
-ERROR: No matching distribution found for en-core-web-sm~=2.2.5 (from -r requirements.txt (line 11))
-```
+Zuerst `pip install -r requirements.txt`. 
 
-Dann `pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.5/en_core_web_sm-2.2.5.tar.gz`.
-
-Erneut `pip install -r requirements.txt`.
-
-Zuletzt die nltk-Geschichte downloaden.
+Danach die nltk-Geschichte downloaden.
 
 
 ## Bekannte Fehler

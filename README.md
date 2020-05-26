@@ -51,11 +51,17 @@ Dazu einfach in die Python Konsole gehen und eintippen
 Genauen befehl für betriebssystem
 Link zur Anleitung `https://spacy.io/usage/models`
 
-**Genaue Anleitung Windows**
+**Anleitung Windows mit Python 3.8.2 64-Bit**
 
-Zuerst `pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.5/en_core_web_sm-2.2.5.tar.gz`.
+Zuerst `pip install -r requirements.txt`. Folgender Fehler: 
+```
+ERROR: Could not find a version that satisfies the requirement en-core-web-sm~=2.2.5 (from -r requirements.txt (line 11)) (from versions: none)
+ERROR: No matching distribution found for en-core-web-sm~=2.2.5 (from -r requirements.txt (line 11))
+```
 
-Danach `pip install -r requirements.txt`.
+Dann `pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.5/en_core_web_sm-2.2.5.tar.gz`.
+
+Erneut `pip install -r requirements.txt`.
 
 Zuletzt die nltk-Geschichte downloaden.
 

@@ -52,11 +52,12 @@ Genauen befehl für betriebssystem
 Link zur Anleitung `https://spacy.io/usage/models`
 
 **Genaue Anleitung Windows**
-Zuerst `pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.5/en_core_web_sm-2.2.5.tar.gz`
 
-Danach `pip install -r requirements.txt`
+Zuerst `pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.5/en_core_web_sm-2.2.5.tar.gz`.
 
-Zuletzt die nltk-Geschichte installieren
+Danach `pip install -r requirements.txt`.
+
+Zuletzt die nltk-Geschichte downloaden.
 
 
 ## Bekannte Fehler

@@ -1,5 +1,6 @@
 import sqlite3
 
+conn = sqlite3.connect("elephanture.db")
 
 def execute_database(query, arguments):
     conn = sqlite3.connect("elephanture.db")
@@ -215,7 +216,7 @@ def get_item_id(item_name, room_id):
 
 
 """
-save all the items that the player collected during play into "item_user" table. For example:
+save all the items that the player collected during play into "items_users" table. For example:
 =========================================
 item_user_id |   item_id      | user_id | 
 -------------+----------------+---------+
@@ -225,22 +226,22 @@ item_user_id |   item_id      | user_id |
 """
 
 
-# Insert one record into item_user table
+# Insert one record into items_users table
 def insert_item_user(username, password, room_id):
     user_id = get_user_id(username, password)
     item_id = get_user_id(room_id)
-    query = """INSERT INTO item_user VALUES (?,?,?)"""
+    query = """INSERT INTO items_users VALUES (?,?,?)"""
     execute_database(query, (None, item_id, user_id))
 
 
 # Find all items that user've collected
-def find_All_Item_User():
+def find_All_Items_Users():
     # Connect to database
     conn = sqlite3.connect("elephanture.db")
     # create a cursor
     c = conn.cursor()
     # Query to database
-    query = """SELECT * FROM item_user"""
+    query = """SELECT * FROM items_users"""
     c.execute(query)
     items_users = c.fetchall()
     for user_item in items_users:
@@ -251,14 +252,14 @@ def find_All_Item_User():
     conn.close()
 
 
-# Get list of items ids that not exists in item_user_table. That means, our player needs to collect those items
+# Get list of items ids that not exists in items_users table. That means, our player needs to collect those items
 def find_items_id():
     # Connect to database
     conn = sqlite3.connect("elephanture.db")
     # create a cursor
     c = conn.cursor()
     # Query to database
-    query = """SELECT item_id FROM items WHERE item_id EXCEPT SELECT item_id FROM item_user"""
+    query = """SELECT item_id FROM items WHERE item_id EXCEPT SELECT item_id FROM items_users"""
     c.execute(query)
     items_users = c.fetchall()
     list = []
@@ -271,19 +272,6 @@ def find_items_id():
     conn.close()
     return list
 
-
-# # Create items table
-# conn = sqlite3.connect('elephanture.db')
-# c = conn.cursor()
-# c.execute("""CREATE TABLE item_user (
-#     item_user_id integer,
-#     item_id int,
-#     user_id int,
-#     room_id int
-# )
-# """)
-# conn.commit()
-# conn.close()
 
 """
 save all states

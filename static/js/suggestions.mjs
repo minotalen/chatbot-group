@@ -4,21 +4,45 @@
  * Last modfidied: 20.05.2020
  */
 
-import { sendButton } from './client.mjs';
-import { closeSettings } from './settings.mjs';
+import {
+  sendButton
+} from './client.mjs';
+import {
+  closeSettings
+} from './settings.mjs';
 
-let suggestions = [
-  {name: 'look around'},
-  {name: 'pick up [object]'},
-  {name: 'open [object]'},
-  {name: 'use [object]'},
-  {name: 'inspect [object]'},
-  {name: 'give [object] '}, // two layers
-  // {name: 'give [object] to [person]'}, //dual layer not yet properly working
-  {name: 'go to [location]'},
-  {name: 'talk to [person]'},
-  {name: 'about [any]'},
-  {name: 'look at [person, object]'}],
+let suggestions = [{
+      name: 'look around'
+    },
+    {
+      name: 'pick up [object]'
+    },
+    {
+      name: 'open [object]'
+    },
+    {
+      name: 'use [object]'
+    },
+    {
+      name: 'inspect [object]'
+    },
+    {
+      name: 'give [object] '
+    }, // two layers
+    // {name: 'give [object] to [person]'}, //dual layer not yet properly working
+    {
+      name: 'go to [location]'
+    },
+    {
+      name: 'talk to [person]'
+    },
+    {
+      name: 'about [any]'
+    },
+    {
+      name: 'look at [person, object]'
+    }
+  ],
   userInput = document.getElementById('input-user'),
   chatForm = document.getElementById('chat-input-form'),
   visibleSuggestions,
@@ -39,11 +63,11 @@ chatForm.addEventListener('submit', (evt) => {
   findSelectedSuggestion();
 
   // if selection is active, insert selection text into input value
-  if(selectionIndex != undefined) {
+  if (selectionIndex != undefined) {
     userInput.value = filterType(visibleSuggestions[selectionIndex].innerText)[0];
 
     // send if suggestion type is "complete"
-    if(filterType(visibleSuggestions[selectionIndex].innerText)[1] == 'complete') {
+    if (filterType(visibleSuggestions[selectionIndex].innerText)[1] == 'complete') {
       sendButton.click();
       hideSuggestions = true;
     }
@@ -72,7 +96,7 @@ userInput.addEventListener('keyup', toggleSuggestions, false);
  * Do not instantly reopen suggestion window after sending a message
  */
 function toggleSuggestions() {
-  if(!hideSuggestions) {
+  if (!hideSuggestions) {
     showSuggestions();
   } else {
     hideSuggestions = false;
@@ -88,7 +112,7 @@ function filterType(suggestionText) {
   var suggestionType = suggestionText.match(/\[(.*?)\]/); // filters the text between square bracket
   if (suggestionType) {
     // incomplete input, replace text field value and focus
-    output = suggestionText.replace(`${suggestionType[0]}`,"");
+    output = suggestionText.replace(`${suggestionType[0]}`, "");
     console.log("text:", output, "type:", suggestionType[0]);
   } else {
     // complete input, send
@@ -103,15 +127,15 @@ function filterType(suggestionText) {
  */
 function showSuggestions() {
   const suggestionSwitch = document.getElementById('setting-suggestions');
-  if(suggestionSwitch.checked) {
+  visibleSuggestions = document.getElementsByClassName('suggestion');
+
+  if (visibleSuggestions != undefined) {
+    // find already selected element
+    findSelectedSuggestion();
+  }
+  if (suggestionSwitch.checked) {
 
     hideSuggestions = false;
-    visibleSuggestions = document.getElementsByClassName('suggestion');
-
-    if(visibleSuggestions != undefined) {
-      // find already selected element
-      findSelectedSuggestion();
-    }
 
     // reset suggestions
     suggestionContainer.innerHTML = '';
@@ -127,7 +151,7 @@ function showSuggestions() {
       div.addEventListener('click', () => {
         userInput.value = filterType(suggestion.name)[0];
         // send if suggestion type is "complete"
-        if(filterType(visibleSuggestions[selectionIndex].innerText)[1] == "complete") {
+        if (filterType(visibleSuggestions[selectionIndex].innerText)[1] == "complete") {
           sendButton.click();
           hideSuggestions = true;
         }
@@ -135,36 +159,37 @@ function showSuggestions() {
       });
 
       // append only match suggestions
-      if(userInput.value.trim() == '' || suggestion.name.includes(userInput.value)) {
+      if (userInput.value.trim() == '' || suggestion.name.includes(userInput.value)) {
         // highlight matching substring
-        let sug = suggestion.name, val = userInput.value;
-        div.innerHTML = sug.slice(0, sug.indexOf(val)) + '<mark>' + val
-          + '</mark>' + sug.slice(sug.indexOf(val) + val.length, sug.length);
+        let sug = suggestion.name,
+          val = userInput.value;
+        div.innerHTML = sug.slice(0, sug.indexOf(val)) + '<mark>' + val +
+          '</mark>' + sug.slice(sug.indexOf(val) + val.length, sug.length);
 
         suggestionContainer.appendChild(div);
       }
     });
 
     // display container only when it contains suggestions
-    if(suggestionContainer.innerHTML != '') {
+    if (suggestionContainer.innerHTML != '') {
       // create suggestion heading
       let heading = document.createElement('div');
       heading.setAttribute('id', 'suggestion-heading');
       heading.innerHTML = 'SUGGESTIONS',
 
-      // insert suggestions headline
-      suggestionContainer.insertBefore(heading, suggestionContainer.firstChild);
+        // insert suggestions headline
+        suggestionContainer.insertBefore(heading, suggestionContainer.firstChild);
       suggestionContainer.style.display = 'block';
 
       // set old selection again
-      if(selectionIndex != undefined) {
+      if (selectionIndex != undefined) {
 
         // update suggestions
-        visibleSuggestions = document.getElementsByClassName('suggestion');
+        visibleSuggestions = document.getElementsByClassName('suggestion');
 
         // if old suggestion exist in new suggestions, calculate selectionIndex
         for (let suggestion of visibleSuggestions) {
-          if(suggestion.innerText == currentSelection) {
+          if (suggestion.innerText == currentSelection) {
             selectionIndex = Array.from(visibleSuggestions).indexOf(suggestion);
             break;
           } else {
@@ -173,9 +198,9 @@ function showSuggestions() {
         }
 
         // set old selection on new suggestions if old selection still exists
-        if(selectionIndex != undefined) {
+        if (selectionIndex != undefined) {
           visibleSuggestions[selectionIndex].classList.add('selected');
-          currentSelection =  visibleSuggestions[selectionIndex].innerText;
+          currentSelection = visibleSuggestions[selectionIndex].innerText;
         } else {
           currentSelection = undefined;
         }
@@ -209,9 +234,9 @@ function closeSuggestions() {
  * Removes the css class '.selected' from the selected element.
  */
 function removeSuggestionSelection() {
-  if(visibleSuggestions != undefined) {
+  if (visibleSuggestions != undefined) {
     // remove prior selection
-    for(let suggestion of visibleSuggestions) {
+    for (let suggestion of visibleSuggestions) {
       suggestion.classList.remove('selected');
     }
   }
@@ -222,7 +247,7 @@ function removeSuggestionSelection() {
  */
 function findSelectedSuggestion() {
   for (let suggestion of visibleSuggestions) {
-    if(suggestion.classList.contains('selected')) {
+    if (suggestion.classList.contains('selected')) {
       selectionIndex = Array.from(visibleSuggestions).indexOf(suggestion);
       currentSelection = visibleSuggestions[selectionIndex].innerText;
       break;
@@ -235,7 +260,7 @@ function findSelectedSuggestion() {
  */
 suggestionContainer.addEventListener('mousemove', (evt) => {
 
-  if(!arrowSelectionPriority && evt.target.classList.contains('suggestion')) {
+  if (!arrowSelectionPriority && evt.target.classList.contains('suggestion')) {
     selectionIndex = Array.from(visibleSuggestions).indexOf(evt.target);
 
     removeSuggestionSelection();
@@ -264,10 +289,10 @@ window.addEventListener('keydown', (evt) => {
       findSelectedSuggestion();
 
       // calculate new selection index
-      if(selectionIndex != undefined && visibleSuggestions.length == 1) {
+      if (selectionIndex != undefined && visibleSuggestions.length == 1) {
         removeSuggestionSelection();
         selectionIndex = undefined;
-      } else if(selectionIndex != undefined) {
+      } else if (selectionIndex != undefined) {
         selectionIndex == 0 ? selectionIndex = visibleSuggestions.length - 1 : selectionIndex--;
       } else {
         selectionIndex = visibleSuggestions.length - 1;
@@ -287,10 +312,10 @@ window.addEventListener('keydown', (evt) => {
       findSelectedSuggestion();
 
       // calculate new selection index
-      if(selectionIndex != undefined && visibleSuggestions.length == 1) {
+      if (selectionIndex != undefined && visibleSuggestions.length == 1) {
         removeSuggestionSelection();
         selectionIndex = undefined;
-      } else if(selectionIndex != undefined) {
+      } else if (selectionIndex != undefined) {
         selectionIndex == visibleSuggestions.length - 1 ? selectionIndex = 0 : selectionIndex++;
       } else {
         selectionIndex = 0;
@@ -318,4 +343,7 @@ window.addEventListener('keydown', (evt) => {
 });
 
 
-export { closeSuggestions, userInput }
+export {
+  closeSuggestions,
+  userInput
+}

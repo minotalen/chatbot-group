@@ -18,6 +18,8 @@ Last modified: 20.05.2020
   --border-chat: 1px solid var(--color-primary);
   --border-radius: 5px;
   --border-input: 1px solid #9EA7B8;
+  --color-button-text: #000000;
+  --color-settings-btn-surface: #D6D8DB;
 }
 
 [data-theme="dark"] {
@@ -34,15 +36,18 @@ Last modified: 20.05.2020
   --border-chat: 1px solid #1C2541;
   --border-radius: 5px;
   --shadow: 0px 4px 8px #757575;
+  --color-button-text: #ffffff;
+  --color-settings-btn-surface: #161625;
 }
 
 [data-theme="d"] {
-    --primary-color: #9A97F3;
-    --secondary-color: #818cab;
-    --font-color: #e1e1ff;
-    --bg-color: #161625;
-    --heading-color: #818cab;
-    --font-size:100%;
-    --summary-color: #818cab25;
-    --details-color: #818cab11;
+  --primary-color: #9A97F3;
+  --secondary-color: #818cab;
+  --font-color: #e1e1ff;
+  --bg-color: #161625;
+  --heading-color: #818cab;
+  --font-size: 100%;
+  --summary-color: #818cab25;
+  --details-color: #818cab11;
+  --color-button-text: #ffffff;
 }

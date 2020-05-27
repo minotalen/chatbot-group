@@ -6,7 +6,8 @@ Last modified: 20.05.2020
 
 #chat-container {
   background-color: var(--color-surface-light);
-  width: 80%; /* replace with @media */
+  width: 80%;
+  /* replace with @media */
   height: 100%;
   margin: 0 auto;
   border: var(--border-chat);
@@ -17,7 +18,7 @@ Last modified: 20.05.2020
 #chat-content-container {
   overflow-y: scroll;
   height: 90%;
-  scrollbar-color: var(--color-surface-light) var(--color-primary);
+  scrollbar-color: var(--color-primary) var(--color-surface-light);
   scrollbar-width: thin;
   scroll-behavior: smooth;
   background-color: var(--color-surface-light);
@@ -25,21 +26,23 @@ Last modified: 20.05.2020
 
 #chat-content-container::-webkit-scrollbar {
   width: 0.5rem;
- 
+
 }
- 
+
 #chat-content-container::-webkit-scrollbar-track {
   /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0); */
-  padding-right: 0.25rem;;
+  padding-right: 0.25rem;
+  background-color: var(--color-surface-light);
   width: 1rem;
 }
- 
+
 #chat-content-container::-webkit-scrollbar-thumb {
-  background-color: var(--color-surface-dark);
+  background-color: var(--color-primary);
   border-radius: var(--border-radius);
 }
 
-.chat-message-user, .chat-message-bot {
+.chat-message-user,
+.chat-message-bot {
   margin: 1rem;
   padding: 0.25rem;
 }
@@ -155,4 +158,3 @@ mark {
   color: var(--color-text-placeholder);
   padding: 0 1rem;
 }
-

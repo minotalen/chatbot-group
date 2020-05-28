@@ -1,15 +1,11 @@
 /**
  * Chat input suggestion implementation.
  * Authors: Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modfidied: 20.05.2020
+ * Last modfidied: 28.05.2020
  */
 
-import {
-  sendButton
-} from './client.mjs';
-import {
-  closeSettings
-} from './settings.mjs';
+import { sendButton } from './client.mjs';
+import { closeSettings, getSettingValue } from './settings.mjs';
 
 let suggestions = [{
       name: 'look around'
@@ -126,18 +122,13 @@ function filterType(suggestionText) {
  * Shows suggestions in a window above input field.
  */
 function showSuggestions() {
-
-
-
-
-  const suggestionSwitch = document.getElementById('setting-suggestions');
   visibleSuggestions = document.getElementsByClassName('suggestion');
 
   if (visibleSuggestions != undefined) {
     // find already selected element
     findSelectedSuggestion();
   }
-  if (suggestionSwitch.checked) {
+  if (getSettingValue('setting-suggestions')) {
 
     hideSuggestions = false;
 

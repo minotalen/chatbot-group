@@ -5,7 +5,7 @@ from pathlib import Path
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
 
 with open('rooms.json', encoding="utf8") as allLevels:
-    data = pd.read_json(allLevels)
+    data = json.load(allLevels)
     rooms = data['rooms']
 
 def answerHandler(inputjson):
@@ -21,33 +21,35 @@ def answerHandler(inputjson):
 
 
 #finds an answer to your message :)
-def findAnswer(msg, roomid = -1):
-    if roomid == -1 : raise ValueError("Invalid room id!")
+def findAnswer(msg, roomId = -1):
+    if roomId == -1 : raise ValueError("Invalid room id!")
     
     if classifyIntent(msg) == 1:
-        for elem in findEntry(roomid, 4).split(';'):
-            print(elem.split('?')[0])
-            if elem.split('?')[0] in msg :
-                roomid = int(elem.split('?')[1])
-                return (getRoomIntroduction(roomid),getRoomName(roomid))
+        for elem in rooms[roomId]['connections']:
+            if elem['conName'] in msg :
+                roomId = int(elem['conRoomId'])
+                return (getRoomIntroduction(roomId),getRoomName(roomId))
             
     elif classifyIntent(msg) == 2:
-         return (getRoomDescription(roomid), getRoomName(roomid))
+         return (getRoomDescription(roomId), getRoomName(roomId))
 
     elif classifyIntent(msg) == 3:
-         return (getRoomIntroduction(roomid), getRoomName(roomid))
+         return (getRoomIntroduction(roomId), getRoomName(roomId))
          
-    elif classifyIntent(msg) == 4:
-        return (get_inventory(), getRoomName(roomid))
+    #elif classifyIntent(msg) == 4:
+     #   return (get_inventory(), getRoomName(roomid))
+
     elif classifyIntent(msg) == 5:
-        return (aboutHandler(msg), getRoomName(roomid))    
+        return (aboutHandler(msg), getRoomName(roomId))
+
     else:
-        for elem in findEntry(roomid, 5).split(';'):
-            if elem.split('&')[0] in msg : return (elem.split('&')[1], getRoomName(roomid))
+        for elem in rooms[roomId]['triggers']:
+            if elem is not None:
+                    if elem['trigName'] in msg : return (elem['accept'], getRoomName(roomId))
 
-    return ("I have no idea what you want",getRoomName(roomid))
+    return ("I have no idea what you want",getRoomName(roomId))
 
-
+# CheckIfNone hilfmethode?
 
 """
 Returns the csv file entry specified by the input coordinates
@@ -72,32 +74,24 @@ def findEntry(id: int, column: int) -> str:
    
 
 #Get the room id by room name
-def getRoomId(msg: str) -> int:
+def getRoomId(roomName: str) -> int:
     
-    script_location = Path(__file__).absolute().parent
-    file_location = script_location / 'roomsGW2.csv'
-    file = file_location.open()
-    
-    with open(file_location, 'r', newline = '') as file:
-        reader = csv.reader(file, delimiter='$' )
-        rooms = [row for row in reader]
-        
     for count in range(0,len(rooms)):
         
-        if rooms[count][1] in msg: return int(findEntry(count,0))
+        if rooms[count]['roomName'] in roomName: return int(rooms[count]['id'])
     else: return -1
 
 #Get the current room
 def getRoomName(id: int) -> str:
-    return findEntry(id, 1)
+    return rooms[id]['roomName']
 
 #Get introduction of the room with id    
 def getRoomIntroduction(id: int) -> str:
-    return findEntry(id, 2)
+    return rooms[id]['intro']
 
 #Get description of the room with id
 def getRoomDescription(id: int) -> str:
-    return findEntry(id, 3)
+    return rooms[id]['descri']
 
 #Handles about questions
 def aboutHandler(msg: str) -> str:
@@ -113,36 +107,36 @@ def aboutHandler(msg: str) -> str:
 # manages a local saved inventory
 # if "items" in s:
 
-def get_inventory():
-    with open("inventory.csv") as csvfile:
-        csv_reader = csv.DictReader(csvfile)
-        line_count = 0
-        item_count = 0
-        data = ""
-        for row in csv_reader:
-            if line_count == 0:
-                line_count += 1
-            if row["Found"] == "True":
-                if item_count == 1:
-                    data += " and "
-                data += str(row["Item-Name"]) + ", " + str(row["Description"])
-                item_count = 1
-        if item_count == 1:
-            data += ". "
-        else:
-            data = "A yawning void looks at you from your inventory. "
-        return data
+#def get_inventory():
+ #   with open("inventory.csv") as csvfile:
+  #      csv_reader = csv.DictReader(csvfile)
+   #     line_count = 0
+    #    item_count = 0
+     #   data = ""
+      #  for row in csv_reader:
+       #     if line_count == 0:
+        #        line_count += 1
+         #   if row["Found"] == "True":
+          #      if item_count == 1:
+           #         data += " and "
+            #    data += str(row["Item-Name"]) + ", " + str(row["Description"])
+             #   item_count = 1
+#        if item_count == 1:
+ #           data += ". "
+  #      else:
+   #         data = "A yawning void looks at you from your inventory. "
+    #    return data
         
 #adds a items to the inventory(sets the variable of the item from 'False' to 'True')
 #optional: add a quantity column in the csv
 
-def add_inventory(name):
-    with open("inventory.csv") as csvfile:
-        df = pd.read_csv("test.csv")
-        #df.head(3) #prints 3 heading rows
-        df.loc[df["Item-Name"]==name, "Found"] = "True"
-        #next line is not tested!
-        #df.loc[df["Item-Name"]==, "Item-Quantity"] = ([df["Item-Name"]==, "Item-Quantity"] +1)
-        df.to_csv("inventory.csv", index=False)
+#def add_inventory(name):
+ #   with open("inventory.csv") as csvfile:
+  #      df = pd.read_csv("test.csv")
+   #     #df.head(3) #prints 3 heading rows
+    #    df.loc[df["Item-Name"]==name, "Found"] = "True"
+     #   #next line is not tested!
+      #  #df.loc[df["Item-Name"]==, "Item-Quantity"] = ([df["Item-Name"]==, "Item-Quantity"] +1)
+       # df.to_csv("inventory.csv", index=False)
 
-    
+

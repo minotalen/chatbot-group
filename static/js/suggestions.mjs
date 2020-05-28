@@ -126,6 +126,10 @@ function filterType(suggestionText) {
  * Shows suggestions in a window above input field.
  */
 function showSuggestions() {
+
+
+
+
   const suggestionSwitch = document.getElementById('setting-suggestions');
   visibleSuggestions = document.getElementsByClassName('suggestion');
 

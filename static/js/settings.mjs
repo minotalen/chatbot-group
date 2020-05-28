@@ -133,7 +133,7 @@ function closeSettings() {
 
 /**
  * Returns the value of the setting specified by the its id.
- * @param id setting id
+ * @param id the HTML ID of the input checkbox element.
  */
 function getSettingValue(id) {
   return settings[id];
@@ -142,4 +142,4 @@ function getSettingValue(id) {
 
 
 
-export { closeSettings }
+export { closeSettings, getSettingValue }

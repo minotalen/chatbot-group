@@ -40,7 +40,7 @@ def keyToNumber(argument: str) -> int:
         "exit phone":7
     }
     # Get the function from switcher dictionary
-    return switcher.get(argument, 6)
+    return switcher.get(argument, -1)
 
 def filterMessage(msg: str) -> str: return "".join([ c.lower() for c in msg if c.isalnum() or c == ' ' ])
 

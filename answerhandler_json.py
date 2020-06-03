@@ -12,7 +12,10 @@ with open('rooms.json', encoding="utf8") as allLevels:
 def answerHandler(inputjson):
 
     obj = json.loads(inputjson)
-    answer = findAnswer(str(obj['message'].lower()), getRoomId(str(obj['room'])))
+    if str(obj['mode']) == 'game':
+        answer = findAnswer(str(obj['message'].lower()), getRoomId(str(obj['room'])))
+    elif str(obj['mode']) == 'phone':
+        answer = ['You are still looking at your phone', 'Your Phone', 'phone']
     
     if writeMessagetoTrainingData(str(obj['message'])) : print("added message to training data")
     else : print("added nothing to training data")
@@ -24,7 +27,7 @@ def answerHandler(inputjson):
 #finds an answer to your message :)
 def findAnswer(msg, roomId = -1):
     if roomId == -1 : raise ValueError("Invalid room id!")
-
+    print(getAllStates(roomId))
     intentId = classifyIntent(msg)
 
     for elem in rooms[roomId]['triggers']:
@@ -33,13 +36,23 @@ def findAnswer(msg, roomId = -1):
                 return (elem['accept'], getRoomName(roomId), 'game')
 
     if intentId == 1:
+        for elem in rooms[roomId]['objects']:
+            if elem['objName'] in msg :
+                return (elem['lookAt'], getRoomName(roomId), 'game')
         for elem in rooms[roomId]['connections']:
             if elem['conName'] in msg :
                 roomId = int(elem['conRoomId'])
                 return (getRoomIntroduction(roomId),getRoomName(roomId), 'game')
             
     elif intentId == 2:
-         return (getRoomDescription(roomId), getRoomName(roomId), 'game')
+        for elem in rooms[roomId]['items']:
+            if elem['itemName'] in msg :
+                return (elem['lookAt'], getRoomName(roomId), 'game')
+        for elem in rooms[roomId]['objects']:
+            if elem['objName'] in msg :
+                return (elem['lookAt'], getRoomName(roomId), 'game')
+        
+        return (getRoomDescription(roomId), getRoomName(roomId), 'game')
 
     elif intentId == 3:
          return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
@@ -102,6 +115,25 @@ def getRoomIntroduction(id: int) -> str:
 #Get description of the room with id
 def getRoomDescription(id: int) -> str:
     return rooms[id]['descri']
+
+#Get all needed and new states
+def getAllStates(id: int):
+    return list(set(getObjectStates(id, 'connections') + getObjectStates(id, 'items') + getObjectStates(id, 'objects') + getObjectStates(id, 'triggers')))
+
+#Get states of json object
+def getObjectStates(id: int, name: str):
+    allStates = []
+    if rooms[id][name] is not None:
+        for states in rooms[id][name]:
+            if states is not None:
+                for stateName in states['needStates']:
+                    if stateName is not None:
+                        allStates.append(stateName)
+    return allStates
+
+#Check all needed states
+
+#Update states
 
 #Handles about questions
 def aboutHandler(msg: str) -> str:

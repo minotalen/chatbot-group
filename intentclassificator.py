@@ -12,7 +12,7 @@ nlp = spacy.load("en_core_web_sm")
 #Classifies the messages "msg" with fuzzywuzzy / monkey learn disabled see comment
 def classifyIntent(msg: str) -> int:
 
-    choices = ["go to","look around","current room", "items", "about chatbot:", "start phone", "exit phone"]
+    choices = ["go to","look at","current room", "items", "about chatbot:", "start phone", "exit phone"]
     answer = process.extractOne(msg, choices, scorer=fuzz.partial_ratio)
 
     """
@@ -32,7 +32,7 @@ def keyToNumber(argument: str) -> int:
     #all the intents
     switcher = {
         "go to":1,
-        "look around":2,
+        "look at":2,
         "current room":3,
         "items":4,
         "about chatbot:":5,

@@ -12,7 +12,7 @@ nlp = spacy.load("en_core_web_sm")
 #Classifies the messages "msg" with fuzzywuzzy / monkey learn disabled see comment
 def classifyIntent(msg: str) -> int:
 
-    choices = ["go to","look around","current room", "items", "about chatbot:"]
+    choices = ["go to","look around","current room", "items", "about chatbot:", "start phone", "exit phone"]
     answer = process.extractOne(msg, choices, scorer=fuzz.partial_ratio)
 
     """
@@ -35,7 +35,9 @@ def keyToNumber(argument: str) -> int:
         "look around":2,
         "current room":3,
         "items":4,
-        "about chatbot:":5
+        "about chatbot:":5,
+        "start phone":6,
+        "exit phone":7
     }
     # Get the function from switcher dictionary
     return switcher.get(argument, 6)
@@ -94,7 +96,7 @@ def getWordsofType(msg: str, wordtype: str) -> set:
 #checks the similarity of two words // returns the number of similar synonyms of two words
 def checkSimilarity(word1: str, word2: str) -> int:
     if not word1.isalpha() or not word2.isalpha():
-        raise ValueError("words shoud only have alpha chars")
+        raise ValueError("words should only have alpha chars")
     synsofword1 = getSynonyms(word1, getWordtype(word1))
     synsofword2 = getSynonyms(word2, getWordtype(word2))
     return len(set(synsofword1).intersection(synsofword2))

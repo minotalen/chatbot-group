@@ -1,6 +1,7 @@
 import json
 import csv
 import pandas as pd
+import database_SQLite
 from pathlib import Path
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
 
@@ -12,42 +13,50 @@ def answerHandler(inputjson):
 
     obj = json.loads(inputjson)
     answer = findAnswer(str(obj['message'].lower()), getRoomId(str(obj['room'])))
+    print(str(obj['mode']))
     
     if writeMessagetoTrainingData(str(obj['message'])) : print("added message to training data")
     else : print("added nothing to training data")
 
     #json wird wieder zusammen gepackt                    
-    return json.dumps({"level": 1,"sender": "bot","room":answer[1],"items":[],"message": answer[0]})
+    return json.dumps({"level": 1,"sender": "bot","room":answer[1],"items":[], "mode": answer[2],"message": answer[0]})
 
 
 #finds an answer to your message :)
 def findAnswer(msg, roomId = -1):
     if roomId == -1 : raise ValueError("Invalid room id!")
-    
+
+    for elem in rooms[roomId]['triggers']:
+        if elem is not None:
+            if elem['trigName'] in msg : 
+                return (elem['accept'], getRoomName(roomId), 'game')
+
     if classifyIntent(msg) == 1:
         for elem in rooms[roomId]['connections']:
             if elem['conName'] in msg :
                 roomId = int(elem['conRoomId'])
-                return (getRoomIntroduction(roomId),getRoomName(roomId))
+                return (getRoomIntroduction(roomId),getRoomName(roomId), 'game')
             
     elif classifyIntent(msg) == 2:
-         return (getRoomDescription(roomId), getRoomName(roomId))
+         return (getRoomDescription(roomId), getRoomName(roomId), 'game')
 
     elif classifyIntent(msg) == 3:
-         return (getRoomIntroduction(roomId), getRoomName(roomId))
+         return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
          
     #elif classifyIntent(msg) == 4:
      #   return (get_inventory(), getRoomName(roomid))
 
     elif classifyIntent(msg) == 5:
-        return (aboutHandler(msg), getRoomName(roomId))
+        return (aboutHandler(msg), getRoomName(roomId), 'game')
+    
+    elif classifyIntent(msg) == 6:
+        return ('You are now chatting with the professor', getRoomName(roomId), 'phone')
+    
+    elif classifyIntent(msg) == 7:
+        return ('You stop looking at the bad quality of your phone', getRoomName(roomId), 'game')
+        
 
-    else:
-        for elem in rooms[roomId]['triggers']:
-            if elem is not None:
-                    if elem['trigName'] in msg : return (elem['accept'], getRoomName(roomId))
-
-    return ("I have no idea what you want",getRoomName(roomId))
+    return ("I have no idea what you want",getRoomName(roomId), 'game')
 
 # CheckIfNone hilfmethode?
 

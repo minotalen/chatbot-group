@@ -14,6 +14,7 @@ let socket = io.connect("http://127.0.0.1:5000"),
   senderName = 'test_sender_name',
   roomName = 'test_room_name',
   itemList = [{ item: 'test_item_name1', action: 'test_item_action1' }, { item: 'test_item_name2', action: 'test_item_action2' }],
+  modeName = 'test_mode',
   msg;
  
 
@@ -139,6 +140,7 @@ function createJSON(msg) {
     sender: senderName,
     room: roomName,
     items: itemList,
+    mode: modeName,
     message: msg
   };
 
@@ -165,6 +167,7 @@ function readJSON(json) {
   senderName = obj.sender;
   roomName = obj.room;
   itemList = obj.items;
+  modeName = obj.mode;
   message = obj.message;
 
   console.log('received message: ' + message);

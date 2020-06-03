@@ -10,12 +10,14 @@
             {
                 "conName": "door",
                 "conRoomId": null,
-                "needState": "elephantDoor"
+                "needState": ["elephantDoor"],
+                "needStatesValue": [true]
             },
             {
                 "conName": "bush",
                 "conRoomId": 1,
-                "needState": null
+                "needState": [null],
+                "needStatesValue": [null]
             }
         ],
         "items": [
@@ -23,28 +25,36 @@
                 "itemName": "bottle",
                 "lookAt": "It is a PET bottle",
                 "pickUp": "Great you got the bottle out! But now you really want to wash your hands...",
-                "needState": "trashBin",
-                "newState": null
+                "needState": ["trashBin", "gotBottle"],
+                "needStatesValue": [true, false],
+                "newState": ["gotBottle"],
+                "newStatesValue": [true]
             }
         ],
         "objects": [
             {
                 "objName": "bench",
                 "lookAt": "The bench is covered by moss and bird s***... It hasn’t been used in some time. The paint has almost fallen off. This is not the place professor Kraysee would hide something.",
-                "needState": null,
-                "newState": null
+                "needState": [null],
+                "needStatesValue": [null],
+                "newState": [null],
+                "newStatesValue": [null]
             },
             {
                 "objName": "trash bin",
                 "lookAt": "The trash bin is full of … well... trash. Who would have thought? But wait! A PET bottle! Easy money, if you can stand getting it out with your bare hands…",
-                "needState": "!trashBin",
-                "newState": "trashBin"
+                "needState": ["trashBin"],
+                "needStatesValue": [false],
+                "newState": ["trashBin"],
+                "newStatesValue": [null]
             },
             {
                 "objName": "door",
                 "lookAt": "The door is locked by some sort of mechanism. It won’t open. Trying to pry it open is probably not a good idea. It’s a monument after all. Let’s try not to incriminate ourselves just yet, shall we?",
-                "needState": null,
-                "newState": null
+                "needState": [null],
+                "needStatesValue": [null],
+                "newState": [null],
+                "newStatesValue": [null]
             }
         ],
         "triggers": [
@@ -61,7 +71,8 @@
             {
                 "conName": "back",
                 "conRoomId": 0,
-                "needState": null
+                "needState": [null],
+                "needStatesValue": [null]
             }
         ],
         "items": [
@@ -69,45 +80,57 @@
                 "itemName": "paper",
                 "lookAt": "It is a tiny piece of paper with random numbers on it. You should take it. Maybe they will be important in the future.",
                 "pickUp": "You pick up the piece of paper inside the box and read it. \n 629387445 \n That’s a lot of numbers. What does this have to do with the 4-digit code? Maybe there is something special about these numbers.",
-                "needState": "openBox",
-                "newState": null
+                "needState": ["openBox"],
+                "needStatesValue": [true],
+                "newState": [null],
+                "newStatesValue": [null]
             }
         ],
         "objects": [
             {
                 "objName": "box",
                 "lookAt": "The box is secured with tape that contains the words “It’s prime time!” repeated multiple times written all over it. The word prime stands out with a blue colored shape.",
-                "needState": null,
-                "newState": null
+                "needState": [null],
+                "needStatesValue": [null],
+                "newState": [null],
+                "newStatesValue": [null]
             }
         ],
         "triggers": [
             {
                 "trigName": "open box",
-                "needStates": ["!solved"],
+                "needStates": ["solved"],
+                "needStatesValue": [false],
                 "needItems": [null],
                 "accept": "Inside the box, there is a piece of paper with a riddle of numbers and an old T9 mobile phone as well as a GPS device inside.",
                 "fail": null,
                 "newStates": ["openBox","gps"],
-                "actions": []
+                "newStatesValue": [true, true],
+                "actions": ["updateMode"],
+                "actionsValue": ["riddle"]
             },
             {
                 "trigName": "start phone",
-                "needStates": ["!handy", "openBox"],
+                "needStates": ["gotPhone", "openBox"],
+                "needStatesValue": [false, true],
                 "needItems": [null],
                 "accept": "You start it, but you need a 4-digit pin to unlock it. Maybe the piece of paper can help you out?",
                 "fail": null,
                 "newStates": ["activePhone"],
+                "newStatesValue": [true],
                 "actions": []
             },
             {
                 "trigName": "2375",
-                "needStates": ["!handy", "activePhone"],
+                "needStates": ["gotPhone", "activePhone"],
+                "needStatesValue": [false, true],
                 "needItems": [null],
                 "accept": "Congrats! You have now solved the riddle and are able to use the mobile phone.",
                 "fail": null,
-                "newStates": ["handy"],
-                "actions": []
+                "newStates": ["gotPhone"],
+                "newStatesValue": [true],
+                "actions": ["updateMode"],
+                "actionsValue": ["game"]
             }
         ]
     }

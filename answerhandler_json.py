@@ -13,7 +13,6 @@ def answerHandler(inputjson):
 
     obj = json.loads(inputjson)
     answer = findAnswer(str(obj['message'].lower()), getRoomId(str(obj['room'])))
-    print(str(obj['mode']))
     
     if writeMessagetoTrainingData(str(obj['message'])) : print("added message to training data")
     else : print("added nothing to training data")
@@ -26,33 +25,35 @@ def answerHandler(inputjson):
 def findAnswer(msg, roomId = -1):
     if roomId == -1 : raise ValueError("Invalid room id!")
 
+    intentId = classifyIntent(msg)
+
     for elem in rooms[roomId]['triggers']:
         if elem is not None:
             if elem['trigName'] in msg : 
                 return (elem['accept'], getRoomName(roomId), 'game')
 
-    if classifyIntent(msg) == 1:
+    if intentId == 1:
         for elem in rooms[roomId]['connections']:
             if elem['conName'] in msg :
                 roomId = int(elem['conRoomId'])
                 return (getRoomIntroduction(roomId),getRoomName(roomId), 'game')
             
-    elif classifyIntent(msg) == 2:
+    elif intentId == 2:
          return (getRoomDescription(roomId), getRoomName(roomId), 'game')
 
-    elif classifyIntent(msg) == 3:
+    elif intentId == 3:
          return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
          
     #elif classifyIntent(msg) == 4:
      #   return (get_inventory(), getRoomName(roomid))
 
-    elif classifyIntent(msg) == 5:
+    elif intentId == 5:
         return (aboutHandler(msg), getRoomName(roomId), 'game')
     
-    elif classifyIntent(msg) == 6:
+    elif intentId == 6:
         return ('You are now chatting with the professor', getRoomName(roomId), 'phone')
     
-    elif classifyIntent(msg) == 7:
+    elif intentId == 7:
         return ('You stop looking at the bad quality of your phone', getRoomName(roomId), 'game')
         
 

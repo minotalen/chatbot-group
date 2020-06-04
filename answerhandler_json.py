@@ -211,7 +211,7 @@ def add_user_into_db_withoutPassword(username):
     if isinstance(username, str):
         database.insert_one_user(username, password)
     else:
-        print(ValueError("username must to be in string"))
+        raise ValueError("username must to be in string")
 
 
 """
@@ -219,16 +219,21 @@ just for Test: Update state with dummy password into database
 """
 def update_state_into_DB_withoutPassword(username, state_name, state_value):
     password = "123456"
-    database.update_state_users(username, password, state_name, state_value)
+    if isinstance(username, str) and isinstance(state_name, str) and isinstance(state_value, str):
+        database.update_state_users(username, password, state_name, state_value)
+    else:
+        raise ValueError("input must to be in string")
 
 
 def add_user_into_db(username, password):
     if isinstance(username, str):
         database.insert_one_user(username, password)
     else:
-        print(ValueError("username must to be in string"))
+        raise ValueError("username must to be in string")
 
 
 def update_state_into_DB(username, password, state_name, state_value):
-    password = "123456"
-    database.update_state_users(username, password, state_name, state_value)
+    if isinstance(username, str) and isinstance(state_name, str) and isinstance(state_value, str):
+        database.update_state_users(username, password, state_name, state_value)
+    else:
+        raise ValueError("input must to be in string")

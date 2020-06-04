@@ -137,9 +137,8 @@ def getObjectStates(id: int, name: str):
     if rooms[id][name] is not None:
         for states in rooms[id][name]:
             if states is not None:
-                for stateName in states['needStates']:
-                    if stateName is not None:
-                        allStates.append(stateName)
+                for needState, needStateValue in zip(states['needStates'], states['needStatesValue']):
+                    if None not in (needState, needStateValue): allStates.append((needState, needStateValue))
     return allStates
 
 

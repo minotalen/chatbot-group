@@ -51,6 +51,7 @@ def show_all_users():
 
 # Check if the user_name and password is taken
 def is_user_info_taken(username, password):
+    new_username = username.lower()
     check_user = False
     # Connect to database
     conn = sqlite3.connect("elephanture.db")
@@ -58,7 +59,7 @@ def is_user_info_taken(username, password):
     c = conn.cursor()
     # Query to database
     query = """SELECT * from users WHERE user_name = ? AND password = ?"""
-    c.execute(query, (username, password))
+    c.execute(query, (new_username, password))
     user = c.fetchone()
     if user is not None:
         check_user = True
@@ -71,24 +72,28 @@ def is_user_info_taken(username, password):
 
 # Add one record into users table
 def insert_one_user(user_name, password):
+    new_username = user_name.lower()
     query = """ INSERT INTO users values (?,?,?)"""
     if not is_user_info_taken(user_name, password):
-        execute_database(query, (None, user_name, password))
+        execute_database(query, (None, new_username, password))
     else:
         print("Those user_name and password is taken. Try another")
 
 
 # Get id of user
 def get_user_id(user_name, password):
+    id_of_user = 0
+    new_username = user_name.lower()
     # Connect to database
     conn = sqlite3.connect("elephanture.db")
     # create a cursor
     c = conn.cursor()
     # Query to database
     query = """SELECT rowid from users WHERE user_name = ? AND password = ?"""
-    c.execute(query, (user_name, password))
+    c.execute(query, (new_username, password))
     user = c.fetchone()
-    id_of_user = user[0]
+    if user is not None:
+        id_of_user = user[0]
     # Commit our command
     conn.commit()
     # Close the connection
@@ -96,14 +101,30 @@ def get_user_id(user_name, password):
     return id_of_user
 
 
-def delete_user(user_name, password):
+def delete_user_by_username_and_password(user_name, password):
+    new_username = user_name.lower()
     # Connect to database
     conn = sqlite3.connect("elephanture.db")
     # create a cursor
     c = conn.cursor()
     # Query to database
     query = """DELETE FROM users WHERE user_name = ? AND password = ?"""
-    c.execute(query, (user_name, password))
+    c.execute(query, (new_username, password))
+    print("information of that user is deleted")
+    # Commit our command
+    conn.commit()
+    # Close the connection
+    conn.close()
+
+
+def delete_user_by_id(user_id):
+    # Connect to database
+    conn = sqlite3.connect("elephanture.db")
+    # create a cursor
+    c = conn.cursor()
+    # Query to database
+    query = """DELETE FROM users WHERE user_id = ? """
+    c.execute(query, (user_id,))
     print("information of that user is deleted")
     # Commit our command
     conn.commit()
@@ -165,9 +186,10 @@ def is_room_empty(room_id):
 
 
 def insert_item(item_name, room_id):
+    new_itemName = item_name.lower()
     query = "INSERT INTO items VALUES(?,?,?)"
     if is_room_empty(room_id):
-        execute_database(query, (None, item_name, room_id))
+        execute_database(query, (None, new_itemName, room_id))
     else:
         print("That room is not empty")
 
@@ -200,13 +222,14 @@ def get_item_id_byRoomId(room_id):
 
 
 def get_item_id(item_name, room_id):
+    new_itemName = item_name.lower()
     # Connect to database
     conn = sqlite3.connect("elephanture.db")
     # create a cursor
     c = conn.cursor()
     # Query to database
     query = """SELECT rowid from users WHERE item_name = ? AND room_id = ?"""
-    c.execute(query, (item_name, room_id))
+    c.execute(query, (new_itemName, room_id))
     user = c.fetchone()
     item_id = user[0]
     # Commit our command
@@ -305,7 +328,8 @@ def find_all_states():
     conn.close()
 
 
-def is_state_already_exists(state):
+def is_state_already_exists(state_name):
+    new_stateName = state_name.lower()
     result = False
     # Connect to database
     conn = sqlite3.connect("elephanture.db")
@@ -313,7 +337,7 @@ def is_state_already_exists(state):
     c = conn.cursor()
     # Query to database
     query = """SELECT * FROM states WHERE state_name = ?"""
-    c.execute(query, (state,))
+    c.execute(query, (new_stateName,))
     item = c.fetchone()
     if item is not None:
         result = True
@@ -325,21 +349,23 @@ def is_state_already_exists(state):
 
 
 def insert_state(state_name):
+    new_stateName = state_name.lower()
     if not is_state_already_exists(state_name):
         query = """INSERT INTO states VALUES (?,?)"""
-        execute_database(query, (None, state_name))
+        execute_database(query, (None, new_stateName))
     else:
         print("That state is already exists")
 
 
 def get_state_id_by_name(state_name):
+    new_stateName = state_name.lower()
     # Connect to database
     conn = sqlite3.connect("elephanture.db")
     # create a cursor
     c = conn.cursor()
     # Query to database
     query = """SELECT state_id FROM states WHERE state_name = ?"""
-    c.execute(query, (state_name,))
+    c.execute(query, (new_stateName,))
     id = c.fetchone()
     state_id = id[0]
     # Commit our command
@@ -357,6 +383,28 @@ state_user_id | user_id | state_id | state_value |
  1            | 1       | 2        | "False"     |
 --------------+---------+----------+-------------+
 """
+
+
+# Check if the user_name and password is taken
+def is_state_user_info_taken(username, password, state_name):
+    user_id = get_user_id(username, password)
+    state_id = get_state_id_by_name(state_name)
+    check_user = False
+    # Connect to database
+    conn = sqlite3.connect("elephanture.db")
+    # create a cursor
+    c = conn.cursor()
+    # Query to database
+    query = """SELECT * from states_users WHERE user_id = ? AND state_id = ?"""
+    c.execute(query, (user_id, state_id))
+    user = c.fetchone()
+    if user is not None:
+        check_user = True
+    # Commit our command
+    conn.commit()
+    # Close the connection
+    conn.close()
+    return check_user
 
 
 def find_all_states_user_():
@@ -378,10 +426,58 @@ def find_all_states_user_():
 
 # Insert one record into items_users table
 def insert_state_user(user_name, password, state_name, state_value):
+    new_stateValue = state_value.lower()
     user_id = get_user_id(user_name, password)
     state_id = get_state_id_by_name(state_name)
     query = """INSERT INTO states_users VALUES (?,?,?,?)"""
-    execute_database(query, (None, user_id, state_id, state_value))
+    execute_database(query, (None, user_id, state_id, new_stateValue))
 
 
+# Get state-user-id
+def get_state_user_id(user_id, state_id):
+    # Connect to database
+    conn = sqlite3.connect("elephanture.db")
+    # create a cursor
+    c = conn.cursor()
+    # Query to database
+    query = """SELECT rowid from states_users WHERE user_id = ? AND state_id = ?"""
+    c.execute(query, (user_id, state_id))
+    user = c.fetchone()
+    id_of_user = user[0]
+    # Commit our command
+    conn.commit()
+    # Close the connection
+    conn.close()
+    return id_of_user
 
+
+# Update record in states_users table
+def update_state_users(username, password, state_name, state_value):
+    new_stateValue = state_value.lower()
+    user_id = get_user_id(username, password)
+    state_id = get_state_id_by_name(state_name)
+    # Connect to database
+    conn = sqlite3.connect("elephanture.db")
+    # create a cursor
+    c = conn.cursor()
+    # Query to database
+    if is_state_user_info_taken(username, password, state_name):
+        query = f"""UPDATE states_users SET state_value = ? WHERE user_id=? AND state_id = ?"""
+        data = (new_stateValue, user_id, state_id)
+        c.execute(query, data)
+        print("update-process is successful")
+    elif is_user_info_taken(username, password):
+        insert_state_user(username, password, state_name, new_stateValue)
+        print("insert-process is successful")
+    else:
+        print("There is no one has the name like you")
+    # Commit our command
+    conn.commit()
+    # Close the connection
+    conn.close()
+
+
+def delete_state_user(state_user_id):
+    query = """DELETE FROM states_users WHERE state_user_id = ?"""
+    execute_database(query, (state_user_id,))
+    print("delete-process is successful")

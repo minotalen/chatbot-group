@@ -15,7 +15,8 @@ let socket = io.connect("http://127.0.0.1:5000"),
   roomName = 'test_room_name',
   itemList = [{ item: 'test_item_name1', action: 'test_item_action1' }, { item: 'test_item_name2', action: 'test_item_action2' }],
   modeName = 'test_mode',
-  msg;
+  msg, 
+  typeIndicator = document.getElementById('type-indicator');
  
 
 socket.on('connect', function () {
@@ -90,14 +91,16 @@ function printMessage(msg) {
   switch (senderName) {
     case 'bot':
       elem.className = 'chat-message-bot';
+      typeIndicator.style.visibility = 'hidden';
       break;
 
     default:
       elem.className = 'chat-message-user';
+      typeIndicator.style.visibility = 'visible';
       break;
   }
 
-  chat.appendChild(elem);
+  chat.insertBefore(elem, typeIndicator);
 
   // scroll to bottom
   chat.scrollTop = chat.scrollHeight - chat.clientHeight;

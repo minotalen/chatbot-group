@@ -26,7 +26,6 @@ Last modified: 20.05.2020
 
 #chat-content-container::-webkit-scrollbar {
   width: 0.5rem;
-
 }
 
 #chat-content-container::-webkit-scrollbar-track {
@@ -41,8 +40,7 @@ Last modified: 20.05.2020
   border-radius: var(--border-radius);
 }
 
-.chat-message-user,
-.chat-message-bot {
+.chat-message-user, .chat-message-bot, .ticontainer {
   margin: 1rem;
   padding: 0.25rem;
 }
@@ -60,7 +58,6 @@ Last modified: 20.05.2020
   position: fixed;
   margin: 0.75rem 10%;
   bottom: 0;
-
 }
 
 #chat-input-user input[type="text"] {
@@ -71,7 +68,6 @@ Last modified: 20.05.2020
   color: var(--color-message-user);
   box-sizing: border-box;
   width: 100%;
-
 }
 
 #chat-input-user input[type="text"]::placeholder {
@@ -79,6 +75,7 @@ Last modified: 20.05.2020
 }
 
 /* does not work properly in Chrome -> grey instead of #fff */
+
 #chat-input-user input[type="text"]::selection {
   color: var(--color-message-user);
   background-color: var(--color-surface-light);
@@ -88,8 +85,6 @@ Last modified: 20.05.2020
   outline: none;
   border-color: var(--color-primary-light);
 }
-
-
 
 #chat-input-user button {
   background-color: var(--color-primary);
@@ -124,13 +119,11 @@ form#chat-input-form {
 #suggestion-container {
   display: none;
   overflow: hidden;
-
   background-color: var(--color-surface-dark);
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
   border: var(--border-input);
   border-bottom: none;
-
   margin-bottom: -1rem;
   padding-top: 0.25rem;
   padding-bottom: 1.25rem;
@@ -141,8 +134,7 @@ form#chat-input-form {
   color: var(--color-text);
 }
 
-.suggestion.selected,
-.suggestion:focus {
+.suggestion.selected, .suggestion:focus {
   background-color: var(--color-surface);
   outline: none;
   cursor: default;
@@ -157,4 +149,49 @@ mark {
   font-weight: bold;
   color: var(--color-text-placeholder);
   padding: 0 1rem;
+}
+
+/* type indicator */
+
+.tiblock {
+  align-items: center;
+  display: flex;
+  height: 17px;
+}
+
+.ticontainer .tidot {
+  background-color: var(--color-message-bot);
+}
+
+.tidot {
+  -webkit-animation: mercuryTypingAnimation 1.5s infinite ease-in-out;
+  border-radius: 2px;
+  display: inline-block;
+  height: 4px;
+  margin-right: 2px;
+  width: 4px;
+}
+
+@-webkit-keyframes mercuryTypingAnimation {
+  0% {
+    -webkit-transform: translateY(0px)
+  }
+  28% {
+    -webkit-transform: translateY(-5px)
+  }
+  44% {
+    -webkit-transform: translateY(0px)
+  }
+}
+
+.tidot:nth-child(1) {
+  -webkit-animation-delay: 200ms;
+}
+
+.tidot:nth-child(2) {
+  -webkit-animation-delay: 300ms;
+}
+
+.tidot:nth-child(3) {
+  -webkit-animation-delay: 400ms;
 }

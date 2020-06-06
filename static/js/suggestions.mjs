@@ -333,8 +333,8 @@ window.addEventListener('keydown', (evt) => {
       break;
 
     default:
-      // on any key except modifier keys ctrl, alt, etc. 
-      if (evt.keyCode != window.modifierKey && evt.keyCode != 16) userInput.focus();
+      // on any key except modifier keys shift, ctrl, alt, altGr
+      if (evt.keyCode != 16 && evt.keyCode != 17 && evt.keyCode != 18 && evt.keyCode != 32) userInput.focus();
       break;
   }
 });

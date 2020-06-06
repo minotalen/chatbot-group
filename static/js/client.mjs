@@ -16,7 +16,8 @@ let socket = io.connect("http://127.0.0.1:5000"),
   itemList = [{ item: 'test_item_name1', action: 'test_item_action1' }, { item: 'test_item_name2', action: 'test_item_action2' }],
   modeName = 'test_mode',
   msg, 
-  typeIndicator = document.getElementById('type-indicator');
+  typeIndicator = document.getElementById('type-indicator'),
+  userMessageSendingAllowed = true;
  
 
 socket.on('connect', function () {
@@ -30,6 +31,7 @@ socket.on('connect', function () {
 socket.on('json', (json) => {
   console.log('message received');
   msg = readJSON(json);
+  userMessageSendingAllowed = true;
 
   updateRoomName(roomName);
   // updateCurrentLevel(levelID);
@@ -50,6 +52,12 @@ sendButton.addEventListener('click', () => {
  */
 function sendMessage(evt='json') {
   let json;
+
+  if (!userMessageSendingAllowed) {
+    console.log('message sending forbidden, no message sent!');
+    return;
+  }
+
   msg = userInput.value;
 
   // set user as sender on outgoing messages
@@ -70,7 +78,7 @@ function sendMessage(evt='json') {
 
     printMessage(msg);
     userInput.focus();
-  
+    userMessageSendingAllowed = false;
   } else {
     console.log('no message to send!');
   }

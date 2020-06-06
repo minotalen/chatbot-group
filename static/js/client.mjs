@@ -1,7 +1,7 @@
 /**
  * Client-side script to receive, send and display messages.
  * Authors: ?, Katja Schneider, Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modfidied: 25.05.2020
+ * Last modfidied: 06.06.2020
  */
 
 import { closeSuggestions, userInput } from './suggestions.mjs';
@@ -92,11 +92,17 @@ function printMessage(msg) {
     case 'bot':
       elem.className = 'chat-message-bot';
       typeIndicator.style.visibility = 'hidden';
+
+      // remove bottom margin since element size works as bottom spacing when visiblity is set to hidden
+      typeIndicator.style.marginBottom = '0';
       break;
 
     default:
       elem.className = 'chat-message-user';
       typeIndicator.style.visibility = 'visible';
+
+      // add margin equal to element size for consistent bottom spacing
+      typeIndicator.style.marginBottom = typeIndicator.getBoundingClientRect().height + 'px';
       break;
   }
 
@@ -200,8 +206,8 @@ window.addEventListener('click', (evt) => {
 }, false);
 
 
-window.addEventListener('keyup', (evt) => {
-  evt.preventDefault(); //???????
+window.addEventListener('keyup', (evt) => {  
+  evt.preventDefault(); // ???????
 });
 
 

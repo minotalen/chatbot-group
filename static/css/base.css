@@ -1,7 +1,7 @@
 /*
 Basic styling for page
 Authors: Kevin Katzkowski
-Last modified: 20.05.2020
+Last modified: 06.06.2020
 */
 
 * {
@@ -23,6 +23,10 @@ h1 {
   
   text-align: center;
   font-size: 1.8rem;
+}
+
+h2 { 
+  font-size: 1.5rem;
 }
 
 h3 {

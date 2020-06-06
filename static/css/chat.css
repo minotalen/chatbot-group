@@ -1,7 +1,7 @@
 /* 
 Main stylesheet for chat layout
-Authors: Kevin Katzkowski
-Last modified: 20.05.2020
+Authors: Kevin Katzkowski, mon janssen
+Last modified: 06.06.2020
 */
 
 #chat-container {
@@ -194,4 +194,30 @@ mark {
 
 .tidot:nth-child(3) {
   -webkit-animation-delay: 400ms;
+}
+
+@media only screen and (max-width: 600px) {
+  #chat-container {
+    width: 100%;
+  }
+  .chat-message-user, .chat-message-bot, .ticontainer {
+    margin: 0.5rem;
+  }
+
+  #chat-input-user {
+    width: 100%;
+    margin: 0.25rem 0;
+  }
+
+  form#chat-input-form {
+    padding: 0 0.5rem;
+  }
+
+  #top-bar h1, h2 {
+    padding: 0.25rem 0.5rem;
+  }
+
+  h2#brand {
+    display: none;
+  }
 }

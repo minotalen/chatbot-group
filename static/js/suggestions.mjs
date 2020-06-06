@@ -1,7 +1,7 @@
 /**
  * Chat input suggestion implementation.
  * Authors: Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modfidied: 28.05.2020
+ * Last modfidied: 06.06.2020
  */
 
 import { sendButton } from './client.mjs';
@@ -104,8 +104,8 @@ function toggleSuggestions() {
  * returns array with filtered text and object type
  */
 function filterType(suggestionText) {
-  let output;
-  var suggestionType = suggestionText.match(/\[(.*?)\]/); // filters the text between square bracket
+  let output,
+    suggestionType = suggestionText.match(/\[(.*?)\]/); // filters the text between square bracket
   if (suggestionType) {
     // incomplete input, replace text field value and focus
     output = suggestionText.replace(`${suggestionType[0]}`, "");
@@ -139,7 +139,7 @@ function showSuggestions() {
       // create suggestion div and add to container
       let div = document.createElement('div');
       div.setAttribute('class', 'suggestion');
-      div.setAttribute('tabindex', '0'); // make focusable
+      // div.setAttribute('tabindex', '0'); // make focusable with tab
       div.innerHTML = suggestion.name;
 
       // make suggestions clickable
@@ -333,6 +333,8 @@ window.addEventListener('keydown', (evt) => {
       break;
 
     default:
+      // on any key except modifier keys ctrl, alt, etc. 
+      if (evt.keyCode != window.modifierKey && evt.keyCode != 16) userInput.focus();
       break;
   }
 });

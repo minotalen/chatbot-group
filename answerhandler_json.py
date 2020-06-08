@@ -4,6 +4,7 @@ import pandas as pd
 import database_SQLite as database
 from pathlib import Path
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
+import logging_time as l
 
 with open('rooms.json', encoding="utf8") as allLevels:
     data = json.load(allLevels)
@@ -11,24 +12,29 @@ with open('rooms.json', encoding="utf8") as allLevels:
 
 
 def answerHandler(inputjson):
+    l.log_start()#logging
     obj = json.loads(inputjson)
     if str(obj['mode']) == 'game':
         answer = findAnswer(str(obj['message'].lower()), getRoomId(str(obj['room'])))
+        
     elif str(obj['mode']) == 'phone':
         answer = ['You are still looking at your phone', 'Your Phone', 'phone']
-
+    
     if writeMessagetoTrainingData(str(obj['message'])):
         print("added message to training data")
     else:
         print("added nothing to training data")
 
     # json wird wieder zusammen gepackt
+    l.log_time('end')#logging
+    l.log_end()#logging
     return json.dumps(
         {"level": 1, "sender": "bot", "room": answer[1], "items": [], "mode": answer[2], "message": answer[0]})
 
 
 # finds an answer to your message :)
 def findAnswer(msg, roomId=-1):
+    
     if roomId == -1: raise ValueError("Invalid room id!")
     print(getAllStates(roomId))
     intentId = classifyIntent(msg)

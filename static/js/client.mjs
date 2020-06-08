@@ -15,7 +15,6 @@ let socket = io.connect("https://elephanture.informatik.uni-bremen.de:5000"),
   roomName = 'test_room_name',
   itemList = [{ item: 'test_item_name1', action: 'test_item_action1' }, { item: 'test_item_name2', action: 'test_item_action2' }],
   msg;
-io.set('origins', '*:*');
 
 socket.on('connect', function () {
   console.log('connected client');

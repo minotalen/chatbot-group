@@ -11,7 +11,7 @@ app = Flask(__name__, static_url_path='/static')
 app.config["SECRET_KEY"] = "x!\x84Iy\xf9#gE\xedBQqg+\xf3A+\xe3\xd3\x01\x1a\xdf\xd2"
 
 socketio = SocketIO(app)
-socketio.init_app(app, cors_allowed_origins="*")
+socketio.init_app(app, cors_allowed_origins='*:*')
 
 users = []
 

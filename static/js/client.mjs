@@ -7,7 +7,7 @@
 import { closeSuggestions, userInput } from './suggestions.mjs';
 import { closeSettings } from './settings.mjs';
 
-let socket = io.connect("http://elephanture.informatik.uni-bremen.de:5000"),
+let socket = io.connect("https://elephanture.informatik.uni-bremen.de:5000"),
   sendButton = document.getElementById('send-button'),
   userName = undefined,
   levelID = 'test_level_ID',

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send
-from flask.ext.cors import CORS
+from flask import CORS
 import json
 import csv
 from answerhandler import answerHandler

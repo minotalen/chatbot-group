@@ -10,10 +10,20 @@ import logging_time as l
 #m1 = MonkeyLearn('9172f7ffa71ad34b35a6c60958566386059cae19')
 nlp = spacy.load("en_core_web_sm")
 
-#Classifies the messages "msg" with fuzzywuzzy / monkey learn disabled see comment
-def classifyIntent(msg: str) -> int:
+"""
+@author:: Max Petendra, Kristin Wünderlich, Tobis -> (logging)
+@state: 08.06.20
+Classifies the messages "msg" with fuzzywuzzy / monkey learn disabled see comment
+Parameters
+----------
+msg: the user msg to deal with and to search in for meant intents
+choices: the list with all the intents to choose must be strings
+
+Returns: Returns the index+1 in choices of the classified intent // -1 if no possible meant intent is found
+"""
+def classifyIntent(msg: str, choices: list) -> int:
+    if not all(isinstance(choice, str) for choice in choices): raise TypeError("intent choices must be a list of strings")
     
-    choices = ["go to","look at","current room", "items", "about chatbot:", "start phone", "exit phone"]
     answer = process.extractOne(msg, choices, scorer=fuzz.partial_ratio)
     l.log_time('1')#logging
     """
@@ -25,28 +35,44 @@ def classifyIntent(msg: str) -> int:
     if not isinstance(answer[0], str) or not isinstance(answer, list) or not isinstance(answer[1], float):
         raise TypeError("MonkeyLearn error created wrong types in the answer")
     """
-    return [keyToNumber(checkSynonyms(msg, choices)), keyToNumber(answer[0])][answer[1] >= 75] #0.175
+    return [keyToNumber(checkSynonyms(msg, choices), choices), keyToNumber(answer[0], choices)][answer[1] >= 75] #0.175
 
-#Returns a number for a specific key
-def keyToNumber(argument: str) -> int:
-    l.log_time('key')#logging
-    #all the intents
-    switcher = {
-        "go to":1,
-        "look at":2,
-        "current room":3,
-        "items":4,
-        "about chatbot:":5,
-        "start phone":6,
-        "exit phone":7
-    }
-    # Get the function from switcher dictionary
-    l.log_time('toNumber')#logging
-    return switcher.get(argument, -1)
+"""
+@author:: Max Petendra
+@state: 08.06.20
+Get the value a of intent to work with from the list of intents
+Parameters
+----------
+argument: a string witch should be a member of choices
+choices: the list with all the intents to choose
 
-def filterMessage(msg: str) -> str: return "".join([ c.lower() for c in msg if c.isalnum() or c == ' ' ])
+Returns: Returns a number for a specific intent
+"""
+def keyToNumber(argument: str, choices: list) -> int:
+    if argument in choices: return choices.index(argument) + 1
+    else: return -1
 
-# check with of the given intents are possibly meant // returns it
+"""
+@author:: Max Petendra
+@state: 08.06.20
+filters a string and only alphabethical char and spaces remain
+Parameters:
+msg : a string to filter
+Returns: the filtered string
+"""
+def filterMessage(msg: str) -> str: return "".join([ c.lower() for c in msg if c.isalpha() or c == ' ' ])
+
+"""
+@author:: Max Petendra, Tobias -> (logging time)
+@state: 08.06.20
+checks witch of the given intents are possibly meant
+Parameters
+----------
+msg : the input message of the player to test
+choices: the list of intents to choose from
+
+Returns: the intent that has the most consensus with the msg as a string
+"""
 def checkSynonyms(msg: str, choices: list) -> str:
     l.log_time('check')#logging
     listofwords = filterMessage(msg).split()
@@ -70,7 +96,16 @@ def checkSynonyms(msg: str, choices: list) -> str:
     l.log_time('post-loop')#logging
     return ["i dont know", choices[results.index(max(results))]][max(results) > 0]               
 
-#Returns True if user msg is put to trainingdata.csv otherwise it returns False
+"""
+@author:: Max Petendra
+@state: 08.06.20
+writes the user msg to trainingdata.csv if it is not already in it or a similar msg
+Parameters
+----------
+msg : the input message of the player
+
+Returns: Returns True if user msg is put to trainingdata.csv otherwise it returns False
+"""
 def writeMessagetoTrainingData(msg: str) -> bool:
 
     filteredmessage = filterMessage(msg)
@@ -93,8 +128,17 @@ def writeMessagetoTrainingData(msg: str) -> bool:
         writer.writerow([filteredmessage])
         return True
 
+"""
+@author:: Max Petendra
+@state: 08.06.20
+get set of secific words of a spacy wortype
+Parameters
+----------
+msg : the string to search in
+wordtype: must be a valid spacy wordtype 
 
-#Returns all words of a given type in a string // wordtype must be a valid spacy wordtype
+Returns: all words of a given type in a string as a set
+"""
 def getWordsofType(msg: str, wordtype: str) -> set:
     result = set()
     pos = nlp(msg)
@@ -102,7 +146,17 @@ def getWordsofType(msg: str, wordtype: str) -> set:
         if str(token.pos_) == wordtype: result.add(token)
     return result
 
-#checks the similarity of two words // returns the number of similar synonyms of two words
+"""
+@author:: Max Petendra, Tobias -> (logging)
+@state: 08.06.20
+checks the similarity of two words
+Parameters
+----------
+word1 : the first word
+word2: the second word 
+
+Returns: the number of similar synonyms of two words
+"""
 def checkSimilarity(word1: str, word2: str) -> int:
     l.log_time('pre-checkSimilarity')#logging
     if not word1.isalpha() or not word2.isalpha():
@@ -112,7 +166,18 @@ def checkSimilarity(word1: str, word2: str) -> int:
     l.log_time('post-checkSimilarity')#logging
     return len(set(synsofword1).intersection(synsofword2))
 
-#returns the synonyms of a word // use getWordtype to get the wordtype of a word
+"""
+@author:: Max Petendra
+@state: 08.06.20
+get the synonyms of a word
+use getWordtype to get the wordtype of a word
+Parameters
+----------
+word: the word to get synonyms from
+wordtype: the wordtype of the synonyms must be a valid spacy wordtype 
+
+Returns: the synonyms of a word as a set
+"""
 def getSynonyms(word: str, wordtype: str) -> set:
     synonyms = set()
     for syn in wn.synsets(str(word)):
@@ -121,7 +186,17 @@ def getSynonyms(word: str, wordtype: str) -> set:
                 synonyms.add(lm.name())
     return sorted(synonyms)
 
-#returns the wordtype of a word // optional: in the given context of a sentence
+"""
+@author:: Max Petendra
+@state: 08.06.20
+get the wordtype of a word in a give context (optional)
+Parameters
+----------
+word: the word to check the wordtype
+sentence: optional: in the given context of a sentence // usually the user msg 
+
+Returns: the spacy wordtype of a word // UNKWOWN if no wordtype is found
+"""
 def getWordtype(word: str, sentence: str = None) -> str:
     if not word.isalpha() and not '_' in word and not '-' in word:
         raise ValueError("word should only contain alpha chars")
@@ -130,4 +205,17 @@ def getWordtype(word: str, sentence: str = None) -> str:
     for token in pos:
         if str(token) == word: return str(token.pos_)
     return "UNKNOWN"
+
+
+"""
+@author:: Max Petendra
+@state: 08.06.20 // !!!! currently unused
+Makes a dict from a list. Keys are list elements. Values are numbers from 1 to list length
+Parameters:
+inputlist : the list with the input strings
+Returns: A dictionary of strings and numbers
+"""
+def listtodict(inputlist: list) -> dict:
+    resultdict = {i : inputlist[i-1] for i in range(1, len(inputlist)+1)}
+    return {value:key for key, value in resultdict.items()}
 

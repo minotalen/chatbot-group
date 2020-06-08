@@ -1,6 +1,6 @@
 import re
 from transformers import pipeline
-#from intentclassificator import classifyIntent, writeMessagetoTrainingData
+from intentclassificator import classifyIntent, writeMessagetoTrainingData
 
 
 text_generator = pipeline("text-generation")

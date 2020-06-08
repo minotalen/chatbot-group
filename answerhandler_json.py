@@ -21,8 +21,8 @@ def answerHandler(inputjson):
     elif str(obj['mode']) == 'phone' and classifyIntent(str(obj['message'].lower()), ['exit phone']) == 1:
         answer = ('You stop looking at the bad quality of your phone', getRoomName(getRoomId(str(obj['room']))), 'game')
     elif str(obj['mode']) == 'phone': 
-        #answer = [handleAnswer(str(obj['message'].lower())), 'Your Phone', 'phone']
-        answer = ['you are still talking to th professor', 'Your Phone', 'phone']
+        answer = [handleAnswer(str(obj['message'].lower())), 'Your Phone', 'phone']
+        
     
     if writeMessagetoTrainingData(str(obj['message'])):
         print("added message to training data")

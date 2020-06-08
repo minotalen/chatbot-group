@@ -7,7 +7,7 @@
 import { closeSuggestions, userInput } from './suggestions.mjs';
 import { closeSettings } from './settings.mjs';
 var protocol = window.location.protocol;
-let socket = io.connect(protocol + '//' + document.domain + ':' + location.port + namespace),
+let socket = io.connect(protocol + '//' + document.domain + ':' + location.port),
   sendButton = document.getElementById('send-button'),
   userName = undefined,
   levelID = 'test_level_ID',

@@ -1,0 +1,138 @@
+{
+    "rooms": [
+    {
+        "id": 0,
+        "location": "Nelson Mandela Park",
+        "roomName": "elephant monument",
+        "intro": "You are now standing in front of the elephant monument in the Nelson Mandela Park. Your task is to find the hidden box to solve the riddle the professor gave you.",
+        "descri": "There is a bench, a trash bin and a strange looking bush near the monument. You also notice a small staircase leading below the base of the monument. The door looks old and rusty, with colonial time decorations and emblems engraved into it.",
+        "connections": [
+            {
+                "conName": "door",
+                "conRoomId": null,
+                "needStates": ["elephantDoor"],
+                "needStatesValue": [true]
+            },
+            {
+                "conName": "bush",
+                "conRoomId": 1,
+                "needStates": [null],
+                "needStatesValue": [null]
+            }
+        ],
+        "items": [
+            {
+                "itemName": "bottle",
+                "lookAt": "It is a PET bottle",
+                "pickUp": "Great you got the bottle out! But now you really want to wash your hands...",
+                "needStates": ["trashBin", "gotBottle"],
+                "needStatesValue": [true, false],
+                "newStates": ["gotBottle"],
+                "newStatesValue": [true]
+            }
+        ],
+        "objects": [
+            {
+                "objName": "bench",
+                "lookAt": "The bench is covered by moss and bird s***... It hasn’t been used in some time. The paint has almost fallen off. This is not the place professor Kraysee would hide something.",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "newStates": [null],
+                "newStatesValue": [null]
+            },
+            {
+                "objName": "trash bin",
+                "lookAt": "The trash bin is full of … well... trash. Who would have thought? But wait! A PET bottle! Easy money, if you can stand getting it out with your bare hands…",
+                "needStates": ["trashBin"],
+                "needStatesValue": [false],
+                "newStates": ["trashBin"],
+                "newStatesValue": [null]
+            },
+            {
+                "objName": "door",
+                "lookAt": "The door is locked by some sort of mechanism. It won’t open. Trying to pry it open is probably not a good idea. It’s a monument after all. Let’s try not to incriminate ourselves just yet, shall we?",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "newStates": [null],
+                "newStatesValue": [null]
+            }
+        ],
+        "triggers": [
+            null
+        ]
+    },
+    {
+        "id": 1,
+        "location": "Nelson Mandela Park",
+        "roomName": "bush",
+        "intro": "Look at this strange/suspicious/odd looking odd bush! Do you want to take a closer look? You want that right?",
+        "descri": "You are standing in front of the bush. \n All of a sudden there’s a mother with her child, the child says 'Mami mami there's a guy in the bush'. \n You look at them and shout: 'Hey that’s my bush! Look for your own!!' with some irony in your voice. The mother pulls her child away and goes further away from you. \n Now you have time to inspect the location closely. You notice that there is a hidden object. It almost looks like a box. Could this be the item the professor wanted me to find?",
+        "connections": [
+            {
+                "conName": "back",
+                "conRoomId": 0,
+                "needStates": [null],
+                "needStatesValue": [null]
+            }
+        ],
+        "items": [
+            {
+                "itemName": "paper",
+                "lookAt": "It is a tiny piece of paper with random numbers on it. You should take it. Maybe they will be important in the future.",
+                "pickUp": "You pick up the piece of paper inside the box and read it. \n 629387445 \n That’s a lot of numbers. What does this have to do with the 4-digit code? Maybe there is something special about these numbers.",
+                "needStates": ["openBox"],
+                "needStatesValue": [true],
+                "newStates": [null],
+                "newStatesValue": [null]
+            }
+        ],
+        "objects": [
+            {
+                "objName": "box",
+                "lookAt": "The box is secured with tape that contains the words “It’s prime time!” repeated multiple times written all over it. The word prime stands out with a blue colored shape.",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "newStates": [null],
+                "newStatesValue": [null]
+            }
+        ],
+        "triggers": [
+            {
+                "trigName": "open box",
+                "needStates": ["solved"],
+                "needStatesValue": [false],
+                "needItems": [null],
+                "accept": "Inside the box, there is a piece of paper with a riddle of numbers and an old T9 mobile phone as well as a GPS device inside.",
+                "fail": null,
+                "newStates": ["openBox","gps"],
+                "newStatesValue": [true, true],
+                "actions": ["updateMode"],
+                "actionsValue": ["riddle"]
+            },
+            {
+                "trigName": "start phone",
+                "needStates": ["gotPhone", "openBox"],
+                "needStatesValue": [false, true],
+                "needItems": [null],
+                "accept": "You start it, but you need a 4-digit pin to unlock it. Maybe the piece of paper can help you out?",
+                "fail": null,
+                "newStates": ["activePhone"],
+                "newStatesValue": [true],
+                "actions": []
+            },
+            {
+                "trigName": "2375",
+                "needStates": ["gotPhone", "activePhone"],
+                "needStatesValue": [false, true],
+                "needItems": [null],
+                "accept": "Congrats! You have now solved the riddle and are able to use the mobile phone.",
+                "fail": null,
+                "newStates": ["gotPhone"],
+                "newStatesValue": [true],
+                "actions": ["updateMode"],
+                "actionsValue": ["game"]
+            }
+        ]
+    }
+    ]
+}

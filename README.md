@@ -20,21 +20,13 @@ Hier nochmal zum Nachlesen in der [Flask Dokumentation](https://exploreflask.com
 
 ## Installieren
 
-Damit es läuft braucht jeder Python. Damit habt ihr auch pip und könnt in der Konsole folgende Befehle ausführen:
+Damit es läuft, braucht jeder Python installieren, empfohlenerweise in einem virtual environment(https://docs.python.org/3/library/venv.html), z.B. conda(https://anaconda.org/anaconda/conda)
 
--Python installieren, empfohlenerweise in einem virtual environment(https://docs.python.org/3/library/venv.html), z.B. conda(https://anaconda.org/anaconda/conda)
+Damit habt ihr auch pip und könnt in der Konsole im Git Ordner folgende Befehle ausführen:
 
--Konsole im git ordner öffnen
+`pip install -r requirements.txt`
 
--Folgendes in die Konsole pasten und ausführen: `pip install -r requirements.txt`
-
-Oder einzeln nacheinander:
-
-`pip install Flask`
-
-`pip install flask-socketio`
-
-`pip install eventlet`
+Falls möglich, schreibt alle benötigten python-module in die pip, die how-to-requirements im glitch ist für so Fälle wie `en_core_web_sm` geupdatet
 
 Sonst schaut nochmal in die [Flask-SocketIO Doku](https://flask-socketio.readthedocs.io/en/latest/).
 
@@ -44,6 +36,19 @@ Dazu einfach in die Python Konsole gehen und eintippen
 `import nltk` und danach
 
 `nltk.download('wordnet')`
+
+**Für spacy bitte in der Konsole eingeben**
+
+`python -m spacy download en_core_web_sm`
+Genauen befehl für betriebssystem
+Link zur Anleitung `https://spacy.io/usage/models`
+
+**Anleitung Windows mit Python 3.8.2 64-Bit**
+
+Zuerst `pip install -r requirements.txt`. 
+
+Danach die nltk-Geschichte downloaden.
+
 
 ## Bekannte Fehler
 

@@ -4,9 +4,12 @@ import pandas as pd
 from pathlib import Path
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
 
+with open('rooms.json', encoding="utf8") as allLevels:
+    data = pd.read_json(allLevels)
+    rooms = data['rooms']
 
 def answerHandler(inputjson):
-    
+
     obj = json.loads(inputjson)
     answer = findAnswer(str(obj['message'].lower()), getRoomId(str(obj['room'])))
     

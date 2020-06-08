@@ -1,7 +1,7 @@
 /**
  * Client-side script to receive, send and display messages.
  * Authors: ?, Katja Schneider, Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modfidied: 20.05.2020
+ * Last modfidied: 06.06.2020
  */
 
 import { closeSuggestions, userInput } from './suggestions.mjs';
@@ -14,7 +14,10 @@ let socket = io.connect("http://127.0.0.1:5000"),
   senderName = 'test_sender_name',
   roomName = 'test_room_name',
   itemList = [{ item: 'test_item_name1', action: 'test_item_action1' }, { item: 'test_item_name2', action: 'test_item_action2' }],
-  msg;
+  modeName = 'test_mode',
+  msg, 
+  typeIndicator = document.getElementById('type-indicator'),
+  userMessageSendingAllowed = true;
  
 
 socket.on('connect', function () {
@@ -28,6 +31,7 @@ socket.on('connect', function () {
 socket.on('json', (json) => {
   console.log('message received');
   msg = readJSON(json);
+  userMessageSendingAllowed = true;
 
   updateRoomName(roomName);
   // updateCurrentLevel(levelID);
@@ -48,6 +52,12 @@ sendButton.addEventListener('click', () => {
  */
 function sendMessage(evt='json') {
   let json;
+
+  if (!userMessageSendingAllowed) {
+    console.log('message sending forbidden, no message sent!');
+    return;
+  }
+
   msg = userInput.value;
 
   // set user as sender on outgoing messages
@@ -68,7 +78,7 @@ function sendMessage(evt='json') {
 
     printMessage(msg);
     userInput.focus();
-  
+    userMessageSendingAllowed = false;
   } else {
     console.log('no message to send!');
   }
@@ -89,14 +99,22 @@ function printMessage(msg) {
   switch (senderName) {
     case 'bot':
       elem.className = 'chat-message-bot';
+      typeIndicator.style.visibility = 'hidden';
+
+      // remove bottom margin since element size works as bottom spacing when visiblity is set to hidden
+      typeIndicator.style.marginBottom = '0';
       break;
 
     default:
       elem.className = 'chat-message-user';
+      typeIndicator.style.visibility = 'visible';
+
+      // add margin equal to element size for consistent bottom spacing
+      typeIndicator.style.marginBottom = typeIndicator.getBoundingClientRect().height + 'px';
       break;
   }
 
-  chat.appendChild(elem);
+  chat.insertBefore(elem, typeIndicator);
 
   // scroll to bottom
   chat.scrollTop = chat.scrollHeight - chat.clientHeight;
@@ -139,6 +157,7 @@ function createJSON(msg) {
     sender: senderName,
     room: roomName,
     items: itemList,
+    mode: modeName,
     message: msg
   };
 
@@ -165,6 +184,7 @@ function readJSON(json) {
   senderName = obj.sender;
   roomName = obj.room;
   itemList = obj.items;
+  modeName = obj.mode;
   message = obj.message;
 
   console.log('received message: ' + message);
@@ -186,16 +206,16 @@ function sendUserName() {
  * Close input field suggestions on click outside of input field.
  */
 window.addEventListener('click', (evt) => {
-  console.log(evt.target);
+  // console.log(evt.target);
   
-  console.log('window click');
+  // console.log('window click');
   if(evt.target.id != 'input-user') closeSuggestions();
   if(!document.getElementById('settings-window').contains(evt.target) && evt.target.id != 'settings') closeSettings();
 }, false);
 
 
-window.addEventListener('keyup', (evt) => {
-  evt.preventDefault(); //???????
+window.addEventListener('keyup', (evt) => {  
+  evt.preventDefault(); // ???????
 });
 
 

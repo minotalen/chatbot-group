@@ -135,9 +135,10 @@ def getRoomDescription(id: int) -> str:
 
 # Get all needed and new states
 def getAllStates(id: int):
-    return list(set(getObjectStates(id, 'connections') + getObjectStates(id, 'items') + getObjectStates(id,
-                                                                                                        'objects') + getObjectStates(
-        id, 'triggers')))
+    return list(set(getObjectStates(id, 'connections') + 
+                    getObjectStates(id, 'items') + 
+                    getObjectStates(id,'objects') + 
+                    getObjectStates(id, 'triggers')))
 
 
 # Get states of json object
@@ -173,42 +174,6 @@ def aboutHandler(msg: str) -> str:
         "of course not"
     else:
         return "I didnt understand your about chatbot: question."
-
-
-# manages a local saved inventory
-# if "items" in s:
-
-# def get_inventory():
-#   with open("inventory.csv") as csvfile:
-#      csv_reader = csv.DictReader(csvfile)
-#     line_count = 0
-#    item_count = 0
-#   data = ""
-#  for row in csv_reader:
-#     if line_count == 0:
-#        line_count += 1
-#   if row["Found"] == "True":
-#      if item_count == 1:
-#         data += " and "
-#    data += str(row["Item-Name"]) + ", " + str(row["Description"])
-#   item_count = 1
-#        if item_count == 1:
-#           data += ". "
-#      else:
-#         data = "A yawning void looks at you from your inventory. "
-#    return data
-
-# adds a items to the inventory(sets the variable of the item from 'False' to 'True')
-# optional: add a quantity column in the csv
-
-# def add_inventory(name):
-#   with open("inventory.csv") as csvfile:
-#      df = pd.read_csv("test.csv")
-#     #df.head(3) #prints 3 heading rows
-#    df.loc[df["Item-Name"]==name, "Found"] = "True"
-#   #next line is not tested!
-#  #df.loc[df["Item-Name"]==, "Item-Quantity"] = ([df["Item-Name"]==, "Item-Quantity"] +1)
-# df.to_csv("inventory.csv", index=False)
 
 
 """

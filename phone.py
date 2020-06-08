@@ -30,7 +30,7 @@ Parameters
 ----------
 msg: the message of the user
 
-Returns: a number witch represent a intent of the user // -1 if no intent is found
+Returns: a number which represent a intent of the user // -1 if no intent is found
 """
 def askProf(msg:str) -> str:
     choices = ["tell task"]

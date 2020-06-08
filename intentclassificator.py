@@ -43,7 +43,7 @@ def classifyIntent(msg: str, choices: list) -> int:
 Get the value a of intent to work with from the list of intents
 Parameters
 ----------
-argument: a string witch should be a member of choices
+argument: a string which should be a member of choices
 choices: the list with all the intents to choose
 
 Returns: Returns a number for a specific intent
@@ -65,7 +65,7 @@ def filterMessage(msg: str) -> str: return "".join([ c.lower() for c in msg if c
 """
 @author:: Max Petendra, Tobias -> (logging time)
 @state: 08.06.20
-checks witch of the given intents are possibly meant
+checks which of the given intents are possibly meant
 Parameters
 ----------
 msg : the input message of the player to test
@@ -131,7 +131,7 @@ def writeMessagetoTrainingData(msg: str) -> bool:
 """
 @author:: Max Petendra
 @state: 08.06.20
-get set of secific words of a spacy wortype
+get set of specific words of a spacy wortype
 Parameters
 ----------
 msg : the string to search in

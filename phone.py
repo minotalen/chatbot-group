@@ -50,6 +50,8 @@ Returns: a string as an answer
 def get_generated_answer(msg: str) -> str:
     text = text_generator(msg, max_length=int(20))[0].get('generated_text')
     for char in "?\n": text = text.replace(char,'')
-    return re.sub(msg, '', text)
+    proftext = re.sub(msg, '', text)
+    splittext = re.split('(?<=[,.!?]) +', proftext)
+    if len(splittext) > 1: return re.sub(splittext[-1], '', proftext)
+    return proftext
 
-               

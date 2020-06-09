@@ -28,7 +28,7 @@ def answerHandler(inputjson):
 
     #When the mode is riddle
     elif str(obj['mode']) == 'riddle':
-        answer = handelRiddle(obj)
+        answer = handleRiddle(obj)
         
     #When mode is game    
     else :
@@ -81,7 +81,6 @@ def answerHandler(inputjson):
 def findAnswer(msg, roomId=-1):
     
     if roomId == -1: raise ValueError("Invalid room id!")
-    print(getAllStates(roomId))
  
     choices = ["go to","look at","current room", "items", "about chatbot:", "start phone"]
     intentId = classifyIntent(msg, choices)
@@ -181,22 +180,16 @@ def getRoomDescription(id: int) -> str:
     return rooms[id]['descri']
 
 
-# Get all needed and new states
-def getAllStates(id: int):
-    return list(set(getObjectStates(id, 'connections') + getObjectStates(id, 'items') + getObjectStates(id,
-                                                                                                        'objects') + getObjectStates(
-        id, 'triggers')))
-
-
-# Get states of json object
-def getObjectStates(id: int, name: str):
-    allStates = []
+# Check states of room.json in specified category
+def checkRoomStates(id: int, name: str):
+    
     if rooms[id][name] is not None:
         for states in rooms[id][name]:
             if states is not None:
                 for needState, needStateValue in zip(states['needStates'], states['needStatesValue']):
-                    if None not in (needState, needStateValue): allStates.append((needState, needStateValue))
-    return allStates
+                    if None not in (needState, needStateValue): return True
+
+    return False
 
 
 # Check all needed states
@@ -222,74 +215,3 @@ def aboutHandler(msg: str) -> str:
     else:
         return "I didnt understand your about chatbot: question."
 
-
-# manages a local saved inventory
-# if "items" in s:
-
-# def get_inventory():
-#   with open("inventory.csv") as csvfile:
-#      csv_reader = csv.DictReader(csvfile)
-#     line_count = 0
-#    item_count = 0
-#   data = ""
-#  for row in csv_reader:
-#     if line_count == 0:
-#        line_count += 1
-#   if row["Found"] == "True":
-#      if item_count == 1:
-#         data += " and "
-#    data += str(row["Item-Name"]) + ", " + str(row["Description"])
-#   item_count = 1
-#        if item_count == 1:
-#           data += ". "
-#      else:
-#         data = "A yawning void looks at you from your inventory. "
-#    return data
-
-# adds a items to the inventory(sets the variable of the item from 'False' to 'True')
-# optional: add a quantity column in the csv
-
-# def add_inventory(name):
-#   with open("inventory.csv") as csvfile:
-#      df = pd.read_csv("test.csv")
-#     #df.head(3) #prints 3 heading rows
-#    df.loc[df["Item-Name"]==name, "Found"] = "True"
-#   #next line is not tested!
-#  #df.loc[df["Item-Name"]==, "Item-Quantity"] = ([df["Item-Name"]==, "Item-Quantity"] +1)
-# df.to_csv("inventory.csv", index=False)
-
-
-"""
-just for Test: Insert user into database by username with dummy password
-"""
-def add_user_into_db_withoutPassword(username):
-    password = "123456"
-    if isinstance(username, str):
-        database.insert_one_user(username, password)
-    else:
-        raise ValueError("username must to be in string")
-
-
-"""
-just for Test: Update state with dummy password into database
-"""
-def update_state_into_DB_withoutPassword(username, state_name, state_value):
-    password = "123456"
-    if isinstance(username, str) and isinstance(state_name, str) and isinstance(state_value, str):
-        database.update_state_users(username, password, state_name, state_value)
-    else:
-        raise ValueError("input must to be in string")
-
-
-def add_user_into_db(username, password):
-    if isinstance(username, str):
-        database.insert_one_user(username, password)
-    else:
-        raise ValueError("username must to be in string")
-
-
-def update_state_into_DB(username, password, state_name, state_value):
-    if isinstance(username, str) and isinstance(state_name, str) and isinstance(state_value, str):
-        database.update_state_users(username, password, state_name, state_value)
-    else:
-        raise ValueError("input must to be in string")

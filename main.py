@@ -14,8 +14,6 @@ app.config["SECRET_KEY"] = "x!\x84Iy\xf9#gE\xedBQqg+\xf3A+\xe3\xd3\x01\x1a\xdf\x
 socketio = SocketIO(app)
 socketio.init_app(app, cors_allowed_origins="*")
 
-users = []
-
 
 @app.route('/')
 def send_index_page():
@@ -31,15 +29,15 @@ def handleJson(payload):
 @socketio.on('user_registration')
 def update_users(payload):
     readable_json = json.loads(payload)
-    add_user_db_wp(readable_json['message'])
-    users.append({"user_id": request.sid, "user_name": readable_json['message']})
+    
+    add_user_db_wop(readable_json['message'])
+
     initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "Hello, " + readable_json['message'] + "!"}
     json_data = json.dumps(initial_data)
     send(json_data, json=True)
     intro_text = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "current room"}
     json_data = json.dumps(intro_text)
     send(answerHandler(json_data), json=True)
-    print("added user: " + readable_json['message'] + " with session id: " + request.sid)
 
 
 @socketio.on('connect')
@@ -60,16 +58,10 @@ def error_handler(e):
     raise Exception("Some error happened, no further notice")
 
 # Nutzer hinzufügen. Vorerst ohne Passwort
-def add_user_db_wp(username):
+def add_user_db_wop(username):
     password = "123456"
-    if isinstance(username, str):
-        database.insert_one_user(username, password)
-    else:
-        raise ValueError("username must to be in string")
-# with open('rooms.csv') as csv_file:
-#     roomreader = csv.reader(csv_file)
-#     rows = list(roomreader)
-#     print(rows[1])
+    if isinstance(username, str) and not database.does_user_exist:
+        database.insert_user(username, password)
 
 
 if __name__ == "__main__":

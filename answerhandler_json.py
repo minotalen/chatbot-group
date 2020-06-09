@@ -5,6 +5,7 @@ import database_SQLite as database
 from pathlib import Path
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
 from phone import handleAnswer
+from riddlemode import handleRiddle
 import logging_time as l
 
 with open('rooms.json', encoding="utf8") as allLevels:
@@ -16,12 +17,52 @@ def answerHandler(inputjson):
     l.log_start()#logging
     obj = json.loads(inputjson)
     
-    if str(obj['mode']) == 'game':
-        answer = findAnswer(str(obj['message'].lower()), getRoomId(str(obj['room'])))
-    elif str(obj['mode']) == 'phone' and classifyIntent(str(obj['message'].lower()), ['exit phone']) == 1:
+    #When the mode is phone and player inputs exit phone
+    if str(obj['mode']) == 'phone' and classifyIntent(str(obj['message'].lower()), ['exit phone']) == 1:
         answer = ('You stop looking at the bad quality of your phone', getRoomName(getRoomId(str(obj['room']))), 'game')
+        
+    #When the mode is phone   
     elif str(obj['mode']) == 'phone': 
-        answer = [handleAnswer(str(obj['message'].lower())), 'Your Phone', 'phone']
+        #answer = [handleAnswer(str(obj['message'].lower())), 'Your Phone', 'phone']
+        answer = ['you are still talking to th professor', 'Your Phone', 'phone']
+
+    #When the mode is riddle
+    elif str(obj['mode']) == 'riddle':
+        answer = handelRiddle(obj)
+        
+    #When mode is game    
+    else :
+        answer = findAnswer(str(obj['message'].lower()), getRoomId(str(obj['room'])))
+
+        #Case Trigger: Ein trigger wird ausgelöst und eventuell ändern sich zustände, funktionen werden ausgeführt
+
+        """
+        #Ist der benötigte Zustand erreicht? Wenn nicht gebe fail text aus
+        #Falls einer existiert:
+        beZustand = rooms[id][trigger]['benötigterzustand']
+        beZustandStatus = rooms[id][trigger]['benötigterzustandstatus']
+        
+        if(sql[beZustand].status != beZustandStatus)
+            answer[0] = "You can't do that"
+            
+        for every item in items
+            checkItemin Inventory(item)
+            answer[0] = failtext
+
+        if zustand erfolgreich && zustände erfolgreich:
+        
+            #Das nächste nur ausführen wenn item und beZustände erfolgreich waren    
+            #Ändere zustände die durch trigger geändert werden    
+            for every zustand in neuezustände
+                neuZustand = rooms[id][trigger]['neuerzustand']
+                neuZustandStatus = rooms[id][trigger]['neuerzustandstatus']
+                sql[neuZustand].status = neuZustandStatus
+            
+            #führe funktionen aus des triggers aus
+            for every action in Aktionen
+                handleTriggerAction(rooms[actions],rooms[actionValue])
+        
+        """
         
     
     if writeMessagetoTrainingData(str(obj['message'])):
@@ -45,20 +86,23 @@ def findAnswer(msg, roomId=-1):
     choices = ["go to","look at","current room", "items", "about chatbot:", "start phone"]
     intentId = classifyIntent(msg, choices)
 
+    #TRIGGER: Raumspezifische Trigger werden zuerst überprüft
     for elem in rooms[roomId]['triggers']:
         if elem is not None:
             if elem['trigName'] in msg:
                 return (elem['accept'], getRoomName(roomId), 'game')
-
+            
+    #GO TO: Es kann zu anliegenden Räumen oder Objekten gegangen werden
     if intentId == 1:
-        for elem in rooms[roomId]['objects']:
-            if elem['objName'] in msg:
-                return (elem['lookAt'], getRoomName(roomId), 'game')
         for elem in rooms[roomId]['connections']:
             if elem['conName'] in msg:
                 roomId = int(elem['conRoomId'])
                 return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
-
+        for elem in rooms[roomId]['objects']:
+            if elem['objName'] in msg:
+                return (elem['lookAt'], getRoomName(roomId), 'game')
+        
+    #LOOK AT: Items und Objekte im Raum können angeschaut werden. ansonsten wird LOOK AROUND die Raumbeschreibungs ausgegeben
     elif intentId == 2:
         for elem in rooms[roomId]['items']:
             if elem['itemName'] in msg:
@@ -69,18 +113,22 @@ def findAnswer(msg, roomId=-1):
 
         return (getRoomDescription(roomId), getRoomName(roomId), 'game')
 
+    #CURRENT ROOM: Gibt den Raumtext nochmal aus
     elif intentId == 3:
         return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
 
+    #ITEMS: NOCH NICHT FERTIG. BAUSTELLE
     # elif classifyIntent(msg) == 4:
     #   return (get_inventory(), getRoomName(roomid))
-
+    
+    #ABOUT: Beantwortet Fragen zum Chatbot
     elif intentId == 5:
         return (aboutHandler(msg), getRoomName(roomId), 'game')
-
+    #START PHONE: Der Handymodus wird gestartet
     elif intentId == 6:
         return ('You are now chatting with the professor', getRoomName(roomId), 'phone')
-
+    
+    #Wenn nichts erkannt wurde
     return ("I have no idea what you want", getRoomName(roomId), 'game')
 
 
@@ -135,10 +183,9 @@ def getRoomDescription(id: int) -> str:
 
 # Get all needed and new states
 def getAllStates(id: int):
-    return list(set(getObjectStates(id, 'connections') + 
-                    getObjectStates(id, 'items') + 
-                    getObjectStates(id,'objects') + 
-                    getObjectStates(id, 'triggers')))
+    return list(set(getObjectStates(id, 'connections') + getObjectStates(id, 'items') + getObjectStates(id,
+                                                                                                        'objects') + getObjectStates(
+        id, 'triggers')))
 
 
 # Get states of json object
@@ -174,6 +221,42 @@ def aboutHandler(msg: str) -> str:
         "of course not"
     else:
         return "I didnt understand your about chatbot: question."
+
+
+# manages a local saved inventory
+# if "items" in s:
+
+# def get_inventory():
+#   with open("inventory.csv") as csvfile:
+#      csv_reader = csv.DictReader(csvfile)
+#     line_count = 0
+#    item_count = 0
+#   data = ""
+#  for row in csv_reader:
+#     if line_count == 0:
+#        line_count += 1
+#   if row["Found"] == "True":
+#      if item_count == 1:
+#         data += " and "
+#    data += str(row["Item-Name"]) + ", " + str(row["Description"])
+#   item_count = 1
+#        if item_count == 1:
+#           data += ". "
+#      else:
+#         data = "A yawning void looks at you from your inventory. "
+#    return data
+
+# adds a items to the inventory(sets the variable of the item from 'False' to 'True')
+# optional: add a quantity column in the csv
+
+# def add_inventory(name):
+#   with open("inventory.csv") as csvfile:
+#      df = pd.read_csv("test.csv")
+#     #df.head(3) #prints 3 heading rows
+#    df.loc[df["Item-Name"]==name, "Found"] = "True"
+#   #next line is not tested!
+#  #df.loc[df["Item-Name"]==, "Item-Quantity"] = ([df["Item-Name"]==, "Item-Quantity"] +1)
+# df.to_csv("inventory.csv", index=False)
 
 
 """

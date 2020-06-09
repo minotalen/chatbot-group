@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send
 import json
 import csv
+import database_SQLite as database
 from answerhandler_json import answerHandler
 
 # from answerhandler_withdatabase import answerHandler
@@ -30,6 +31,7 @@ def handleJson(payload):
 @socketio.on('user_registration')
 def update_users(payload):
     readable_json = json.loads(payload)
+    add_user_db_wp(readable_json['message'])
     users.append({"user_id": request.sid, "user_name": readable_json['message']})
     initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "Hello, " + readable_json['message'] + "!"}
     json_data = json.dumps(initial_data)
@@ -57,7 +59,13 @@ def disconnect():
 def error_handler(e):
     raise Exception("Some error happened, no further notice")
 
-
+# Nutzer hinzufügen. Vorerst ohne Passwort
+def add_user_db_wp(username):
+    password = "123456"
+    if isinstance(username, str):
+        database.insert_one_user(username, password)
+    else:
+        raise ValueError("username must to be in string")
 # with open('rooms.csv') as csv_file:
 #     roomreader = csv.reader(csv_file)
 #     rows = list(roomreader)

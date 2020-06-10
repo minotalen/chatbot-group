@@ -77,7 +77,7 @@ def does_user_exist(username):
 def insert_user(username, password):
     query = """ INSERT INTO users VALUES (?,?,?)"""
     if not does_user_exist(username):
-        if execute_database(query, (None, username, password)):
+        if execute_database(query, (None, username, password,)):
             print("succesfully added user")
         else:
             print("user was not added")
@@ -94,7 +94,7 @@ def get_user_id(username):
 
     # Query to database
     query = """SELECT rowid FROM users WHERE user_name = ?"""
-    c.execute(query, username)
+    c.execute(query, (username,))
     user = c.fetchone()
 
     # Commit our command
@@ -114,7 +114,7 @@ def delete_user(username, password):
 
     # Query to database
     query = """DELETE FROM users WHERE user_name = ? AND password = ?"""
-    if c.execute(query, (username, password)):
+    if c.execute(query, (username, password,)):
         print("information of that user is deleted")
     else:
         print("user could not be removed from database")
@@ -141,7 +141,7 @@ def insert_item(username, room_id, item_name):
     user_id = get_user_id(username)
 
     query = """INSERT INTO user_items VALUES (?,?,?,?)"""
-    if execute_database(query, (None, user_id, item_name, room_id)):
+    if execute_database(query, (None, user_id, item_name, room_id,)):
         print("succesfully added item")
     else:
         print("item was not added")
@@ -157,7 +157,7 @@ def get_all_user_items(username):
 
     # Query to database
     query = """SELECT item_name, room_id FROM user_items WHERE user_id = ?"""
-    c.execute(query, (user_id))
+    c.execute(query, (user_id,))
     items = c.fetchall()
 
     # Commit our command
@@ -178,7 +178,7 @@ def get_user_items_by_roomId(room_id, username):
 
     # Query to database
     query = """SELECT item_name FROM user_items WHERE room_id = ? AND user_id = ?"""
-    c.execute(query, (room_id, user_id))
+    c.execute(query, (room_id, user_id,))
     items = c.fetchall()
 
     # Commit our command
@@ -199,7 +199,7 @@ def does_user_item_exist(username, item_name, room_id):
 
     # Query to database
     query = """SELECT item_name FROM user_items WHERE room_id = ? AND user_id = ? AND item_name = ?"""
-    c.execute(query, (room_id, user_id, item_name))
+    c.execute(query, (room_id, user_id, item_name,))
     item = c.fetchone()
 
     if item is not None:
@@ -213,7 +213,7 @@ def delete_user_item(username, item_name, room_id):
     if does_user_item_exist(username, item_name, room_id):
         # Query to database
         query = """DELETE FROM user_items WHERE room_id = ? AND user_id = ? AND item_name = ?"""
-        if execute_database(query, (room_id, user_id, item_name)):
+        if execute_database(query, (room_id, user_id, item_name,)):
             print("that item is deleted")
         else:
             print("item was not deleted")
@@ -241,7 +241,7 @@ def does_user_state_exist(username, state_name):
 
     # Query to database
     query = """SELECT * FROM user_states WHERE user_id = ? AND state_name = ?"""
-    c.execute(query, (user_id, state_name))
+    c.execute(query, (user_id, state_name,))
     user = c.fetchone()
     
     # Commit our command
@@ -265,7 +265,7 @@ def get_all_user_states(username):
 
     # Query to database
     query = """SELECT state_name, state_value FROM user_states WHERE user_id = ?"""
-    c.execute(query, (user_id))
+    c.execute(query, (user_id,))
     user_states = c.fetchall()
     
     # Commit our command
@@ -280,7 +280,7 @@ def insert_user_state(username, state_name, state_value):
     user_id = get_user_id(username)
 
     query = """INSERT INTO user_states VALUES (?,?,?,?)"""
-    if execute_database(query, (None, user_id, state_name, state_value)):
+    if execute_database(query, (None, user_id, state_name, state_value,)):
         print("state was sucessfully added")
     else:
         print("state was not added")
@@ -294,7 +294,7 @@ def get_user_state_id(user_id, state_name):
 
     # Query to database
     query = """SELECT rowid FROM user_states WHERE user_id = ? AND state_name = ?"""
-    c.execute(query, (user_id, state_name))
+    c.execute(query, (user_id, state_name,))
     user = c.fetchone()
 
     # Commit our command
@@ -316,7 +316,7 @@ def update_user_state(username, state_name, state_value):
     # Query to database
     if does_user_state_exist(username, state_name):
         query = """UPDATE user_states SET state_value = ? WHERE user_id = ? AND state_name = ?"""
-        if c.execute(query, (state_value, user_id, state_name)):
+        if c.execute(query, (state_value, user_id, state_name,)):
             print("state was updated successful")
         else:
             print("state was not updated")
@@ -347,7 +347,7 @@ def get_user_state_value(username, state_name):
     # Query to database
     if does_user_state_exist(username, state_name):
         query = """SELECT state_value FROM user_states WHERE user_id = ? AND state_name = ?"""
-        c.execute(query, (user_id, state_name))
+        c.execute(query, (user_id, state_name,))
         state_value = c.fetchone()
 
         if state_value[0] == 1:
@@ -368,7 +368,7 @@ def delete_user_state(username, state_name):
     user_id = get_user_id(username)
 
     query = """DELETE FROM user_states WHERE user_id = ? AND state_name = ?"""
-    if execute_database(query, (user_id, state_name)):
+    if execute_database(query, (user_id, state_name,)):
         print("user state was deleted successful")
     else:
         print("user state was not deleted")

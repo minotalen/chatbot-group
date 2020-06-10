@@ -82,40 +82,51 @@ def findAnswer(username, msg, roomId=-1):
     if roomId == -1: raise ValueError("Invalid room id!")
  
     choices = ["go to","look at","current room", "items", "about chatbot:", "start phone", "help assistant:"]
-
+    
+    elemCount = -1
     #TRIGGER: Raumspezifische Trigger werden zuerst überprüft // please write docs in english :''(
     for elem in rooms[roomId]['triggers']:
         if elem is not None:
-            if elem['trigName'] in msg and checkNeededStates(roomId, 'triggers', username):
-                updateStates(roomId, 'triggers', username)
+            elemCount += 1
+            if elem['trigName'] in msg and checkNeededStates(rooms[roomId]['triggers'][elemCount], username):
+                updateStates(rooms[roomId]['triggers'][elemCount], username)
                 return (elem['accept'], getRoomName(roomId), 'game')
     
     intentId = classifyIntent(msg, choices)
+
             
     #GO TO: Es kann zu anliegenden Räumen oder Objekten gegangen werden
     if intentId == 1:
+        elemCount = -1
         #RÄUME
         for elem in rooms[roomId]['connections']:
-            if elem['conName'] in msg and checkNeededStates(roomId, 'connections', username):
+            elemCount += 1
+            if elem['conName'] in msg and checkNeededStates(rooms[roomId]['connections'][elemCount], username):
                 roomId = int(elem['conRoomId'])
                 return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
+        elemCount = -1
         #OBJEKTE
         for elem in rooms[roomId]['objects']:
-            if elem['objName'] in msg and checkNeededStates(roomId, 'objects', username):
-                updateStates(roomId, 'objects', username)
+            elemCount += 1
+            if elem['objName'] in msg and checkNeededStates(rooms[roomId]['objects'][elemCount], username):
+                updateStates(rooms[roomId]['objects'][elemCount], username)
                 return (elem['lookAt'], getRoomName(roomId), 'game')
         
     #LOOK AT: Items und Objekte im Raum können angeschaut werden. ansonsten wird LOOK AROUND die Raumbeschreibungs ausgegeben
     elif intentId == 2:
+        elemCount = -1
         #ITEMS
         for elem in rooms[roomId]['items']:
-            if elem['itemName'] in msg and checkNeededStates(roomId, 'items', username):
-                updateStates(roomId, 'items', username)
+            elemCount += 1
+            if elem['itemName'] in msg and checkNeededStates(rooms[roomId]['items'][elemCount], username):
                 return (elem['lookAt'], getRoomName(roomId), 'game')
+                
+        elemCount = -1
         #OBJEKTE
         for elem in rooms[roomId]['objects']:
-            if elem['objName'] in msg and checkNeededStates(roomId, 'objects', username):
-                updateStates(roomId, 'objects', username)
+            elemCount += 1
+            if elem['objName'] in msg and checkNeededStates(rooms[roomId]['objects'][elemCount], username):
+                updateStates(rooms[roomId]['objects'][elemCount], username)
                 return (elem['lookAt'], getRoomName(roomId), 'game')
 
         return (getRoomDescription(roomId), getRoomName(roomId), 'game')
@@ -204,29 +215,24 @@ name: the category
 Returns: a list of tuples by (state, value)
 """
 # Prüft alle angesprochenen(roomType) Zustände eines Raumes. Wenn einer nicht zutrifft wird False zurückgegeben.
-def checkNeededStates(id: int, roomType: str, username: str):
+def checkNeededStates(roomElem, username: str):
     allTrue = False
-
-    if rooms[id][roomType] is not None:
-        for states in rooms[id][roomType]:
-            if states is not None:
-                for needState, needStateValue in zip(states['needStates'], states['needStatesValue']):
-                    if None in (needState, needStateValue) or database.get_user_state_value(username, needState) == needStateValue: 
-                        allTrue = True
-                    else:
-                        allTrue = False
+    
+    for needState, needStateValue in zip(roomElem['needStates'], roomElem['needStatesValue']):
+        if None in (needState, needStateValue) or database.get_user_state_value(username, needState) == needStateValue: 
+            allTrue = True
+        else:
+            allTrue = False
 
     return allTrue
 
-def updateStates(id, roomType, username):
-    if rooms[id][roomType] is not None:
-        for states in rooms[id][roomType]:
-            if states is not None:
-                for newState, newStateValue in zip(states['newStates'], states['newStatesValue']):
-                    if None not in (newState, newStateValue) and newStateValue:
-                        database.update_user_state(username, newState, 1)
-                    elif None not in (newState, newStateValue) and not newStateValue:
-                        database.update_user_state(username, newState, 0)
+def updateStates(roomElem, username: str):
+    
+    for newState, newStateValue in zip(roomElem['newStates'], roomElem['newStatesValue']):
+        if None not in (newState, newStateValue) and newStateValue:
+            database.update_user_state(username, newState, 1)
+        elif None not in (newState, newStateValue) and not newStateValue:
+            database.update_user_state(username, newState, 0)
 
 def checkNeededItems():
     return True

@@ -101,8 +101,8 @@ def get_user_id(username):
     query = """SELECT rowid FROM users WHERE user_name = ?"""
     fetch = execute_database(query, (username,))
     user = fetch[1]
-    if user is not None:
-        return user
+    if user[0] is not None:
+        return user[0]
 
 
 def delete_user(username, password):
@@ -213,7 +213,7 @@ def does_user_state_exist(username, state_name):
     user_id = get_user_id(username)
     # Query to database
     query = """SELECT * FROM user_states WHERE user_id = ? AND state_name = ?"""
-    fetch = execute_database(query, (user_id, state_name,))
+    fetch = execute_database(query, (int(user_id), state_name,))
     user = fetch[1]
     e = fetch[0]
     if (e != None):
@@ -245,7 +245,7 @@ def insert_user_state(username, state_name, state_value):
 
     if user_id is not None:
         query = """INSERT INTO user_states VALUES (?,?,?,?)"""
-        fetch = execute_database(query, (None, user_id, state_name, state_value,))
+        fetch = execute_database(query, (None, int(user_id), state_name, state_value,))
         e = fetch[0]
         if (e != None):
             print("Failed to add state", e)
@@ -269,7 +269,7 @@ def get_user_state_id(user_id, state_name):
 def update_user_state(username, state_name, state_value):
     user_id = get_user_id(username)
     # Query to database
-    if does_user_state_exist(username, state_name):
+    if does_user_state_exist(str(username), str(state_name)):
         query = """UPDATE user_states SET state_value = ? WHERE user_id = ? AND state_name = ?"""
         fetch = execute_database(query, (state_value, user_id, state_name,))
         e = fetch[0]
@@ -291,13 +291,11 @@ def get_user_state_value(username, state_name):
     # Query to database
     if does_user_state_exist(username, state_name):
         query = """SELECT state_value FROM user_states WHERE user_id = ? AND state_name = ?"""
-        fetch = execute_database(query, (user_id, state_name,))
+        fetch = execute_database(query, (int(user_id), state_name,))
         state_value = fetch[1]
 
         if state_value[0] == 1:
             return True
-        else:
-            return False
 
     elif does_user_exist(username):
         insert_user_state(username, state_name, 0)

@@ -9,7 +9,7 @@
         "connections": [
             {
                 "conName": "door",
-                "conRoomId": null,
+                "conRoomId": 0,
                 "needStates": ["elephantDoor"],
                 "needStatesValue": [true]
             },

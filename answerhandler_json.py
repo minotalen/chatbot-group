@@ -97,7 +97,6 @@ def findAnswer(username, msg, roomId=-1):
         #RÄUME
         for elem in rooms[roomId]['connections']:
             if elem['conName'] in msg and checkNeededStates(roomId, 'connections', username):
-                updateStates(roomId, 'connections', username)
                 roomId = int(elem['conRoomId'])
                 return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
         #OBJEKTE
@@ -224,8 +223,10 @@ def updateStates(id, roomType, username):
         for states in rooms[id][roomType]:
             if states is not None:
                 for newState, newStateValue in zip(states['newStates'], states['newStatesValue']):
-                    if None not in (newState, newStateValue):
-                        database.update_user_state(username, newState, newStateValue)
+                    if None not in (newState, newStateValue) and newStateValue:
+                        database.update_user_state(username, newState, 1)
+                    elif None not in (newState, newStateValue) and not newStateValue:
+                        database.update_user_state(username, newState, 0)
 
 def checkNeededItems():
     return True

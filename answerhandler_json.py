@@ -13,7 +13,7 @@ with open('rooms.json', encoding="utf8") as allLevels:
     rooms = data['rooms']
 
 
-def answerHandler(inputjson):
+def answerHandler(inputjson, username):
     l.log_start()#logging
     obj = json.loads(inputjson)
     

@@ -128,9 +128,10 @@ user_item_id | user_id |   item_name    | room_id |
 def insert_item(username, room_id, item_name):
     user_id = get_user_id(username)
 
-    query = """INSERT INTO user_items fetchUES (?,?,?,?)"""
-    execute_database(query, (None, user_id, item_name, room_id,))
-    print("succesfully added item")
+    if user_id is not None:
+        query = """INSERT INTO user_items VALUES (?,?,?,?)"""
+        execute_database(query, (None, user_id, item_name, room_id,))
+        print("succesfully added item")
     
 
 
@@ -265,9 +266,10 @@ def get_all_user_states(username):
 def insert_user_state(username, state_name, state_fetchue):
     user_id = get_user_id(username)
 
-    query = """INSERT INTO user_states fetchUES (?,?,?,?)"""
-    execute_database(query, (None, user_id, state_name, state_fetchue,))
-    print("state was sucessfully added")
+    if user_id is not None:
+        query = """INSERT INTO user_states VALUES (?,?,?,?)"""
+        execute_database(query, (None, user_id, state_name, state_value,))
+        print("state was sucessfully added")
     
 
 # Get state-user-id
@@ -305,11 +307,9 @@ def update_user_state(username, state_name, state_fetchue):
         print("state was updated successful")
 
     elif does_user_exist(username):
-        if insert_user_state(username, state_name, state_fetchue):
-            print("state was added successful")
-        else:
-            print("state was not added")
-
+        insert_user_state(username, state_name, state_value)
+        print("state was added successful")
+        
     else:
         print("There is no such user that can get a state")
     
@@ -339,18 +339,17 @@ def get_user_state_fetchue(username, state_name):
             return False
 
     elif does_user_exist(username):
-        if insert_user_state(username, state_name, 0):
-            print("default state was added successful")
-        else:
-            print("default state was not added")
-    
+        insert_user_state(username, state_name, 0)
+        print("default state was added successful")
+        
     return False
 
 # Deletes one state of a user
 def delete_user_state(username, state_name):
     user_id = get_user_id(username)
 
-    query = """DELETE FROM user_states WHERE user_id = ? AND state_name = ?"""
-    execute_database(query, (user_id, state_name,))
-    print("user state was deleted successful")
+    if user_id is not None:
+        query = """DELETE FROM user_states WHERE user_id = ? AND state_name = ?"""
+        execute_database(query, (user_id, state_name,))
+        print("user state was deleted successful")
     

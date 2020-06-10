@@ -24,14 +24,14 @@ def send_index_page():
 @socketio.on('json')
 def handleJson(payload):
     print("sending: " + payload)
-    send(answerHandler(payload), json=True)
+    send(answerHandler(payload, get_username_by_sid(request.sid)), json=True)
 
 
 @socketio.on('user_registration')
 def update_users(payload):
     readable_json = json.loads(payload)
     
-    add_user_db_wop(readable_json['message'])
+    database.insert_user(readable_json['message'], '123456')
     user_sessions.append({"user": readable_json['message'], "sid": request.sid})
     print(user_sessions)
 
@@ -40,7 +40,7 @@ def update_users(payload):
     send(json_data, json=True)
     intro_text = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "current room"}
     json_data = json.dumps(intro_text)
-    send(answerHandler(json_data), json=True)
+    send(answerHandler(json_data, get_username_by_sid(request.sid)), json=True)
 
 
 @socketio.on('connect')
@@ -53,6 +53,8 @@ def connect():
 
 @socketio.on('disconnect')
 def disconnect():
+    user_sessions.remove({"user": get_username_by_sid(request.sid), "sid": request.sid})
+    print(user_sessions)
     print("You are disconneced from the server")
 
 
@@ -60,12 +62,11 @@ def disconnect():
 def error_handler(e):
     raise Exception("Some error happened, no further notice")
 
-# Nutzer hinzufügen. Vorerst ohne Passwort
-def add_user_db_wop(username):
-    password = "123456"
-    if isinstance(username, str) and not database.does_user_exist:
-        database.insert_user(username, password)
 
+def get_username_by_sid(sid):
+    for users in user_sessions:
+        if sid == users['sid']:
+            return users['user']
 
 if __name__ == "__main__":
     print("Try to start server...")

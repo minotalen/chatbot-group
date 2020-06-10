@@ -99,9 +99,9 @@ def get_user_id(username):
     # Query to database
     query = """SELECT rowid FROM users WHERE user_name = ?"""
     fetch = execute_database(query, (username,))
-
-    if fetch[1] is not None:
-        return fetch[1]
+    user = fetch[1]
+    if user is not None:
+        return user
 
 
 def delete_user(username, password):
@@ -132,66 +132,52 @@ def insert_item(username, room_id, item_name):
 
     if user_id is not None:
         query = """INSERT INTO user_items VALUES (?,?,?,?)"""
-        execute_database(query, (None, user_id, item_name, room_id,))
-        print("succesfully added item")
+        fetch = execute_database(query, (None, user_id, item_name, room_id,))
+        e=fetch[0]
+        if (e != None):
+            print("Failed to add item", e)
+        else: print("succesfully added item")
+    else: print("user not found")
     
 
 
 # Find all items that user has collected
 def get_all_user_items(username):
     user_id = get_user_id(username)
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-
     # Query to database
     query = """SELECT item_name, room_id FROM user_items WHERE user_id = ?"""
-    c.execute(query, (user_id,))
-    items = c.fetchall()
-
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-
+    fetch = execute_database(query, (user_id,))
+    items = fetch[2]
+    e = fetch[0]
+    if (e != None):
+        print("Failed to get all user items", e)
+    else: print("")    
     return items
 
 # Find all items of one room, that user has collected
 def get_user_items_by_roomId(room_id, username):
     user_id = get_user_id(username)
-
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-
     # Query to database
     query = """SELECT item_name FROM user_items WHERE room_id = ? AND user_id = ?"""
-    c.execute(query, (room_id, user_id,))
-    items = c.fetchall()
-
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-
+    fetch = execute_database(query, (room_id, user_id,))
+    items = fetch[2]
+    e = fetch[0]
+    if (e != None):
+        print("Failed to get user items by roomID", e)
+    else: print("")
     return items
 
 # Find one specific item of a user
 def does_user_item_exist(username, item_name, room_id):
     user_id = get_user_id(username)
-
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-
     # Query to database
     query = """SELECT item_name FROM user_items WHERE room_id = ? AND user_id = ? AND item_name = ?"""
-    c.execute(query, (room_id, user_id, item_name,))
-    item = c.fetchone()
-
+    fetch = execute_database(query, (room_id, user_id, item_name,))
+    item = fetch[1]
+    e = fetch[0]
+    if (e != None):
+        print("Failed to check user items", e)
+    else: print("")
     if item is not None:
         return True
     else:
@@ -203,9 +189,11 @@ def delete_user_item(username, item_name, room_id):
     if does_user_item_exist(username, item_name, room_id):
         # Query to database
         query = """DELETE FROM user_items WHERE room_id = ? AND user_id = ? AND item_name = ?"""
-        execute_database(query, (room_id, user_id, item_name,))
-        print("that item is deleted")
-        
+        fetch = execute_database(query, (room_id, user_id, item_name,))
+        e = fetch[0]
+        if (e != None):
+            print("Failed to delete item", e)
+        else: print("that item is deleted")
     else:
         print("No such item was found from that player")
 
@@ -222,47 +210,33 @@ user_state_id | user_id | state_name | state_value |
 # Check if the user_name and password is taken
 def does_user_state_exist(username, state_name):
     user_id = get_user_id(username)
-
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-
     # Query to database
     query = """SELECT * FROM user_states WHERE user_id = ? AND state_name = ?"""
-    c.execute(query, (user_id, state_name,))
-    user = c.fetchone()
-    
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-
+    fetch = execute_database(query, (user_id, state_name,))
+    user = fetch[1]
+    e = fetch[0]
+    if (e != None):
+        print("Failed to check user_state", e)
+    else: print("")    
     if user is not None:
         return True
     else:
         return False
 
+
 # Returns all states of one user
 def get_all_user_states(username):
-    user_id = get_user_id(username)
-    
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-
+    user_id = get_user_id(username)   
     # Query to database
     query = """SELECT state_name, state_value FROM user_states WHERE user_id = ?"""
-    c.execute(query, (user_id,))
-    user_states = c.fetchall()
-    
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-
+    fetch = execute_database(query, (user_id,))
+    user_states = fetch[2]
+    e = fetch[0]
+    if (e != None):
+        print("Failed to get all user states", e)
+    else: print("")
     return user_states
+
 
 # Insert one state into user_states table
 def insert_user_state(username, state_name, state_value):
@@ -270,43 +244,37 @@ def insert_user_state(username, state_name, state_value):
 
     if user_id is not None:
         query = """INSERT INTO user_states VALUES (?,?,?,?)"""
-        execute_database(query, (None, user_id, state_name, state_value,))
-        print("state was sucessfully added")
+        fetch = execute_database(query, (None, user_id, state_name, state_value,))
+        e = fetch[0]
+        if (e != None):
+            print("Failed to add state", e)
+        else: print("state was sucessfully added")
     
 
 # Get state-user-id
 def get_user_state_id(user_id, state_name):
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-
     # Query to database
     query = """SELECT rowid FROM user_states WHERE user_id = ? AND state_name = ?"""
-    c.execute(query, (user_id, state_name,))
-    user = c.fetchone()
-
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-
+    fetch = execute_database(query, (user_id, state_name,))
+    e = fetch[0]
+    if (e != None):
+        print("Failed to get state-user-ID", e)
+    else: print("")
+    user = fetch[1]
     return user[0]
+    
 
 # Update record in user_states table
 def update_user_state(username, state_name, state_value):
     user_id = get_user_id(username)
-
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-
     # Query to database
     if does_user_state_exist(username, state_name):
         query = """UPDATE user_states SET state_value = ? WHERE user_id = ? AND state_name = ?"""
-        c.execute(query, (state_value, user_id, state_name,))
-        print("state was updated successful")
+        fetch = execute_database(query, (state_value, user_id, state_name,))
+        e = fetch[0]
+        if (e != None):
+            print("Failed to update state", e)
+        else: print("state was updated successful")
 
     elif does_user_exist(username):
         insert_user_state(username, state_name, state_value)
@@ -314,26 +282,16 @@ def update_user_state(username, state_name, state_value):
         
     else:
         print("There is no such user that can get a state")
-    
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
+        
 
 # Returns the value of a state in int
 def get_user_state_value(username, state_name):
     user_id = get_user_id(username)
-
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-
     # Query to database
     if does_user_state_exist(username, state_name):
         query = """SELECT state_value FROM user_states WHERE user_id = ? AND state_name = ?"""
-        c.execute(query, (user_id, state_name,))
-        state_value = c.fetchone()
+        fetch = execute(query, (user_id, state_name,))
+        state_value = fetch[1]
 
         if state_value[0] == 1:
             return True
@@ -352,6 +310,9 @@ def delete_user_state(username, state_name):
 
     if user_id is not None:
         query = """DELETE FROM user_states WHERE user_id = ? AND state_name = ?"""
-        execute_database(query, (user_id, state_name,))
-        print("user state was deleted successful")
+        fetch = execute_database(query, (user_id, state_name,))
+        e = fetch[0]
+        if (e != None):
+            print("Failed to delete user state", e)
+        else: print("user state was deleted successful")
     

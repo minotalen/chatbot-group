@@ -23,8 +23,7 @@ def answerHandler(inputjson):
         
     #When the mode is phone   
     elif str(obj['mode']) == 'phone': 
-        #answer = [handleAnswer(str(obj['message'].lower())), 'Your Phone', 'phone']
-        answer = ['you are still talking to th professor', 'Your Phone', 'phone']
+        answer = [handleAnswer(str(obj['message'].lower()), int(obj['level']), getRoomId(str(obj['room']))), 'Your Phone', 'phone']
 
     #When the mode is riddle
     elif str(obj['mode']) == 'riddle':
@@ -82,10 +81,10 @@ def findAnswer(msg, roomId=-1):
     
     if roomId == -1: raise ValueError("Invalid room id!")
  
-    choices = ["go to","look at","current room", "items", "about chatbot:", "start phone"]
+    choices = ["go to","look at","current room", "items", "about chatbot:", "start phone", "help assistant:"]
     intentId = classifyIntent(msg, choices)
 
-    #TRIGGER: Raumspezifische Trigger werden zuerst überprüft
+    #TRIGGER: Raumspezifische Trigger werden zuerst überprüft // please write docs in english :''(
     for elem in rooms[roomId]['triggers']:
         if elem is not None:
             if elem['trigName'] in msg:
@@ -126,6 +125,9 @@ def findAnswer(msg, roomId=-1):
     #START PHONE: Der Handymodus wird gestartet
     elif intentId == 6:
         return ('You are now chatting with the professor', getRoomName(roomId), 'phone')
+    elif intentId == 7:
+        return ('sorry no help assistant yet implemented', getRoomName(roomId), 'game')
+        
     
     #Wenn nichts erkannt wurde
     return ("I have no idea what you want", getRoomName(roomId), 'game')
@@ -134,13 +136,16 @@ def findAnswer(msg, roomId=-1):
 # CheckIfNone hilfmethode?
 
 """
-Returns the csv file entry specified by the input coordinates
+@author Max Petendra
+@state 10.06.20
+get csv file entry
+Parameters
+----------
 id = row / which represent a room
 column = column / which represent a property of the rooms
 @throws ValueError if parameters ar not of type int
+Returns the csv file entry specified by the input coordinates
 """
-
-
 def findEntry(id: int, column: int) -> str:
     script_location = Path(__file__).absolute().parent
     file_location = script_location / 'roomsGW2.csv'
@@ -179,8 +184,17 @@ def getRoomIntroduction(id: int) -> str:
 def getRoomDescription(id: int) -> str:
     return rooms[id]['descri']
 
+"""
+@author:: Cedric Nehring, Max Petendra
+@state: 10.06.20
+Check states of room.json in specified category
+Parameters
+----------
+id: the current roomid
+name: the category
 
-# Check states of room.json in specified category
+Returns: a list of tuples by (state, value)
+"""
 def checkRoomStates(id: int, name: str):
     
     if rooms[id][name] is not None:
@@ -191,12 +205,16 @@ def checkRoomStates(id: int, name: str):
 
     return False
 
+"""
+@author Max Petendra
+@state 10.06.20
+handles about questions
+Parameters
+----------
+msg = the user message
 
-# Check all needed states
-
-# Update states
-
-# Handles about questions
+Returns a answer for the interrogative fo the player
+"""
 def aboutHandler(msg: str) -> str:
     if "who has" in msg:
         return "I am programmed by student members of the Chatbots:Talk-To-Me Team"
@@ -211,7 +229,7 @@ def aboutHandler(msg: str) -> str:
     elif "where" in msg:
         return "I was programmed in Bremen"
     elif "do you like" in msg:
-        "of course not"
+        return "of course not"
     else:
         return "I didnt understand your about chatbot: question."
 

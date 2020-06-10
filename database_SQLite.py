@@ -1,22 +1,37 @@
 import sqlite3
 
-conn = sqlite3.connect("elephanture.db")
+# ist not used, this is a global variable
+#conn = sqlite3.connect("elephanture.db")
 
 
 def execute_database(query, arguments):
-    conn = sqlite3.connect("elephanture.db")
-    c = conn.cursor()
-    c.execute(query, arguments)
-    conn.commit()
-    conn.close()
+    try: 
+        # Connect to database
+        conn = sqlite3.connect("elephanture.db")
+        # create a cursor
+        c = conn.cursor()
+        # execute the Query
+        c.execute(query, arguments)
+        # Commit our command
+        conn.commit()
+        # Close the connection
+        conn.close()
+    except sqlite.Error as error:
+        return error
+    finally: 
+        return None
 
-
+'''
+    is not used
 def multiple_execute_database(query, arguments):
     conn = sqlite3.connect("elephanture.db")
     c = conn.cursor()
     c.executemany(query, arguments)
     conn.commit()
     conn.close()
+    return conn
+'''
+
 
 
 """
@@ -33,41 +48,26 @@ user_id | user_name       | password     |
 
 # find all information of players
 def show_all_users():
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
 
     # Query to database
     query = """SELECT * FROM users"""
-    c.execute(query)
+    e = execute_database(query, None)
+    if (e != None):
+        print("Failed to get all users", e)
+    else: print("succesfully got all users")
     users = c.fetchall()
-
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-
     return users
 
 
 # Check if the user_name and password is taken
 def does_user_exist(username):
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-
+    
     # Query to database
     query = """SELECT * FROM users WHERE user_name = ?"""
     c.execute(query, (username,))
+    e = execute_database(query, (username,))
     user = c.fetchone()
     
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-
     if user is not None:
         return True
     else:
@@ -78,49 +78,34 @@ def does_user_exist(username):
 def insert_user(username, password):
     query = """ INSERT INTO users VALUES (?,?,?)"""
     if not does_user_exist(username):
-        execute_database(query, (None, username, password,))
-        print("succesfully added user")
-       
+        e = execute_database(query, (None, username, password,))
+        if (e != None):
+            print("Failed to add user", e)
+        else: print("succesfully added user")
     else:
         print("This username is taken. Try another one.")
 
 
 # Get id of user
 def get_user_id(username):
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
 
     # Query to database
     query = """SELECT rowid FROM users WHERE user_name = ?"""
-    c.execute(query, (username,))
+    execute_database(query, (username,))
     user = c.fetchone()
-
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
 
     if user is not None:
         return user[0]
 
 
 def delete_user(username, password):
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
 
     # Query to database
     query = """DELETE FROM users WHERE user_name = ? AND password = ?"""
-    c.execute(query, (username, password,))
-    print("information of that user is deleted")
-
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
+    execute_database(query, (username, password,))
+    if (e != None):
+        print("Failed to delete user", e)
+    else: print("information of that user is deleted")
 
 
 """

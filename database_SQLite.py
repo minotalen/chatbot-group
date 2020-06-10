@@ -13,15 +13,17 @@ def execute_database(query, arguments):
         # execute the Query
         c.execute(query, arguments)
         # fetches SELECT returns
-        data = c.fetchone()
+        data0 = c.fetchone()
+        # fetches SELECT all returns
+        data1 = c.fetchall()
         # Commit our command
         conn.commit()
         # Close the connection
         conn.close()
     except sqlite.Error as error:
-        return (error, data)
+        return (error, data0, data1)
     finally: 
-        return (None, data)
+        return (None, data0, data1)
 
 
 

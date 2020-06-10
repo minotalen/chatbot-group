@@ -42,8 +42,6 @@ def show_all_users():
     query = """SELECT * FROM users"""
     c.execute(query)
     users = c.fetchall()
-    for user in users:
-        print(user)
 
     # Commit our command
     conn.commit()
@@ -61,7 +59,7 @@ def does_user_exist(username):
 
     # Query to database
     query = """SELECT * FROM users WHERE user_name = ?"""
-    c.execute(query, (username))
+    c.execute(query, (username,))
     user = c.fetchone()
     
     # Commit our command

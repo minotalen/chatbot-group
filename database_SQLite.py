@@ -12,14 +12,18 @@ def execute_database(query, arguments):
         c = conn.cursor()
         # execute the Query
         c.execute(query, arguments)
+        # fetches SELECT returns
+        data = c.fetchone()
         # Commit our command
         conn.commit()
         # Close the connection
         conn.close()
     except sqlite.Error as error:
-        return error
+        return (error, data)
     finally: 
-        return None
+        return (None, data)
+
+
 
 '''
     is not used
@@ -51,11 +55,12 @@ def show_all_users():
 
     # Query to database
     query = """SELECT * FROM users"""
-    e = execute_database(query, None)
+    fetch = execute_database(query, None)
+    e = fetch[0]
     if (e != None):
         print("Failed to get all users", e)
     else: print("succesfully got all users")
-    users = c.fetchall()
+    users = fetch[1]
     return users
 
 
@@ -64,9 +69,8 @@ def does_user_exist(username):
     
     # Query to database
     query = """SELECT * FROM users WHERE user_name = ?"""
-    c.execute(query, (username,))
-    e = execute_database(query, (username,))
-    user = c.fetchone()
+    fetch = execute_database(query, (username,))
+    user = fetch[1]
     
     if user is not None:
         return True
@@ -76,9 +80,10 @@ def does_user_exist(username):
 
 # Add one record into users table
 def insert_user(username, password):
-    query = """ INSERT INTO users VALUES (?,?,?)"""
+    query = """ INSERT INTO users fetchUES (?,?,?)"""
     if not does_user_exist(username):
-        e = execute_database(query, (None, username, password,))
+        fetch = execute_database(query, (None, username, password,))
+        e = fetch[0]
         if (e != None):
             print("Failed to add user", e)
         else: print("succesfully added user")
@@ -91,18 +96,18 @@ def get_user_id(username):
 
     # Query to database
     query = """SELECT rowid FROM users WHERE user_name = ?"""
-    execute_database(query, (username,))
-    user = c.fetchone()
+    fetch = execute_database(query, (username,))
 
     if user is not None:
-        return user[0]
+        return fetch[1]
 
 
 def delete_user(username, password):
 
     # Query to database
     query = """DELETE FROM users WHERE user_name = ? AND password = ?"""
-    execute_database(query, (username, password,))
+    fetch = execute_database(query, (username, password,))
+    e = fetch[0]
     if (e != None):
         print("Failed to delete user", e)
     else: print("information of that user is deleted")
@@ -123,7 +128,7 @@ user_item_id | user_id |   item_name    | room_id |
 def insert_item(username, room_id, item_name):
     user_id = get_user_id(username)
 
-    query = """INSERT INTO user_items VALUES (?,?,?,?)"""
+    query = """INSERT INTO user_items fetchUES (?,?,?,?)"""
     execute_database(query, (None, user_id, item_name, room_id,))
     print("succesfully added item")
     
@@ -205,7 +210,7 @@ def delete_user_item(username, item_name, room_id):
 """
 save 
 ====================================================
-user_state_id | user_id | state_name | state_value |
+user_state_id | user_id | state_name | state_fetchue |
 --------------+---------+------------+-------------+
  1            | 1       | level1     | 0           |
 --------------+---------+------------+-------------+
@@ -245,7 +250,7 @@ def get_all_user_states(username):
     c = conn.cursor()
 
     # Query to database
-    query = """SELECT state_name, state_value FROM user_states WHERE user_id = ?"""
+    query = """SELECT state_name, state_fetchue FROM user_states WHERE user_id = ?"""
     c.execute(query, (user_id,))
     user_states = c.fetchall()
     
@@ -257,11 +262,11 @@ def get_all_user_states(username):
     return user_states
 
 # Insert one state into user_states table
-def insert_user_state(username, state_name, state_value):
+def insert_user_state(username, state_name, state_fetchue):
     user_id = get_user_id(username)
 
-    query = """INSERT INTO user_states VALUES (?,?,?,?)"""
-    execute_database(query, (None, user_id, state_name, state_value,))
+    query = """INSERT INTO user_states fetchUES (?,?,?,?)"""
+    execute_database(query, (None, user_id, state_name, state_fetchue,))
     print("state was sucessfully added")
     
 
@@ -285,7 +290,7 @@ def get_user_state_id(user_id, state_name):
     return user[0]
 
 # Update record in user_states table
-def update_user_state(username, state_name, state_value):
+def update_user_state(username, state_name, state_fetchue):
     user_id = get_user_id(username)
 
     # Connect to database
@@ -295,12 +300,12 @@ def update_user_state(username, state_name, state_value):
 
     # Query to database
     if does_user_state_exist(username, state_name):
-        query = """UPDATE user_states SET state_value = ? WHERE user_id = ? AND state_name = ?"""
-        c.execute(query, (state_value, user_id, state_name,))
+        query = """UPDATE user_states SET state_fetchue = ? WHERE user_id = ? AND state_name = ?"""
+        c.execute(query, (state_fetchue, user_id, state_name,))
         print("state was updated successful")
 
     elif does_user_exist(username):
-        if insert_user_state(username, state_name, state_value):
+        if insert_user_state(username, state_name, state_fetchue):
             print("state was added successful")
         else:
             print("state was not added")
@@ -313,8 +318,8 @@ def update_user_state(username, state_name, state_value):
     # Close the connection
     conn.close()
 
-# Returns the value of a state in int
-def get_user_state_value(username, state_name):
+# Returns the fetchue of a state in int
+def get_user_state_fetchue(username, state_name):
     user_id = get_user_id(username)
 
     # Connect to database
@@ -324,11 +329,11 @@ def get_user_state_value(username, state_name):
 
     # Query to database
     if does_user_state_exist(username, state_name):
-        query = """SELECT state_value FROM user_states WHERE user_id = ? AND state_name = ?"""
+        query = """SELECT state_fetchue FROM user_states WHERE user_id = ? AND state_name = ?"""
         c.execute(query, (user_id, state_name,))
-        state_value = c.fetchone()
+        state_fetchue = c.fetchone()
 
-        if state_value[0] == 1:
+        if state_fetchue[0] == 1:
             return True
         else:
             return False

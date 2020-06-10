@@ -77,10 +77,9 @@ def does_user_exist(username):
 def insert_user(username, password):
     query = """ INSERT INTO users VALUES (?,?,?)"""
     if not does_user_exist(username):
-        if execute_database(query, (None, username, password,)):
-            print("succesfully added user")
-        else:
-            print("user was not added")
+        execute_database(query, (None, username, password,)):
+        print("succesfully added user")
+       
     else:
         print("This username is taken. Try another one.")
 
@@ -114,10 +113,8 @@ def delete_user(username, password):
 
     # Query to database
     query = """DELETE FROM users WHERE user_name = ? AND password = ?"""
-    if c.execute(query, (username, password,)):
-        print("information of that user is deleted")
-    else:
-        print("user could not be removed from database")
+    c.execute(query, (username, password,)):
+    print("information of that user is deleted")
 
     # Commit our command
     conn.commit()
@@ -141,10 +138,9 @@ def insert_item(username, room_id, item_name):
     user_id = get_user_id(username)
 
     query = """INSERT INTO user_items VALUES (?,?,?,?)"""
-    if execute_database(query, (None, user_id, item_name, room_id,)):
-        print("succesfully added item")
-    else:
-        print("item was not added")
+    execute_database(query, (None, user_id, item_name, room_id,)):
+    print("succesfully added item")
+    
 
 
 # Find all items that user has collected
@@ -213,10 +209,9 @@ def delete_user_item(username, item_name, room_id):
     if does_user_item_exist(username, item_name, room_id):
         # Query to database
         query = """DELETE FROM user_items WHERE room_id = ? AND user_id = ? AND item_name = ?"""
-        if execute_database(query, (room_id, user_id, item_name,)):
-            print("that item is deleted")
-        else:
-            print("item was not deleted")
+        execute_database(query, (room_id, user_id, item_name,)):
+        print("that item is deleted")
+        
     else:
         print("No such item was found from that player")
 
@@ -280,10 +275,9 @@ def insert_user_state(username, state_name, state_value):
     user_id = get_user_id(username)
 
     query = """INSERT INTO user_states VALUES (?,?,?,?)"""
-    if execute_database(query, (None, user_id, state_name, state_value,)):
-        print("state was sucessfully added")
-    else:
-        print("state was not added")
+    execute_database(query, (None, user_id, state_name, state_value,)):
+    print("state was sucessfully added")
+    
 
 # Get state-user-id
 def get_user_state_id(user_id, state_name):
@@ -316,10 +310,8 @@ def update_user_state(username, state_name, state_value):
     # Query to database
     if does_user_state_exist(username, state_name):
         query = """UPDATE user_states SET state_value = ? WHERE user_id = ? AND state_name = ?"""
-        if c.execute(query, (state_value, user_id, state_name,)):
-            print("state was updated successful")
-        else:
-            print("state was not updated")
+        c.execute(query, (state_value, user_id, state_name,)):
+        print("state was updated successful")
 
     elif does_user_exist(username):
         if insert_user_state(username, state_name, state_value):
@@ -368,7 +360,6 @@ def delete_user_state(username, state_name):
     user_id = get_user_id(username)
 
     query = """DELETE FROM user_states WHERE user_id = ? AND state_name = ?"""
-    if execute_database(query, (user_id, state_name,)):
-        print("user state was deleted successful")
-    else:
-        print("user state was not deleted")
+    execute_database(query, (user_id, state_name,)):
+    print("user state was deleted successful")
+    

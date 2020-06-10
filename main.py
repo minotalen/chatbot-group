@@ -14,6 +14,7 @@ app.config["SECRET_KEY"] = "x!\x84Iy\xf9#gE\xedBQqg+\xf3A+\xe3\xd3\x01\x1a\xdf\x
 socketio = SocketIO(app)
 socketio.init_app(app, cors_allowed_origins="*")
 
+user_sessions = []
 
 @app.route('/')
 def send_index_page():
@@ -31,6 +32,8 @@ def update_users(payload):
     readable_json = json.loads(payload)
     
     add_user_db_wop(readable_json['message'])
+    user_sessions.append({"user": readable_json['message'], "sid": request.sid})
+    print(user_sessions)
 
     initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "Hello, " + readable_json['message'] + "!"}
     json_data = json.dumps(initial_data)

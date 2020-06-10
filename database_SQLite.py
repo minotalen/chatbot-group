@@ -96,7 +96,7 @@ def get_user_id(username):
 
     # Query to database
     query = """SELECT rowid FROM users WHERE user_name = ?"""
-    c.execute(query, (username))
+    c.execute(query, username)
     user = c.fetchone()
 
     # Commit our command
@@ -352,7 +352,10 @@ def get_user_state_value(username, state_name):
         c.execute(query, (user_id, state_name))
         state_value = c.fetchone()
 
-        return state_value[0]
+        if state_value[0] == 1:
+            return True
+        else:
+            return False
 
     elif does_user_exist(username):
         if insert_user_state(username, state_name, 0):
@@ -360,7 +363,7 @@ def get_user_state_value(username, state_name):
         else:
             print("default state was not added")
     
-    return 0
+    return False
 
 # Deletes one state of a user
 def delete_user_state(username, state_name):

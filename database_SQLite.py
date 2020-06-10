@@ -80,7 +80,7 @@ def does_user_exist(username):
 
 # Add one record into users table
 def insert_user(username, password):
-    query = """ INSERT INTO users fetchUES (?,?,?)"""
+    query = """ INSERT INTO users VALUES (?,?,?)"""
     if not does_user_exist(username):
         fetch = execute_database(query, (None, username, password,))
         e = fetch[0]
@@ -211,7 +211,7 @@ def delete_user_item(username, item_name, room_id):
 """
 save 
 ====================================================
-user_state_id | user_id | state_name | state_fetchue |
+user_state_id | user_id | state_name | state_value |
 --------------+---------+------------+-------------+
  1            | 1       | level1     | 0           |
 --------------+---------+------------+-------------+
@@ -251,7 +251,7 @@ def get_all_user_states(username):
     c = conn.cursor()
 
     # Query to database
-    query = """SELECT state_name, state_fetchue FROM user_states WHERE user_id = ?"""
+    query = """SELECT state_name, state_value FROM user_states WHERE user_id = ?"""
     c.execute(query, (user_id,))
     user_states = c.fetchall()
     
@@ -263,7 +263,7 @@ def get_all_user_states(username):
     return user_states
 
 # Insert one state into user_states table
-def insert_user_state(username, state_name, state_fetchue):
+def insert_user_state(username, state_name, state_value):
     user_id = get_user_id(username)
 
     if user_id is not None:
@@ -292,7 +292,7 @@ def get_user_state_id(user_id, state_name):
     return user[0]
 
 # Update record in user_states table
-def update_user_state(username, state_name, state_fetchue):
+def update_user_state(username, state_name, state_value):
     user_id = get_user_id(username)
 
     # Connect to database
@@ -302,8 +302,8 @@ def update_user_state(username, state_name, state_fetchue):
 
     # Query to database
     if does_user_state_exist(username, state_name):
-        query = """UPDATE user_states SET state_fetchue = ? WHERE user_id = ? AND state_name = ?"""
-        c.execute(query, (state_fetchue, user_id, state_name,))
+        query = """UPDATE user_states SET state_value = ? WHERE user_id = ? AND state_name = ?"""
+        c.execute(query, (state_value, user_id, state_name,))
         print("state was updated successful")
 
     elif does_user_exist(username):
@@ -318,8 +318,8 @@ def update_user_state(username, state_name, state_fetchue):
     # Close the connection
     conn.close()
 
-# Returns the fetchue of a state in int
-def get_user_state_fetchue(username, state_name):
+# Returns the value of a state in int
+def get_user_state_value(username, state_name):
     user_id = get_user_id(username)
 
     # Connect to database
@@ -329,11 +329,11 @@ def get_user_state_fetchue(username, state_name):
 
     # Query to database
     if does_user_state_exist(username, state_name):
-        query = """SELECT state_fetchue FROM user_states WHERE user_id = ? AND state_name = ?"""
+        query = """SELECT state_value FROM user_states WHERE user_id = ? AND state_name = ?"""
         c.execute(query, (user_id, state_name,))
-        state_fetchue = c.fetchone()
+        state_value = c.fetchone()
 
-        if state_fetchue[0] == 1:
+        if state_value[0] == 1:
             return True
         else:
             return False

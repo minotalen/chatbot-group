@@ -5,25 +5,26 @@ import sqlite3
 
 
 def execute_database(query, arguments):
+
+    # Connect to database
+    conn = sqlite3.connect("elephanture.db")
+    # create a cursor
+    c = conn.cursor()
     try: 
-        # Connect to database
-        conn = sqlite3.connect("elephanture.db")
-        # create a cursor
-        c = conn.cursor()
         # execute the Query
         c.execute(query, arguments)
-        # fetches SELECT returns
-        data0 = c.fetchone()
-        # fetches SELECT all returns
-        data1 = c.fetchall()
-        # Commit our command
-        conn.commit()
-        # Close the connection
-        conn.close()
     except sqlite3.Error as error:
-        return (error, data0, data1)
-    finally: 
-        return (None, data0, data1)
+        return (error, None, None)
+        
+    # fetches SELECT returns
+    data0 = c.fetchone()
+    # fetches SELECT all returns
+    data1 = c.fetchall()
+    # Commit our command
+    conn.commit()
+    # Close the connection
+    conn.close()
+    return (None, data0, data1)
 
 
 
@@ -290,7 +291,7 @@ def get_user_state_value(username, state_name):
     # Query to database
     if does_user_state_exist(username, state_name):
         query = """SELECT state_value FROM user_states WHERE user_id = ? AND state_name = ?"""
-        fetch = execute(query, (user_id, state_name,))
+        fetch = execute_database(query, (user_id, state_name,))
         state_value = fetch[1]
 
         if state_value[0] == 1:

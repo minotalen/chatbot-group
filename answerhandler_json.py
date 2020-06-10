@@ -31,7 +31,7 @@ def answerHandler(inputjson, username):
         
     #When mode is game    
     else :
-        answer = findAnswer(str(obj['message'].lower()), getRoomId(str(obj['room'])))
+        answer = findAnswer(username, str(obj['message'].lower()), getRoomId(str(obj['room'])))
 
         #Case Trigger: Ein trigger wird ausgelöst und eventuell ändern sich zustände, funktionen werden ausgeführt
 
@@ -77,36 +77,37 @@ def answerHandler(inputjson, username):
 
 
 # finds an answer to your message :)
-def findAnswer(msg, roomId=-1):
+def findAnswer(username, msg, roomId=-1):
     
     if roomId == -1: raise ValueError("Invalid room id!")
  
     choices = ["go to","look at","current room", "items", "about chatbot:", "start phone", "help assistant:"]
-    intentId = classifyIntent(msg, choices)
 
     #TRIGGER: Raumspezifische Trigger werden zuerst überprüft // please write docs in english :''(
     for elem in rooms[roomId]['triggers']:
         if elem is not None:
             if elem['trigName'] in msg:
                 return (elem['accept'], getRoomName(roomId), 'game')
+    
+    intentId = classifyIntent(msg, choices)
             
     #GO TO: Es kann zu anliegenden Räumen oder Objekten gegangen werden
     if intentId == 1:
         for elem in rooms[roomId]['connections']:
-            if elem['conName'] in msg:
+            if elem['conName'] in msg and checkRoomStates(roomId, 'connections', username):
                 roomId = int(elem['conRoomId'])
                 return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
         for elem in rooms[roomId]['objects']:
-            if elem['objName'] in msg:
+            if elem['objName'] in msg and checkRoomStates(roomId, 'objects', username):
                 return (elem['lookAt'], getRoomName(roomId), 'game')
         
     #LOOK AT: Items und Objekte im Raum können angeschaut werden. ansonsten wird LOOK AROUND die Raumbeschreibungs ausgegeben
     elif intentId == 2:
         for elem in rooms[roomId]['items']:
-            if elem['itemName'] in msg:
+            if elem['itemName'] in msg and checkRoomStates(roomId, 'items', username):
                 return (elem['lookAt'], getRoomName(roomId), 'game')
         for elem in rooms[roomId]['objects']:
-            if elem['objName'] in msg:
+            if elem['objName'] in msg and checkRoomStates(roomId, 'objects', username):
                 return (elem['lookAt'], getRoomName(roomId), 'game')
 
         return (getRoomDescription(roomId), getRoomName(roomId), 'game')
@@ -132,8 +133,6 @@ def findAnswer(msg, roomId=-1):
     #Wenn nichts erkannt wurde
     return ("I have no idea what you want", getRoomName(roomId), 'game')
 
-
-# CheckIfNone hilfmethode?
 
 """
 @author Max Petendra
@@ -195,15 +194,19 @@ name: the category
 
 Returns: a list of tuples by (state, value)
 """
-def checkRoomStates(id: int, name: str):
-    
-    if rooms[id][name] is not None:
-        for states in rooms[id][name]:
+def checkRoomStates(id: int, roomType: str, username: str):
+    allTrue = False
+
+    if rooms[id][roomType] is not None:
+        for states in rooms[id][roomType]:
             if states is not None:
                 for needState, needStateValue in zip(states['needStates'], states['needStatesValue']):
-                    if None not in (needState, needStateValue): return True
+                    if None not in (needState, needStateValue) and database.get_user_state_value(username, needState) == needStateValue: 
+                        allTrue = True
+                    else:
+                        allTrue = False
 
-    return False
+    return allTrue
 
 """
 @author Max Petendra

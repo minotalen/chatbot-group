@@ -20,7 +20,7 @@ def execute_database(query, arguments):
         conn.commit()
         # Close the connection
         conn.close()
-    except sqlite.Error as error:
+    except sqlite3.Error as error:
         return (error, data0, data1)
     finally: 
         return (None, data0, data1)
@@ -62,7 +62,7 @@ def show_all_users():
     if (e != None):
         print("Failed to get all users", e)
     else: print("succesfully got all users")
-    users = fetch[1]
+    users = fetch[2]
     return users
 
 
@@ -100,7 +100,7 @@ def get_user_id(username):
     query = """SELECT rowid FROM users WHERE user_name = ?"""
     fetch = execute_database(query, (username,))
 
-    if user is not None:
+    if fetch[1] is not None:
         return fetch[1]
 
 

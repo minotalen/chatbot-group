@@ -37,6 +37,8 @@ Dazu einfach in die Python Konsole gehen und eintippen
 
 `nltk.download('wordnet')`
 
+`nltk.download('punkt')`
+
 **Für spacy bitte in der Konsole eingeben**
 
 `python -m spacy download en_core_web_sm`

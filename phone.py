@@ -1,9 +1,19 @@
 import re
-from transformers import pipeline
+import logging
+import torch
+from transformers import GPT2Tokenizer, GPT2LMHeadModel
+from nltk import tokenize
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
 
+# from transformers import pipeline
+# text_generator = pipeline("text-generation")
 
-text_generator = pipeline("text-generation")
+
+# Initialize tokenizer
+tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+# Load gpt2 model
+model = GPT2LMHeadModel.from_pretrained('gpt2')
+
 
 """
 @author:: Max Petendra
@@ -19,11 +29,12 @@ level: the current level of the player as an int
 
 Returns: a string as an answer
 """
-def handleAnswer(msg: str, level: int, roomId: int = -1) -> str:
+def handleAnswer(msg: str, level: int, roomId: int = -1):
     if roomId == -1: raise ValueError("Invalid room id!")
     intent = askProf(msg)
     if intent == 1: return "Your task is to play the game" #replace return with some method
     return get_generated_answer(msg)
+
 
 """
 @author:: Max Petendra
@@ -36,14 +47,14 @@ msg: the message of the user
 
 Returns: a number which represent a intent of the user // -1 if no intent is found
 """
-def askProf(msg:str) -> str:
+def askProf(msg:str):
     choices = ["tell task"]
     return classifyIntent(msg, choices)
 
 """
-@author:: Max Petendra
-@state: 09.06.20
-get a  formatted text answer by transformers using a trained gpt-2
+@author:: Max Petendra, Jakob Hackstein
+@state: 11.06.20
+get a  formatted text answer by transformers using a pretrained gpt-2
 
 Parameters
 ----------
@@ -51,11 +62,32 @@ msg: the message of the user
 
 Returns: a string as an answer
 """
-def get_generated_answer(msg: str) -> str:
-    text = text_generator(msg, max_length=int(20))[0].get('generated_text')
-    for char in "?\n": text = text.replace(char,'')
-    proftext = re.sub(msg, '', text)
-    splittext = re.split('(?<=[,.!?]) +', proftext)
-    if len(splittext) > 1: return re.sub(splittext[-1], '', proftext)
-    return proftext
+def get_generated_answer(input_context: str):
+
+    # text = text_generator(input_context, max_length=int(20))[0].get('generated_text')
+    # for char in "?\n": text = text.replace(char,'')
+    # proftext = re.sub(input_context, '', text)
+    # splittext = re.split('(?<=[,.!?]) +', proftext)
+    # if len(splittext) > 1: print(re.sub(splittext[-1], '', proftext))
+    # print(proftext)
+
+    input_len = len(input_context)
+    for char in "\n": input_context = input_context.replace(char,'')
+
+    # TODO add [.!?] if necessary
+    
+    # Encode input with gpt2 tokenizer
+    input_ids = tokenizer.encode(input_context, return_tensors='pt')
+    outputs = model.generate(input_ids=input_ids, max_length=input_len+25, do_sample=True)
+
+    # Postprocessing string
+    decoded_text = tokenizer.decode(outputs[0]).format()
+    decoded_text = decoded_text.replace('\n', ' ').replace('  ', ' ')
+    decoded_text = re.sub('\"\'','', decoded_text) # better filter for special chars?
+    answer = decoded_text[input_len:]
+
+    # split into sentences and slice unfinished
+    sentences = tokenize.sent_tokenize(answer)
+    if len(sentences) > 1: return re.sub(sentences[-1], '', answer)
+    return answer
 

@@ -24,7 +24,7 @@ def answerHandler(inputjson, username):
     # When the mode is phone
     elif str(obj['mode']) == 'phone':
         answer = [handleAnswer(str(obj['message'].lower()), int(obj['level']), getRoomId(str(obj['room']))),
-                  'Your Phone', 'phone']
+                  getRoomName(getRoomId(str(obj['room']))), 'phone']
 
     # When the mode is riddle
     elif str(obj['mode']) == 'riddle':
@@ -182,10 +182,9 @@ def findEntry(id: int, column: int) -> str:
 # Get the room id by room name
 def getRoomId(roomName: str) -> int:
     for count in range(0, len(rooms)):
-
         if rooms[count]['roomName'] in roomName: return int(rooms[count]['id'])
-    else:
-        return -1
+
+    return -1
 
 
 # Get the current room

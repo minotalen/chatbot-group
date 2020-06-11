@@ -43,12 +43,21 @@ Dazu einfach in die Python Konsole gehen und eintippen
 Genauen befehl für betriebssystem
 Link zur Anleitung `https://spacy.io/usage/models`
 
+** Torch installieren **
+
+https://pytorch.org/
+
+Um Torch zu installieren muss jeder unter seinen Konfigurationen eine Installation
+durchführen.
+
+!Beispiel!
+`pip install torch==1.5.0+cpu torchvision==0.6.0+cpu -f https://download.pytorch.org/whl/torch_stable.html`
+
 **Anleitung Windows mit Python 3.8.2 64-Bit**
 
-Zuerst `pip install -r requirements.txt`. 
+Zuerst `pip install -r requirements.txt`.
 
 Danach die nltk-Geschichte downloaden.
-
 
 ## Bekannte Fehler
 
@@ -77,16 +86,16 @@ Wenn der Server gestartet ist, öffnet einen Browser unter addresse [http://loca
 Prüft die Connection, indem ihr die developer tools öffnet und den Reiter Console anklickt. Dort sollte wenn alles geklappt hat `connected client` stehen.
 
 ## Rooms.csv
+
 Die `rooms.csv` beinhaltet die spielbaren Räume, in denen sich der Spieler befindet. Die Datei bietet Infos dazu, was man alles in welchem Raum machen kann und wie er aussieht.
 
-Spaltentrennung mit "$"!!!
+Spaltentrennung mit "\$"!!!
 
 Und so ist die `rooms.csv` mit Syntax aufgebaut. Wichtig! Die Überschriften sind selbst nicht in der CSV drin:
 
-| ID | Room Name | Introduction | Description | Connections | Triggers |
-| -- | --------- |--------------|----------|-------------|-------------|
-| 0 | room 1 | "As you go into this room you feel really weird. You see blabla" | "You look around the room and see two doors and an old lady." | door?1;trap door?2 | collect Key&"Congrats you collected an old key";use key&"You open the door with a key" |
-
+| ID  | Room Name | Introduction                                                     | Description                                                   | Connections        | Triggers                                                                               |
+| --- | --------- | ---------------------------------------------------------------- | ------------------------------------------------------------- | ------------------ | -------------------------------------------------------------------------------------- |
+| 0   | room 1    | "As you go into this room you feel really weird. You see blabla" | "You look around the room and see two doors and an old lady." | door?1;trap door?2 | collect Key&"Congrats you collected an old key";use key&"You open the door with a key" |
 
 ID: Die Raum-ID, für jeden Raum einzigartig, gleich der Zeilenzahl.
 

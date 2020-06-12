@@ -46,7 +46,7 @@
                 "needStates": ["trashBin"],
                 "needStatesValue": [false],
                 "newStates": ["trashBin"],
-                "newStatesValue": [null]
+                "newStatesValue": [true]
             },
             {
                 "objName": "door",

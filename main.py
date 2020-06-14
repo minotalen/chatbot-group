@@ -4,6 +4,7 @@ import json
 import csv
 import database_SQLite as database
 from answerhandler_json import answerHandler
+import tensorflow as tf
 
 # from answerhandler_withdatabase import answerHandler
 
@@ -67,6 +68,10 @@ def get_username_by_sid(sid):
     for users in user_sessions:
         if sid == users['sid']:
             return users['user']
+
+
+def get_current_username():
+    return get_username_by_sid(request.sid)
 
 if __name__ == "__main__":
     print("Try to start server...")

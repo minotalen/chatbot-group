@@ -7,6 +7,7 @@ from intentclassificator import classifyIntent, writeMessagetoTrainingData
 from phone import handleAnswer
 from riddlemode import handleRiddle
 import logging_time as l
+from main.py import get_current_username
 
 with open('rooms.json', encoding="utf8") as allLevels:
     data = json.load(allLevels)
@@ -91,10 +92,10 @@ def findAnswer(username, msg, roomId=-1):
                 updateStates(rooms[roomId]['triggers'][elemCount], username)
                 return (elem['accept'], getRoomName(roomId), 'game')
 
-    intentId = classifyIntent(msg, choices)
+    intentID = classifyIntent(msg, choices)
 
     # GO TO: Es kann zu anliegenden Räumen oder Objekten gegangen werden
-    if intentId == 1:
+    if intentID == 1:
         elemCount = -1
         # RÄUME
         for elem in rooms[roomId]['connections']:
@@ -111,7 +112,7 @@ def findAnswer(username, msg, roomId=-1):
                 return (elem['lookAt'], getRoomName(roomId), 'game')
 
     # LOOK AT: Items und Objekte im Raum können angeschaut werden. ansonsten wird LOOK AROUND die Raumbeschreibungs ausgegeben
-    elif intentId == 2:
+    elif intentID == 2:
         elemCount = -1
         # ITEMS
         for elem in rooms[roomId]['items']:
@@ -130,21 +131,21 @@ def findAnswer(username, msg, roomId=-1):
         return (getRoomDescription(roomId), getRoomName(roomId), 'game')
 
     # CURRENT ROOM: Gibt den Raumtext nochmal aus
-    elif intentId == 3:
+    elif intentID == 3:
         return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
 
     # ITEMS: NOCH NICHT FERTIG. BAUSTELLE
-    # elif classifyIntent(msg) == 4:
-    #   return (get_inventory(), getRoomName(roomid))
+    elif intentID == 4:
+        return (get_inventory(roomid), getRoomName(roomid), 'game')
 
     # ABOUT: Beantwortet Fragen zum Chatbot
-    elif intentId == 5:
+    elif intentID == 5:
         return (aboutHandler(msg), getRoomName(roomId), 'game')
     # START PHONE: Der Handymodus wird gestartet
-    elif intentId == 6:
+    elif intentID == 6:
         if database.get_user_state_value(username, 'gotPhone') == True:
             return ('You are now chatting with the professor', getRoomName(roomId), 'phone')
-    elif intentId == 7:
+    elif intentID == 7:
         return ('sorry no help assistant yet implemented', getRoomName(roomId), 'game')
 
     # Wenn nichts erkannt wurde
@@ -269,3 +270,40 @@ def aboutHandler(msg: str) -> str:
         return "of course not"
     else:
         return "I didnt understand your about chatbot: question."
+
+
+# inventory stuff
+def add_to_inventory(item_name: str, room_ID):
+    database.insert_item(get_current_username(), room_ID, item_name)
+
+
+def remove_from_inventory(item_name: str, room_ID):
+    database.delete_user_item(get_current_username(), item_name, room_ID)
+
+
+def get_inventory(room_ID_0) -> str:
+    # testing
+    add_to_inventory("test_item", room_ID_0)
+    #items == list of tuples
+    items_db = database.get_all_user_items(get_current_username())
+    # testing
+    remove_from_inventory("test_item", room_ID_0)
+    if not items_db:
+        return "Your Inventory is empty"
+    item_str = ""
+    index = 0
+    size = len(items_db)
+    for i in items_db:
+        item_name ,room_ID_1 = i
+        if index == 0:
+            item_str = item_str + item_name
+        elif index < size-1:
+            item_str = item_str + ", " + item_name
+        elif index == size-1:
+            item_str = item_str + " and " + item_name
+        else:
+            item_str = item_str + " ERROR!!! " + item_name
+            
+        index += 1
+        
+    return item_str

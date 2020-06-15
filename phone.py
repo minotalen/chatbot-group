@@ -53,7 +53,7 @@ def askProf(msg:str):
 
 """
 @author:: Max Petendra, Jakob Hackstein
-@state: 11.06.20
+@state: 15.06.20
 get a  formatted text answer by transformers using a pretrained gpt-2
 
 Parameters
@@ -64,6 +64,11 @@ Returns: a string as an answer
 """
 def get_generated_answer(input_context: str):
 
+    #add . if sentence doesnt end with a punctuation
+    input_len = len(input_context)
+    if tokenize.sent_tokenize(input_context)[-1][-1] not in "?.,!": input_context = input_context + '.'
+    for char in "\n": input_context = input_context.replace(char,'')
+    
     # text = text_generator(input_context, max_length=int(20))[0].get('generated_text')
     # for char in "?\n": text = text.replace(char,'')
     # proftext = re.sub(input_context, '', text)
@@ -71,11 +76,6 @@ def get_generated_answer(input_context: str):
     # if len(splittext) > 1: print(re.sub(splittext[-1], '', proftext))
     # print(proftext)
 
-    input_len = len(input_context)
-    for char in "\n": input_context = input_context.replace(char,'')
-
-    # TODO add [.!?] if necessary
-    
     # Encode input with gpt2 tokenizer
     input_ids = tokenizer.encode(input_context, return_tensors='pt')
     outputs = model.generate(input_ids=input_ids, max_length=input_len+25, do_sample=True)
@@ -85,9 +85,11 @@ def get_generated_answer(input_context: str):
     decoded_text = decoded_text.replace('\n', ' ').replace('  ', ' ')
     decoded_text = re.sub('\"\'','', decoded_text) # better filter for special chars?
     answer = decoded_text[input_len:]
-
+    
     # split into sentences and slice unfinished
+    formatstart = lambda msg: msg[2:] if msg[0:2] == '. ' else (msg.strip() if msg[0] == ' ' else msg)
     sentences = tokenize.sent_tokenize(answer)
-    if len(sentences) > 1: return re.sub(sentences[-1], '', answer)
-    return answer
+    if len(sentences) > 1: return [answer, formatstart(re.sub(sentences[-1], '', answer)).rstrip()][len(answer)>2]
+    return [answer, formatstart(answer).rstrip()][len(answer)>2]
+
 

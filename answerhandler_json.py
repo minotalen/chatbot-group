@@ -99,9 +99,10 @@ def findAnswer(username, msg, roomId=-1):
         # RÄUME
         for elem in rooms[roomId]['connections']:
             elemCount += 1
-            if elem['conName'] in msg and checkNeededStates(rooms[roomId]['connections'][elemCount], username):
-                roomId = int(elem['conRoomId'])
-                return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
+            for name in elem['conNames']:
+                if name in msg and checkNeededStates(rooms[roomId]['connections'][elemCount], username):
+                    roomId = int(elem['conRoomId'])
+                    return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
         elemCount = -1
         # OBJEKTE
         for elem in rooms[roomId]['objects']:

@@ -14,6 +14,7 @@ tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 # Load gpt2 model
 model = GPT2LMHeadModel.from_pretrained('gpt2')
 
+rustyprof = "I am completely absent-minded. The proof of my theory is not yet..."
 
 """
 @author:: Max Petendra
@@ -29,11 +30,14 @@ level: the current level of the player as an int
 
 Returns: a string as an answer
 """
-def handleAnswer(msg: str, level: int, roomId: int = -1):
+def handleAnswer(msg: str, level: int, roomId: int = -1) -> str:
     if roomId == -1: raise ValueError("Invalid room id!")
     intent = askProf(msg)
     if intent == 1: return "Your task is to play the game" #replace return with some method
-    return get_generated_answer(msg)
+
+    #returns the answer of the prof if it is not empty
+    answer = get_generated_answer(msg)
+    return [answer, rustyprof][not answer]
 
 
 """
@@ -47,7 +51,7 @@ msg: the message of the user
 
 Returns: a number which represent a intent of the user // -1 if no intent is found
 """
-def askProf(msg:str):
+def askProf(msg:str) -> int:
     choices = ["tell task"]
     return classifyIntent(msg, choices)
 
@@ -62,12 +66,12 @@ msg: the message of the user
 
 Returns: a string as an answer
 """
-def get_generated_answer(input_context: str):
+def get_generated_answer(input_context: str) -> str:
 
     #add . if sentence doesnt end with a punctuation
     input_len = len(input_context)
     if tokenize.sent_tokenize(input_context)[-1][-1] not in "?.,!": input_context = input_context + '.'
-    for char in "\n": input_context = input_context.replace(char,'')
+    input_context = input_context.replace("\n",'')
     
     # text = text_generator(input_context, max_length=int(20))[0].get('generated_text')
     # for char in "?\n": text = text.replace(char,'')
@@ -86,10 +90,12 @@ def get_generated_answer(input_context: str):
     decoded_text = re.sub('\"\'','', decoded_text) # better filter for special chars?
     answer = decoded_text[input_len:]
     
-    # split into sentences and slice unfinished
-    formatstart = lambda msg: msg[2:] if msg[0:2] == '. ' else (msg.strip() if msg[0] == ' ' else msg)
-    sentences = tokenize.sent_tokenize(answer)
-    if len(sentences) > 1: return [answer, formatstart(re.sub(sentences[-1], '', answer)).rstrip()][len(answer)>2]
-    return [answer, formatstart(answer).rstrip()][len(answer)>2]
+    # split into sentences and slice unfinished // returns rustyprof if exception is throwed
+    try:
+        formatstart = lambda msg: msg[2:] if msg[0:2] == '. ' else (msg.strip() if msg[0] == ' ' else msg)
+        sentences = tokenize.sent_tokenize(answer)
+        if len(sentences) > 1: return [answer, formatstart(re.sub(sentences[-1], '', answer)).rstrip()][len(answer)>2]
+        return [answer, formatstart(answer).rstrip()][len(answer)>2]
+    except: return rustyprof   
 
 

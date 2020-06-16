@@ -296,14 +296,16 @@ def remove_from_inventory(item_name: str, room_ID, username):
 
 def get_inventory(room_ID_0, username) -> str:
     #items == list of tuples
+    
     items_db = database.get_all_user_items(username)
     
     if items_db is None:
         return "Your Inventory is empty"
     
-    item_str = ""
+    item_str = "Your inventory contains: "
     index = 0
     size = len(items_db)
+    l.log_time("items_number: " + str(size))  # logging
     for i in items_db:
         item_name ,room_ID_1 = i
         if index == 0:

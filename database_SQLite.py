@@ -16,10 +16,10 @@ def execute_database(query, arguments):
     except sqlite3.Error as error:
         return (error, None, None)
 
-    # fetches SELECT returns
-    data0 = c.fetchone()
-    # fetches SELECT all returns
+    # fetches SELECT  all returns
     data1 = c.fetchall()
+    # fetches SELECT returns
+    data0 = data1[0]
     # Commit our command
     conn.commit()
     # Close the connection

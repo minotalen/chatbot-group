@@ -127,7 +127,7 @@ user_item_id | user_id |   item_name    | room_id |
 def insert_item(username, room_id, item_name):
     user_id = get_user_id(username)
 
-    if user_id is not None:
+    if user_id is not None and not does_user_item_exist(username, item_name, room_id):
         query = """INSERT INTO user_items VALUES (?,?,?,?)"""
         fetch = execute_database(query, (None, user_id, item_name, room_id,))
         e = fetch[0]
@@ -150,7 +150,7 @@ def get_all_user_items(username):
     if (e != None):
         print("Failed to get all user items", e)
     else:
-        print("")
+        print("got all items")
     return items
 
 
@@ -165,7 +165,7 @@ def get_user_items_by_roomId(room_id, username):
     if e is not None:
         print("Failed to get user items by roomID", e)
     else:
-        print("")
+        print("got all items")
     return items
 
 
@@ -180,7 +180,7 @@ def does_user_item_exist(username, item_name, room_id):
     if e is not None:
         print("Failed to check user items", e)
     else:
-        print("")
+        print("checked user items")
     if item is not None:
         return True
     else:

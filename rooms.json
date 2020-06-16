@@ -183,8 +183,8 @@
                 "needItemsRoomId": [null],
                 "accept": "Congrats! You have now solved the riddle and are able to use the mobile phone. \n You receive a message on your mobile phone. \n Oh! You just received a new message… Impeccable timing.",
                 "fail": "What are you trying to accomplish by shouting random numbers? People will start looking.",
-                "newStates": ["ownPhone"],
-                "newStatesValue": [true],
+                "newStates": ["ownPhone", "solvedPinCode"],
+                "newStatesValue": [true, true],
                 "actions": ["changeMode"],
                 "actionsValue": ["game"]
             }

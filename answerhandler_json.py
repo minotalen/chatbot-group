@@ -115,18 +115,20 @@ def findAnswer(username, msg, roomId=-1):
     elif intentID == 2:
         elemCount = -1
         # ITEMS
-        for elem in rooms[roomId]['items']:
-            elemCount += 1
-            if elem['itemName'] in msg and checkNeededStates(rooms[roomId]['items'][elemCount], username):
-                return (elem['lookAt'], getRoomName(roomId), 'game')
+        if rooms[roomId]['items'][0] is not None:
+            for elem in rooms[roomId]['items']:
+                elemCount += 1
+                if elem['itemName'] in msg and checkNeededStates(rooms[roomId]['items'][elemCount], username):
+                    return (elem['lookAt'], getRoomName(roomId), 'game')
                 
         elemCount = -1
         # OBJEKTE
-        for elem in rooms[roomId]['objects']:
-            elemCount += 1
-            if elem['objName'] in msg and checkNeededStates(rooms[roomId]['objects'][elemCount], username):
-                updateStates(rooms[roomId]['objects'][elemCount], username)
-                return (elem['lookAt'], getRoomName(roomId), 'game')
+        if rooms[roomId]['items'][0] is not None:
+            for elem in rooms[roomId]['objects']:
+                elemCount += 1
+                if elem['objName'] in msg and checkNeededStates(rooms[roomId]['objects'][elemCount], username):
+                    updateStates(rooms[roomId]['objects'][elemCount], username)
+                    return (elem['lookAt'], getRoomName(roomId), 'game')
 
         return (getRoomDescription(roomId), getRoomName(roomId), 'game')
     
@@ -154,7 +156,7 @@ def findAnswer(username, msg, roomId=-1):
     
     # START PHONE: Der Handymodus wird gestartet
     elif intentID == 7:
-        if database.get_user_state_value(username, 'gotPhone') == True:
+        if database.get_user_state_value(username, 'ownPhone') == True:
             return ('You are now chatting with the professor', getRoomName(roomId), 'phone')
 
     # HELP ASSISTANT
@@ -231,12 +233,10 @@ Returns: a list of tuples by (state, value)
 
 # Prüft alle angesprochenen(roomType) Zustände eines Raumes. Wenn einer nicht zutrifft wird False zurückgegeben.
 def checkNeededStates(roomElem, username: str):
-    allTrue = False
+    allTrue = True
     
     for needState, needStateValue in zip(roomElem['needStates'], roomElem['needStatesValue']):
-        if None in (needState, needStateValue) or database.get_user_state_value(username, needState) == needStateValue: 
-            allTrue = True
-        else:
+        if None not in (needState, needStateValue) and database.get_user_state_value(username, needState) != needStateValue: 
             allTrue = False
 
     return allTrue
@@ -250,8 +250,14 @@ def updateStates(roomElem, username: str):
             database.update_user_state(username, newState, 0)
 
 
-def checkNeededItems():
-    return True
+def checkNeededItems(roomElem, username: str):
+    allTrue = True
+
+    for needItem, needItemRoomId in zip(roomElem['needItems'], roomElem['needItemsRoomId']):
+        if None not in (needItem, needItemRoomId) and not database.does_user_item_exist(username, needItem, needItemRoomId):
+            allTrue = False
+    
+    return allTrue
 
 
 """

@@ -57,8 +57,11 @@ def findAnswer(username, msg, roomId=-1):
     for elem in rooms[roomId]['triggers']:
         if elem is not None:
             elemCount += 1
-            if elem['trigName'] in msg and checkNeededStates(rooms[roomId]['triggers'][elemCount], username):
+            if elem['trigName'] in msg and checkNeededStates(rooms[roomId]['triggers'][elemCount], 
+            username) and checkNeededItems(rooms[roomId]['triggers'][elemCount], username):
+                
                 updateStates(rooms[roomId]['triggers'][elemCount], username)
+                
                 altMode = 'game'
                 altRoom = roomId
                 if elem['actions'][0] is not None:
@@ -66,7 +69,9 @@ def findAnswer(username, msg, roomId=-1):
                         altAction = doAction(action, actionValue, roomId, username)
                         if altAction[0] is not None: altRoom = altAction[0]
                         elif altAction[1] is not None: altMode = altAction[1]
+                
                 return (elem['accept'], getRoomName(altRoom), altMode)
+            
             elif elem['trigName'] in msg:
                 return (elem['fail'], getRoomName(roomId), 'game')
 
@@ -78,16 +83,21 @@ def findAnswer(username, msg, roomId=-1):
         # RÄUME
         for elem in rooms[roomId]['connections']:
             elemCount += 1
+            
             for name in elem['conNames']:
                 if name in msg and checkNeededStates(rooms[roomId]['connections'][elemCount], username):
                     roomId = int(elem['conRoomId'])
+                    
                     return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
+        
         elemCount = -1
         # OBJEKTE
         for elem in rooms[roomId]['objects']:
             elemCount += 1
+            
             if elem['objName'] in msg and checkNeededStates(rooms[roomId]['objects'][elemCount], username):
                 updateStates(rooms[roomId]['objects'][elemCount], username)
+                
                 return (elem['lookAt'], getRoomName(roomId), 'game')
 
     # LOOK AT: Items und Objekte im Raum können angeschaut werden. ansonsten wird LOOK AROUND die Raumbeschreibungs ausgegeben
@@ -97,7 +107,9 @@ def findAnswer(username, msg, roomId=-1):
         if rooms[roomId]['items'][0] is not None:
             for elem in rooms[roomId]['items']:
                 elemCount += 1
+                
                 if elem['itemName'] in msg and checkNeededStates(rooms[roomId]['items'][elemCount], username):
+                    
                     return (elem['lookAt'], getRoomName(roomId), 'game')
                 
         elemCount = -1
@@ -105,20 +117,25 @@ def findAnswer(username, msg, roomId=-1):
         if rooms[roomId]['items'][0] is not None:
             for elem in rooms[roomId]['objects']:
                 elemCount += 1
+                
                 if elem['objName'] in msg and checkNeededStates(rooms[roomId]['objects'][elemCount], username):
                     updateStates(rooms[roomId]['objects'][elemCount], username)
+                    
                     return (elem['lookAt'], getRoomName(roomId), 'game')
 
         return (getRoomDescription(roomId), getRoomName(roomId), 'game')
-
+    
+    
     # PICK UP: Hebt ein item auf und gibt den Text zurück
     elif intentID == 3:
         elemCount = -1
         for elem in rooms[roomId]['items']:
             elemCount += 1
+            
             if elem['itemName'] in msg and checkNeededStates(rooms[roomId]['items'][elemCount], username):
                 updateStates(rooms[roomId]['items'][elemCount], username)
                 add_to_inventory(elem['itemName'], roomId, username)
+                
                 return (elem['pickUp'], getRoomName(roomId), 'game')
     
     # ITEMS: NOCH NICHT FERTIG. BAUSTELLE
@@ -135,7 +152,7 @@ def findAnswer(username, msg, roomId=-1):
     
     # START PHONE: Der Handymodus wird gestartet
     elif intentID == 7:
-        if database.get_user_state_value(username, 'ownPhone') == True:
+        if database.get_user_state_value(username, 'solvedPinCode') == True:
             return ('You are now chatting with the professor', getRoomName(roomId), 'phone')
 
     # HELP ASSISTANT
@@ -164,7 +181,6 @@ def getRoomId(roomName: str) -> int:
         if rooms[count]['roomName'] in roomName: return int(rooms[count]['id'])
 
     return -1
-
 
 # Get the current room
 def getRoomName(id: int) -> str:

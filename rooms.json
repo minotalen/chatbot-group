@@ -157,36 +157,23 @@
                 "needItemsRoomId": [null],
                 "accept": "Inside the box is a piece of paper with a riddle drawn on it, an old T9 mobile phone and a GPS device. \n You pick up the GPS device and mobile phone. Bonkers! \n But what now? Does the phone even work?",
                 "fail": "You feel like there is nothing more to the box. The riddle was solved and you already have the phone and GPS device.",
-                "newStates": ["triggeredOpenBox","ownGps"],
+                "newStates": ["triggeredOpenBox", "ownGps"],
                 "newStatesValue": [true, true],
                 "actions": [null],
                 "actionsValue": [null]
             },
             {
                 "trigName": "start phone",
-                "needStates": ["ownPhone", "triggeredOpenBox"],
-                "needStatesValue": [false, true],
+                "needStates": ["triggeredOpenBox","solvedPinCode"],
+                "needStatesValue": [true, false],
                 "needItems": [null],
                 "needItemsRoomId": [null],
                 "accept": "You start the old phone. To activate the phone you need a 4-digit pin. \n Maybe the piece of paper can help?",
-                "fail": "You left your smartphone at home. There is no other phone around to start, at least not yet.",
+                "fail": "There is no other phone around to start, at least not yet.",
                 "newStates": ["triggeredStartPhone"],
                 "newStatesValue": [true],
                 "actions": ["changeMode"],
                 "actionsValue": ["riddle"]
-            },
-            {
-                "trigName": "2375",
-                "needStates": ["ownPhone", "triggeredStartPhone"],
-                "needStatesValue": [false, true],
-                "needItems": [null],
-                "needItemsRoomId": [null],
-                "accept": "Congrats! You have now solved the riddle and are able to use the mobile phone. \n You receive a message on your mobile phone. \n Oh! You just received a new message… Impeccable timing.",
-                "fail": "What are you trying to accomplish by shouting random numbers? People will start looking.",
-                "newStates": ["ownPhone", "solvedPinCode"],
-                "newStatesValue": [true, true],
-                "actions": ["changeMode"],
-                "actionsValue": ["game"]
             }
         ]
     },
@@ -239,7 +226,8 @@
                 "fail": null,
                 "newStates": [null],
                 "newStatesValue": [null],
-                "actions": []
+                "actions": [null],
+                "actionsValue": [null]
             },
             {
                 "trigName": "ask for the price",

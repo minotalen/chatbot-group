@@ -7,7 +7,6 @@ from intentclassificator import classifyIntent, writeMessagetoTrainingData
 from phone import handleAnswer
 from riddlemode import handleRiddle
 import logging_time as l
-#from main.py import get_current_username
 
 with open('rooms.json', encoding="utf8") as allLevels:
     data = json.load(allLevels)
@@ -81,7 +80,7 @@ def answerHandler(inputjson, username):
 def findAnswer(username, msg, roomId=-1):
     if roomId == -1: raise ValueError("Invalid room id!")
 
-    choices = ["go to", "look at", "current room", "items", "about chatbot:", "start phone", "help assistant:"]
+    choices = ["go to", "look at", "pick up", "items", "current room", "about chatbot:", "start phone", "help assistant:"]
 
     elemCount = -1
     # TRIGGER: Raumspezifische Trigger werden zuerst überprüft // please write docs in english :''(

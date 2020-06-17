@@ -144,19 +144,19 @@
                 "lookAt": "The box is secured with tape that contains the words “It’s prime time!” repeated multiple times written all over it. \n The word prime stands out with a blue color.",
                 "needStates": [null],
                 "needStatesValue": [null],
-                "newStates": ["sawBox"],
-                "newStatesValue": [true]
+                "newStates": [null],
+                "newStatesValue": [null]
             }
         ],
         "triggers": [
             {
                 "trigName": "open box",
-                "needStates": ["solvedPinCode", "sawBox"],
-                "needStatesValue": [false, true],
+                "needStates": ["solvedPinCode"],
+                "needStatesValue": [false],
                 "needItems": [null],
                 "needItemsRoomId": [null],
                 "accept": "Inside the box is a piece of paper with a riddle drawn on it, an old T9 mobile phone and a GPS device. \n You pick up the GPS device and mobile phone. Bonkers! \n But what now? Does the phone even work?",
-                "fail": "You feel like the professor may hid a hint outside of the box. \n Maybe you should look at it first.",
+                "fail": "You feel like there is nothing more to the box. The riddle was solved and you already have the phone and GPS device.",
                 "newStates": ["triggeredOpenBox","ownGps"],
                 "newStatesValue": [true, true],
                 "actions": ["changeMode"],

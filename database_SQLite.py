@@ -389,3 +389,74 @@ def delete_user(username, password):
         print("Failed to delete user", e)
     else:
         print("information of that user is deleted")
+
+
+"""
+====================================================
+user_recmessage_id | user_id | messages |
+-------------------+---------+----------+
+ 1                 | 1       | level1   |
+-------------------+---------+----------+
+"""
+
+
+def insert_user_recmessage(username: str, messages: int = -1):
+    user_id = get_user_id(username)
+    if user_id == -1:
+        return False
+    else:
+        query = """INSERT INTO user_recmessage VALUES (?,?,?)"""
+        execute_database(query, (None, user_id, messages,))
+        return True
+
+
+# Check if the user_name and password is taken
+def does_user_remessage_exist(username: str, message: int):
+    user_id = get_user_id(username)
+    # Query to database
+    query = """SELECT * FROM user_recmessage WHERE user_id = ?"""
+    fetch = execute_database(query, (user_id,))
+    user = fetch[1]
+
+    if user is None or not user:
+        return False
+    if user[0] is not None :
+        if user[0][1] == user_id and user[0][2] == message: return True
+        else: return False;
+    else:
+        return False
+
+
+# Deletes one state of a user
+def delete_user_recmessage(username: str, messages: int = -1):
+    user_id = get_user_id(username)
+    if user_id != -1:
+        query = """DELETE FROM user_recmessage WHERE user_id = ? AND messages = ?"""
+        fetch = execute_database(query, (user_id, messages,))
+        e = fetch[0]
+        if e is not None:
+            print("unable to delete user haven't received message yet!", e)
+            return False
+        else:
+            print("deleted receive message from user")
+            return True
+    else:
+        return False
+
+
+print(delete_user_recmessage("Max", 2))
+
+
+# insert_user("Max", "123456")
+# insert_user("Jacobh", "123456")
+# insert_user("a", "123456")
+# insert_user("b", "123456")
+
+# insert_user_recmessage("Max", 1)
+# insert_user_recmessage("Jacobh", 3)
+# insert_user_recmessage("a", 4)
+# insert_user_recmessage("b", 5)
+
+
+
+

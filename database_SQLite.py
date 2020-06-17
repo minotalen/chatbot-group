@@ -422,33 +422,32 @@ def does_user_recmessage_exist(username: str, message: int):
     query = """SELECT * FROM user_recmessage WHERE user_id = ? AND messages = ?"""
     fetch = execute_database(query, (user_id, message,))
     user = fetch[1]
-
-    if user is None or not user:
-        return False
+    if user is None or not user: return False
     if user[0] is not None:
-        if user[0][1] == user_id and user[0][2] == message:
-            return True
-        else:
-            return False
-    else:
-        return False
+        if user[0][1] == user_id and user[0][2] == message: return True
+        else: return False
+    else: return False
 
 
 # Deletes one state of a user
 def delete_user_recmessage(username: str, messages: int = -1):
     user_id = get_user_id(username)
-    if user_id != -1:
-        query = """DELETE FROM user_recmessage WHERE user_id = ? AND messages = ?"""
-        fetch = execute_database(query, (user_id, messages,))
-        e = fetch[0]
-        if e is not None:
-            print("unable to delete user haven't received message yet!", e)
-            return False
+    if does_user_recmessage_exist(username, messages):
+        if user_id != -1:
+            query = """DELETE FROM user_recmessage WHERE user_id = ? AND messages = ?"""
+            fetch = execute_database(query, (user_id, messages,))
+            e = fetch[0]
+            if e is not None:
+                print("unable to delete user haven't received message yet!", e)
+                return False
+            else:
+                print("deleted receive message from user")
+                return True
         else:
-            print("deleted receive message from user")
-            return True
+            return False
     else:
-        return False
+        print("nothing to delete")
+        return False        
 
 # insert_user("Max", "123456")
 # insert_user("Jacobh", "123456")

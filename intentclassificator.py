@@ -35,7 +35,7 @@ def classifyIntent(msg: str, choices: list) -> int:
     if not isinstance(answer[0], str) or not isinstance(answer, list) or not isinstance(answer[1], float):
         raise TypeError("MonkeyLearn error created wrong types in the answer")
     """
-    return [keyToNumber(checkSynonyms(msg, choices), choices), keyToNumber(answer[0], choices)][answer[1] >= 75] #0.175
+    return keyToNumber(answer[0], choices) if answer[1] >= 75 else keyToNumber(checkSynonyms(msg, choices), choices)
 
 """
 @author:: Max Petendra

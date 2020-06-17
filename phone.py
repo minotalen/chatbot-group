@@ -23,8 +23,8 @@ model = GPT2LMHeadModel.from_pretrained('gpt2')
 
 rustyprof = "I am completely absent-minded. The proof of my theory is not yet..."
 
-# messagequeue = queue.Queue()
-messagequeue = []
+messagequeue = queue.Queue()
+#messagequeue = []
 
 """
 @author:: Max Petendra
@@ -140,26 +140,16 @@ Returns: the last sent message of the prof (from the messagequeue)
 
 def printRecentMessage(username) -> str:
     for msgdict in messages:
-        print('*********')
         if database.get_user_state_value(
                 username, msgdict.get("user_state"), False):
             if not database.does_user_recmessage_exist(username, msgdict.get("id")):
-                print("add to q", msgdict.get("str_message"))
-                messagequeue.append(msgdict.get("str_message"))
+                messagequeue.put(msgdict.get("str_message"))
                 database.insert_user_recmessage(username, msgdict.get("id"))
         else:
             print("user state of msg is not in database yet")
-
-    # print("size", messagequeue.qsize(), "empty", messagequeue.empty())
-
-    print(messagequeue)
-
-    if not messagequeue:
-        return "you have no new messages yet"
-    else:
-        return messagequeue.pop(0)
-
-    # return ["you have no new messages yet", messagequeue.get()][messagequeue.empty()]
+     
+    return "you have no new messages yet" if messagequeue.empty() else messagequeue.get()
+    
 
 
 def getAllMessages(username):

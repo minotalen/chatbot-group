@@ -22,7 +22,7 @@ def answerHandler(inputjson, username):
 
     # When the mode is phone
     elif str(obj['mode']) == 'phone':
-        answer = [handleAnswer(str(obj['message'].lower()), int(obj['level']), getRoomId(str(obj['room']))),
+        answer = [handleAnswer(str(obj['message'].lower()), username, int(obj['level']), getRoomId(str(obj['room']))),
                   getRoomName(getRoomId(str(obj['room']))), 'phone']
 
     # When the mode is riddle

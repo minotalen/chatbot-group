@@ -1,6 +1,7 @@
 import re
 import logging
 import torch
+import queue
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 from nltk import tokenize
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
@@ -15,6 +16,8 @@ tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 model = GPT2LMHeadModel.from_pretrained('gpt2')
 
 rustyprof = "I am completely absent-minded. The proof of my theory is not yet..."
+
+messagequeue = queue.Queue()
 
 """
 @author:: Max Petendra

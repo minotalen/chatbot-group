@@ -13,7 +13,7 @@ svg#settings {
 }
 
 svg#settings > path {
-  fill: var(--color-text);
+  fill: var(--color-onprimary);
 }
 
 #settings-window {

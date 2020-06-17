@@ -1,7 +1,13 @@
 {
     "messages": [{
-        "id": 0,
-        "str_message": "What is the elephant monument about?",
-        "user_states": [null]
-    }]
+        "id": 1,
+        "str_message": "From: Prof. K. To: Me (bzw. Player name) You are wondering why this all happens? It's simple: I want you feel research. Experience what it means to be a historian. Uncover secrets and hidden truths. My hope is that it will inspire and motivate you to do great things, no matter the cost. Back on track: Have you noticed the elephant statue right in front of you? No? Okay you just got exmatriculated. Just kidding! I want you to find out everything about this monument and the time it was built. Don’t hold back, it might become quite the adventure. Now, head over to the flea market near the Schlachte and look for an ancient artifact. You’ll know what I mean when you see it. Good luck.",
+        "user_state": "ownPhone"
+    },
+    {
+        "id": 2,
+        "str_message": "this is nice",
+        "user_state": "test"
+    }
+    ]
 }

@@ -1,7 +1,9 @@
 import re
+import json
 import logging
 import torch
 import queue
+import database_SQLite as database
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 from nltk import tokenize
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
@@ -9,6 +11,10 @@ from intentclassificator import classifyIntent, writeMessagetoTrainingData
 # from transformers import pipeline
 # text_generator = pipeline("text-generation")
 
+#open json for messages from prof
+with open('recmessages.json', encoding="utf8") as messages:
+    rec_json = json.load(messages)
+    messages = rec_json['messages']
 
 # Initialize tokenizer
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
@@ -33,11 +39,11 @@ level: the current level of the player as an int
 
 Returns: a string as an answer
 """
-def handleAnswer(msg: str, level: int, roomId: int = -1) -> str:
+def handleAnswer(msg: str, username: str, level: int, roomId: int = -1) -> str:
     if roomId == -1: raise ValueError("Invalid room id!")
     intent = askProf(msg)
     if intent == 1: return "Your task is to play the game" #replace return with some method
-
+    if intent == 2: return "hello" #return printRecentMessage(username)
     #returns the answer of the prof if it is not empty
     answer = get_generated_answer(msg)
     return [answer, rustyprof][not answer]
@@ -55,7 +61,7 @@ msg: the message of the user
 Returns: a number which represent a intent of the user // -1 if no intent is found
 """
 def askProf(msg:str) -> int:
-    choices = ["tell task"]
+    choices = ["tell task", " print recent messages"]
     return classifyIntent(msg, choices)
 
 """
@@ -100,5 +106,36 @@ def get_generated_answer(input_context: str) -> str:
         if len(sentences) > 1: return [answer, formatstart(re.sub(sentences[-1], '', answer)).rstrip()][len(answer)>2]
         return [answer, formatstart(answer).rstrip()][len(answer)>2]
     except: return rustyprof   
+
+
+"""
+@author:: Max Petendra, Jakob Hackstein
+@state: 17.06.20
+adds message to message queue if message is triggerd
+
+Parameters
+----------
+username: the username of the current player as a string
+
+Returns: the last sent message of the prof (from the messagequeue)
+"""
+"""
+def printRecentMessage(username) -> str:
+    for msgdict in messages:
+           if database.get_user_state_value(username, msgdict.get("user_state")):
+               if not database.does_user_recmessage_exist(username, msgdict.get("id")):
+                    messagequeue.put(msgdict.get("str_message"))
+                    database.insert_user_recmessage(username, msgdict.get("id"))
+           else: print("user state of msg is not in database yet")                
+    return ["you have no new messages yet", messagequeue.get()][not messagequeue.empty()]
+    
+def getAllMessages(username):
+    allmessages = []
+    for msgdict in messages:
+        if database.does_user_recmessage_exist(username, msgdict.get("id")):
+            allmessages += msgdict.get("str_message")
+    return(allmessages)
+"""
+
 
 

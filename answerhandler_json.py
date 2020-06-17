@@ -100,9 +100,10 @@ def findAnswer(username, msg, roomId=-1):
         # RÄUME
         for elem in rooms[roomId]['connections']:
             elemCount += 1
-            if elem['conName'] in msg and checkNeededStates(rooms[roomId]['connections'][elemCount], username):
-                roomId = int(elem['conRoomId'])
-                return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
+            for name in elem['conNames']:
+                if name in msg and checkNeededStates(rooms[roomId]['connections'][elemCount], username):
+                    roomId = int(elem['conRoomId'])
+                    return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
         elemCount = -1
         # OBJEKTE
         for elem in rooms[roomId]['objects']:
@@ -115,37 +116,52 @@ def findAnswer(username, msg, roomId=-1):
     elif intentID == 2:
         elemCount = -1
         # ITEMS
-        for elem in rooms[roomId]['items']:
-            elemCount += 1
-            if elem['itemName'] in msg and checkNeededStates(rooms[roomId]['items'][elemCount], username):
-                return (elem['lookAt'], getRoomName(roomId), 'game')
+        if rooms[roomId]['items'][0] is not None:
+            for elem in rooms[roomId]['items']:
+                elemCount += 1
+                if elem['itemName'] in msg and checkNeededStates(rooms[roomId]['items'][elemCount], username):
+                    return (elem['lookAt'], getRoomName(roomId), 'game')
                 
         elemCount = -1
         # OBJEKTE
-        for elem in rooms[roomId]['objects']:
-            elemCount += 1
-            if elem['objName'] in msg and checkNeededStates(rooms[roomId]['objects'][elemCount], username):
-                updateStates(rooms[roomId]['objects'][elemCount], username)
-                return (elem['lookAt'], getRoomName(roomId), 'game')
+        if rooms[roomId]['items'][0] is not None:
+            for elem in rooms[roomId]['objects']:
+                elemCount += 1
+                if elem['objName'] in msg and checkNeededStates(rooms[roomId]['objects'][elemCount], username):
+                    updateStates(rooms[roomId]['objects'][elemCount], username)
+                    return (elem['lookAt'], getRoomName(roomId), 'game')
 
         return (getRoomDescription(roomId), getRoomName(roomId), 'game')
 
-    # CURRENT ROOM: Gibt den Raumtext nochmal aus
+    # PICK UP: Hebt ein item auf und gibt den Text zurück
     elif intentID == 3:
-        return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
+        elemCount = -1
+        for elem in rooms[roomId]['items']:
+            elemCount += 1
+            if elem['itemName'] in msg and checkNeededStates(rooms[roomId]['items'][elemCount], username):
+                updateStates(rooms[roomId]['items'][elemCount], username)
+                add_to_inventory(elem['itemName'], roomId, username)
+                return (elem['pickUp'], getRoomName(roomId), 'game')
 
     # ITEMS: NOCH NICHT FERTIG. BAUSTELLE
     elif intentID == 4:
-        return (get_inventory(roomid), getRoomName(roomid), 'game')
+        return (get_inventory(roomId, username), getRoomName(roomId), 'game')
+
+    # CURRENT ROOM: Gibt den Raumtext nochmal aus
+    elif intentID == 5:
+        return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
 
     # ABOUT: Beantwortet Fragen zum Chatbot
-    elif intentID == 5:
-        return (aboutHandler(msg), getRoomName(roomId), 'game')
-    # START PHONE: Der Handymodus wird gestartet
     elif intentID == 6:
-        if database.get_user_state_value(username, 'gotPhone') == True:
-            return ('You are now chatting with the professor', getRoomName(roomId), 'phone')
+        return (aboutHandler(msg), getRoomName(roomId), 'game')
+
+    # START PHONE: Der Handymodus wird gestartet
     elif intentID == 7:
+        if database.get_user_state_value(username, 'ownPhone') == True:
+            return ('You are now chatting with the professor', getRoomName(roomId), 'phone')
+
+    # HELP ASSISTANT
+    elif intentID == 8:
         return ('sorry no help assistant yet implemented', getRoomName(roomId), 'game')
 
     # Wenn nichts erkannt wurde
@@ -218,12 +234,10 @@ Returns: a list of tuples by (state, value)
 
 # Prüft alle angesprochenen(roomType) Zustände eines Raumes. Wenn einer nicht zutrifft wird False zurückgegeben.
 def checkNeededStates(roomElem, username: str):
-    allTrue = False
-    
+    allTrue = True
+
     for needState, needStateValue in zip(roomElem['needStates'], roomElem['needStatesValue']):
-        if None in (needState, needStateValue) or database.get_user_state_value(username, needState) == needStateValue: 
-            allTrue = True
-        else:
+        if None not in (needState, needStateValue) and database.get_user_state_value(username, needState) != needStateValue:
             allTrue = False
 
     return allTrue
@@ -237,8 +251,14 @@ def updateStates(roomElem, username: str):
             database.update_user_state(username, newState, 0)
 
 
-def checkNeededItems():
-    return True
+def checkNeededItems(roomElem, username: str):
+    allTrue = True
+
+    for needItem, needItemRoomId in zip(roomElem['needItems'], roomElem['needItemsRoomId']):
+        if None not in (needItem, needItemRoomId) and not database.does_user_item_exist(username, needItem, needItemRoomId):
+            allTrue = False
+
+    return allTrue
 
 
 """
@@ -273,26 +293,26 @@ def aboutHandler(msg: str) -> str:
 
 
 # inventory stuff
-def add_to_inventory(item_name: str, room_ID):
-    database.insert_item(get_current_username(), room_ID, item_name)
+def add_to_inventory(item_name: str, room_ID, username):
+    database.insert_item(username, room_ID, item_name)
 
 
-def remove_from_inventory(item_name: str, room_ID):
-    database.delete_user_item(get_current_username(), item_name, room_ID)
+def remove_from_inventory(item_name: str, room_ID, username):
+    database.delete_user_item(username, item_name, room_ID)
 
 
-def get_inventory(room_ID_0) -> str:
-    # testing
-    add_to_inventory("test_item", room_ID_0)
+def get_inventory(room_ID_0, username) -> str:
     #items == list of tuples
-    items_db = database.get_all_user_items(get_current_username())
-    # testing
-    remove_from_inventory("test_item", room_ID_0)
-    if not items_db:
+
+    items_db = database.get_all_user_items(username)
+
+    if items_db is None:
         return "Your Inventory is empty"
-    item_str = ""
+
+    item_str = "Your inventory contains: "
     index = 0
     size = len(items_db)
+    l.log_time("items_number: " + str(size))  # logging
     for i in items_db:
         item_name ,room_ID_1 = i
         if index == 0:

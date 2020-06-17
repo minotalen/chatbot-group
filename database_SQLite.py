@@ -15,16 +15,15 @@ def execute_database(query, arguments):
         c.execute(query, arguments)
     except sqlite3.Error as error:
         return (error, None, None)
-
-    # fetches SELECT returns
-    data0 = c.fetchone()
-    # fetches SELECT all returns
-    data1 = c.fetchall()
+ 
+    # fetches SELECT  all returns
+    data = c.fetchall()
+    
     # Commit our command
     conn.commit()
     # Close the connection
     conn.close()
-    return (None, data0, data1)
+    return (None, data)
 
 
 '''
@@ -60,7 +59,7 @@ def show_all_users():
         print("Failed to get all users", e)
     else:
         print("succesfully got all users")
-    users = fetch[2]
+    users = fetch[1]
     return users
 
 
@@ -70,8 +69,11 @@ def does_user_exist(username):
     query = """SELECT * FROM users WHERE user_name = ?"""
     fetch = execute_database(query, (username,))
     user = fetch[1]
-
-    if user is not None:
+    
+    if user is None or not user:
+        return False
+    
+    if user[0] is not None:
         return True
     else:
         return False
@@ -94,11 +96,20 @@ def insert_user(username, password):
 # Get id of user
 def get_user_id(username):
     # Query to database
+    if not does_user_exist(username):
+        return -1
+
     query = """SELECT rowid FROM users WHERE user_name = ?"""
     fetch = execute_database(query, (username,))
     user = fetch[1]
+    
+    if user is None or not user:
+        return -1
+
     if user[0] is not None:
-        return user[0]
+        return user[0][0]
+    else:
+        return -1
 
 
 """
@@ -116,7 +127,7 @@ user_item_id | user_id |   item_name    | room_id |
 def insert_item(username, room_id, item_name):
     user_id = get_user_id(username)
 
-    if user_id is not None:
+    if user_id is not None and not does_user_item_exist(username, item_name, room_id):
         query = """INSERT INTO user_items VALUES (?,?,?,?)"""
         fetch = execute_database(query, (None, user_id, item_name, room_id,))
         e = fetch[0]
@@ -134,12 +145,12 @@ def get_all_user_items(username):
     # Query to database
     query = """SELECT item_name, room_id FROM user_items WHERE user_id = ?"""
     fetch = execute_database(query, (user_id,))
-    items = fetch[2]
+    items = fetch[1]
     e = fetch[0]
     if e is not None:
         print("Failed to get all user items", e)
     else:
-        print("")
+        print("got all items")
     return items
 
 
@@ -149,12 +160,12 @@ def get_user_items_by_roomId(room_id, username):
     # Query to database
     query = """SELECT item_name FROM user_items WHERE room_id = ? AND user_id = ?"""
     fetch = execute_database(query, (room_id, user_id,))
-    items = fetch[2]
+    items = fetch[1]
     e = fetch[0]
     if e is not None:
         print("Failed to get user items by roomID", e)
     else:
-        print("")
+        print("got all items")
     return items
 
 
@@ -169,8 +180,12 @@ def does_user_item_exist(username, item_name, room_id):
     if e is not None:
         print("Failed to check user items", e)
     else:
-        print("")
-    if item is not None:
+        print("checked user items")
+    
+    if item is None or not item:
+        return False
+    
+    if item[0] is not None:
         return True
     else:
         return False
@@ -232,9 +247,11 @@ def does_user_state_exist(username, state_name):
     e = fetch[0]
     if e is not None:
         print("Failed to check user_state", e)
-    else:
-        print("")
-    if user is not None:
+
+    if user is None or not user:
+        return False
+
+    if user[0] is not None:
         return True
     else:
         return False
@@ -246,12 +263,11 @@ def get_all_user_states(username):
     # Query to database
     query = """SELECT state_name, state_value FROM user_states WHERE user_id = ?"""
     fetch = execute_database(query, (user_id,))
-    user_states = fetch[2]
+    user_states = fetch[1]
     e = fetch[0]
     if e is not None:
         print("Failed to get all user states", e)
-    else:
-        print("")
+
     return user_states
 
 
@@ -277,9 +293,11 @@ def get_user_state_id(user_id, state_name):
     e = fetch[0]
     if e is not None:
         print("Failed to get state-user-ID", e)
-    else:
-        print("")
     user = fetch[1]
+
+    if user is None or not user:
+        return -1
+
     return user[0]
 
 
@@ -313,7 +331,10 @@ def get_user_state_value(username, state_name):
         fetch = execute_database(query, (int(user_id), state_name,))
         state_value = fetch[1]
 
-        if state_value[0] == 1:
+        if state_value is None:
+            return False
+    
+        if state_value[0][0] == 1:
             return True
 
     elif does_user_exist(username):

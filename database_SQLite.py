@@ -411,7 +411,7 @@ def insert_user_recmessage(username: str, messages: int = -1):
 
 
 # Check if the user_name and password is taken
-def does_user_remessage_exist(username: str, message: int):
+def does_user_recmessage_exist(username: str, message: int):
     user_id = get_user_id(username)
     # Query to database
     query = """SELECT * FROM user_recmessage WHERE user_id = ?"""
@@ -442,10 +442,6 @@ def delete_user_recmessage(username: str, messages: int = -1):
             return True
     else:
         return False
-
-
-print(delete_user_recmessage("Max", 2))
-
 
 # insert_user("Max", "123456")
 # insert_user("Jacobh", "123456")

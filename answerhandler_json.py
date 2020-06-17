@@ -34,36 +34,6 @@ def answerHandler(inputjson, username):
     else:
         answer = findAnswer(username, str(obj['message'].lower()), getRoomId(str(obj['room'])))
 
-        # Case Trigger: Ein trigger wird ausgelöst und eventuell ändern sich zustände, funktionen werden ausgeführt
-
-        """
-        #Ist der benötigte Zustand erreicht? Wenn nicht gebe fail text aus
-        #Falls einer existiert:
-        beZustand = rooms[id][trigger]['benötigterzustand']
-        beZustandStatus = rooms[id][trigger]['benötigterzustandstatus']
-        
-        if(sql[beZustand].status != beZustandStatus)
-            answer[0] = "You can't do that"
-            
-        for every item in items
-            checkItemin Inventory(item)
-            answer[0] = failtext
-
-        if zustand erfolgreich && zustände erfolgreich:
-        
-            #Das nächste nur ausführen wenn item und beZustände erfolgreich waren    
-            #Ändere zustände die durch trigger geändert werden    
-            for every zustand in neuezustände
-                neuZustand = rooms[id][trigger]['neuerzustand']
-                neuZustandStatus = rooms[id][trigger]['neuerzustandstatus']
-                sql[neuZustand].status = neuZustandStatus
-            
-            #führe funktionen aus des triggers aus
-            for every action in Aktionen
-                handleTriggerAction(rooms[actions],rooms[actionValue])
-        
-        """
-
     if writeMessagetoTrainingData(str(obj['message'])):
         print("added message to training data")
     else:

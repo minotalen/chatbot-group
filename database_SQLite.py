@@ -15,10 +15,10 @@ def execute_database(query, arguments):
         c.execute(query, arguments)
     except sqlite3.Error as error:
         return (error, None, None)
- 
+
     # fetches SELECT  all returns
     data = c.fetchall()
-    
+
     # Commit our command
     conn.commit()
     # Close the connection
@@ -69,10 +69,10 @@ def does_user_exist(username):
     query = """SELECT * FROM users WHERE user_name = ?"""
     fetch = execute_database(query, (username,))
     user = fetch[1]
-    
+
     if user is None or not user:
         return False
-    
+
     if user[0] is not None:
         return True
     else:
@@ -102,7 +102,7 @@ def get_user_id(username):
     query = """SELECT rowid FROM users WHERE user_name = ?"""
     fetch = execute_database(query, (username,))
     user = fetch[1]
-    
+
     if user is None or not user:
         return -1
 
@@ -181,10 +181,10 @@ def does_user_item_exist(username, item_name, room_id):
         print("Failed to check user items", e)
     else:
         print("checked user items")
-    
+
     if item is None or not item:
         return False
-    
+
     if item[0] is not None:
         return True
     else:
@@ -208,6 +208,8 @@ def delete_user_item(username, item_name, room_id):
 
 
 """Just for fix bug"""
+
+
 def delete_user_item_by_useritemid(user_item_id):
     query = """DELETE FROM user_items WHERE user_item_id = ? """
     fetch = execute_database(query, (user_item_id,))
@@ -277,7 +279,8 @@ def insert_user_state(username, state_name, state_value):
 
     if user_id is not None:
         query = """INSERT INTO user_states VALUES (?,?,?,?)"""
-        fetch = execute_database(query, (None, int(user_id), state_name, state_value,))
+        fetch = execute_database(
+            query, (None, int(user_id), state_name, state_value,))
         e = fetch[0]
         if e is not None:
             print("Failed to add state", e)
@@ -323,7 +326,7 @@ def update_user_state(username, state_name, state_value):
 
 
 # Returns the value of a state in int
-def get_user_state_value(username, state_name):
+def get_user_state_value(username, state_name, add_if_none=True):
     user_id = get_user_id(username)
     # Query to database
     if does_user_state_exist(username, state_name):
@@ -333,11 +336,11 @@ def get_user_state_value(username, state_name):
 
         if state_value is None:
             return False
-    
+
         if state_value[0][0] == 1:
             return True
 
-    elif does_user_exist(username):
+    elif does_user_exist(username) and add_if_none:
         insert_user_state(username, state_name, 0)
         print("default state was added successful")
 
@@ -373,6 +376,8 @@ def delete_user_state_by_username(username):
 
 
 """just for fix bug"""
+
+
 def delete_user_state_by_userstateid(user_state_id):
     query = """DELETE FROM user_states WHERE user_state_id = ?"""
     fetch = execute_database(query, (user_state_id,))
@@ -414,15 +419,17 @@ def insert_user_recmessage(username: str, messages: int = -1):
 def does_user_recmessage_exist(username: str, message: int):
     user_id = get_user_id(username)
     # Query to database
-    query = """SELECT * FROM user_recmessage WHERE user_id = ?"""
-    fetch = execute_database(query, (user_id,))
+    query = """SELECT * FROM user_recmessage WHERE user_id = ? AND messages = ?"""
+    fetch = execute_database(query, (user_id, message,))
     user = fetch[1]
 
     if user is None or not user:
         return False
-    if user[0] is not None :
-        if user[0][1] == user_id and user[0][2] == message: return True
-        else: return False;
+    if user[0] is not None:
+        if user[0][1] == user_id and user[0][2] == message:
+            return True
+        else:
+            return False
     else:
         return False
 
@@ -452,7 +459,3 @@ def delete_user_recmessage(username: str, messages: int = -1):
 # insert_user_recmessage("Jacobh", 3)
 # insert_user_recmessage("a", 4)
 # insert_user_recmessage("b", 5)
-
-
-
-

@@ -7,7 +7,7 @@ from intentclassificator import classifyIntent, writeMessagetoTrainingData
 from phone import handleAnswer
 from riddlemode import handleRiddle
 import logging_time as l
-from main.py import get_current_username
+#from main.py import get_current_username
 
 with open('rooms.json', encoding="utf8") as allLevels:
     data = json.load(allLevels)

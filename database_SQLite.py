@@ -101,17 +101,6 @@ def get_user_id(username):
         return user[0]
 
 
-def delete_user(username, password):
-    # Query to database
-    query = """DELETE FROM users WHERE user_name = ? AND password = ?"""
-    fetch = execute_database(query, (username, password,))
-    e = fetch[0]
-    if e is not None:
-        print("Failed to delete user", e)
-    else:
-        print("information of that user is deleted")
-
-
 """
 save all the items that the player collected during play into "user_items" table. For example:
 ===================================================
@@ -147,7 +136,7 @@ def get_all_user_items(username):
     fetch = execute_database(query, (user_id,))
     items = fetch[2]
     e = fetch[0]
-    if (e != None):
+    if e is not None:
         print("Failed to get all user items", e)
     else:
         print("")
@@ -199,6 +188,26 @@ def delete_user_item(username, item_name, room_id):
             print("Failed to delete item", e)
         else:
             print("that item is deleted")
+    else:
+        print("No such item was found from that player")
+
+
+"""Just for fix bug"""
+def delete_user_item_by_useritemid(user_item_id):
+    query = """DELETE FROM user_items WHERE user_item_id = ? """
+    fetch = execute_database(query, (user_item_id,))
+
+
+def delete_user_item_by_username(username):
+    user_id = get_user_id(username)
+    if user_id is not None:
+        query = """DELETE FROM user_items WHERE user_id = ?"""
+        fetch = execute_database(query, (user_id,))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to delete item", e)
+        else:
+            print("that user_item is deleted by", username)
     else:
         print("No such item was found from that player")
 
@@ -326,3 +335,36 @@ def delete_user_state(username, state_name):
             print("Failed to delete user state", e)
         else:
             print("user state was deleted successful")
+
+
+# Delete one state by user name
+def delete_user_state_by_username(username):
+    user_id = get_user_id(username)
+
+    if user_id is not None:
+        query = """DELETE FROM user_states WHERE user_id = ?"""
+        fetch = execute_database(query, (user_id,))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to delete user state", e)
+        else:
+            print("user state was deleted successful")
+
+
+"""just for fix bug"""
+def delete_user_state_by_userstateid(user_state_id):
+    query = """DELETE FROM user_states WHERE user_state_id = ?"""
+    fetch = execute_database(query, (user_state_id,))
+
+
+def delete_user(username, password):
+    delete_user_item_by_username(username)
+    delete_user_state_by_username(username)
+    # Query to database
+    query = """DELETE FROM users WHERE user_name = ? AND password = ?"""
+    fetch = execute_database(query, (username, password,))
+    e = fetch[0]
+    if e is not None:
+        print("Failed to delete user", e)
+    else:
+        print("information of that user is deleted")

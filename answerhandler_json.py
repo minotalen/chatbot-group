@@ -165,7 +165,7 @@ def findAnswer(username, msg, roomId=-1):
     
     # START PHONE: Der Handymodus wird gestartet
     elif intentID == 7:
-        if database.get_user_state_value(username, 'gotPhone') == True:
+        if database.get_user_state_value(username, 'ownPhone') == True:
             return ('You are now chatting with the professor', getRoomName(roomId), 'phone')
 
     # HELP ASSISTANT
@@ -187,22 +187,6 @@ column = column / which represent a property of the rooms
 @throws ValueError if parameters ar not of type int
 Returns the csv file entry specified by the input coordinates
 """
-
-
-def findEntry(id: int, column: int) -> str:
-    script_location = Path(__file__).absolute().parent
-    file_location = script_location / 'roomsGW2.csv'
-    file = file_location.open()
-
-    with open(file_location, 'r', newline='') as file:
-        reader = csv.reader(file, delimiter='$')
-        rooms = [row for row in reader]
-
-    if not len(rooms) > id >= 0 or not len(rooms[id]) > column >= 0:
-        return "csv table coordinates are out of range"
-    else:
-        return rooms[id][column]
-
 
 # Get the room id by room name
 def getRoomId(roomName: str) -> int:
@@ -259,8 +243,15 @@ def updateStates(roomElem, username: str):
             database.update_user_state(username, newState, 0)
 
 
-def checkNeededItems():
-    return True
+def checkNeededItems(roomElem, username: str):
+    allTrue = True
+
+    for needItem, needItemRoomId in zip(roomElem['needItems'], roomElem['needItemsRoomId']):
+        if None not in (needItem, needItemRoomId) and not database.does_user_item_exist(username, needItem, needItemRoomId):
+            allTrue = False
+
+    return allTrue
+
 """
 @author:: Kristin Wünderlich
 @state: 17.06.20

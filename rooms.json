@@ -159,8 +159,8 @@
                 "fail": "You feel like there is nothing more to the box. The riddle was solved and you already have the phone and GPS device.",
                 "newStates": ["triggeredOpenBox","ownGps"],
                 "newStatesValue": [true, true],
-                "actions": ["changeMode"],
-                "actionsValue": ["riddle"]
+                "actions": [null],
+                "actionsValue": [null]
             },
             {
                 "trigName": "start phone",
@@ -172,8 +172,8 @@
                 "fail": "You left your smartphone at home. There is no other phone around to start, at least not yet.",
                 "newStates": ["triggeredStartPhone"],
                 "newStatesValue": [true],
-                "actions": [null],
-                "actionsValue": [null]
+                "actions": ["changeMode"],
+                "actionsValue": ["riddle"]
             },
             {
                 "trigName": "2375",

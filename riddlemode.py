@@ -1,4 +1,5 @@
 import json
+import database_SQLite as database
 
 helpText = "Hello dear adventurer! You are currently in riddle mode. Your quest is to type the right answer to continue the game. If you want to leave the riddle mode to continue exploring the world, please type 'go back' or 'exit'"
 
@@ -17,7 +18,7 @@ def handleRiddle(inputjson):
     return answer
 
 #Ergebnisse können sein: richtig, falsch, abbruch, beschreibung, help
-def checkAnswer(msg, roomId) -> str:
+def checkAnswer(msg, roomId, username) -> str:
 
     riddleId = getRiddleId(roomId)
     
@@ -26,23 +27,15 @@ def checkAnswer(msg, roomId) -> str:
     falseText = riddles[riddleId]['falseText']
     
     if rightAnswer == msg :
-        updateStatus(riddleId)
+        updateStates(riddles[riddleId],username)
         return [rightText, roomId, "game"]
     
     elif "help" in msg :return [helpText, roomId, "riddle"]
     elif "what" in msg: return [riddles[riddleId]['descri'], roomId, "riddle"]
-    elif "go back" in msg:
-        return ["You leave this riddle for now and return back to reality", roomId,"game"]
-    elif "exit" in msg:
+    elif "go back" in msg or "exit" in msg:
         return ["You leave this riddle for now and return back to reality", roomId,"game"]
     else : return [falseText, roomId, "riddle"]
-
-#Neue Zustande werden hier zugewiesen, wenn das rätsel erfolgreich war
-def updateStatus(RiddleId):
-    #ändere zustände auf der datenbank
-    pass
-
-    
+  
 def getRiddleId(roomId):       
     # getting length of list 
     length = len(riddles) 
@@ -53,3 +46,13 @@ def getRiddleId(roomId):
         if(riddles[i]['roomId'] == roomId): return i
         
     return -1
+
+def updateStates(roomElem, username: str):
+    
+    for newState, newStateValue in zip(roomElem['newStates'], roomElem['newStatesValue']):
+        if None not in (newState, newStateValue) and newStateValue:
+            database.update_user_state(username, newState, 1)
+        elif None not in (newState, newStateValue) and not newStateValue:
+            database.update_user_state(username, newState, 0)
+
+

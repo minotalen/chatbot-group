@@ -1,11 +1,10 @@
 import json
-import csv
 import pandas as pd
 import database_SQLite as database
 from pathlib import Path
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
 from phone import handleAnswer
-from riddlemode import handleRiddle
+from riddlemode import checkAnswer
 import logging_time as l
 
 with open('rooms.json', encoding="utf8") as allLevels:
@@ -28,7 +27,8 @@ def answerHandler(inputjson, username):
 
     # When the mode is riddle
     elif str(obj['mode']) == 'riddle':
-        answer = handleRiddle(obj)
+        answer = checkAnswer(str(obj['message'].lower()), getRoomId(str(obj['room'])), username)
+        answer[1]= getRoomName(answer[1])
 
     # When mode is game
     else:
@@ -89,7 +89,16 @@ def findAnswer(username, msg, roomId=-1):
             elemCount += 1
             if elem['trigName'] in msg and checkNeededStates(rooms[roomId]['triggers'][elemCount], username):
                 updateStates(rooms[roomId]['triggers'][elemCount], username)
-                return (elem['accept'], getRoomName(roomId), 'game')
+                altMode = 'game'
+                altRoom = roomId
+                if elem['actions'][0] is not None:
+                    for action, actionValue in zip(elem['actions'], elem['actionsValue']):
+                        altAction = doAction(action, actionValue, roomId, username)
+                        if altAction[0] is not None: altRoom = altAction[0]
+                        elif altAction[1] is not None: altMode = altAction[1]
+                return (elem['accept'], getRoomName(altRoom), altMode)
+            elif elem['trigName'] in msg:
+                return (elem['fail'], getRoomName(roomId), 'game')
 
     intentID = classifyIntent(msg, choices)
 
@@ -141,11 +150,11 @@ def findAnswer(username, msg, roomId=-1):
                 updateStates(rooms[roomId]['items'][elemCount], username)
                 add_to_inventory(elem['itemName'], roomId, username)
                 return (elem['pickUp'], getRoomName(roomId), 'game')
-
+    
     # ITEMS: NOCH NICHT FERTIG. BAUSTELLE
     elif intentID == 4:
         return (get_inventory(roomId, username), getRoomName(roomId), 'game')
-
+    
     # CURRENT ROOM: Gibt den Raumtext nochmal aus
     elif intentID == 5:
         return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
@@ -153,10 +162,10 @@ def findAnswer(username, msg, roomId=-1):
     # ABOUT: Beantwortet Fragen zum Chatbot
     elif intentID == 6:
         return (aboutHandler(msg), getRoomName(roomId), 'game')
-
+    
     # START PHONE: Der Handymodus wird gestartet
     elif intentID == 7:
-        if database.get_user_state_value(username, 'ownPhone') == True:
+        if database.get_user_state_value(username, 'gotPhone') == True:
             return ('You are now chatting with the professor', getRoomName(roomId), 'phone')
 
     # HELP ASSISTANT
@@ -250,14 +259,56 @@ def updateStates(roomElem, username: str):
             database.update_user_state(username, newState, 0)
 
 
-def checkNeededItems(roomElem, username: str):
-    allTrue = True
+def checkNeededItems():
+    return True
+"""
+@author:: Kristin Wünderlich
+@state: 17.06.20
+Does an action described in the room.json triggers
+Parameters
+----------
+actionName: Name of the action that should be done
+actionParam: Parameter for that action
+roomId: Id of current room
+username: Name of user
 
-    for needItem, needItemRoomId in zip(roomElem['needItems'], roomElem['needItemsRoomId']):
-        if None not in (needItem, needItemRoomId) and not database.does_user_item_exist(username, needItem, needItemRoomId):
-            allTrue = False
+Returns: (roomID, game mode)
+"""
+def doAction(actionName, actionParam, roomId, username):
+    actions = {
+        "changeMode" :1,
+        "addItem" :2,
+        "removeItem" :3,
+        "changeLocation" :4
+    }
+    actionId = actions.get(actionName, -1)
+    
+    #Action not recognized
+    if actionId == -1:
+        print("This action doesn't exist: "+actionName)
+        return (None,None)
 
-    return allTrue
+    #Change the mode
+    elif actionId == 1:
+        print("Change the mode to "+actionParam)
+        return (None, actionParam)
+    
+    #Add an item    
+    elif actionId == 2:
+        print("This item is added: "+actionParam)
+        add_to_inventory(actionParam, roomId, username)
+        return (None,None)
+    
+    #Remove an item    
+    elif actionId == 3:
+        print("This item is deleted: "+actionParam)
+        remove_from_inventory(actionParam, roomId, username)
+        return (None,None)
+
+    #Changes the room of the player
+    elif actionId == 4:
+        print("The player moves to room no.: "+ actionParam)
+        return(actionParam, None)
 
 
 """

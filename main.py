@@ -35,17 +35,17 @@ def update_users(payload):
         
     database.insert_user(readable_json['message'], '123456')
     user_sessions.append({"user": readable_json['message'], "sid": request.sid})
-    initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "Hello, " + readable_json['message'] + "!"}
+    initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "mode": "game", "message": "Hello, " + readable_json['message'] + "!"}
     json_data = json.dumps(initial_data)
     send(json_data, json=True)
-    intro_text = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "current room"}
+    intro_text = {"level": 0, "sender": "bot", "room": "elephant monument", "mode": "game", "message": "current room"}
     json_data = json.dumps(intro_text)
     send(answerHandler(json_data, get_username_by_sid(request.sid)), json=True)
 
 
 @socketio.on('connect')
 def connect():
-    initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "Welcome! Insert username."}
+    initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "mode": "game", "message": "Welcome! Insert username."}
     json_data = json.dumps(initial_data)
     send(json_data, json=True)
     print("You are now connected with the server")

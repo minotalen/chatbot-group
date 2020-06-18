@@ -5,6 +5,7 @@ import csv
 import database_SQLite as database
 from answerhandler_json import answerHandler
 import tensorflow as tf
+import logging_time as l
 
 # from answerhandler_withdatabase import answerHandler
 
@@ -31,11 +32,9 @@ def handleJson(payload):
 @socketio.on('user_registration')
 def update_users(payload):
     readable_json = json.loads(payload)
-    
+        
     database.insert_user(readable_json['message'], '123456')
     user_sessions.append({"user": readable_json['message'], "sid": request.sid})
-    print(user_sessions)
-
     initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "Hello, " + readable_json['message'] + "!"}
     json_data = json.dumps(initial_data)
     send(json_data, json=True)
@@ -46,7 +45,7 @@ def update_users(payload):
 
 @socketio.on('connect')
 def connect():
-    initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "Welcome!"}
+    initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "Welcome! Insert username."}
     json_data = json.dumps(initial_data)
     send(json_data, json=True)
     print("You are now connected with the server")

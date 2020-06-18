@@ -1,7 +1,7 @@
 /**
  * Client-side script to receive, send and display messages.
  * Authors: ?, Katja Schneider, Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modified: 06.06.2020
+ * Last modified: 18.06.2020
  */
 
 import { closeSuggestions, userInput } from './suggestions.mjs';
@@ -33,7 +33,8 @@ socket.on('json', (json) => {
   msg = readJSON(json);
   userMessageSendingAllowed = true;
 
-  updateRoomName(roomName);
+  updateMode();
+  updateRoomName();
   // updateCurrentLevel(levelID);
   printMessage(msg);
 });
@@ -122,12 +123,23 @@ function printMessage(msg) {
 
 
 /**
- * Updates the room name.
- * @param {String} room  new room name 
+ * Updates the new game mode for the interface.
  */
-function updateRoomName(room){
+function updateMode() {
+  if (modeName != 'riddle' && modeName != 'phone') {
+    document.documentElement.setAttribute('data-mode', '')
+  } else {
+    document.documentElement.setAttribute('data-mode', modeName);
+  }
+}
+
+
+/**
+ * Updates the room name.
+ */
+function updateRoomName(){
 	let rName = document.getElementById('room_name');
-	rName.innerHTML = room;
+	rName.innerHTML = roomName;
 }
 
 
@@ -188,7 +200,6 @@ function readJSON(json) {
   message = obj.message;
 
   console.log('received message: ' + message);
-
   return message;
 }
 

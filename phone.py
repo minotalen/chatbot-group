@@ -50,6 +50,8 @@ def handleAnswer(msg: str, username: str, level: int, roomId: int = -1) -> str:
         return "Your task is to play the game"  # replace return with some method
     if intent == 2:
         return printRecentMessage(username)
+    if intent == 3:
+        return tellAnswer(msg)
     # returns the answer of the prof if it is not empty
     answer = get_generated_answer(msg)
     return [answer, rustyprof][not answer]
@@ -69,8 +71,17 @@ Returns: a number which represent a intent of the user // -1 if no intent is fou
 
 
 def askProf(msg: str) -> int:
-    choices = ["tell task", "print recent message"]
+    choices = ["tell task", "print recent message", "ask professor:"]
     return classifyIntent(msg, choices)
+
+
+
+#TO DO for questions level 1
+def tellAnswer(msg: str) -> str:
+    if "how are" in msg:
+        return "i'm fine :)"
+    return "Hello"
+
 
 
 """

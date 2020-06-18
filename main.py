@@ -32,19 +32,8 @@ def handleJson(payload):
 @socketio.on('user_registration')
 def update_users(payload):
     readable_json = json.loads(payload)
-    input_message = readable_json['message'].split( )
-    username = input_message[0]
-    password = input_message[1]
-    if database.is_user_valid(username, password):
-        pass
-    elif not database.does_user_exist(username):
-        database.insert_user(username, password)
-    else:
-        # TODO reconnect user for input of login credentials
-        l.log_start()
-        l.log_time('USER_DISCONNECTED!')
-        l.log_end()
-    
+        
+    database.insert_user(readable_json['message'], '123456')
     user_sessions.append({"user": readable_json['message'], "sid": request.sid})
     print(user_sessions)
     initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "Hello, " + username + "!"}

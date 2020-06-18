@@ -31,7 +31,7 @@ def handleJson(payload):
 @socketio.on('user_registration')
 def update_users(payload):
     readable_json = json.loads(payload)
-    
+        
     database.insert_user(readable_json['message'], '123456')
     user_sessions.append({"user": readable_json['message'], "sid": request.sid})
     print(user_sessions)

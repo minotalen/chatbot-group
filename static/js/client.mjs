@@ -1,7 +1,7 @@
 /**
  * Client-side script to receive, send and display messages.
  * Authors: ?, Katja Schneider, Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modfidied: 06.06.2020
+ * Last modified: 06.06.2020
  */
 
 import { closeSuggestions, userInput } from './suggestions.mjs';

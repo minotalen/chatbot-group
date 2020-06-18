@@ -1,7 +1,7 @@
 /**
  * Chat input suggestion implementation.
  * Authors: Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modfidied: 06.06.2020
+ * Last modified: 06.06.2020
  */
 
 import { sendButton } from './client.mjs';

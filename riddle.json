@@ -5,15 +5,11 @@
         "rightAnswer": "2375",
         "rightText": "Congrats! You have now solved the riddle and are able to use the mobile phone.",
         "falseText": "Mhh... That number didn't work. Try another number.",
-        "descri": "Now for the phone. You start it, but you need a 4-digit pin to unlock it. Maybe the piece of paper can help? Your task is to solve the riddle. \nYou pick up the piece of paper inside the box and read it.\nHint: It’s prime time!\n629387445 \n That’s a lot of numbers. What does this have to do with the 4-digit code? Maybe there is something special about these numbers."  
-    },
-    {
-        "roomId": 2,
-        "rightAnswer": "1234",
-        "rightText": "elephant monument",
-        "falseText": "You are now standing in front of the elephant monument in the Nelson Mandela Park. Your task is to find the hidden box to solve the riddle the professor gave you.",
-        "descri": "hi"
-
+        "descri": "Now for the phone. You start it, but you need a 4-digit pin to unlock it. Maybe the piece of paper can help? Your task is to solve the riddle. \nYou pick up the piece of paper inside the box and read it.\nHint: It’s prime time!\n629387445 \n That’s a lot of numbers. What does this have to do with the 4-digit code? Maybe there is something special about these numbers.",  
+    	"newStates": ["solvedPinCode"],
+        "newStatesValue": [true],
+        "actions": [null],
+        "actionsValue": [null]
     }
     ]
 }

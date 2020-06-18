@@ -1,23 +1,41 @@
 import sqlite3
 
-conn = sqlite3.connect("elephanture.db")
+
+# ist not used, this is a global variable
+# conn = sqlite3.connect("elephanture.db")
 
 
 def execute_database(query, arguments):
+    # Connect to database
     conn = sqlite3.connect("elephanture.db")
+    # create a cursor
     c = conn.cursor()
-    c.execute(query, arguments)
+    try:
+        # execute the Query
+        c.execute(query, arguments)
+    except sqlite3.Error as error:
+        return (error, None, None)
+
+    # fetches SELECT  all returns
+    data = c.fetchall()
+
+    # Commit our command
     conn.commit()
+    # Close the connection
     conn.close()
+    return (None, data)
 
 
+'''
+    is not used
 def multiple_execute_database(query, arguments):
     conn = sqlite3.connect("elephanture.db")
     c = conn.cursor()
     c.executemany(query, arguments)
     conn.commit()
     conn.close()
-
+    return conn
+'''
 
 """
 save all the user who've played our game into "users" table. For example:
@@ -33,451 +51,410 @@ user_id | user_name       | password     |
 
 # find all information of players
 def show_all_users():
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
     # Query to database
     query = """SELECT * FROM users"""
-    c.execute(query)
-    users = c.fetchall()
-    for user in users:
-        print(user)
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
+    fetch = execute_database(query, None)
+    e = fetch[0]
+    if e is not None:
+        print("Failed to get all users", e)
+    else:
+        print("succesfully got all users")
+    users = fetch[1]
+    return users
 
 
 # Check if the user_name and password is taken
-def is_user_info_taken(username, password):
-    new_username = username.lower()
-    check_user = False
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
+def does_user_exist(username):
     # Query to database
-    query = """SELECT * from users WHERE user_name = ? AND password = ?"""
-    c.execute(query, (new_username, password))
-    user = c.fetchone()
-    if user is not None:
-        check_user = True
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-    return check_user
+    query = """SELECT * FROM users WHERE user_name = ?"""
+    fetch = execute_database(query, (username,))
+    user = fetch[1]
+
+    if user is None or not user:
+        return False
+
+    if user[0] is not None:
+        return True
+    else:
+        return False
 
 
 # Add one record into users table
-def insert_one_user(user_name, password):
-    new_username = user_name.lower()
-    query = """ INSERT INTO users values (?,?,?)"""
-    if not is_user_info_taken(user_name, password):
-        execute_database(query, (None, new_username, password))
+def insert_user(username, password):
+    query = """ INSERT INTO users VALUES (?,?,?)"""
+    if not does_user_exist(username):
+        fetch = execute_database(query, (None, username, password,))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to add user", e)
+        else:
+            print("succesfully added user")
     else:
-        print("Those user_name and password is taken. Try another")
+        print("This username is taken. Try another one.")
 
 
 # Get id of user
-def get_user_id(user_name, password):
-    id_of_user = 0
-    new_username = user_name.lower()
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
+def get_user_id(username):
     # Query to database
-    query = """SELECT rowid from users WHERE user_name = ? AND password = ?"""
-    c.execute(query, (new_username, password))
-    user = c.fetchone()
-    if user is not None:
-        id_of_user = user[0]
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-    return id_of_user
+    if not does_user_exist(username):
+        return -1
 
+    query = """SELECT rowid FROM users WHERE user_name = ?"""
+    fetch = execute_database(query, (username,))
+    user = fetch[1]
 
-def delete_user_by_username_and_password(user_name, password):
-    new_username = user_name.lower()
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-    # Query to database
-    query = """DELETE FROM users WHERE user_name = ? AND password = ?"""
-    c.execute(query, (new_username, password))
-    print("information of that user is deleted")
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
+    if user is None or not user:
+        return -1
 
-
-def delete_user_by_id(user_id):
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-    # Query to database
-    query = """DELETE FROM users WHERE user_id = ? """
-    c.execute(query, (user_id,))
-    print("information of that user is deleted")
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-
-
-"""
-save all the items that the user needs to complete our game into the "items" table. For example:
-===============================
-item_id | item_name |room_id  |
---------+-----------+---------|
-1       | "key"     | 0       |
-2       | "key"     | 1       |
-3       | "book"    | 4       |
-4       | "map"     | 3       |
---------+-----------+---------+
-"""
-
-
-def find_all_items():
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-    # Query to database
-    query = """SELECT * FROM items"""
-    c.execute(query)
-    users = c.fetchall()
-    for user in users:
-        print(user)
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-
-
-def find_item_by_roomId(room_id):
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-    # Query to database
-    query = """SELECT * FROM items WHERE room_id = ?"""
-    c.execute(query, (room_id,))
-    item = c.fetchone()
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-    return item
-
-
-def is_room_empty(room_id):
-    is_empty = False
-    if find_item_by_roomId(room_id) is None:
-        is_empty = True
-    return is_empty
-
-
-def insert_item(item_name, room_id):
-    new_itemName = item_name.lower()
-    query = "INSERT INTO items VALUES(?,?,?)"
-    if is_room_empty(room_id):
-        execute_database(query, (None, new_itemName, room_id))
+    if user[0] is not None:
+        return user[0][0]
     else:
-        print("That room is not empty")
+        return -1
 
 
-def delete_item(room_id):
-    if not is_room_empty(room_id):
+"""
+save all the items that the player collected during play into "user_items" table. For example:
+===================================================
+user_item_id | user_id |   item_name    | room_id | 
+-------------+---------+----------------+---------+
+  1          | 1       | "key"          | 0       |
+  2          | 1       | "key"          | 2       | 
+-------------+---------+----------------+---------+
+"""
+
+
+# Insert one record into user_items table
+def insert_item(username, room_id, item_name):
+    user_id = get_user_id(username)
+
+    if user_id is not None and not does_user_item_exist(username, item_name, room_id):
+        query = """INSERT INTO user_items VALUES (?,?,?,?)"""
+        fetch = execute_database(query, (None, user_id, item_name, room_id,))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to add item", e)
+        else:
+            print("succesfully added item")
+    else:
+        print("user not found")
+
+
+# Find all items that user has collected
+def get_all_user_items(username):
+    user_id = get_user_id(username)
+    # Query to database
+    query = """SELECT item_name, room_id FROM user_items WHERE user_id = ?"""
+    fetch = execute_database(query, (user_id,))
+    items = fetch[1]
+    e = fetch[0]
+    if e is not None:
+        print("Failed to get all user items", e)
+    else:
+        print("got all items")
+    return items
+
+
+# Find all items of one room, that user has collected
+def get_user_items_by_roomId(room_id, username):
+    user_id = get_user_id(username)
+    # Query to database
+    query = """SELECT item_name FROM user_items WHERE room_id = ? AND user_id = ?"""
+    fetch = execute_database(query, (room_id, user_id,))
+    items = fetch[1]
+    e = fetch[0]
+    if e is not None:
+        print("Failed to get user items by roomID", e)
+    else:
+        print("got all items")
+    return items
+
+
+# Find one specific item of a user
+def does_user_item_exist(username, item_name, room_id):
+    user_id = get_user_id(username)
+    # Query to database
+    query = """SELECT item_name FROM user_items WHERE room_id = ? AND user_id = ? AND item_name = ?"""
+    fetch = execute_database(query, (room_id, user_id, item_name,))
+    item = fetch[1]
+    e = fetch[0]
+    if e is not None:
+        print("Failed to check user items", e)
+    else:
+        print("checked user items")
+
+    if item is None or not item:
+        return False
+
+    if item[0] is not None:
+        return True
+    else:
+        return False
+
+
+def delete_user_item(username, item_name, room_id):
+    user_id = get_user_id(username)
+
+    if does_user_item_exist(username, item_name, room_id):
         # Query to database
-        query = """DELETE FROM items WHERE room_id = ?"""
-        execute_database(query, (room_id,))
-        print("that item is deleted")
+        query = """DELETE FROM user_items WHERE room_id = ? AND user_id = ? AND item_name = ?"""
+        fetch = execute_database(query, (room_id, user_id, item_name,))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to delete item", e)
+        else:
+            print("that item is deleted")
     else:
-        print("there is nothing in room")
+        print("No such item was found from that player")
 
 
-def get_item_id_byRoomId(room_id):
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-    # Query to database
-    query = """SELECT rowid from users WHERE room_id = ?"""
-    c.execute(query, (room_id,))
-    user = c.fetchone()
-    item_id = user[0]
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-    return item_id
+"""Just for fix bug"""
 
 
-def get_item_id(item_name, room_id):
-    new_itemName = item_name.lower()
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-    # Query to database
-    query = """SELECT rowid from users WHERE item_name = ? AND room_id = ?"""
-    c.execute(query, (new_itemName, room_id))
-    user = c.fetchone()
-    item_id = user[0]
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-    return item_id
+def delete_user_item_by_useritemid(user_item_id):
+    query = """DELETE FROM user_items WHERE user_item_id = ? """
+    fetch = execute_database(query, (user_item_id,))
 
 
-"""
-save all the items that the player collected during play into "items_users" table. For example:
-=========================================
-item_user_id |   item_id      | user_id | 
--------------+----------------+---------+
-1            | 1              | 0       |
-2            | 2              | 2       | 
--------------+----------------+---------+
-"""
-
-
-# Insert one record into items_users table
-def insert_item_user(username, password, room_id, item_name):
-    user_id = get_user_id(username, password)
-    item_id = get_item_id(item_name, room_id)
-    query = """INSERT INTO items_users VALUES (?,?,?)"""
-    execute_database(query, (None, item_id, user_id))
-
-
-# Find all items that user've collected
-def find_All_Items_Users():
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-    # Query to database
-    query = """SELECT * FROM items_users"""
-    c.execute(query)
-    items_users = c.fetchall()
-    for user_item in items_users:
-        print(user_item)
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-
-
-# Get list of items ids that not exists in items_users table. That means, our player needs to collect those items
-def find_items_id():
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-    # Query to database
-    query = """SELECT item_id FROM items WHERE item_id EXCEPT SELECT item_id FROM items_users"""
-    c.execute(query)
-    items_users = c.fetchall()
-    list = []
-    for user_item in items_users:
-        list.append(user_item[0])
-    print(list)
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-    return list
-
-
-"""
-save all states
-=======================
-state_id | state_name | 
----------+------------+
-1        | "level1"   |
-2        | "level2"   |
-3        | "level3"   |
-4        | "level4"   |
-5        | "level5"   |
----------+------------+ 
-"""
-
-
-def find_all_states():
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-    # Query to database
-    query = """SELECT * FROM states"""
-    c.execute(query)
-    items_users = c.fetchall()
-    for user_item in items_users:
-        print(user_item)
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-
-
-def is_state_already_exists(state_name):
-    new_stateName = state_name.lower()
-    result = False
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-    # Query to database
-    query = """SELECT * FROM states WHERE state_name = ?"""
-    c.execute(query, (new_stateName,))
-    item = c.fetchone()
-    if item is not None:
-        result = True
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-    return result
-
-
-def insert_state(state_name):
-    new_stateName = state_name.lower()
-    if not is_state_already_exists(state_name):
-        query = """INSERT INTO states VALUES (?,?)"""
-        execute_database(query, (None, new_stateName))
+def delete_user_item_by_username(username):
+    user_id = get_user_id(username)
+    if user_id is not None:
+        query = """DELETE FROM user_items WHERE user_id = ?"""
+        fetch = execute_database(query, (user_id,))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to delete item", e)
+        else:
+            print("that user_item is deleted by", username)
     else:
-        print("That state is already exists")
-
-
-def get_state_id_by_name(state_name):
-    new_stateName = state_name.lower()
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
-    # Query to database
-    query = """SELECT state_id FROM states WHERE state_name = ?"""
-    c.execute(query, (new_stateName,))
-    id = c.fetchone()
-    state_id = id[0]
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-    return state_id
+        print("No such item was found from that player")
 
 
 """
 save 
-==================================================
-state_user_id | user_id | state_id | state_value |
---------------+---------+----------+-------------+
- 1            | 1       | 2        | "False"     |
---------------+---------+----------+-------------+
+====================================================
+user_state_id | user_id | state_name | state_value |
+--------------+---------+------------+-------------+
+ 1            | 1       | level1     | 0           |
+--------------+---------+------------+-------------+
 """
 
 
 # Check if the user_name and password is taken
-def is_state_user_info_taken(username, password, state_name):
-    user_id = get_user_id(username, password)
-    state_id = get_state_id_by_name(state_name)
-    check_user = False
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
+def does_user_state_exist(username, state_name):
+    user_id = get_user_id(username)
     # Query to database
-    query = """SELECT * from states_users WHERE user_id = ? AND state_id = ?"""
-    c.execute(query, (user_id, state_id))
-    user = c.fetchone()
-    if user is not None:
-        check_user = True
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-    return check_user
+    query = """SELECT * FROM user_states WHERE user_id = ? AND state_name = ?"""
+    fetch = execute_database(query, (int(user_id), state_name,))
+    user = fetch[1]
+    e = fetch[0]
+    if e is not None:
+        print("Failed to check user_state", e)
+
+    if user is None or not user:
+        return False
+
+    if user[0] is not None:
+        return True
+    else:
+        return False
 
 
-def find_all_states_user_():
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
+# Returns all states of one user
+def get_all_user_states(username):
+    user_id = get_user_id(username)
     # Query to database
-    query = """SELECT * FROM states_users"""
-    c.execute(query)
-    states_users = c.fetchall()
-    for state_user in states_users:
-        print(state_user)
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
+    query = """SELECT state_name, state_value FROM user_states WHERE user_id = ?"""
+    fetch = execute_database(query, (user_id,))
+    user_states = fetch[1]
+    e = fetch[0]
+    if e is not None:
+        print("Failed to get all user states", e)
+
+    return user_states
 
 
-# Insert one record into items_users table
-def insert_state_user(user_name, password, state_name, state_value):
-    new_stateValue = state_value.lower()
-    user_id = get_user_id(user_name, password)
-    state_id = get_state_id_by_name(state_name)
-    query = """INSERT INTO states_users VALUES (?,?,?,?)"""
-    execute_database(query, (None, user_id, state_id, new_stateValue))
+# Insert one state into user_states table
+def insert_user_state(username, state_name, state_value):
+    user_id = get_user_id(username)
+
+    if user_id is not None:
+        query = """INSERT INTO user_states VALUES (?,?,?,?)"""
+        fetch = execute_database(
+            query, (None, int(user_id), state_name, state_value,))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to add state", e)
+        else:
+            print("state was sucessfully added")
 
 
 # Get state-user-id
-def get_state_user_id(user_id, state_id):
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
+def get_user_state_id(user_id, state_name):
     # Query to database
-    query = """SELECT rowid from states_users WHERE user_id = ? AND state_id = ?"""
-    c.execute(query, (user_id, state_id))
-    user = c.fetchone()
-    id_of_user = user[0]
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
-    return id_of_user
+    query = """SELECT rowid FROM user_states WHERE user_id = ? AND state_name = ?"""
+    fetch = execute_database(query, (user_id, state_name,))
+    e = fetch[0]
+    if e is not None:
+        print("Failed to get state-user-ID", e)
+    user = fetch[1]
+
+    if user is None or not user:
+        return -1
+
+    return user[0]
 
 
-# Update record in states_users table
-def update_state_users(username, password, state_name, state_value):
-    new_stateValue = state_value.lower()
-    user_id = get_user_id(username, password)
-    state_id = get_state_id_by_name(state_name)
-    # Connect to database
-    conn = sqlite3.connect("elephanture.db")
-    # create a cursor
-    c = conn.cursor()
+# Update record in user_states table
+def update_user_state(username, state_name, state_value):
+    user_id = get_user_id(username)
     # Query to database
-    if is_state_user_info_taken(username, password, state_name):
-        query = f"""UPDATE states_users SET state_value = ? WHERE user_id=? AND state_id = ?"""
-        data = (new_stateValue, user_id, state_id)
-        c.execute(query, data)
-        print("update-process is successful")
-    elif is_user_info_taken(username, password):
-        insert_state_user(username, password, state_name, new_stateValue)
-        print("insert-process is successful")
+    if does_user_state_exist(str(username), str(state_name)):
+        query = """UPDATE user_states SET state_value = ? WHERE user_id = ? AND state_name = ?"""
+        fetch = execute_database(query, (state_value, user_id, state_name,))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to update state", e)
+        else:
+            print("state was updated successful")
+
+    elif does_user_exist(username):
+        insert_user_state(username, state_name, state_value)
+        print("state was added successful")
+
     else:
-        print("There is no one has the name like you")
-    # Commit our command
-    conn.commit()
-    # Close the connection
-    conn.close()
+        print("There is no such user that can get a state")
 
 
-def delete_state_user(state_user_id):
-    query = """DELETE FROM states_users WHERE state_user_id = ?"""
-    execute_database(query, (state_user_id,))
-    print("delete-process is successful")
+# Returns the value of a state in int
+def get_user_state_value(username, state_name, add_if_none=True):
+    user_id = get_user_id(username)
+    # Query to database
+    if does_user_state_exist(username, state_name):
+        query = """SELECT state_value FROM user_states WHERE user_id = ? AND state_name = ?"""
+        fetch = execute_database(query, (int(user_id), state_name,))
+        state_value = fetch[1]
+
+        if state_value is None:
+            return False
+
+        if state_value[0][0] == 1:
+            return True
+
+    elif does_user_exist(username) and add_if_none:
+        insert_user_state(username, state_name, 0)
+        print("default state was added successful")
+
+    return False
+
+
+# Deletes one state of a user
+def delete_user_state(username, state_name):
+    user_id = get_user_id(username)
+
+    if user_id is not None:
+        query = """DELETE FROM user_states WHERE user_id = ? AND state_name = ?"""
+        fetch = execute_database(query, (user_id, state_name,))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to delete user state", e)
+        else:
+            print("user state was deleted successful")
+
+
+# Delete one state by user name
+def delete_user_state_by_username(username):
+    user_id = get_user_id(username)
+
+    if user_id is not None:
+        query = """DELETE FROM user_states WHERE user_id = ?"""
+        fetch = execute_database(query, (user_id,))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to delete user state", e)
+        else:
+            print("user state was deleted successful")
+
+
+"""just for fix bug"""
+
+
+def delete_user_state_by_userstateid(user_state_id):
+    query = """DELETE FROM user_states WHERE user_state_id = ?"""
+    fetch = execute_database(query, (user_state_id,))
+
+
+def delete_user(username, password):
+    delete_user_item_by_username(username)
+    delete_user_state_by_username(username)
+    # Query to database
+    query = """DELETE FROM users WHERE user_name = ? AND password = ?"""
+    fetch = execute_database(query, (username, password,))
+    e = fetch[0]
+    if e is not None:
+        print("Failed to delete user", e)
+    else:
+        print("information of that user is deleted")
+
+
+"""
+====================================================
+user_recmessage_id | user_id | messages |
+-------------------+---------+----------+
+ 1                 | 1       | level1   |
+-------------------+---------+----------+
+"""
+
+
+def insert_user_recmessage(username: str, messages: int = -1):
+    user_id = get_user_id(username)
+    if user_id == -1:
+        return False
+    else:
+        query = """INSERT INTO user_recmessage VALUES (?,?,?)"""
+        execute_database(query, (None, user_id, messages,))
+        return True
+
+
+# Check if the user_name and password is taken
+def does_user_recmessage_exist(username: str, message: int):
+    user_id = get_user_id(username)
+    # Query to database
+    query = """SELECT * FROM user_recmessage WHERE user_id = ? AND messages = ?"""
+    fetch = execute_database(query, (user_id, message,))
+    user = fetch[1]
+    if user is None or not user: return False
+    if user[0] is not None:
+        if user[0][1] == user_id and user[0][2] == message: return True
+        else: return False
+    else: return False
+
+
+# Deletes one state of a user
+def delete_user_recmessage(username: str, messages: int = -1):
+    user_id = get_user_id(username)
+    if does_user_recmessage_exist(username, messages):
+        if user_id != -1:
+            query = """DELETE FROM user_recmessage WHERE user_id = ? AND messages = ?"""
+            fetch = execute_database(query, (user_id, messages,))
+            e = fetch[0]
+            if e is not None:
+                print("unable to delete user haven't received message yet!", e)
+                return False
+            else:
+                print("deleted receive message from user")
+                return True
+        else:
+            return False
+    else:
+        print("nothing to delete")
+        return False        
+
+# insert_user("Max", "123456")
+# insert_user("Jacobh", "123456")
+# insert_user("a", "123456")
+# insert_user("b", "123456")
+
+# insert_user_recmessage("Max", 1)
+# insert_user_recmessage("Jacobh", 3)
+# insert_user_recmessage("a", 4)
+# insert_user_recmessage("b", 5)

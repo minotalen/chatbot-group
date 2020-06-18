@@ -1,7 +1,7 @@
 /**
  * Settings implementation.
  * Authors: Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modfidied: 25.05.2020
+ * Last modified: 25.05.2020
  */
 
 let settingsButton = document.getElementById('settings'),

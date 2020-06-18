@@ -25,7 +25,7 @@ def classifyIntent(msg: str, choices: list) -> int:
     if not all(isinstance(choice, str) for choice in choices): raise TypeError("intent choices must be a list of strings")
     
     answer = process.extractOne(msg, choices, scorer=fuzz.partial_ratio)
-    l.log_time('1')#logging
+    l.log_time('classify-Intent')#logging
     """
     try: response = m1.classifiers.classify(model_id='cl_bEWrgUGS', data=[msg]).body[0].get("classifications")[0]
     except PlanQueryLimitError as e: print(e.error_code, e.detail)
@@ -35,7 +35,7 @@ def classifyIntent(msg: str, choices: list) -> int:
     if not isinstance(answer[0], str) or not isinstance(answer, list) or not isinstance(answer[1], float):
         raise TypeError("MonkeyLearn error created wrong types in the answer")
     """
-    return [keyToNumber(checkSynonyms(msg, choices), choices), keyToNumber(answer[0], choices)][answer[1] >= 75] #0.175
+    return keyToNumber(answer[0], choices) if answer[1] >= 75 else keyToNumber(checkSynonyms(msg, choices), choices)
 
 """
 @author:: Max Petendra

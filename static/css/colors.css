@@ -7,6 +7,7 @@ Last modified: 20.05.2020
 :root {
   --color-primary: #365fc5;
   --color-primary-light: #6c91c9;
+  --color-onprimary: var(--color-text);
   --color-background: #E1E2E1;
   --color-surface: #edf0f7;
   --color-surface-light: rgba(255, 255, 255, 0.99);
@@ -25,6 +26,7 @@ Last modified: 20.05.2020
 [data-theme="dark"] {
   --color-primary: #9A97F3;
   --color-primary-light: #818cab;
+  --color-onprimary: var(--color-text);
   --color-background: #161625;
   --color-surface: #434370;
   --color-surface-light: #1d1d30;
@@ -37,13 +39,13 @@ Last modified: 20.05.2020
   --border-radius: 5px;
   --shadow: 0px 4px 8px #757575;
   --color-button-text: #ffffff;
-  --color-settings-btn-surface: #161625;
+  --color-settings-btn-surface: var(--color-background);
 }
 
 [data-theme="d"] {
-  --primary-color: #9A97F3;
-  --secondary-color: #818cab;
-  --font-color: #e1e1ff;
+  --color-primary: #9A97F3;
+  --color-secondary: #818cab;
+  --color-text: #e1e1ff;
   --bg-color: #161625;
   --heading-color: #818cab;
   --font-size: 100%;
@@ -51,3 +53,42 @@ Last modified: 20.05.2020
   --details-color: #818cab11;
   --color-button-text: #ffffff;
 }
+
+
+[data-mode="riddle"] {
+  /* top bar color, button background color */
+  --color-primary: rgb(0, 255, 115);
+
+  /* headlines */
+  --color-onprimary: var(--color-background);
+
+  /* no usage? */
+  --color-secondary: #123;
+
+  /* headlines, bot messages */
+  /* --color-text: #e1e1ff; */
+
+  /* background behind chat */
+  /* --color-background: var(--color-background); */
+
+  /* text field, text field selection highlighting, settings window, settings checkmark */
+  --color-surface: rgb(0, 136, 61);
+
+  /* settings entry background */
+  /* --color-surface-light: var(--color-surface-light); */
+
+  /* suggestion background */
+  /* --color-surface-dark: var(--color-surface-dark); */
+
+  /* text marker color for matching text in input field */
+  --color-primary-light: rgb(117, 255, 179);
+
+  /* Suggestion box heading + placeholder */
+  --color-text-placeholder: var(--color-onprimary);
+  
+  /* user message, input text color, primary button border */
+  /* --color-message-user: var(--color-message-user); */
+
+  /* bot message */
+  /* --color-message-bot: var(--color-message-bot); */
+} 

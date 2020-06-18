@@ -1,7 +1,7 @@
 /* 
 Main stylesheet for chat layout
 Authors: Kevin Katzkowski, mon janssen
-Last modified: 06.06.2020
+Last modified: 17.06.2020
 */
 
 #chat-container {
@@ -91,7 +91,7 @@ Last modified: 06.06.2020
   border-radius: var(--border-radius);
   border: 1px solid var(--color-message-user);
   transition: 0.2s;
-  color: var(--color-text);
+  color: var(--color-onprimary);
   font-weight: 600;
   flex-basis: calc(17.5% - 1rem);
   padding: 0.5rem 1rem;
@@ -147,7 +147,7 @@ mark {
 #suggestion-heading {
   font-size: 75%;
   font-weight: bold;
-  color: var(--color-text-placeholder);
+  color: var(--color-text); /* was color-text-placeholder */
   padding: 0 1rem;
 }
 

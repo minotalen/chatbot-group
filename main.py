@@ -4,6 +4,7 @@ import json
 import csv
 import database_SQLite as database
 from answerhandler_json import answerHandler
+import tensorflow as tf
 
 # from answerhandler_withdatabase import answerHandler
 
@@ -14,8 +15,7 @@ app.config["SECRET_KEY"] = "x!\x84Iy\xf9#gE\xedBQqg+\xf3A+\xe3\xd3\x01\x1a\xdf\x
 socketio = SocketIO(app)
 socketio.init_app(app, cors_allowed_origins="*")
 
-users = []
-
+user_sessions = []
 
 @app.route('/')
 def send_index_page():
@@ -25,21 +25,23 @@ def send_index_page():
 @socketio.on('json')
 def handleJson(payload):
     print("sending: " + payload)
-    send(answerHandler(payload), json=True)
+    send(answerHandler(payload, get_username_by_sid(request.sid)), json=True)
 
 
 @socketio.on('user_registration')
 def update_users(payload):
     readable_json = json.loads(payload)
-    add_user_db_wp(readable_json['message'])
-    users.append({"user_id": request.sid, "user_name": readable_json['message']})
+    
+    database.insert_user(readable_json['message'], '123456')
+    user_sessions.append({"user": readable_json['message'], "sid": request.sid})
+    print(user_sessions)
+
     initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "Hello, " + readable_json['message'] + "!"}
     json_data = json.dumps(initial_data)
     send(json_data, json=True)
     intro_text = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "current room"}
     json_data = json.dumps(intro_text)
-    send(answerHandler(json_data), json=True)
-    print("added user: " + readable_json['message'] + " with session id: " + request.sid)
+    send(answerHandler(json_data, get_username_by_sid(request.sid)), json=True)
 
 
 @socketio.on('connect')
@@ -52,6 +54,8 @@ def connect():
 
 @socketio.on('disconnect')
 def disconnect():
+    user_sessions.remove({"user": get_username_by_sid(request.sid), "sid": request.sid})
+    print(user_sessions)
     print("You are disconneced from the server")
 
 
@@ -59,18 +63,15 @@ def disconnect():
 def error_handler(e):
     raise Exception("Some error happened, no further notice")
 
-# Nutzer hinzufügen. Vorerst ohne Passwort
-def add_user_db_wp(username):
-    password = "123456"
-    if isinstance(username, str):
-        database.insert_one_user(username, password)
-    else:
-        raise ValueError("username must to be in string")
-# with open('rooms.csv') as csv_file:
-#     roomreader = csv.reader(csv_file)
-#     rows = list(roomreader)
-#     print(rows[1])
 
+def get_username_by_sid(sid):
+    for users in user_sessions:
+        if sid == users['sid']:
+            return users['user']
+
+
+def get_current_username():
+    return get_username_by_sid(request.sid)
 
 if __name__ == "__main__":
     print("Try to start server...")

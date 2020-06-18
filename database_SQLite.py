@@ -225,7 +225,7 @@ def delete_user_item(username, item_name, room_id):
 
 def delete_user_item_by_useritemid(user_item_id):
     query = """DELETE FROM user_items WHERE user_item_id = ? """
-    fetch = execute_database(query, (user_item_id,))
+    execute_database(query, (user_item_id,))
 
 
 def delete_user_item_by_username(username):
@@ -393,7 +393,7 @@ def delete_user_state_by_username(username):
 
 def delete_user_state_by_userstateid(user_state_id):
     query = """DELETE FROM user_states WHERE user_state_id = ?"""
-    fetch = execute_database(query, (user_state_id,))
+    execute_database(query, (user_state_id,))
 
 
 def delete_user(username, password):

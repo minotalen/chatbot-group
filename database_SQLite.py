@@ -63,7 +63,7 @@ def show_all_users():
     return users
 
 
-# Check if the user_name and password is taken
+# Check if the user_name is taken
 def does_user_exist(username):
     # Query to database
     query = """SELECT * FROM users WHERE user_name = ?"""
@@ -78,6 +78,19 @@ def does_user_exist(username):
     else:
         return False
 
+# Check if the password fits the username
+def is_user_valid(username, password):
+    query = """SELECT * FROM users WHERE user_name = ? AND password = ?"""
+    fetch = execute_database(query, (username, password,))
+    user = fetch[1]
+    
+    if user is None or not user:
+        return False
+
+    if user[0] is not None:
+        return True
+    else:
+        return False
 
 # Add one record into users table
 def insert_user(username, password):
@@ -212,7 +225,7 @@ def delete_user_item(username, item_name, room_id):
 
 def delete_user_item_by_useritemid(user_item_id):
     query = """DELETE FROM user_items WHERE user_item_id = ? """
-    fetch = execute_database(query, (user_item_id,))
+    execute_database(query, (user_item_id,))
 
 
 def delete_user_item_by_username(username):
@@ -380,7 +393,7 @@ def delete_user_state_by_username(username):
 
 def delete_user_state_by_userstateid(user_state_id):
     query = """DELETE FROM user_states WHERE user_state_id = ?"""
-    fetch = execute_database(query, (user_state_id,))
+    execute_database(query, (user_state_id,))
 
 
 def delete_user(username, password):

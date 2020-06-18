@@ -5,6 +5,7 @@ import csv
 import database_SQLite as database
 from answerhandler_json import answerHandler
 import tensorflow as tf
+import logging_time as l
 
 # from answerhandler_withdatabase import answerHandler
 
@@ -31,12 +32,22 @@ def handleJson(payload):
 @socketio.on('user_registration')
 def update_users(payload):
     readable_json = json.loads(payload)
+    input_message = readable_json['message'].split( )
+    username = input_message[0]
+    password = input_message[1]
+    if database.is_user_valid(username, password):
+        pass
+    elif not database.does_user_exist(username):
+        database.insert_user(username, password)
+    else:
+        # TODO reconnect user for input of login credentials
+        l.log_start()
+        l.log_time('USER_DISCONNECTED!')
+        l.log_end()
     
-    database.insert_user(readable_json['message'], '123456')
     user_sessions.append({"user": readable_json['message'], "sid": request.sid})
     print(user_sessions)
-
-    initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "Hello, " + readable_json['message'] + "!"}
+    initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "Hello, " + username + "!"}
     json_data = json.dumps(initial_data)
     send(json_data, json=True)
     intro_text = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "current room"}
@@ -46,7 +57,7 @@ def update_users(payload):
 
 @socketio.on('connect')
 def connect():
-    initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "Welcome!"}
+    initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "items": [], "mode": "game", "message": "Welcome! Insert username and password with a space between"}
     json_data = json.dumps(initial_data)
     send(json_data, json=True)
     print("You are now connected with the server")

@@ -1,5 +1,6 @@
 import json
 import database_SQLite as database
+import data_json_functions as djf
 
 helpText = "Hello dear adventurer! You are currently in riddle mode. Your quest is to type the right answer to continue the game. If you want to leave the riddle mode to continue exploring the world, please type 'go back' or 'exit'"
 
@@ -27,8 +28,14 @@ def checkAnswer(msg, roomId, username) -> str:
     falseText = riddles[riddleId]['falseText']
     
     if rightAnswer == msg :
-        updateStates(riddles[riddleId],username)
-        return [rightText, roomId, "game"]
+        djf.updateStates(riddles[riddleId],username)
+        altRoom = roomId
+        if riddles[riddleId]['actions'][0] is not None:
+            for action, actionValue in zip(riddles[riddleId]['actions'], riddles[riddleId]['actionsValue']):
+                altAction = djf.doAction(action, actionValue, roomId, username)
+                if altAction[0] is not None: altRoom = altAction[0]
+        
+        return [rightText, altRoom, "game"]
     
     elif "help" in msg :return [helpText, roomId, "riddle"]
     elif "what" in msg: return [riddles[riddleId]['descri'], roomId, "riddle"]
@@ -47,12 +54,5 @@ def getRiddleId(roomId):
         
     return -1
 
-def updateStates(roomElem, username: str):
-    
-    for newState, newStateValue in zip(roomElem['newStates'], roomElem['newStatesValue']):
-        if None not in (newState, newStateValue) and newStateValue:
-            database.update_user_state(username, newState, 1)
-        elif None not in (newState, newStateValue) and not newStateValue:
-            database.update_user_state(username, newState, 0)
 
 

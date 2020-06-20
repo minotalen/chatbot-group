@@ -28,7 +28,7 @@ messagequeue = queue.Queue()
 
 """
 @author:: Max Petendra
-@state: 10.06.20
+@state: 19.06.20
 handles the answer of the professor in the game
 // idea if intent is classifier execute method with room and level
 so you get apropiate information from the prof
@@ -40,18 +40,21 @@ level: the current level of the player as an int
 
 Returns: a string as an answer
 """
-
-
 def handleAnswer(msg: str, username: str, level: int, roomId: int = -1) -> str:
+    
     if roomId == -1:
         raise ValueError("Invalid room id!")
+
+    querytuple = checkforMsgQuery(msg, username)
+    if querytuple[0]: return querytuple[1]
+        
     intent = askProf(msg)
-    if intent == 1:
-        return "Your task is to play the game"  # replace return with some method
-    if intent == 2:
-        return printRecentMessage(username)
-    if intent == 3:
-        return tellAnswer(msg)
+    if intent == 1:   return "Your task is to play the game"  # replace return with some method
+    elif intent == 2: return printRecentMessage(username)
+    elif intent == 3: return getMessageRange(username)
+    elif intent == 4: return tellAnswer(msg)
+    
+        
     # returns the answer of the prof if it is not empty
     answer = get_generated_answer(msg)
     return [answer, rustyprof][not answer]
@@ -71,7 +74,7 @@ Returns: a number which represent a intent of the user // -1 if no intent is fou
 
 
 def askProf(msg: str) -> int:
-    choices = ["tell task", "print recent message", "ask professor:"]
+    choices = ["tell task", "print recent message", "messages index", "ask professor:"]
     return classifyIntent(msg, choices)
 
 
@@ -95,8 +98,6 @@ msg: the message of the user
 
 Returns: a string as an answer
 """
-
-
 def get_generated_answer(input_context: str) -> str:
 
     # add . if sentence doesnt end with a punctuation
@@ -126,8 +127,7 @@ def get_generated_answer(input_context: str) -> str:
 
     # split into sentences and slice unfinished // returns rustyprof if exception is throwed
     try:
-        def formatstart(msg): return msg[2:] if msg[0:2] == '. ' else (
-            msg.strip() if msg[0] == ' ' else msg)
+        def formatstart(msg): return msg[2:] if msg[0:2] == '. ' else (msg.strip() if msg[0] == ' ' else msg)
         sentences = tokenize.sent_tokenize(answer)
         if len(sentences) > 1:
             return [answer, formatstart(re.sub(sentences[-1], '', answer)).rstrip()][len(answer) > 2]
@@ -137,7 +137,7 @@ def get_generated_answer(input_context: str) -> str:
 
 
 """
-@author:: Max Petendra, Jakob Hackstein
+@author:: Max Petendra, Jakob Hackstein, Canh Dinh
 @state: 17.06.20
 adds message to message queue if message is triggerd
 
@@ -147,12 +147,9 @@ username: the username of the current player as a string
 
 Returns: the last sent message of the prof (from the messagequeue)
 """
-
-
 def printRecentMessage(username) -> str:
     for msgdict in messages:
-        if database.get_user_state_value(
-                username, msgdict.get("user_state"), False):
+        if database.get_user_state_value(username, msgdict.get("user_state"), False):
             if not database.does_user_recmessage_exist(username, msgdict.get("id")):
                 messagequeue.put(msgdict.get("str_message"))
                 database.insert_user_recmessage(username, msgdict.get("id"))
@@ -161,11 +158,79 @@ def printRecentMessage(username) -> str:
      
     return "you have no new messages yet" if messagequeue.empty() else messagequeue.get()
     
+"""
+@author:: Max Petendra, Jakob Hackstein, Canh Dinh
+@state: 19.06.20
+collect all sent messages of a certain player in the databse from the json container 
 
+Parameters
+----------
+username: the username of the current player as a string
 
-def getAllMessages(username):
+Returns: all sent message of the prof as a list
+"""
+def getAllMessages(username) -> list:
     allmessages = []
     for msgdict in messages:
         if database.does_user_recmessage_exist(username, msgdict.get("id")):
-            allmessages += msgdict.get("str_message")
+            allmessages += [msgdict.get("str_message")]
     return(allmessages)
+
+"""
+@author:: Max Petendra
+@state: 19.06.20
+collect all sent messages of a certain player in the databse from the json container 
+
+Parameters
+----------
+username: the username of the current player as a string
+index: the index of the msg a an int
+
+Returns: a received message by number of the current player
+"""
+def printCertainMessage(username: str, index: int) -> str:
+    listofmsgs = getAllMessages(username)
+    return listofmsgs[index-1] if 0 < index <= len(listofmsgs) else "message does not exist"
+
+"""
+@author:: Max Petendra
+@state: 19.06.20
+prints the range of the msg indexes of a player by usernames
+
+Parameters
+----------
+username: the username of the current player as a string
+
+Returns: a string thats say which messages (indexes) the player can acess
+"""
+def getMessageRange(username: str):
+    listofmsgs = getAllMessages(username)
+    if not listofmsgs: return "you have no messages recieved yet"
+    elif len(listofmsgs) == 1: return "you can access on msg 1"
+    else: return "you can access on msg 1 to " + str(len(listofmsgs))
+
+"""
+@author:: Max Petendra
+@state: 19.06.20
+checks the msg query of the player 
+
+Parameters
+----------
+msg: the input msg of the player
+username: the username of the current player as a string
+
+Returns: a tuple (bool:msg exists, string:msg)
+"""
+def checkforMsgQuery(msg: str, username: str) -> str:
+    listofmsg = [string.lower() for string in  msg.split()]
+    if "message" in listofmsg:
+        indexofmsgnumber = listofmsg.index("message") + 1
+        if indexofmsgnumber <= len(listofmsg) - 1:
+            if listofmsg[indexofmsgnumber].isdecimal():
+                return (True, printCertainMessage(username, int(listofmsg[indexofmsgnumber])))
+    return (False, "")                
+                
+                
+                
+                
+              

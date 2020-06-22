@@ -1,20 +1,23 @@
 /**
  * Client-side script to receive, send and display messages.
  * Authors: ?, Katja Schneider, Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modfidied: 20.05.2020
+ * Last modified: 18.06.2020
  */
 
 import { closeSuggestions, userInput } from './suggestions.mjs';
 import { closeSettings } from './settings.mjs';
-var protocol = window.location.protocol;
-let socket = io.connect(protocol + '//' + document.domain + ':' + location.port),
+
+let socket = io.connect("http://127.0.0.1:5000"),
   sendButton = document.getElementById('send-button'),
   userName = undefined,
   levelID = 'test_level_ID',
   senderName = 'test_sender_name',
   roomName = 'test_room_name',
-  itemList = [{ item: 'test_item_name1', action: 'test_item_action1' }, { item: 'test_item_name2', action: 'test_item_action2' }],
-  msg;
+  modeName = 'test_mode',
+  msg, 
+  typeIndicator = document.getElementById('type-indicator'),
+  userMessageSendingAllowed = true;
+ 
 
 socket.on('connect', function () {
   console.log('connected client');
@@ -27,8 +30,10 @@ socket.on('connect', function () {
 socket.on('json', (json) => {
   console.log('message received');
   msg = readJSON(json);
+  userMessageSendingAllowed = true;
 
-  updateRoomName(roomName);
+  updateMode();
+  updateRoomName();
   // updateCurrentLevel(levelID);
   printMessage(msg);
 });
@@ -45,15 +50,21 @@ sendButton.addEventListener('click', () => {
 /**
  * Sends the message from the chat input to the socket.
  */
-function sendMessage(evt = 'json') {
+function sendMessage(evt='json') {
   let json;
+
+  if (!userMessageSendingAllowed) {
+    console.log('message sending forbidden, no message sent!');
+    return;
+  }
+
   msg = userInput.value;
 
   // set user as sender on outgoing messages
   senderName = 'user';
 
   // store user name in client variables
-  if (evt == 'user_registration') {
+  if(evt == 'user_registration') {
     userName = msg;
   }
 
@@ -67,7 +78,7 @@ function sendMessage(evt = 'json') {
 
     printMessage(msg);
     userInput.focus();
-
+    userMessageSendingAllowed = false;
   } else {
     console.log('no message to send!');
   }
@@ -88,14 +99,22 @@ function printMessage(msg) {
   switch (senderName) {
     case 'bot':
       elem.className = 'chat-message-bot';
+      typeIndicator.style.visibility = 'hidden';
+
+      // remove bottom margin since element size works as bottom spacing when visiblity is set to hidden
+      typeIndicator.style.marginBottom = '0';
       break;
 
     default:
       elem.className = 'chat-message-user';
+      typeIndicator.style.visibility = 'visible';
+
+      // add margin equal to element size for consistent bottom spacing
+      typeIndicator.style.marginBottom = typeIndicator.getBoundingClientRect().height + 'px';
       break;
   }
 
-  chat.appendChild(elem);
+  chat.insertBefore(elem, typeIndicator);
 
   // scroll to bottom
   chat.scrollTop = chat.scrollHeight - chat.clientHeight;
@@ -103,12 +122,23 @@ function printMessage(msg) {
 
 
 /**
- * Updates the room name.
- * @param {String} room  new room name 
+ * Updates the new game mode for the interface.
  */
-function updateRoomName(room) {
-  let rName = document.getElementById('room_name');
-  rName.innerHTML = room;
+function updateMode() {
+  if (modeName != 'riddle' && modeName != 'phone') {
+    document.documentElement.setAttribute('data-mode', '')
+  } else {
+    document.documentElement.setAttribute('data-mode', modeName);
+  }
+}
+
+
+/**
+ * Updates the room name.
+ */
+function updateRoomName(){
+	let rName = document.getElementById('room_name');
+	rName.innerHTML = roomName;
 }
 
 
@@ -116,11 +146,11 @@ function updateRoomName(room) {
  * Updates the currently level.
  * @param {String} level new level
  */
-function updateCurrentLevel(level) {
+function updateCurrentLevel(level){
   let currentLevel = document.getElementById('level');
   console.log(currentLevel);
-
-  currentLevel.innerHTML = level;
+  
+	currentLevel.innerHTML = level;
 }
 
 
@@ -137,7 +167,7 @@ function createJSON(msg) {
     level: levelID,
     sender: senderName,
     room: roomName,
-    items: itemList,
+    mode: modeName,
     message: msg
   };
 
@@ -163,11 +193,10 @@ function readJSON(json) {
   levelID = obj.level;
   senderName = obj.sender;
   roomName = obj.room;
-  itemList = obj.items;
+  modeName = obj.mode;
   message = obj.message;
 
   console.log('received message: ' + message);
-
   return message;
 }
 
@@ -185,16 +214,16 @@ function sendUserName() {
  * Close input field suggestions on click outside of input field.
  */
 window.addEventListener('click', (evt) => {
-  console.log(evt.target);
-
-  console.log('window click');
-  if (evt.target.id != 'input-user') closeSuggestions();
-  if (!document.getElementById('settings-window').contains(evt.target) && evt.target.id != 'settings') closeSettings();
+  // console.log(evt.target);
+  
+  // console.log('window click');
+  if(evt.target.id != 'input-user') closeSuggestions();
+  if(!document.getElementById('settings-window').contains(evt.target) && evt.target.id != 'settings') closeSettings();
 }, false);
 
 
-window.addEventListener('keyup', (evt) => {
-  evt.preventDefault(); //???????
+window.addEventListener('keyup', (evt) => {  
+  evt.preventDefault(); // ???????
 });
 
 

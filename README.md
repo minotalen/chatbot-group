@@ -20,21 +20,13 @@ Hier nochmal zum Nachlesen in der [Flask Dokumentation](https://exploreflask.com
 
 ## Installieren
 
-Damit es läuft braucht jeder Python. Damit habt ihr auch pip und könnt in der Konsole folgende Befehle ausführen:
+Damit es läuft, braucht jeder Python installieren, empfohlenerweise in einem virtual environment(https://docs.python.org/3/library/venv.html), z.B. conda(https://anaconda.org/anaconda/conda)
 
--Python installieren, empfohlenerweise in einem virtual environment(https://docs.python.org/3/library/venv.html), z.B. conda(https://anaconda.org/anaconda/conda)
+Damit habt ihr auch pip und könnt in der Konsole im Git Ordner folgende Befehle ausführen:
 
--Konsole im git ordner öffnen
+`pip install -r requirements.txt`
 
--Folgendes in die Konsole pasten und ausführen: `pip install -r requirements.txt`
-
-Oder einzeln nacheinander:
-
-`pip install Flask`
-
-`pip install flask-socketio`
-
-`pip install eventlet`
+Falls möglich, schreibt alle benötigten python-module in die pip, die how-to-requirements im glitch ist für so Fälle wie `en_core_web_sm` geupdatet
 
 Sonst schaut nochmal in die [Flask-SocketIO Doku](https://flask-socketio.readthedocs.io/en/latest/).
 
@@ -44,6 +36,30 @@ Dazu einfach in die Python Konsole gehen und eintippen
 `import nltk` und danach
 
 `nltk.download('wordnet')`
+
+`nltk.download('punkt')`
+
+**Für spacy bitte in der Konsole eingeben**
+
+`python -m spacy download en_core_web_sm`
+Genauen befehl für betriebssystem
+Link zur Anleitung `https://spacy.io/usage/models`
+
+** Torch installieren **
+
+https://pytorch.org/
+
+Um Torch zu installieren muss jeder unter seinen Konfigurationen eine Installation
+durchführen.
+
+!Beispiel!
+`pip install torch==1.5.0+cpu torchvision==0.6.0+cpu -f https://download.pytorch.org/whl/torch_stable.html`
+
+**Anleitung Windows mit Python 3.8.2 64-Bit**
+
+Zuerst `pip install -r requirements.txt`.
+
+Danach die nltk-Geschichte downloaden.
 
 ## Bekannte Fehler
 
@@ -72,16 +88,16 @@ Wenn der Server gestartet ist, öffnet einen Browser unter addresse [http://loca
 Prüft die Connection, indem ihr die developer tools öffnet und den Reiter Console anklickt. Dort sollte wenn alles geklappt hat `connected client` stehen.
 
 ## Rooms.csv
+
 Die `rooms.csv` beinhaltet die spielbaren Räume, in denen sich der Spieler befindet. Die Datei bietet Infos dazu, was man alles in welchem Raum machen kann und wie er aussieht.
 
-Spaltentrennung mit "$"!!!
+Spaltentrennung mit "\$"!!!
 
 Und so ist die `rooms.csv` mit Syntax aufgebaut. Wichtig! Die Überschriften sind selbst nicht in der CSV drin:
 
-| ID | Room Name | Introduction | Description | Connections | Triggers |
-| -- | --------- |--------------|----------|-------------|-------------|
-| 0 | room 1 | "As you go into this room you feel really weird. You see blabla" | "You look around the room and see two doors and an old lady." | door?1;trap door?2 | collect Key&"Congrats you collected an old key";use key&"You open the door with a key" |
-
+| ID  | Room Name | Introduction                                                     | Description                                                   | Connections        | Triggers                                                                               |
+| --- | --------- | ---------------------------------------------------------------- | ------------------------------------------------------------- | ------------------ | -------------------------------------------------------------------------------------- |
+| 0   | room 1    | "As you go into this room you feel really weird. You see blabla" | "You look around the room and see two doors and an old lady." | door?1;trap door?2 | collect Key&"Congrats you collected an old key";use key&"You open the door with a key" |
 
 ID: Die Raum-ID, für jeden Raum einzigartig, gleich der Zeilenzahl.
 
@@ -96,11 +112,3 @@ Connections: Die Räume, die mit dem in der Zeile gezeigten Raum verbunden sind.
 Description: Wird bei "look around" ausgeführt. Beschreibt den Raum, wenn man schon drinne steht. "This room is old and dirty. It is dark"
 
 Notes: Informationen, diese Spalte wird nicht vom code benutzt. Allerdings beschreibt sie beispielsweise boolische Werte, die eingebeut werden müssen.
-
-## Server maintenance 
-
-Prozess von der SSH session trennen:
-
--  into your remote box. type `screen` Then start the process you want.
-- Press Ctrl-A then Ctrl-D. This will **detach** your screen session but leave your processes running. You can now log out of the remote box.
-- If you want to come back later, log on again and type `screen -r` This will **resume** your screen session, and you can see the output of your process.

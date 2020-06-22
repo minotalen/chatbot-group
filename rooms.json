@@ -1,0 +1,274 @@
+{
+    "rooms": [
+    {
+        "id": 0,
+        "location": "Nelson Mandela Park",
+        "roomName": "elephant monument",
+        "intro": "You are now standing in front of the elephant monument in the Nelson Mandela Park. Your task is to find the hidden box to solve the riddle the professor gave you.",
+        "descri": "There is a bench, a trash bin and a strange looking bush near the monument. You also notice a small staircase leading below the base of the monument.",
+        "connections": [
+            {
+                "conNames": ["door"],
+                "conRoomId": 0,
+                "needStates": ["DOORCANTOPENYET"],
+                "needStatesValue": [true]
+            },
+            {
+                "conNames": ["bush"],
+                "conRoomId": 1,
+                "needStates": [null],
+                "needStatesValue": [null]
+            },
+            {
+                "conNames": ["market"],
+                "conRoomId": 2,
+                "needStates": ["solvedPinCode"],
+                "needStatesValue": [true]
+            }
+        ],
+        "items": [
+            {
+                "itemName": "bottle",
+                "lookAt": "It is a PET bottle",
+                "pickUp": "You manage to get the bottle out of the trash bin. Your hand's really itchy and you really want to wash your hands now.",
+                "needStates": ["sawTrashBin", "ownBottle"],
+                "needStatesValue": [true, false],
+                "newStates": ["ownBottle"],
+                "newStatesValue": [true]
+            }
+        ],
+        "objects": [
+            {
+                "objName": "bench",
+                "lookAt": "The bench is covered by moss and bird s***... It hasn’t been used in some time. The paint has almost fallen off. This is not the place professor Kraysee would hide something.",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "newStates": [null],
+                "newStatesValue": [null]
+            },
+            {
+                "objName": "trash bin",
+                "lookAt": "The trash bin is full of … well... trash. Who would have thought? But wait! A PET bottle! Easy money, if you can stand getting it out with your bare hands…",
+                "needStates": ["ownBottle"],
+                "needStatesValue": [false],
+                "newStates": ["sawTrashBin"],
+                "newStatesValue": [true]
+            },
+            {
+                "objName": "staircase",
+                "lookAt": "You go down the staircase. In front of you is a door.",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "newStates": ["sawStaircase"],
+                "newStatesValue": [true]
+            },
+            {
+                "objName": "door",
+                "lookAt": "The door looks old and rusty, with colonial time decorations and emblems engraved into it.",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "newStates": [null],
+                "newStatesValue": [null]
+            }
+        ],
+        "triggers": [
+            {
+                "trigName": "find box",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You didn't even look around yet. Finding the box like this seems impossible.",
+                "fail": null,
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+            {
+                "trigName": "open door",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "needItems": ["KEY NOT IMPLEMENTED YET"],
+                "needItemsRoomId": [0],
+                "accept": "STILL NOT IMPLEMENTED",
+                "fail": "You try to open the door but it's locked.",
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+            {
+                "trigName": "hit door",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You hit the door with all your force! But unfortunately nothing happens.",
+                "fail": null,
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": [null],
+                "actionsValue": [null]
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "location": "Nelson Mandela Park",
+        "roomName": "Bush",
+        "intro": "You walk for a bit, away from the monument to reach the bush. You look at this strange, suspicious looking odd bush! Do you want to take a closer look? You want that right?",
+        "descri": "You are standing in front of the bush. \n All of a sudden there’s a mother with her child, the child says 'Mami mami there's a guy in the bush'. \n You look at them and shout: 'Hey that’s my bush! Look for your own!!' with some irony in your voice. The mother pulls her child away and goes further away from you. \n Now you have time to inspect the location closely. You notice that there is a hidden object. It almost looks like a box. Could this be the item the professor wanted me to find?",
+        "connections": [
+            {
+                "conNames": ["back", "monument"],
+                "conRoomId": 0,
+                "needStates": [null],
+                "needStatesValue": [null]
+            }
+        ],
+        "items": [
+            {
+                "itemName": "paper",
+                "lookAt": "It is a tiny piece of paper with random numbers on it. You should take it. Maybe they will be important in the future.",
+                "pickUp": "You pick up the piece of paper inside the box and read it. \n 629387445 \n That’s a lot of numbers. What does this have to do with the 4-digit code? Maybe there is something special about these numbers.",
+                "needStates": ["triggeredOpenBox", "ownPaper"],
+                "needStatesValue": [true, false],
+                "newStates": ["ownPaper"],
+                "newStatesValue": [true]
+            }
+        ],
+        "objects": [
+            {
+                "objName": "box",
+                "lookAt": "The box is secured with tape that contains the words “It’s prime time!” repeated multiple times written all over it. \n The word prime stands out with a blue color.",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "newStates": [null],
+                "newStatesValue": [null]
+            }
+        ],
+        "triggers": [
+            {
+                "trigName": "open box",
+                "needStates": ["solvedPinCode"],
+                "needStatesValue": [false],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "Inside the box is a piece of paper with a riddle drawn on it, an old T9 mobile phone and a GPS device. \n You pick up the GPS device and mobile phone. Bonkers! \n But what now? Does the phone even work?",
+                "fail": "You feel like there is nothing more to the box. The riddle was solved and you already have the phone and GPS device.",
+                "newStates": ["triggeredOpenBox", "ownGps"],
+                "newStatesValue": [true, true],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+            {
+                "trigName": "start phone",
+                "needStates": ["triggeredOpenBox","solvedPinCode"],
+                "needStatesValue": [true, false],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You start the old phone. To activate the phone you need a 4-digit pin. \n Maybe the piece of paper can help?",
+                "fail": "There is no other phone around to start, at least not yet.",
+                "newStates": ["triggeredStartPhone"],
+                "newStatesValue": [true],
+                "actions": ["changeMode"],
+                "actionsValue": ["riddle"]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "location": "Schlachte Flea Market",
+        "roomName": "Stands",
+        "intro": "You are making your way downtown.\n ... \n You arrive at the Schlachte flea market.",
+        "descri": "There are dozens and dozens of little stands with people selling anything you could imagine. From trash to very nice and expensive coats to various paintings.\n You have a closer look at one of the stands and an ancient treasure chest catches your eye. You take the chest to gain a better view. The salesman looks at you.",
+        "connections": [
+            {
+                "conNames": ["back"],
+                "conRoomId": 0,
+                "needStates": [null],
+                "needStatesValue": [null]
+            }
+        ],
+        "items": [null],
+        "objects": [
+            {
+                "objName": "chest",
+                "lookAt": "It is an ancient treasure chest. It magically attracts you.",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "newStates": [null],
+                "newStatesValue": [null]
+            }
+        ],
+        "triggers": [
+            {
+                "trigName": "steal chest",
+                "needStates": ["triggeredStealChest"],
+                "needStatesValue": [false],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You look around for a good way to run off, but the market is way too crowded for you to flee. \n You decide against stealing the chest.",
+                "fail": "You already tried doing that, can't you remember?",
+                "newStates": ["triggeredStealChest"],
+                "newStatesValue": [true],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+            {
+                "trigName": "put it back",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You try to put the chest back on the table but a magic force stops you from doing it. You really want this chest.",
+                "fail": null,
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+            {
+                "trigName": "ask for the price",
+                "needStates": ["triggerdAskPrice"],
+                "needStatesValue": [false],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "Player: Yo! How much you want for that ol' wooden box, Mister?\n The salesman: 50 bucks.\n Player: FIFTY BUCKS?!? mumbling This thing ain't even worth 5 bucks..\n The salesman: What was that?\n Player: Nothing.\n Player: ...\n\n You should try to bargain. Maybe he will lower the price if you ask nice enough.\n\n Do you want to bargain naughty or nicely?",
+                "fail": "You already asked him. Better not make him too angry.",
+                "newStates": ["triggerdAskPrice"],
+                "newStatesValue": [true],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+	        {
+                "trigName": "naughty",
+                "needStates": ["triggerdAskPrice"],
+                "needStatesValue": [true],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "Player: Hey Mister, look, I don't have enough money to buy your chest. But I have different skills to make up for the money I can't give you.\n*You smile at the salesman*\nThe Salesman seems kinda confused and ignores your approach.\n*You look very sad*",
+                "fail": "You already asked him. Better not make him too angry.",
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+	        {
+                "trigName": "nicely",
+                "needStates": ["triggerdAskPrice"],
+                "needStatesValue": [true],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "Player: Can we agree on 15 bucks?\nSalesman: thinking\nSalesman: Let's do 20.\nPlayer: Alright, sounds fair.\n\nYou receive ancient chest.\nInside the chest, you find a wooden totem. The moment you have a closer look at the totem, you notice you receive a message on your mobile phone.\nAhh, it's Professor Kraysee again!",
+                "fail": "What are you doing? Maybe ask for the price first.",
+                "newStates": ["ownChest"],
+                "newStatesValue": [true],
+                "actions": ["addItem"],
+                "actionsValue": ["chest"]
+            }
+        ]
+    }
+    ]
+}

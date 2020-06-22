@@ -1,28 +1,13 @@
-/* 
+/*
 Color definitions prepared for different themes
 Authors: Kevin Katzkowski
 Last modified: 20.05.2020
 */
 
 :root {
-  --color-primary: #4F2EFF;
-  --color-primary-light: rgb(95, 67, 255);
-  --color-background: #010101;
-  --color-surface: #E1E2E1;
-  --color-surface-light: rgba(255, 255, 255, 0.99);
-  --color-surface-dark: #D6D8DB;
-  --color-text: #E1E2E1;
-  --color-text-placeholder: #757575;
-  --color-message-user: var(--color-primary);
-  --color-message-bot: var(--color-text);
-  --border-chat: 1px solid #E1E2E1;
-  --border-radius: 5px;
-  --shadow: 0px 4px 8px #757575;
-}
-
-[data-theme="light"] { 
   --color-primary: #365fc5;
   --color-primary-light: #6c91c9;
+  --color-onprimary: var(--color-text);
   --color-background: #E1E2E1;
   --color-surface: #edf0f7;
   --color-surface-light: rgba(255, 255, 255, 0.99);
@@ -34,4 +19,76 @@ Last modified: 20.05.2020
   --border-chat: 1px solid var(--color-primary);
   --border-radius: 5px;
   --border-input: 1px solid #9EA7B8;
+  --color-button-text: #000000;
+  --color-settings-btn-surface: #D6D8DB;
 }
+
+[data-theme="dark"] {
+  --color-primary: #9A97F3;
+  --color-primary-light: #818cab;
+  --color-onprimary: var(--color-text);
+  --color-background: #161625;
+  --color-surface: #434370;
+  --color-surface-light: #1d1d30;
+  --color-surface-dark: #060607;
+  --color-text: #e1e1ff;
+  --color-text-placeholder: #757575;
+  --color-message-user: var(--color-primary);
+  --color-message-bot: var(--color-text);
+  --border-chat: 1px solid #1C2541;
+  --border-radius: 5px;
+  --shadow: 0px 4px 8px #757575;
+  --color-button-text: #ffffff;
+  --color-settings-btn-surface: var(--color-background);
+}
+
+[data-theme="d"] {
+  --color-primary: #9A97F3;
+  --color-secondary: #818cab;
+  --color-text: #e1e1ff;
+  --bg-color: #161625;
+  --heading-color: #818cab;
+  --font-size: 100%;
+  --summary-color: #818cab25;
+  --details-color: #818cab11;
+  --color-button-text: #ffffff;
+}
+
+
+[data-mode="riddle"] {
+  /* top bar color, button background color */
+  --color-primary: rgb(0, 255, 115);
+
+  /* headlines */
+  --color-onprimary: var(--color-background);
+
+  /* no usage? */
+  --color-secondary: #123;
+
+  /* headlines, bot messages */
+  /* --color-text: #e1e1ff; */
+
+  /* background behind chat */
+  /* --color-background: var(--color-background); */
+
+  /* text field, text field selection highlighting, settings window, settings checkmark */
+  --color-surface: rgb(0, 136, 61);
+
+  /* settings entry background */
+  /* --color-surface-light: var(--color-surface-light); */
+
+  /* suggestion background */
+  /* --color-surface-dark: var(--color-surface-dark); */
+
+  /* text marker color for matching text in input field */
+  --color-primary-light: rgb(117, 255, 179);
+
+  /* Suggestion box heading + placeholder */
+  --color-text-placeholder: var(--color-onprimary);
+  
+  /* user message, input text color, primary button border */
+  /* --color-message-user: var(--color-message-user); */
+
+  /* bot message */
+  /* --color-message-bot: var(--color-message-bot); */
+} 

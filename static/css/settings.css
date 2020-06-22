@@ -1,17 +1,19 @@
 /* 
 Stylesheet for settings layout
 Authors: Kevin Katzkowski
-Last modified: 20.05.2020
+Last modified: 06.06.2020
 */
 
 
-#settings {
-  margin: 0.5rem 1rem;
-  width: 1.5rem;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+svg#settings {
+  height: 1.4rem;
+  width: 1.4rem;
+  margin: 0.25rem 0.5rem;
+  align-self: center;
+}
+
+svg#settings > path {
+  fill: var(--color-onprimary);
 }
 
 #settings-window {
@@ -39,7 +41,7 @@ Last modified: 20.05.2020
 
 button#close-settings {
   padding: 0.25rem 0.5rem;
-  background-color: var(--color-surface-dark);
+  background-color: var(--color-settings-btn-surface);
   border-radius: var(--border-radius);
   border: none;
   position: relative;
@@ -47,7 +49,7 @@ button#close-settings {
   width: 6rem;
   transition: 0.2s;
   left: calc(50% - 3rem);
-
+  color: var(--color-button-text);
 }
 
 button#close-settings:hover {
@@ -86,7 +88,7 @@ button#close-settings:hover {
 
 .checkmark {
   position: absolute;
-  
+  top: 0;
   right: 0;
   height: 1.1rem;
   width: 1.1rem;
@@ -96,7 +98,7 @@ button#close-settings:hover {
 }
 
 /* On mouse-over, add a grey background color */
-.checkbox-container:hover input ~ .checkmark {
+.checkbox-container:hover input~.checkmark {
   background-color: var(--color-surface-dark);
 }
 
@@ -108,7 +110,7 @@ button#close-settings:hover {
 }
 
 /* Show the checkmark when checked */
-.checkbox-container input:checked ~ .checkmark:after {
+.checkbox-container input:checked~.checkmark:after {
   display: block;
 }
 

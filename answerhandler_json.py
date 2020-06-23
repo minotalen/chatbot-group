@@ -37,7 +37,7 @@ def answerHandler(inputjson, username):
         answer = [handleAnswer(str(obj['message'].lower()), username, int(obj['level']), getRoomId(str(obj['room']))), getRoomName(getRoomId(str(obj['room']))), 'phone']
 
       # When the mode is gps and player inputs exit gps
-    if str(obj['mode']) == 'gps' and classifyIntent(str(obj['message'].lower()), ['exit gps']) == 1:
+    elif str(obj['mode']) == 'gps' and classifyIntent(str(obj['message'].lower()), ['exit gps']) == 1:
         answer = ('Your gps device is now turned off', getRoomName(getRoomId(str(obj['room']))), 'game')
 
     # When the mode is gps

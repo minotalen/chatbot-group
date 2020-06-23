@@ -16,6 +16,11 @@ with open('recmessages.json', encoding="utf8") as messages:
     rec_json = json.load(messages)
     messages = rec_json['messages']
 
+# open json for messages from prof
+with open('questions.json', encoding="utf8") as questions:
+    rec_json = json.load(questions)
+    questions = rec_json['questions']    
+
 # Initialize tokenizer
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 # Load gpt2 model
@@ -71,35 +76,33 @@ msg: the message of the user
 
 Returns: a number which represent a intent of the user // -1 if no intent is found
 """
-
-
 def askProf(msg: str) -> int:
     choices = ["tell task", "print recent message", "messages index", "ask professor:"]
     return classifyIntent(msg, choices)
 
+"""
+@author:: Max Petendra, Katja Schneider, Henriette Mattke
+@state: 22.06.20
+handles the recognition of the user question to the prof
 
+Parameters
+----------
+msg: the message of the user
 
-#TO DO for questions level 1
-def tellAnswer(msg: str) -> str:
-    if "how are" in msg:
-        return "i'm fine :)"
-    return "Hello"
+Returns: returns the answer of a questions to the prof
+"""
+def tellAnswer(msg: str) -> str:   
+    if "elephant" and "monument" in msg: return questions[0].get("answer")
+    if "how" and "play" and "game" in msg: return questions[1].get("answer")
+    if "get" and "to" "schlachte" in msg: return questions[2].get("answer")
+    if "artefact" in msg: return questions[3].get("answer")
+    if "colonialism" in msg : return questions[4].get("answer")
 
-
-    if "elephant monument" in msg:
-        return "Legend says there are blood diamonds hidden inside the elephant monument derived from colonialism. So you better be careful..."
-    
-    if "how play game" in msg:
-        return "Your task is to play the game. I want you to find out everything about this monument and the time it was built. Don’t hold back, it might become quite the adventure. Experience what it means to be a historian. Uncover secrets and hidden truths."
-
-    if "how get to Schlachte" in msg:
-        return "use gps device"
-
-    if "artefact" in msg:
-        return "Look out for an ancient looking item. You will know what I am talking about when you see it - just keep your eyes open and look around."
-
-    if "colonialism" in msg: 
-        return "Go to Überseemuseum and look for hints in the current exhibition"
+    intentId = classifyIntent(msg,["elephant monument", "how play game", "get to schlachte", "artefact", "colonialism"])
+    for dictionary in questions:
+        if int(dictionary.get("id")) == intentId:
+            return dictionary.get("answer")
+    return "I did't understand you question"    
 
 """
 @author:: Max Petendra, Jakob Hackstein

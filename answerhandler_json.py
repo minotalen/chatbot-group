@@ -2,6 +2,7 @@ import json
 import pandas as pd
 import database_SQLite as database
 import data_json_functions as djf
+from gps import handleGPS
 from pathlib import Path
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
 from phone import handleAnswer
@@ -13,6 +14,16 @@ with open('rooms.json', encoding="utf8") as allLevels:
     rooms = data['rooms']
 
 
+"""
+@author Max Petendra
+@state 10.06.20
+handles about questions
+Parameters
+----------
+msg = the user message
+
+Returns a answer for the interrogative of the player
+"""
 def answerHandler(inputjson, username):
     l.log_start()  # logging
     obj = json.loads(inputjson)
@@ -23,8 +34,15 @@ def answerHandler(inputjson, username):
 
     # When the mode is phone
     elif str(obj['mode']) == 'phone':
-        answer = [handleAnswer(str(obj['message'].lower()), username, int(obj['level']), getRoomId(str(obj['room']))),
-                  getRoomName(getRoomId(str(obj['room']))), 'phone']
+        answer = [handleAnswer(str(obj['message'].lower()), username, int(obj['level']), getRoomId(str(obj['room']))), getRoomName(getRoomId(str(obj['room']))), 'phone']
+
+      # When the mode is gps and player inputs exit gps
+    if str(obj['mode']) == 'gps' and classifyIntent(str(obj['message'].lower()), ['exit gps']) == 1:
+        answer = ('Your gps device is now turned off', getRoomName(getRoomId(str(obj['room']))), 'game')
+
+    # When the mode is gps
+    elif str(obj['mode']) == 'gps':
+        answer = [handleGPS(str(obj['message'].lower()), username, int(obj['level']), getRoomId(str(obj['room']))), getRoomName(getRoomId(str(obj['room']))), 'gps']
 
     # When the mode is riddle
     elif str(obj['mode']) == 'riddle':
@@ -46,12 +64,24 @@ def answerHandler(inputjson, username):
     return json.dumps(
         {"level": 1, "sender": "bot", "room": answer[1], "items": [], "mode": answer[2], "message": answer[0]})
 
+"""
+@author Max Petendra
+other pleasse write your name to authors if you have done something
+@state 23.06.20
+handles the logic in mode game
+checks triggers, then intents and otherwise returns default answer
+Parameters
+----------
+username: the name of the current user playing the game
+msg = the user message
+roomId = the current id of the room the player is in (default = -1 if no id is given)
 
-# finds an answer to your message :)
+Returns a triple if the reply message of the chatbot the room id and the 
+"""
 def findAnswer(username, msg, roomId=-1):
     if roomId == -1: raise ValueError("Invalid room id!")
 
-    choices = ["go to", "look at", "pick up", "items", "current room", "about chatbot:", "start phone", "help assistant:"]
+    choices = ["go to", "look at", "pick up", "items", "current room", "about chatbot:", "start phone", "start gps", "help assistant:"]
 
     elemCount = -1
     # TRIGGER: Raumspezifische Trigger werden zuerst überprüft // please write docs in english :''(
@@ -156,8 +186,12 @@ def findAnswer(username, msg, roomId=-1):
         if database.get_user_state_value(username, 'solvedPinCode') == True:
             return ('You are now chatting with the professor', getRoomName(roomId), 'phone')
 
-    # HELP ASSISTANT
+    #START GPS DEVICE
     elif intentID == 8:
+        return ('You have opened your gps device', getRoomName(roomId), 'gps')
+    
+    # HELP ASSISTANT
+    elif intentID == 9:
         return ('sorry no help assistant yet implemented', getRoomName(roomId), 'game')
 
     # Wenn nichts erkannt wurde
@@ -167,20 +201,17 @@ def findAnswer(username, msg, roomId=-1):
 """
 @author Max Petendra
 @state 10.06.20
-get csv file entry
+returns roomid from json
 Parameters
 ----------
-id = row / which represent a room
-column = column / which represent a property of the rooms
-@throws ValueError if parameters ar not of type int
-Returns the csv file entry specified by the input coordinates
-"""
+roomName : the roomName the player wants to know the id from
 
-# Get the room id by room name
+Returns the roodId specified by the room name (-1 if no roodId is found)
+"""
 def getRoomId(roomName: str) -> int:
     for count in range(0, len(rooms)):
-        if rooms[count]['roomName'] in roomName: return int(rooms[count]['id'])
-
+        if rooms[count]['roomName'] in roomName:
+            return int(rooms[count]['id'])
     return -1
 
 # Get the current room
@@ -206,10 +237,8 @@ Parameters
 ----------
 msg = the user message
 
-Returns a answer for the interrogative fo the player
+Returns a answer for the interrogative of the player
 """
-
-
 def aboutHandler(msg: str) -> str:
     if "who has" in msg:
         return "I am programmed by student members of the Chatbots:Talk-To-Me Team"

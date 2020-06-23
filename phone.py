@@ -86,6 +86,20 @@ def tellAnswer(msg: str) -> str:
     return "Hello"
 
 
+    if "elephant monument" in msg:
+        return "Legend says there are blood diamonds hidden inside the elephant monument derived from colonialism. So you better be careful..."
+    
+    if "how play game" in msg:
+        return "Your task is to play the game. I want you to find out everything about this monument and the time it was built. Don’t hold back, it might become quite the adventure. Experience what it means to be a historian. Uncover secrets and hidden truths."
+
+    if "how get to Schlachte" in msg:
+        return "use gps device"
+
+    if "artefact" in msg:
+        return "Look out for an ancient looking item. You will know what I am talking about when you see it - just keep your eyes open and look around."
+
+    if "colonialism" in msg: 
+        return "Go to Überseemuseum and look for hints in the current exhibition"
 
 """
 @author:: Max Petendra, Jakob Hackstein

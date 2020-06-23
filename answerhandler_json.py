@@ -190,7 +190,7 @@ def findAnswer(username, msg, roomId=-1):
 
     #START GPS DEVICE
     elif intentID == 8:
-        if database.get_user_state_value(username, 'ownGPS') == True:
+        if database.get_user_state_value(username, 'ownGps') == True:
             return ('You have opened your gps device', getRoomName(roomId), 'gps')
     
     # HELP ASSISTANT

@@ -16,6 +16,8 @@ Last modified: 20.05.2020
   --color-text-placeholder: #757575;
   --color-message-user: var(--color-primary);
   --color-message-bot: var(--color-text);
+  --color-message-inventory: var(--color-message-bot);
+  --color-message-inventory-background: lightgreen;
   --border-chat: 1px solid var(--color-primary);
   --border-radius: 5px;
   --border-input: 1px solid #9EA7B8;
@@ -35,6 +37,8 @@ Last modified: 20.05.2020
   --color-text-placeholder: #757575;
   --color-message-user: var(--color-primary);
   --color-message-bot: var(--color-text);
+  --color-message-inventory: var(--color-message-bot);
+  --color-message-inventory-background: darkgreen;
   --border-chat: 1px solid #1C2541;
   --border-radius: 5px;
   --shadow: 0px 4px 8px #757575;

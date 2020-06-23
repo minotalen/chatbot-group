@@ -40,7 +40,7 @@ Last modified: 17.06.2020
   border-radius: var(--border-radius);
 }
 
-.chat-message-user, .chat-message-bot, .ticontainer {
+.chat-message-user, .chat-message-bot, .chat-message-inventory, .ticontainer {
   margin: 1rem;
   padding: 0.25rem;
 }
@@ -51,6 +51,17 @@ Last modified: 17.06.2020
 
 .chat-message-bot {
   color: var(--color-message-bot);
+}
+
+.chat-message-sender-name {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.chat-message-inventory {
+  color: var(--color-message-inventory);
+  border-radius: var(--border-radius);
+  background-color: var(--color-message-inventory-background);
 }
 
 #chat-input-user {
@@ -200,7 +211,7 @@ mark {
   #chat-container {
     width: 100%;
   }
-  .chat-message-user, .chat-message-bot, .ticontainer {
+  .chat-message-user, .chat-message-bot, .chat-message-inventory, .ticontainer {
     margin: 0.5rem;
   }
 

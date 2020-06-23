@@ -6,13 +6,14 @@ Last modified: 06.06.2020
 
 
 svg#settings {
+  display: none;
   height: 1.4rem;
   width: 1.4rem;
   margin: 0.25rem 0.5rem;
   align-self: center;
 }
 
-svg#settings > path {
+svg#settings>path {
   fill: var(--color-onprimary);
 }
 

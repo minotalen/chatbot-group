@@ -5,11 +5,13 @@ Last modified: 17.06.2020
 */
 
 #chat-container {
+  position: relative;
   background-color: var(--color-surface-light);
   width: 80%;
   /* replace with @media */
-  height: 100%;
-  margin: 0 auto;
+  height: 91%;
+  height: -webkit-fill-available;
+  margin: 2rem auto 0;
   border: var(--border-chat);
   border-radius: var(--border-radius);
   overflow: hidden;
@@ -17,7 +19,7 @@ Last modified: 17.06.2020
 
 #chat-content-container {
   overflow-y: scroll;
-  height: 90%;
+  height: 83.25%;
   scrollbar-color: var(--color-primary) var(--color-surface-light);
   scrollbar-width: thin;
   scroll-behavior: smooth;
@@ -31,16 +33,20 @@ Last modified: 17.06.2020
 #chat-content-container::-webkit-scrollbar-track {
   /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0); */
   padding-right: 0.25rem;
-  background-color: var(--color-surface-light);
+  margin: 1rem 0;
+  background-color: none;
   width: 1rem;
 }
 
 #chat-content-container::-webkit-scrollbar-thumb {
-  background-color: var(--color-primary);
+  background-color: var(--color-surface-dark);
   border-radius: var(--border-radius);
 }
 
-.chat-message-user, .chat-message-bot, .chat-message-inventory, .ticontainer {
+.chat-message-user,
+.chat-message-bot,
+.chat-message-inventory,
+.ticontainer {
   margin: 1rem;
   padding: 0.25rem;
 }
@@ -145,7 +151,8 @@ form#chat-input-form {
   color: var(--color-text);
 }
 
-.suggestion.selected, .suggestion:focus {
+.suggestion.selected,
+.suggestion:focus {
   background-color: var(--color-surface);
   outline: none;
   cursor: default;
@@ -158,7 +165,8 @@ mark {
 #suggestion-heading {
   font-size: 75%;
   font-weight: bold;
-  color: var(--color-text); /* was color-text-placeholder */
+  color: var(--color-text);
+  /* was color-text-placeholder */
   padding: 0 1rem;
 }
 
@@ -187,9 +195,11 @@ mark {
   0% {
     -webkit-transform: translateY(0px)
   }
+
   28% {
     -webkit-transform: translateY(-5px)
   }
+
   44% {
     -webkit-transform: translateY(0px)
   }
@@ -209,9 +219,21 @@ mark {
 
 @media only screen and (max-width: 600px) {
   #chat-container {
+    border: none;
     width: 100%;
+    margin-top: 0;
+    border-radius: 0;
+    background-color: var(--color-surface);
   }
-  .chat-message-user, .chat-message-bot, .chat-message-inventory, .ticontainer {
+
+  #chat-content-container {
+    border-radius: var(--border-radius);
+  }
+
+  .chat-message-user,
+  .chat-message-bot,
+  .chat-message-inventory,
+  .ticontainer {
     margin: 0.5rem;
   }
 
@@ -220,15 +242,16 @@ mark {
     margin: 0.25rem 0;
   }
 
+  #chat-input-user input[type="text"] {
+    background-color: var(--color-surface-light);
+  }
+
   form#chat-input-form {
     padding: 0 0.5rem;
   }
 
-  #top-bar h1, h2 {
+  #top-bar h1,
+  h2 {
     padding: 0.25rem 0.5rem;
-  }
-
-  h2#brand {
-    display: none;
   }
 }

@@ -13,12 +13,18 @@
             "id": 3,
             "question": "how get to Schlachte",
             "answer": "use gps device"
-        }
+        },
 
         {
             "id": 4,
             "question": "artefact",
             "answer": "Look out for an ancient looking item. You will know what I am talking about when you see it - just keep your eyes open and look around."
+        },
+
+        {
+            "id": 5,
+            "question": "colonialism",
+            "answer": "Go to Überseemuseum and look for hints in the current exhibition"
         }
     ]
 }

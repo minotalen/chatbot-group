@@ -16,13 +16,15 @@ with open('rooms.json', encoding="utf8") as allLevels:
 
 """
 @author Max Petendra
-@state 10.06.20
-handles about questions
+others please write your name to authors if you have done something
+@state 22.06.20
+handles the json input and output // speaks to specific answerHandlers of the game modes
 Parameters
 ----------
-msg = the user message
+inputjson: the json from the server
+username: the username of the user currently playing
 
-Returns a answer for the interrogative of the player
+Returns the json from the client
 """
 def answerHandler(inputjson, username):
     l.log_start()  # logging
@@ -188,7 +190,8 @@ def findAnswer(username, msg, roomId=-1):
 
     #START GPS DEVICE
     elif intentID == 8:
-        return ('You have opened your gps device', getRoomName(roomId), 'gps')
+        if database.get_user_state_value(username, 'ownGPS') == True:
+            return ('You have opened your gps device', getRoomName(roomId), 'gps')
     
     # HELP ASSISTANT
     elif intentID == 9:

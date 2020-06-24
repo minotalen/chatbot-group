@@ -62,7 +62,8 @@ def doAction(actionName, actionParam, roomId, username):
         "changeMode" :1,
         "addItem" :2,
         "removeItem" :3,
-        "changeLocation" :4
+        "changeLocation" :4,
+        "changeSender" :5
     }
     actionId = actions.get(actionName, -1)
     
@@ -92,6 +93,11 @@ def doAction(actionName, actionParam, roomId, username):
     elif actionId == 4:
         print("The player moves to room no.: "+ str(actionParam))
         return(actionParam, None)
+    
+    #Changes the sender of the message
+    elif actionId == 5:
+        print("The Sender's name is now: " + str(actionParam))
+        return(None, None, actionParam) 
     
 
 # inventory stuff

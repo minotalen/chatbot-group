@@ -80,6 +80,7 @@ def answerHandler(inputjson, username):
     l.log_end()  # logging
     return json.dumps(
         {"level": 1, "sender": "bot", "room": answer[1], "items": [], "mode": answer[2], "message": answer[0]})
+        #{"level": 1, "sender": answer[3] if answer[3] is not None else "bot", "room": answer[1], "items": [], "mode": answer[2], "message": answer[0]})
 
 
 """
@@ -118,6 +119,7 @@ def findAnswer(username, msg, roomId=-1):
 
                 altMode = 'game'
                 altRoom = roomId
+                altSender ='bot'
                 if elem['actions'][0] is not None:
                     for action, actionValue in zip(elem['actions'], elem['actionsValue']):
                         altAction = djf.doAction(
@@ -129,6 +131,13 @@ def findAnswer(username, msg, roomId=-1):
 
                 return (elem['accept'], getRoomName(altRoom), altMode)
 
+                        altAction = djf.doAction(action, actionValue, roomId, username)
+                        if altAction[0] is not None: altRoom = altAction[0]
+                        elif altAction[1] is not None: altMode = altAction[1]
+                        #elif altAction[2] is not None: altSender = altAction[2]
+                
+                return (elem['accept'], getRoomName(altRoom), altMode, altSender)
+            
             elif elem['trigName'] in msg:
                 return (elem['fail'], getRoomName(roomId), 'game')
 

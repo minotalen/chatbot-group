@@ -2,13 +2,12 @@
     "locations": [{
             "locationName": "Nelson Mandela Park",
             "neededStates": [],
-            "StartRoomId": 0
-            },
-            {
+            "startRoomId": 0
+        },
+        {
             "locationName": "Schlachte Flea Market",
             "neededStates": ["solvedPinCode"],
-            "StartRoomId": 2
-            }
+            "startRoomId": 2
+        }
     ]
 }
- 

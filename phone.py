@@ -19,7 +19,7 @@ with open('recmessages.json', encoding="utf8") as messages:
 # open json for messages from prof
 with open('questions.json', encoding="utf8") as questions:
     rec_json = json.load(questions)
-    questions = rec_json['questions']    
+    questions = rec_json['questions']
 
 # Initialize tokenizer
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
@@ -46,20 +46,24 @@ level: the current level of the player as an int
 Returns: a string as an answer
 """
 def handleAnswer(msg: str, username: str, level: int, roomId: int = -1) -> str:
-    
+
     if roomId == -1:
         raise ValueError("Invalid room id!")
 
     querytuple = checkforMsgQuery(msg, username)
-    if querytuple[0]: return querytuple[1]
-        
+    if querytuple[0]:
+        return querytuple[1]
+
     intent = askProf(msg)
-    if intent == 1:   return "Your task is to play the game"  # replace return with some method
-    elif intent == 2: return printRecentMessage(username)
-    elif intent == 3: return getMessageRange(username)
-    elif intent == 4: return tellAnswer(msg)
-    
-        
+    if intent == 1:
+        return "Your task is to play the game"  # replace return with some method
+    elif intent == 2:
+        return printRecentMessage(username)
+    elif intent == 3:
+        return getMessageRange(username)
+    elif intent == 4:
+        return tellAnswer(msg)
+
     # returns the answer of the prof if it is not empty
     answer = get_generated_answer(msg)
     return [answer, rustyprof][not answer]
@@ -77,8 +81,10 @@ msg: the message of the user
 Returns: a number which represent a intent of the user // -1 if no intent is found
 """
 def askProf(msg: str) -> int:
-    choices = ["tell task", "print recent message", "messages index", "ask professor:"]
+    choices = ["tell task", "print recent message",
+               "messages index", "ask professor:"]
     return classifyIntent(msg, choices)
+
 
 """
 @author:: Max Petendra, Katja Schneider, Henriette Mattke
@@ -91,18 +97,25 @@ msg: the message of the user
 
 Returns: returns the answer of a questions to the prof
 """
-def tellAnswer(msg: str) -> str:   
-    if "elephant" and "monument" in msg: return questions[0].get("answer")
-    if "how" and "play" and "game" in msg: return questions[1].get("answer")
-    if "get" and "to" "schlachte" in msg: return questions[2].get("answer")
-    if "artefact" in msg: return questions[3].get("answer")
-    if "colonialism" in msg : return questions[4].get("answer")
+def tellAnswer(msg: str) -> str:
+    if "elephant" and "monument" in msg:
+        return questions[0].get("answer")
+    if "how" and "play" and "game" in msg:
+        return questions[1].get("answer")
+    if "get" and "to" "schlachte" in msg:
+        return questions[2].get("answer")
+    if "artefact" in msg:
+        return questions[3].get("answer")
+    if "colonialism" in msg:
+        return questions[4].get("answer")
 
-    intentId = classifyIntent(msg,["elephant monument", "how play game", "get to schlachte", "artefact", "colonialism"])
+    intentId = classifyIntent(
+        msg, ["elephant monument", "how play game", "get to schlachte", "artefact", "colonialism"])
     for dictionary in questions:
         if int(dictionary.get("id")) == intentId:
             return dictionary.get("answer")
-    return "I did't understand you question"    
+    return "I didn't understand you question"
+
 
 """
 @author:: Max Petendra, Jakob Hackstein
@@ -144,7 +157,8 @@ def get_generated_answer(input_context: str) -> str:
 
     # split into sentences and slice unfinished // returns rustyprof if exception is throwed
     try:
-        def formatstart(msg): return msg[2:] if msg[0:2] == '. ' else (msg.strip() if msg[0] == ' ' else msg)
+        def formatstart(msg): return msg[2:] if msg[0:2] == '. ' else (
+            msg.strip() if msg[0] == ' ' else msg)
         sentences = tokenize.sent_tokenize(answer)
         if len(sentences) > 1:
             return [answer, formatstart(re.sub(sentences[-1], '', answer)).rstrip()][len(answer) > 2]
@@ -172,9 +186,10 @@ def printRecentMessage(username) -> str:
                 database.insert_user_recmessage(username, msgdict.get("id"))
         else:
             print("user state of msg is not in database yet")
-     
+
     return "you have no new messages yet" if messagequeue.empty() else messagequeue.get()
-    
+
+
 """
 @author:: Max Petendra, Jakob Hackstein, Canh Dinh
 @state: 19.06.20
@@ -193,6 +208,7 @@ def getAllMessages(username) -> list:
             allmessages += [msgdict.get("str_message")]
     return(allmessages)
 
+
 """
 @author:: Max Petendra
 @state: 19.06.20
@@ -209,6 +225,7 @@ def printCertainMessage(username: str, index: int) -> str:
     listofmsgs = getAllMessages(username)
     return listofmsgs[index-1] if 0 < index <= len(listofmsgs) else "message does not exist"
 
+
 """
 @author:: Max Petendra
 @state: 19.06.20
@@ -222,9 +239,13 @@ Returns: a string thats say which messages (indexes) the player can acess
 """
 def getMessageRange(username: str):
     listofmsgs = getAllMessages(username)
-    if not listofmsgs: return "you have no messages recieved yet"
-    elif len(listofmsgs) == 1: return "you can access on msg 1"
-    else: return "you can access on msg 1 to " + str(len(listofmsgs))
+    if not listofmsgs:
+        return "you have no messages recieved yet"
+    elif len(listofmsgs) == 1:
+        return "you can access on msg 1"
+    else:
+        return "you can access on msg 1 to " + str(len(listofmsgs))
+
 
 """
 @author:: Max Petendra
@@ -239,15 +260,10 @@ username: the username of the current player as a string
 Returns: a tuple (bool:msg exists, string:msg)
 """
 def checkforMsgQuery(msg: str, username: str) -> str:
-    listofmsg = [string.lower() for string in  msg.split()]
+    listofmsg = [string.lower() for string in msg.split()]
     if "message" in listofmsg:
         indexofmsgnumber = listofmsg.index("message") + 1
         if indexofmsgnumber <= len(listofmsg) - 1:
             if listofmsg[indexofmsgnumber].isdecimal():
                 return (True, printCertainMessage(username, int(listofmsg[indexofmsgnumber])))
-    return (False, "")                
-                
-                
-                
-                
-              
+    return (False, "")

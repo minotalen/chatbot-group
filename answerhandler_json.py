@@ -2,7 +2,7 @@ import json
 import pandas as pd
 import database_SQLite as database
 import data_json_functions as djf
-from gps import handleGPS
+from gps import handleGPS, printLocations
 from pathlib import Path
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
 from phone import handleAnswer
@@ -44,7 +44,8 @@ def answerHandler(inputjson, username):
 
     # When the mode is gps
     elif str(obj['mode']) == 'gps':
-        answer = [handleGPS(str(obj['message'].lower()), username, int(obj['level']), getRoomId(str(obj['room']))), getRoomName(getRoomId(str(obj['room']))), 'gps']
+        gpsTriple = handleGPS(str(obj['message'].lower()), username, int(obj['level']), getRoomId(str(obj['room'])))
+        answer = [ gpsTriple[0], getRoomName(gpsTriple[1]), gpsTriple[2] ]
 
     # When the mode is riddle
     elif str(obj['mode']) == 'riddle':
@@ -191,7 +192,7 @@ def findAnswer(username, msg, roomId=-1):
     #START GPS DEVICE
     elif intentID == 8:
         if database.get_user_state_value(username, 'ownGps') == True:
-            return ('You have opened your gps device', getRoomName(roomId), 'gps')
+            return (printLocations(username), getRoomName(roomId), 'gps')
     
     # HELP ASSISTANT
     elif intentID == 9:

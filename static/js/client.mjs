@@ -7,7 +7,7 @@
 import { closeSuggestions, userInput } from './suggestions.mjs';
 import { closeSettings } from './settings.mjs';
 
-let socket = io.connect(protocol + '//' + document.domain + ':' + location.port),
+let socket = io.connect("http://127.0.0.1:5000"),
   sendButton = document.getElementById('send-button'),
   userName = undefined,
   levelID = 'test_level_ID',
@@ -97,6 +97,23 @@ function printMessage(msg) {
 
   // set message type depending on sender 
   switch (senderName) {
+
+    case 'bot': // zum testen auf 'bot' setzen, solange kein inventory sender name vorhanden ist
+      elem.className = 'chat-message-inventory';
+
+      // p for sender name
+      let p = document.createElement('p');
+      p.className = 'chat-message-inventory';
+      p.className = 'chat-message-sender-name';
+      p.innerHTML = senderName;
+      elem.prepend(p);
+
+      typeIndicator.style.visibility = 'hidden';
+
+      // remove bottom margin since element size works as bottom spacing when visiblity is set to hidden
+      typeIndicator.style.marginBottom = '0';
+      break;
+
     case 'bot':
       elem.className = 'chat-message-bot';
       typeIndicator.style.visibility = 'hidden';

@@ -100,15 +100,15 @@ def doAction(actionName, actionParam, roomId, username):
         return(None, None, actionParam) 
     
 
-# inventory stuff
+# adds a item the user just picked up to the database
 def add_to_inventory(item_name: str, room_ID, username):
     database.insert_item(username, room_ID, item_name)
 
-
+# removes an item of the user from the database
 def remove_from_inventory(item_name: str, room_ID, username):
     database.delete_user_item(username, item_name, room_ID)
 
-
+# returns a string, that represents the inventory of the user
 def get_inventory(room_ID_0, username) -> str:
     #items == list of tuples
 

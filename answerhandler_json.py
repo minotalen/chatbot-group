@@ -67,6 +67,8 @@ def answerHandler(inputjson, username):
 
     # When mode is game
     else:
+        #l.log_time('remove_tables')
+        #database.remove_unused_tables()
         answer = findAnswer(username, str(
             obj['message'].lower()), getRoomId(str(obj['room'])))
 

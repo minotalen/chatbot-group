@@ -5,6 +5,7 @@ import sqlite3
 # conn = sqlite3.connect("elephanture.db")
 
 
+
 def execute_database(query, arguments):
     # Connect to database
     conn = sqlite3.connect("elephanture.db")
@@ -25,7 +26,19 @@ def execute_database(query, arguments):
     conn.close()
     return (None, data)
 
-
+# remove unused tables from the database: states_users, states, items_users
+"""def remove_unused_tables():
+    query0 = ""PRAGMA foreign_keys = ?""
+    execute_database(query0, "OFF")
+    query1 = ""DROP TABLE states_users""
+    execute_database(query1, None)
+    query2 = ""DROP TABLE states""
+    execute_database(query2, None)
+    query3 = ""DROP TABLES items_users""
+    execute_database(query3, None)
+    query4 = ""PRAGMA foreign_keys = ?""
+    execute_database(query4, "ON")
+"""
 '''
     is not used
 def multiple_execute_database(query, arguments):
@@ -203,7 +216,7 @@ def does_user_item_exist(username, item_name, room_id):
     else:
         return False
 
-
+# Removes an item from a users inventory
 def delete_user_item(username, item_name, room_id):
     user_id = get_user_id(username)
 
@@ -222,12 +235,12 @@ def delete_user_item(username, item_name, room_id):
 
 """Just for fix bug"""
 
-
+# Removes an item from a users inventory by the its id
 def delete_user_item_by_useritemid(user_item_id):
     query = """DELETE FROM user_items WHERE user_item_id = ? """
     execute_database(query, (user_item_id,))
 
-
+# Clears an users inventory
 def delete_user_item_by_username(username):
     user_id = get_user_id(username)
     if user_id is not None:
@@ -374,7 +387,7 @@ def delete_user_state(username, state_name):
             print("user state was deleted successful")
 
 
-# Delete one state by user name
+# Delete the states of a user
 def delete_user_state_by_username(username):
     user_id = get_user_id(username)
 
@@ -390,12 +403,12 @@ def delete_user_state_by_username(username):
 
 """just for fix bug"""
 
-
+# Deletes the states of a user by the id in the table
 def delete_user_state_by_userstateid(user_state_id):
     query = """DELETE FROM user_states WHERE user_state_id = ?"""
     execute_database(query, (user_state_id,))
 
-
+# delete a user and all his other entries in the database in other tables
 def delete_user(username, password):
     delete_user_item_by_username(username)
     delete_user_state_by_username(username)

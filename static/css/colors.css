@@ -5,9 +5,10 @@ Last modified: 20.05.2020
 */
 
 :root {
-  --color-primary: #365fc5;
+  /* --color-primary: #365fc5; */
+  --color-primary: #16697A;
   --color-primary-light: #6c91c9;
-  --color-onprimary: var(--color-text);
+  --color-onprimary: var(--color-surface);
   --color-background: #E1E2E1;
   --color-surface: #edf0f7;
   --color-surface-light: rgba(255, 255, 255, 0.99);
@@ -16,7 +17,9 @@ Last modified: 20.05.2020
   --color-text-placeholder: #757575;
   --color-message-user: var(--color-primary);
   --color-message-bot: var(--color-text);
-  --border-chat: 1px solid var(--color-primary);
+  --color-message-inventory: var(--color-message-bot);
+  --color-message-inventory-background: lightgreen;
+  --border-chat: 1px solid #000;
   --border-radius: 5px;
   --border-input: 1px solid #9EA7B8;
   --color-button-text: #000000;
@@ -35,6 +38,8 @@ Last modified: 20.05.2020
   --color-text-placeholder: #757575;
   --color-message-user: var(--color-primary);
   --color-message-bot: var(--color-text);
+  --color-message-inventory: var(--color-message-bot);
+  --color-message-inventory-background: darkgreen;
   --border-chat: 1px solid #1C2541;
   --border-radius: 5px;
   --shadow: 0px 4px 8px #757575;
@@ -85,10 +90,10 @@ Last modified: 20.05.2020
 
   /* Suggestion box heading + placeholder */
   --color-text-placeholder: var(--color-onprimary);
-  
+
   /* user message, input text color, primary button border */
   /* --color-message-user: var(--color-message-user); */
 
   /* bot message */
   /* --color-message-bot: var(--color-message-bot); */
-} 
+}

@@ -10,7 +10,8 @@ Last modified: 17.06.2020
   font-family: 'Source Code Pro', Consolas, monospace;
 }
 
-html, body {
+html,
+body {
   font-size: 100%;
   height: 100%;
   background-color: var(--color-background);
@@ -20,12 +21,12 @@ html, body {
 
 h1 {
   color: var(--color-text);
-  
+
   text-align: center;
   font-size: 1.8rem;
 }
 
-h2 { 
+h2 {
   font-size: 1.5rem;
 }
 
@@ -39,15 +40,39 @@ ul {
 
 #top-bar {
   display: flex;
+  height: 2rem;
+  align-items: center;
   justify-content: space-between;
-  background-color: var(--color-primary); 
-  color: var(--color-onprimary);
+  background-color: var(--color-surface);
 }
 
 #top-bar h1 {
   flex-grow: 2;
 }
 
-#top-bar h1,h2 {
+#top-bar h1,
+h2 {
   padding: 0.5rem 1rem;
+}
+
+#top-bar h3 {
+  font-weight: 600;
+  /* color: var(--color-primary); */
+  color: #000;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  width: 100%;
+  height: 3.5rem;
+  top: 0;
+  background-color: var(--color-primary);
+  border-bottom: 2px solid #000;
+}
+
+nav h2 {
+  padding: 0 1rem;
+  color: var(--color-onprimary);
 }

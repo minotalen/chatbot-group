@@ -2,9 +2,8 @@ import csv
 import spacy
 from nltk.corpus import wordnet as wn
 from pathlib import Path
-from fuzzywuzzy import fuzz
-from fuzzywuzzy import process
-from monkeylearn import MonkeyLearn
+from fuzzywuzzy import fuzz, process
+#from monkeylearn import MonkeyLearn
 import logging_time as l
 
 #m1 = MonkeyLearn('9172f7ffa71ad34b35a6c60958566386059cae19')

@@ -1,7 +1,5 @@
 import re
 import json
-import logging
-import torch
 import queue
 import database_SQLite as database
 from transformers import GPT2Tokenizer, GPT2LMHeadModel

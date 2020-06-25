@@ -10,14 +10,6 @@ with open('riddle.json', encoding="utf8") as allRiddles:
     riddles = data['rooms']
     newMode ="riddle"
     
-#Handler der Klasse, nimmt eine JSON und gibt einen tupel wieder [antwort, modus]    
-def handleRiddle(inputjson):
-    
-    obj = json.loads(inputjson)
-    answer = checkAnswer(str(obj["message"]), int(obj["room"]))
-
-    return answer
-
 #Ergebnisse können sein: richtig, falsch, abbruch, beschreibung, help
 def checkAnswer(msg, roomId, username) -> str:
 

@@ -1,13 +1,9 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send
 import json
-import csv
 import database_SQLite as database
 from answerhandler_json import answerHandler
-import tensorflow as tf
-import logging_time as l
 
-# from answerhandler_withdatabase import answerHandler
 
 app = Flask(__name__, static_url_path='/static')
 

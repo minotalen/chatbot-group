@@ -121,7 +121,7 @@ def findAnswer(username, msg, roomId=-1):
 
                 altMode = 'game'
                 altRoom = roomId
-                altSender ='bot'
+                # altSender ='bot'
                 if elem['actions'][0] is not None:
                     for action, actionValue in zip(elem['actions'], elem['actionsValue']):
                         altAction = djf.doAction(
@@ -130,7 +130,7 @@ def findAnswer(username, msg, roomId=-1):
                             altRoom = altAction[0]
                         elif altAction[1] is not None:
                             altMode = altAction[1]
-                        #elif altAction[2] is not None: altSender = altAction[2]
+                        # elif altAction[2] is not None: altSender = altAction[2]
 
                 return (elem['accept'], getRoomName(altRoom), altMode)
             

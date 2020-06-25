@@ -2,9 +2,8 @@ import csv
 import spacy
 from nltk.corpus import wordnet as wn
 from pathlib import Path
-from fuzzywuzzy import fuzz
-from fuzzywuzzy import process
-from monkeylearn import MonkeyLearn
+from fuzzywuzzy import fuzz, process
+#from monkeylearn import MonkeyLearn
 import logging_time as l
 
 #m1 = MonkeyLearn('9172f7ffa71ad34b35a6c60958566386059cae19')
@@ -188,7 +187,7 @@ def getSynonyms(word: str, wordtype: str) -> set:
 
 """
 @author:: Max Petendra
-@state: 08.06.20
+@state: 23.06.20
 get the wordtype of a word in a give context (optional)
 Parameters
 ----------
@@ -199,7 +198,7 @@ Returns: the spacy wordtype of a word // UNKWOWN if no wordtype is found
 """
 def getWordtype(word: str, sentence: str = None) -> str:
     if not word.isalpha() and not '_' in word and not '-' in word:
-        raise ValueError("word should only contain alpha chars")
+        return "UNKNOWN"
     if sentence == None : pos = nlp(word)
     else: pos = nlp(sentence)
     for token in pos:

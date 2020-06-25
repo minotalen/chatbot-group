@@ -1,13 +1,9 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send
 import json
-import csv
 import database_SQLite as database
 from answerhandler_json import answerHandler
-import tensorflow as tf
-import logging_time as l
 
-# from answerhandler_withdatabase import answerHandler
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -74,4 +70,4 @@ def get_current_username():
 
 if __name__ == "__main__":
     print("Try to start server...")
-    socketio.run(app, host='0.0.0.0',port=5000, debug=True)
+    socketio.run(app, host='0.0.0.0', debug=True)

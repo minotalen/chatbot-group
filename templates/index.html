@@ -13,8 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no">
 
   <!-- Google icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <!-- CSS files -->
   <link rel="stylesheet" href="../static/css/base.css">
@@ -27,14 +26,16 @@
 </head>
 
 <body>
+  <nav>
+    <h2 id="brand">Chatbot</h2>
+  </nav>
 
   <div id="chat-container">
 
     <div id="top-bar">
-      <!-- <h2 id="level">1</h2> -->
-      <h2 id="brand">Chatbot</h2>
-      <h2 id="room_name">Room 3</h2>
-      
+      <h3 id="room_name">Room 3</h3>
+      <h3 id="level">1</h3>
+
       <!-- <img src="../static/images/settings.svg" id="settings"> -->
       <svg id="settings" viewbox="0 0 512 512">
         <path d="M496.659,312.107l-47.061-36.8c0.597-5.675,1.109-12.309,1.109-19.328c0-7.019-0.491-13.653-1.109-19.328l47.104-36.821
@@ -47,7 +48,7 @@
 			C185.747,503.552,195.454,512,206.974,512h98.133c11.499,0,21.227-8.448,22.592-19.456l8.469-59.093
 			c11.179-5.056,22.144-11.435,33.28-19.371l55.68,22.357c2.688,1.045,5.483,1.579,8.363,1.579c8.277,0,15.893-4.523,19.733-11.563
 			l49.152-85.12C507.838,331.349,505.448,319.083,496.659,312.107z M256.019,341.333c-47.061,0-85.333-38.272-85.333-85.333
-			s38.272-85.333,85.333-85.333s85.333,38.272,85.333,85.333S303.08,341.333,256.019,341.333z"/>
+			s38.272-85.333,85.333-85.333s85.333,38.272,85.333,85.333S303.08,341.333,256.019,341.333z" />
       </svg>
     </div>
 
@@ -142,9 +143,10 @@
           <!-- suggestions are added here -->
         </div>
 
-        <input id="input-user" type="text" placeholder="Enter your name" spellcheck="false" autocomplete="off" tabindex="0" autofocus> </input>
-      </div> 
-      
+        <input id="input-user" type="text" placeholder="Enter your name" spellcheck="false" autocomplete="off"
+          tabindex="0" autofocus> </input>
+      </div>
+
       <button type="button" id="send-button">send</button>
     </form>
   </div>

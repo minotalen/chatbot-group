@@ -70,4 +70,4 @@ def get_current_username():
 
 if __name__ == "__main__":
     print("Try to start server...")
-    socketio.run(app, host='0.0.0.0', debug=True)
+    socketio.run(app, host='0.0.0.0', port=5000, debug=True)

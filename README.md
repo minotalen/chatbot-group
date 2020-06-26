@@ -61,6 +61,18 @@ Zuerst `pip install -r requirements.txt`.
 
 Danach die nltk-Geschichte downloaden.
 
+**Anleitung für Sound**
+for playsound 
+
+On Windows, uses windll.winmm. WAVE and MP3 have been tested and are known to work. Other file formats may work as well.
+
+On OS X, uses AppKit.NSSound. WAVE and MP3 have been tested and are known to work. In general, anything QuickTime can play, playsound should be able to play, for OS X.
+
+On Linux, uses GStreamer. Known to work on Ubuntu 14.04 and ElementaryOS Loki. Support for the block argument is currently not implemented.
+
+
+
+
 ## Bekannte Fehler
 
 Beim Upgrade von pip mit `python -m pip install --upgrade pip`:

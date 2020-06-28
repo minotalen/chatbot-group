@@ -8,7 +8,7 @@ from intentclassificator import classifyIntent, writeMessagetoTrainingData
 from phone import handleAnswer
 from riddlemode import checkAnswer
 import logging_time as l
-import audio as audio
+#import audio as audio
 
 with open('rooms.json', encoding="utf8") as allLevels:
     data = json.load(allLevels)
@@ -78,11 +78,11 @@ def answerHandler(inputjson, username):
     else:
         print("added nothing to training data")
 
-    
+    """
     #make the audio output
     audio.text2audio(answer[0])
     audio.playSoundfile()
-    
+    """
     
     # json wird wieder zusammen gepackt
     l.log_time('end')  # logging

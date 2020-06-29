@@ -7,7 +7,7 @@ chatbbot-group/
 	static/
 		css/
 			css files hier
-        js/
+       		js/
 			js files hier
 	templates/
 		html files hier
@@ -25,6 +25,10 @@ Damit es läuft, braucht jeder Python installieren, empfohlenerweise in einem vi
 Damit habt ihr auch pip und könnt in der Konsole im Git Ordner folgende Befehle ausführen:
 
 `pip install -r requirements.txt`
+
+**Wichtig!**
+
+Der CPU des Servers ist alt und unterstützt keeine AVX Instructions. Daher muss eine ältere Version von Tensorflow benutz werden (<1.6).
 
 Falls möglich, schreibt alle benötigten python-module in die pip, die how-to-requirements im glitch ist für so Fälle wie `en_core_web_sm` geupdatet
 

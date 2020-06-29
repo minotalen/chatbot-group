@@ -44,10 +44,6 @@ colorclass==2.2.0
 coloredlogs==10.0
 colorhash==1.0.2
 comtypes==1.1.7
-conda==4.8.3
-conda-build==3.18.11
-conda-package-handling==1.6.0
-conda-verify==3.4.2
 contextlib2==0.6.0.post1
 cryptography==2.8
 cycler==0.10.0

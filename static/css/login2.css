@@ -1,0 +1,71 @@
+/*
+Styling for login and sign up form
+Authors: Kevin Katzkowski
+Last modified: 30.06.2020
+*/
+
+.login {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  width: 25rem;
+  margin: 6rem auto 0;
+  padding: 2rem;
+
+  border: var(--border-chat);
+  background-color: var(--color-surface-light);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-large);
+  box-sizing: border-box;
+}
+
+
+.login button.secondary, .login button.primary,
+.login input[type="text"], .login input[type="password"] {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.login input[type="text"], .login input[type="password"] {
+  color: var(--color-message-user);
+  box-sizing: border-box;
+  border: var(--border-input);
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius);
+}
+
+.login h2 {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.login p {
+  margin: 0.5rem 0rem;
+  text-align: center;
+}
+
+.login form {
+  margin: 3rem 0 0;
+}
+
+.login p#sign-up {
+  opacity: 0.8;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.login p#sign-up:hover {
+  opacity: 1;
+  transition: all .2s ease-in-out;
+}
+
+.login label {
+  opacity: 0.8;
+  display: inline-block;
+  margin: .75rem 0 0;
+  font-size: 0.9rem;
+}

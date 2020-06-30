@@ -1,7 +1,7 @@
 /*
 Basic styling for page
-Authors: Kevin Katzkowski
-Last modified: 17.06.2020
+Authors: Kevin Katzkowski, Jeffrey Pillmann
+Last modified: 24.06.2020
 */
 
 * {
@@ -20,14 +20,16 @@ body {
 }
 
 h1 {
+  font-size: 1.5rem;
   color: var(--color-text);
-
-  text-align: center;
-  font-size: 1.8rem;
-}
+  /* background: var(--gradient-primary); */
+  /* -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent */
+} 
 
 h2 {
   font-size: 1.5rem;
+  color: var(--color-text);
 }
 
 h3 {
@@ -38,41 +40,195 @@ ul {
   list-style-type: none;
 }
 
-#top-bar {
+nav {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  max-width: 100vw;
+  height: 3.5rem;
+
+  padding: 2rem;
+  box-sizing: border-box;
+  
   display: flex;
-  height: 2rem;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--color-surface);
-}
 
-#top-bar h1 {
-  flex-grow: 2;
-}
-
-#top-bar h1,
-h2 {
-  padding: 0.5rem 1rem;
-}
-
-#top-bar h3 {
-  font-weight: 600;
-  /* color: var(--color-primary); */
-  color: #000;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  position: sticky;
-  width: 100%;
-  height: 3.5rem;
-  top: 0;
-  background-color: var(--color-primary);
-  border-bottom: 2px solid #000;
+  /* border-bottom: 2px solid #000; */
+  background-color: var(--color-background);
+  /* box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25); */
 }
 
 nav h2 {
-  padding: 0 1rem;
+  padding: 0 2rem;
+}
+
+nav ul {
+  justify-self: stretch; 
+}
+
+nav ul li {
+  display: inline;
+
+  padding: 0.5rem 3rem;
+  margin: 0 0.5rem;
+
+  font-weight: 900;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+
+  border: 2px solid rgba(0,0,0,0);
+}
+
+a { /* TODO necessary? */
+  color: var(--color-text);
+}
+
+nav ul li a {
+  width: 100%;
+  height: 100%;
+  
+  color: var(--gradient-primary);
+  
+  text-decoration: none;
+  transition: .2s;
+}
+
+nav ul li:hover > a {
+  text-decoration: none;
+  /* color: var(--color-text-light); */
+  transition: .2s;
+}
+
+nav ul li:hover {
+  text-decoration: none;
+  background-color: var(--color-surface);
+  
+  border-radius: var(--border-radius);
+  border: var(--border-default);
+  box-shadow: var(--box-shadow-small);
+
+  transition: .5s;
+}
+
+.user-account {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* background-color: var(--color-surface); */
+  border-radius: var(--border-radius);
+  /* border: var(--border-default); */
+  /* box-shadow: var(--box-shadow-small); */
+
+  transition: .5s;
+}
+
+nav .user-account {
+  /* padding: 0.25rem 1rem; */
+}
+
+/* #user-account:hover {
+  border-radius: var(--border-radius);
+  border: var(--border-default);
+  box-shadow: var(--box-shadow-small);
+
+  transition: .5s;
+} */
+
+.user-name {
+  margin-right: 0.5rem;
+  align-self: center;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.avatar {
+  border-radius: var(--border-radius);
+  background-color: rgb(60, 171, 245);
+  border: var(--border-default);
+}
+
+.avatar.small {
+  min-width: 24px;
+  width: 24px;
+  min-height: 24px;
+  height: 24px;
+}
+
+.avatar.large {
+  min-width: 96px;
+  width: 96px;
+  min-height: 96px;
+  height: 96px;
+}
+
+button.primary  {
+  background-color: var(--color-primary);
+
   color: var(--color-onprimary);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05rem;
+
+  border: var(--border-default);
+  border-radius: var(--border-radius);
+  outline: none;
+
+  transition: 0.2s;
+}
+
+button.primary:hover, button.primary:active {
+  background-color: var(--color-primary);
+  box-shadow: var(--box-shadow-small);
+
+  transition: .5s;
+}
+
+button.secondary {
+  background-color: var(--color-surface);
+
+  color: var(--color-text);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05rem;
+
+  border: var(--border-default);
+  border-radius: var(--border-radius);
+  outline: none;
+
+  transition: 0.2s;
+}
+
+button.secondary:hover {
+  box-shadow: var(--box-shadow-small);
+}
+
+button#delete-account.secondary {
+  background-color: var(--color-error);
+}
+
+.container {
+  /* replace with @media */
+  position: absolute;
+  top: 6rem;
+  bottom: 4rem;
+  right: 6rem;
+  left: 6rem;
+
+  max-width: 60rem;
+  margin: 0 auto;
+  border: var(--border-chat);
+  background-color: var(--color-surface-light);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-large);
+
+  overflow: hidden;
+}
+
+input[type="radio"] {  
+  width: 20px; /* TODO why here and necessary? */
+  background-color: var(--color-primary);
 }

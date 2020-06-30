@@ -92,8 +92,8 @@ function sendMessage(evt='json') {
 function printMessage(msg) {
   let chat = document.getElementById('chat-content-container'),
     elem = window.document.createElement('li');
-
-  elem.innerHTML = msg;
+  
+  // elem.innerHTML = msg;
 
   // set message type depending on sender 
   switch (senderName) {
@@ -112,6 +112,9 @@ function printMessage(msg) {
 
       // remove bottom margin since element size works as bottom spacing when visiblity is set to hidden
       typeIndicator.style.marginBottom = '0';
+
+      // typewriter effect  
+      writeEachChar(elem, msg);
       break;
 
     case 'bot':
@@ -120,6 +123,9 @@ function printMessage(msg) {
 
       // remove bottom margin since element size works as bottom spacing when visiblity is set to hidden
       typeIndicator.style.marginBottom = '0';
+
+      // typewriter effect  
+      writeEachChar(elem, msg);
       break;
 
     default:
@@ -128,6 +134,7 @@ function printMessage(msg) {
 
       // add margin equal to element size for consistent bottom spacing
       typeIndicator.style.marginBottom = typeIndicator.getBoundingClientRect().height + 'px';
+      elem.innerHTML = msg;
       break;
   }
 
@@ -154,7 +161,7 @@ function updateMode() {
  * Updates the room name.
  */
 function updateRoomName(){
-	let rName = document.getElementById('room_name');
+	let rName = document.getElementById('room-name');
 	rName.innerHTML = roomName;
 }
 
@@ -228,6 +235,23 @@ function sendUserName() {
 
 
 /**
+ * Writes each char of the message individually into the element.
+ * @param {HTML element} elem The HTML element where the message shall be added.
+ * @param {String} msg The message to be written. 
+ */
+function writeEachChar(elem, msg) {
+  if(msg.length > 0) {
+    elem.innerHTML += msg.charAt(0);
+    msg = msg.slice(1, msg.length)
+    
+    setTimeout(() => {
+      writeEachChar(elem, msg)
+    }, 30);
+  }
+}
+
+
+/**
  * Close input field suggestions on click outside of input field.
  */
 window.addEventListener('click', (evt) => {
@@ -235,7 +259,7 @@ window.addEventListener('click', (evt) => {
   
   // console.log('window click');
   if(evt.target.id != 'input-user') closeSuggestions();
-  if(!document.getElementById('settings-window').contains(evt.target) && evt.target.id != 'settings') closeSettings();
+  if(!document.getElementById('settings-window').contains(evt.target) && !evt.path.includes(document.getElementById('settings'))) closeSettings();
 }, false);
 
 

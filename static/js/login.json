@@ -1,0 +1,14 @@
+
+/* Client -> Server */
+{
+  "username": "",
+  "password": "",
+  "type": "signup/login"
+}
+
+/* Server -> Client */
+{
+  "username": "",
+  "successful": "true/false",
+  "type": "signup/login"
+}

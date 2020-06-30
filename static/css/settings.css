@@ -1,19 +1,19 @@
 /* 
 Stylesheet for settings layout
-Authors: Kevin Katzkowski
-Last modified: 06.06.2020
+Authors: Kevin Katzkowski, Jeffrey Pillmann
+Last modified: 29.06.2020
 */
+/* TODO do not use settings ID, .settings is reserved already! */
 
-
-svg#settings {
-  display: none;
+#settings svg, #settings img {
+  /* display: none; */
   height: 1.4rem;
   width: 1.4rem;
   margin: 0.25rem 0.5rem;
   align-self: center;
 }
 
-svg#settings>path {
+#settings svg>path {
   fill: var(--color-onprimary);
 }
 

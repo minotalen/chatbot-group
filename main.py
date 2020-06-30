@@ -25,8 +25,11 @@ def send_profile_page():
 
 @app.route('/play/<username>')
 def send_play_page(username):
+    """ (KK) TODO check if user is still logged in  """
     return render_template('play.html', username=username)
 
+
+""" (KK) TODO use app routing for this, not socket """
 @socketio.on('user_auth')
 def handle_user_auth(auth_req):
     print("user_auth")

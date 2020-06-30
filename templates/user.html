@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-mode="game">
+
+<!--
+  User account  page
+  Authors: Kevin Katzkowski, Jeffrey Pillmann
+  Last modified: 29.06.2020
+-->
+
+<head>
+  <!-- required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no">
+
+  <!-- Google icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="../static/css/base.css">
+  <link rel="stylesheet" href="../static/css/colors.css">
+  <link rel="stylesheet" href="../static/css/user.css">
+
+  <!-- TODO change title -->
+  <title>Elephanture</title>
+</head>
+
+<body>
+  <nav>
+    <h1 id="brand">Elephanture</h1>
+
+    <ul id="nav-links">
+      <li><a href="#">Play</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">More</a></li>
+    </ul>
+
+
+    <div class="user-account">
+      <p class="user-name">Santa Claus</p>
+      <div class="avatar small"></div>
+    </div>
+
+  </nav>
+
+  <div class="container">
+
+    <div class="user-bar">
+      <div class="user-account">
+        <img class="avatar large">
+        <h1 class="user-name">Santa Claus</h1>
+      </div>
+
+      <h4>LOG OUT</h4>
+    </div>
+
+    <div class="settings-container">
+      <h3>Account</h3>
+      <div>
+        <p>Change Username</p>
+        <button id="change-username" class="primary">Change</button>
+      </div>
+      <div>
+        <p>Delete your account</p>
+        <button id="delete-account" class="primary">Delete</button>
+      </div>
+    </div>
+
+    <div class="settings-container">
+      <h3>Game</h3>
+      <div>
+        <p>Show input suggestion</p>
+        <input type="checkbox" class="settings" id="show-suggestion" checked></input>
+      </div>
+      <div>
+        <p>Read received messages with text-to-speech</p>
+        <input type="checkbox" class="settings" id="read-messages"></input>
+      </div>
+      <div>
+        <p>Select theme</p>
+        <div class="theme-radio-buttons">
+          <div>
+            <input type="radio" id="auto" name="interface-mode" checked></input>
+            <label for="auto">Auto</label>
+          </div>
+          <div>
+            <input type="radio" id="light" name="interface-mode"></input>
+            <label for="light">Light</label>
+          </div>
+          <div>
+            <input type="radio" id="dark" name="interface-mode"></input>
+            <label for="dark">Dark</label>
+          </div>
+          <div>
+            <input type="radio" id="system" name="interface-mode"></input>
+            <label for="system">System</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>

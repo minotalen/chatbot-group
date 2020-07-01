@@ -10,6 +10,17 @@
         "newStatesValue": [true],
         "actions": ["changeLocation"],
         "actionsValue": [0]
+    },
+    {
+        "roomId": 2,
+        "rightAnswer": "20",
+        "rightText": "Aight. There you have it.<br><b>You receive the ancient chest. Inside the chest, you find a wooden totem.<br>The moment you have a closer look at the totem, you notice you receive a message on your mobile phone. Ahh, it's Professor Kraysee again!</b>",
+        "falseText": "That is not even a number! I only take money.",
+        "descri": "You are standing in front of the salesman and really want to buy that ancient chest. You need to find a price both of you can agree on. But you only got 20 bucks in your pocket.",  
+    	"newStates": ["solvedBargain"],
+        "newStatesValue": [true],
+        "actions": [null],
+        "actionsValue": [null]
     }
     ]
 }

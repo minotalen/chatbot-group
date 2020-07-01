@@ -267,6 +267,32 @@
                 "newStatesValue": [true],
                 "actions": ["addItem"],
                 "actionsValue": ["chest"]
+            },
+	    {
+                "trigName": "bargain",
+                "needStates": ["solvedBargain"],
+                "needStatesValue": [false],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "Player: Yo! How much you want for that ol' wooden box, Mister?<br>The salesman: 50 bucks.<br>Player: FIFTY BUCKS?!? mumbling This thing ain't even worth 5 bucks..<br>The salesman: What was that?<br>Player: Nothing.<br>Player: I think I need to bargain better here... Let's find a good price.",
+                "fail": "You literally have no money left to buy anything from the salesman.",
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": ["changeMode"],
+                "actionsValue": ["riddle"]
+            },
+	    {
+                "trigName": "picture",
+                "needStates": ["solvedBargain"],
+                "needStatesValue": [true],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You send Prof K. a picture of the ancient chest. And he writes a message back.",
+                "fail": "What picture are you talking about?",
+                "newStates": ["triggeredPicture"],
+                "newStatesValue": [true],
+                "actions": [null],
+                "actionsValue": [null]
             }
         ]
     }

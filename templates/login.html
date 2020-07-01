@@ -1,35 +1,71 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <link href="../static/css/login.css" rel="stylesheet"/>
-        <script src="../static/js/jquery-1.10.2.min.js"></script>
-        <script src="../static/js/login.js"></script>
-    </head>
-    <body>
-        <div id="box">
-            <div id="main"></div>
+<html lang="en" data-theme="light" data-mode="game">
 
-            <div id="loginform">
-                <h1>LOGIN</h1>
-                <input type="text" placeholder="Username"/><br>
-                <input type="password" placeholder="Password"/><br>
-                <button>LOGIN</button>
-            </div>
+<!--
+  Login page
+  Authors: Kevin Katzkowski
+  Last modified: 29.06.2020
+-->
 
-            <div id="signupform">
-                <h1>SIGN UP</h1>
-                <input type="text" placeholder="Username"/><br>
-                <input type="password" placeholder="Password"/><br>
-                <button>SIGN UP</button>
-            </div>
+<head>
+  <!-- required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no">
 
-            <div id="login_msg">Start jouney with us!</div>
-            <div id="signup_msg">Welcome to Elephanture!</div>
+  <!-- Google icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-            <button id="login_btn">LOGIN</button>
-            <button id="signup_btn">SIGN UP</button>
+  <!-- CSS files -->
+  <link rel="stylesheet" href="../static/css/base.css">
+  <link rel="stylesheet" href="../static/css/colors.css">
+  <link rel="stylesheet" href="../static/css/user.css">
+  <link rel="stylesheet" href="../static/css/login2.css">  
+
+  <!-- TODO change title -->
+  <title>Login</title>
+</head>
+
+<body>
+  <nav>
+    <h1 id="brand">Elephanture</h1>
+
+    <ul id="nav-links">
+      <li><a href="{{ url_for('send_play_page', username= username) }}">Play</a></li> <!--- TODO do not redirect without user name -->
+      <li><a href="#">About</a></li>
+      <li><a href="#">More</a></li>
+    </ul>
 
 
-        </div>
-    </body>
+    <div class="user-account">
+      <p class="user-name">Santa Claus</p>
+      <div class="avatar small"></div>
+    </div>
+
+  </nav>
+
+  <div class="login">
+    <h2 id="login-heading">Log in</h2>
+    <p id="login-text">to load your game progress</p>
+    <p>{{ error_message }}</p>
+
+    <form id="login-form" method="POST" action="/login">
+      <input id="user-name" name="username" type="text" placeholder="username" required>
+      <input id="user-password" name="password" type="password" placeholder="password" required>
+  
+      <!-- <button class="secondary">sign up</button> -->
+      <button id="login-button" type="submit" class="primary">log in</button>
+  
+    </form>
+    
+    <p id="sign-up">sign up instead</p>
+
+  </div>
+  
+  <!-- load socket libary -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+
+  <!-- load custom javascript -->
+  <script type="module" src="../static/js/login.mjs"></script>
+</body>
+
 </html>

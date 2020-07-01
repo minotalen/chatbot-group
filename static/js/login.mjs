@@ -30,7 +30,7 @@ signUpLink.addEventListener('click', () => {
 }, false);
 
 loginButton.addEventListener('click', (evt) => {
-  evt.preventDefault();
+  // evt.preventDefault();
 
   let username, password, type;
 
@@ -39,7 +39,7 @@ loginButton.addEventListener('click', (evt) => {
   type = repeatPassword ? "signup" :  "login";
   console.log(username + ', ' + password + ', ' + type);
   
-  sendAuthenticationRequest(username,password,type)
+  // sendAuthenticationRequest(username,password,type)
 })
 
 
@@ -60,6 +60,7 @@ function showSignUpMask() {
   passwordResetHint.for = 'repear-password';
   passwordResetHint.innerHTML = 'You cannot reset your password.'
 
+  form.action = '/signup'
   form.insertBefore(repeatPassword, loginButton);
   form.insertBefore(passwordResetHint, loginButton);
 }
@@ -76,6 +77,8 @@ function showLoginMask() {
   if(passwordResetHint) passwordResetHint.parentNode.removeChild(passwordResetHint);
   repeatPassword.parentNode.removeChild(repeatPassword);
   repeatPassword = undefined;
+
+  form.action = '/login'
 }
 
 function sendAuthenticationRequest(username, password, type) {

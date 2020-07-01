@@ -29,14 +29,14 @@
     <h1 id="brand">Elephanture</h1>
 
     <ul id="nav-links">
-      <li><a href="#">Play</a></li>
+      <li><a href="{{ url_for('send_play_page', username= username) }}">Play</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">More</a></li>
     </ul>
 
 
     <div class="user-account">
-      <p class="user-name">Santa Claus</p>
+      <p class="user-name">{{ username }}</p>
       <div class="avatar small"></div>
     </div>
 
@@ -47,7 +47,7 @@
     <div class="user-bar">
       <div class="user-account">
         <img class="avatar large">
-        <h1 class="user-name">Santa Claus</h1>
+        <h1 class="user-name">{{ username }}</h1>
       </div>
 
       <h4>LOG OUT</h4>

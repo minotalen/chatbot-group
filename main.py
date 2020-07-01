@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_socketio import SocketIO, send, emit
 import json
 import database_SQLite as database
@@ -16,17 +16,46 @@ user_sessions = []
 
 @app.route('/')
 def send_index_page():
-    return render_template('index.html')
+    return redirect(url_for('login'))
 
-@app.route('/profile')
-def send_profile_page():
+@app.route('/login', methods=['GET','POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        print('username: ' + username)
+        print('password: ' + password)
+
+        if database.is_user_valid(username, password):
+             return redirect(url_for('send_profile_page', username=username))
+        else:
+            return render_template('login.html', error_message='Login failed')
+    else:
+        return render_template('login.html')
+
+@app.route('/signup', methods=['GET','POST'])
+def signup():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        print('username: ' + username)
+        print('password: ' + password)
+        userExists = database.is_user_valid(username, password)
+        if not userExists:
+            database.insert_user(username,password)
+            return redirect(url_for('send_profile_page()'))
+
+@app.route('/profile/<username>')
+def send_profile_page(username):
     """ (KK) TODO Check here if user is logged in: if not, redirect to login-page"""
-    return render_template('user.html')
+    
+    return render_template('user.html', username=username)
 
 @app.route('/play/<username>')
 def send_play_page(username):
     """ (KK) TODO check if user is still logged in  """
     return render_template('play.html', username=username)
+
 
 
 """ (KK) TODO use app routing for this, not socket """

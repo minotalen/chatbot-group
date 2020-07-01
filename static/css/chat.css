@@ -9,7 +9,8 @@ Last modified: 29.06.2020
   /* height: 100%; */
   /* height: -webkit-fill-available; */
   /* 15.5rem = content-container (top + bot) + top-bar + est. input (3.5rem) */
-  height: calc(100vh - 15.5rem); /* TODO browser with calc() support */
+  height: calc(100vh - 15.5rem);
+  /* TODO browser with calc() support */
   background-color: var(--color-surface-light);
 
   scrollbar-color: var(--color-primary) var(--color-surface-light);
@@ -120,7 +121,8 @@ Last modified: 29.06.2020
   padding: 0.5rem 1rem;
   margin: 0 0 0 1rem;
 
-  flex-basis: calc(12.5% - 1rem); /* size before flex */
+  flex-basis: calc(12.5% - 1rem);
+  /* size before flex */
 }
 
 
@@ -131,7 +133,8 @@ form#chat-input-form {
   padding: 0 1.25rem;
 }
 
-#chat-input-user-window { /* TODO rename: window -> container */
+#chat-input-user-window {
+  /* TODO rename: window -> container */
   flex-basis: 87.5%;
   background-color: var(--color-surface-dark);
   border-radius: var(--border-radius);
@@ -226,15 +229,10 @@ mark {
 
 /* TODO comment code below */
 @media only screen and (max-width: 600px) {
-  #chat-container {
-    border: none;
-    width: 100%;
+  #chat-content-container {
+    height: 90%;
     margin-top: 0;
     border-radius: 0;
-    background-color: var(--color-surface);
-  }
-
-  #chat-content-container {
     border-radius: var(--border-radius);
   }
 

@@ -25,7 +25,7 @@ h1 {
   /* background: var(--gradient-primary); */
   /* -webkit-background-clip: text;
   -webkit-text-fill-color: transparent */
-} 
+}
 
 h2 {
   font-size: 1.5rem;
@@ -40,6 +40,19 @@ ul {
   list-style-type: none;
 }
 
+#hamburger {
+  position: absolute;
+  top: 0.3rem;
+  right: 1rem;
+  font-size: 24px;
+  z-index: 1;
+  display: none;
+}
+
+#toggle {
+  display: none;
+}
+
 nav {
   position: fixed;
   top: 0;
@@ -49,7 +62,7 @@ nav {
 
   padding: 2rem;
   box-sizing: border-box;
-  
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -64,7 +77,11 @@ nav h2 {
 }
 
 nav ul {
-  justify-self: stretch; 
+  justify-self: stretch;
+}
+
+nav ul li:last-child {
+  display: none;
 }
 
 nav ul li {
@@ -77,24 +94,25 @@ nav ul li {
   font-size: 1.2rem;
   text-transform: uppercase;
 
-  border: 2px solid rgba(0,0,0,0);
+  border: 2px solid rgba(0, 0, 0, 0);
 }
 
-a { /* TODO necessary? */
+a {
+  /* TODO necessary? */
   color: var(--color-text);
 }
 
 nav ul li a {
   width: 100%;
   height: 100%;
-  
+
   color: var(--gradient-primary);
-  
+
   text-decoration: none;
   transition: .2s;
 }
 
-nav ul li:hover > a {
+nav ul li:hover>a {
   text-decoration: none;
   /* color: var(--color-text-light); */
   transition: .2s;
@@ -103,7 +121,7 @@ nav ul li:hover > a {
 nav ul li:hover {
   text-decoration: none;
   background-color: var(--color-surface);
-  
+
   border-radius: var(--border-radius);
   border: var(--border-default);
   box-shadow: var(--box-shadow-small);
@@ -163,7 +181,7 @@ nav .user-account {
   height: 96px;
 }
 
-button.primary  {
+button.primary {
   background-color: var(--color-primary);
 
   color: var(--color-onprimary);
@@ -179,7 +197,8 @@ button.primary  {
   transition: 0.2s;
 }
 
-button.primary:hover, button.primary:active {
+button.primary:hover,
+button.primary:active {
   background-color: var(--color-primary);
   box-shadow: var(--box-shadow-small);
 
@@ -228,7 +247,57 @@ button#delete-account.secondary {
   overflow: hidden;
 }
 
-input[type="radio"] {  
-  width: 20px; /* TODO why here and necessary? */
+input[type="radio"] {
+  width: 20px;
+  /* TODO why here and necessary? */
   background-color: var(--color-primary);
+}
+
+@media only screen and (max-width: 600px) {
+  #hamburger {
+    display: block;
+  }
+
+  nav {
+    display: block;
+    height: 10rem;
+    padding: 0.5rem;
+  }
+
+  nav ul {
+    display: block;
+    justify-self: normal;
+    margin-top: 0.7rem;
+  }
+
+  nav ul li {
+    display: block;
+    top: 2rem;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  nav ul li:last-child {
+    display: block;
+  }
+
+  .container {
+    top: 3rem;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border: none;
+    box-shadow: none;
+    transition: top 0.5s ease-in-out, filter 0.5s ease-in-out;
+  }
+
+  .user-account {
+    display: none;
+  }
+
+  /* #toggle:checked~ul li:last-child {
+    display: block;
+  } */
 }

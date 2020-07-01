@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from flask_socketio import SocketIO, send
+from flask_socketio import SocketIO, send, emit
 import json
 import database_SQLite as database
 from answerhandler_json import answerHandler
@@ -18,6 +18,25 @@ user_sessions = []
 def send_index_page():
     return render_template('index.html')
 
+@app.route('/profile')
+def send_profile_page():
+    """ (KK) TODO Check here if user is logged in: if not, redirect to login-page"""
+    return render_template('user.html')
+
+@app.route('/play/<username>')
+def send_play_page(username):
+    """ (KK) TODO check if user is still logged in  """
+    return render_template('play.html', username=username)
+
+
+""" (KK) TODO use app routing for this, not socket """
+@socketio.on('user_auth')
+def handle_user_auth(auth_req):
+    print("user_auth")
+    req = json.loads(auth_req)
+    res = {"username": req['username'], "successful": "true", "type": req['type']}
+    emit('user_auth', json.dumps(res))
+    render_template('play.html')
 
 @socketio.on('json')
 def handleJson(payload):
@@ -41,6 +60,7 @@ def update_users(payload):
 
 @socketio.on('connect')
 def connect():
+    """ (KK) TODO Move this content to a custom event, e.g. play"""
     initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "mode": "game", "message": "Welcome! Insert username."}
     json_data = json.dumps(initial_data)
     send(json_data, json=True)

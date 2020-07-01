@@ -87,9 +87,16 @@ def answerHandler(inputjson, username):
     # json wird wieder zusammen gepackt
     l.log_time('end')  # logging
     l.log_end()  # logging
+
+
+    #Check if a differnt sender is given
+    if len(answer) <= 3: newSender = "bot"
+    else: newSender = answer[3]
+
+    
     return json.dumps(
-        {"level": 1, "sender": "bot", "room": answer[1], "items": [], "mode": answer[2], "message": answer[0]})
-        #{"level": 1, "sender": answer[3] if answer[3] is not None else "bot", "room": answer[1], "items": [], "mode": answer[2], "message": answer[0]})
+        {"level": 1, "sender": newSender, "room": answer[1], "items": [], "mode": answer[2], "message": answer[0]})
+        
 
 
 """
@@ -128,7 +135,7 @@ def findAnswer(username, msg, roomId=-1):
 
                 altMode = 'game'
                 altRoom = roomId
-                # altSender ='bot'
+                altSender ='bot'
                 if elem['actions'][0] is not None:
                     for action, actionValue in zip(elem['actions'], elem['actionsValue']):
                         altAction = djf.doAction(
@@ -137,9 +144,9 @@ def findAnswer(username, msg, roomId=-1):
                             altRoom = altAction[0]
                         elif altAction[1] is not None:
                             altMode = altAction[1]
-                        # elif altAction[2] is not None: altSender = altAction[2]
+                        elif altAction[2] is not None: altSender = altAction[2]
 
-                return (elem['accept'], getRoomName(altRoom), altMode)
+                return (elem['accept'], getRoomName(altRoom), altMode, altSender)
             
             elif elem['trigName'] in msg:
                 return (elem['fail'], getRoomName(roomId), 'game')

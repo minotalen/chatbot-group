@@ -260,7 +260,7 @@ input[type="radio"] {
 
   nav {
     display: block;
-    height: 10rem;
+    height: auto;
     padding: 0.5rem;
   }
 

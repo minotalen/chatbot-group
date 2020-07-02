@@ -44,6 +44,13 @@ def login():
         else:
             return render_template('login.html', error_message='username and password do not match.')
     else:
+      username = session.get('username')
+      if username:
+          
+          print(username)
+          if database.is_user_logged_in(username):
+              return redirect(url_for('send_profile_page'))
+      else:
         return render_template('login.html')
 
 @app.route('/signup', methods=['GET','POST'])
@@ -61,8 +68,8 @@ def signup():
           return render_template('signup.html', error_message='Entered passwords do not match. Please make sure to enter identical passwords.')
         userExists = database.does_user_exist(username)
         if not userExists:
-            database.insert_user(username,password)
-            database.insert_login(username, True)
+            database.add_user(username,password)
+            session['username'] = username
             return redirect(url_for('send_profile_page', username=username))
         else:
             return render_template('signup.html', error_message='Username already taken. Please choose another one.')
@@ -77,7 +84,7 @@ def send_profile_page():
     if username and database.is_user_logged_in(username): 
         return render_template('user.html', username=username)
     else: 
-        print(username + ' is not logged in')
+        print('no user is logged in (username source: session)')
         return redirect(url_for('login'))
 
 
@@ -88,7 +95,7 @@ def send_play_page():
     if username and database.is_user_logged_in(username):
         return render_template('play.html', username=username)
     else: 
-        print(username + ' is not logged in')
+        print('no user is logged in (username source: session)')
         return redirect(url_for('login'))
 
 @app.route('/logout')

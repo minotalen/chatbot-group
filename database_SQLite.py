@@ -475,12 +475,76 @@ def delete_user_recmessage(username: str, messages: int = -1):
         print("nothing to delete")
         return False        
 
-# insert_user("Max", "123456")
-# insert_user("Jacobh", "123456")
-# insert_user("a", "123456")
-# insert_user("b", "123456")
 
-# insert_user_recmessage("Max", 1)
-# insert_user_recmessage("Jacobh", 3)
-# insert_user_recmessage("a", 4)
-# insert_user_recmessage("b", 5)
+"""
+save all the items that the player collected during play into "login" table. For example:
+===================================
+login_id | user_name |   login    | 
+---------+-----------+------------+
+  1      | "Dinh"    | 0          |
+  2      | "Kevin"   | 0          | 
+---------+-----------+------------+
+"""
+
+
+# Check if the user_name is taken in login table
+def does_login_exist(username):
+    # Query to database
+    query = """SELECT * FROM login WHERE username = ?"""
+    fetch = execute_database(query, (username,))
+    login = fetch[1]
+
+    if login is None or not login:
+        return False
+
+    if login[0] is not None:
+        return True
+    else:
+        return False
+
+
+# Add one record into login table
+def insert_login(username: str, log: int):
+    query = """ INSERT INTO login VALUES (?,?,?)"""
+    if does_user_exist(username) and not does_login_exist(username):
+        fetch = execute_database(query, (None, username, log,))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to add item into login table", e)
+        else:
+            print("Successfully added item into login table")
+    else:
+        print("This username is taken(in login table). Try another one.")
+
+
+def is_user_logged_in(username: str):
+    query = """SELECT login FROM login WHERE username = ?"""
+    if does_login_exist(username):
+        fetch = execute_database(query, (username,))
+        login = fetch[1][0]
+        if login[0] == 0:
+            return False
+        else:
+            return True
+    else:
+        print("The username is not in login table")
+        return False
+
+
+def update_login(username: str, set_login: bool):
+    user_id = get_user_id(username)
+    # Query to database
+    login = 0;
+    if set_login:
+        login = 1
+    if does_login_exist(username):
+        query = """UPDATE login SET login = ? WHERE username= ?"""
+        fetch = execute_database(query, (login, username, ))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to update login", e)
+        else:
+            print("login was updated successful")
+    else:
+        print("There is no such username that can update a login")
+

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from flask_socketio import SocketIO, send, emit
 import json
 import database_SQLite as database
@@ -16,6 +16,13 @@ user_sessions = []
 
 @app.route('/')
 def send_index_page():
+    username = session.get('username')
+    if username:
+        
+        print(username)
+        if database.is_user_logged_in(username):
+            return redirect(url_for('send_profile_page'))
+
     return redirect(url_for('login'))
 
 @app.route('/login', methods=['GET','POST'])
@@ -27,7 +34,13 @@ def login():
         print('password: ' + password)
 
         if database.is_user_valid(username, password):
-             return redirect(url_for('send_profile_page', username=username))
+            if database.is_user_logged_in(username):
+                return render_template('login.html', error_message='user already logged in on another device.')
+            else:
+                database.update_login(username, True)
+                session['username'] = username
+                session['is_logged_in'] = True
+                return redirect(url_for('send_profile_page', username=username))
         else:
             return render_template('login.html', error_message='username and password do not match.')
     else:
@@ -39,14 +52,17 @@ def signup():
         username = request.form['username']
         password = request.form['password']
         r_password = request.form['repeat-password']
+
         print('username: ' + username)
         print('password: ' + password)
         print('repeat password: ' + r_password)
+
         if password != r_password: 
           return render_template('signup.html', error_message='Entered passwords do not match. Please make sure to enter identical passwords.')
         userExists = database.does_user_exist(username)
         if not userExists:
             database.insert_user(username,password)
+            database.insert_login(username, True)
             return redirect(url_for('send_profile_page', username=username))
         else:
             return render_template('signup.html', error_message='Username already taken. Please choose another one.')
@@ -54,27 +70,50 @@ def signup():
       return render_template('signup.html')
         
 
-@app.route('/profile/<username>')
-def send_profile_page(username):
-    """ (KK) TODO Check here if user is logged in: if not, redirect to login-page"""
-    
-    return render_template('user.html', username=username)
+@app.route('/profile')
+def send_profile_page():
+    username = session.get('username')
 
-@app.route('/play/<username>')
-def send_play_page(username):
-    """ (KK) TODO check if user is still logged in  """
-    return render_template('play.html', username=username)
-
+    if username and database.is_user_logged_in(username): 
+        return render_template('user.html', username=username)
+    else: 
+        print(username + ' is not logged in')
+        return redirect(url_for('login'))
 
 
-""" (KK) TODO use app routing for this, not socket """
-@socketio.on('user_auth')
-def handle_user_auth(auth_req):
-    print("user_auth")
-    req = json.loads(auth_req)
-    res = {"username": req['username'], "successful": "true", "type": req['type']}
-    emit('user_auth', json.dumps(res))
-    render_template('play.html')
+@app.route('/play')
+def send_play_page():
+    username = session.get('username')
+
+    if username and database.is_user_logged_in(username):
+        return render_template('play.html', username=username)
+    else: 
+        print(username + ' is not logged in')
+        return redirect(url_for('login'))
+
+@app.route('/logout')
+def logout():
+    username = session.get('username')
+    print(username)
+
+    if username and database.is_user_logged_in(username): 
+        session.pop('username', None)
+        session.pop('is_logged_in', None)
+        database.update_login(username, False)
+        print(username + ' has been logged out')
+        return redirect(url_for('login'))
+    else: 
+        print('no user is logged in (username source: session)')
+        return redirect(url_for('login'))
+
+
+def authenticate_user(username, desired_login_state): 
+    if desired_login_state and not database.is_user_logged_in(username): 
+        return True
+    elif not desired_login_state and database.is_user_logged_in(username): 
+        return True
+    else:
+        return False
 
 @socketio.on('json')
 def handleJson(payload):
@@ -127,5 +166,5 @@ def get_current_username():
     return get_username_by_sid(request.sid)
 
 if __name__ == "__main__":
-    print("Try to start server...")
+    print("Trying to start server...")
     socketio.run(app, host='0.0.0.0', debug=True)

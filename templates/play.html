@@ -29,11 +29,13 @@
 <body>
 
   <nav>
-    <h1 id="brand">Elephanture</h1>
+    <div class="menu-bar">
+      <h1 id="brand">Elephanture</h1>
 
-    <!-- Hamburger Menu -->
-    <label for="toggle" id="hamburger">&#9776;</label>
-    <input type="checkbox" id="toggle" />
+      <!-- Hamburger Menu -->
+      <label for="toggle" id="hamburger">&#9776;</label>
+      <input type="checkbox" id="toggle" />
+    </div>
 
     <ul id="nav-links">
       <li><a href="{{ url_for('send_play_page', username= username) }}">Play</a></li>

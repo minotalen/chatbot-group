@@ -39,15 +39,16 @@ Last modified: 29.06.2020
 
 #top-bar {
   height: 2rem;
-
+  padding: 0 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   background-color: var(--color-surface);
+  margin-bottom: 0.25rem;
 }
 
 #top-bar h3 {
+  padding: 0;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -230,8 +231,10 @@ mark {
 /* TODO comment code below */
 @media only screen and (max-width: 600px) {
   #chat-content-container {
-    height: 90%;
+    height: 100%;
     margin-top: 0;
+    /* TODO: Calculate margin-bottin in JS */
+    margin-bottom: 2.75rem;
     border-radius: 0;
     border-radius: var(--border-radius);
   }
@@ -246,6 +249,7 @@ mark {
   #chat-input-user {
     width: 100%;
     margin: 0.25rem 0;
+    position: absolute;
   }
 
   #chat-input-user input[type="text"] {

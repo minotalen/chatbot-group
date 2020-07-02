@@ -41,9 +41,9 @@ ul {
 }
 
 #hamburger {
-  position: absolute;
+  /* position: absolute;
   top: 0.3rem;
-  right: 1rem;
+  right: 1rem; */
   font-size: 24px;
   z-index: 1;
   display: none;
@@ -258,6 +258,12 @@ input[type="radio"] {
     display: block;
   }
 
+  .menu-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   nav {
     display: block;
     height: auto;
@@ -284,6 +290,9 @@ input[type="radio"] {
   }
 
   .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     top: 3rem;
     bottom: 0;
     right: 0;

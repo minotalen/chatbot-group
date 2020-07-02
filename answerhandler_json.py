@@ -178,6 +178,13 @@ def findAnswer(username, msg, roomId=-1):
 
     # LOOK AT: Items und Objekte im Raum können angeschaut werden. ansonsten wird LOOK AROUND die Raumbeschreibungs ausgegeben
     elif intentID == 2:
+        # INVENTORY
+        for i in database.get_all_user_items(username):
+            if i[0] in msg:
+                for elem in rooms[i[1]]['items']:
+                    if elem['itemName'] == i[0]:
+                        return (elem['lookAt'], getRoomName(roomId), 'game')
+                        
         elemCount = -1
         # ITEMS
         if rooms[roomId]['items'][0] is not None:

@@ -1,107 +1,71 @@
-body{
-    margin: 0px;
-    padding: 0px;
-    background-color: #1e1c2f;
-}
-#box{
-    height: 450px;
-    width: 1000px;
-    background-color:#45416f;
-    border-radius: 5px;
-    position: absolute;
-    top:50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-#main{
-    height: 400px;
-    width: 450px;
-    background-color:white;
-    border-radius: 5px;
-    position: absolute;
-    top:50%;
-    left: 70%;
-    transform: translate(-50%,-50%);
-    z-index: 99;
-}
-#loginform,#signupform{
-    position: absolute;
-    top:50%;
-    left: 70%;
-    transform: translate(-50%,-50%);
-    z-index: 999;
-}
-#signupform{
-    visibility: hidden;
-}
-#loginform h1,#signupform h1{
-    font-family: arial;
-    font-size: 25px;
-    color: #45416f;
-}
-#loginform input,#signupform input{
-    height: 40px;
-    width: 300px;
-    border: 0px;
-    outline: none;
-    border-bottom: 1px solid black;
-    margin: 5px;
-}
-#loginform button,#signupform button{
-    height: 35px;
-    width: 130px;
-    background-color:#45416f;
-    font-family: monospace;
-    font-size: 16px;
-    color:white;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    margin-top: 30px;
-    margin-left: 175px;
-}
-#login_btn,#signup_btn{
-    height: 35px;
-    width: 120px;
-    background-color:transparent;
-    color:white;
-    border:1px solid white;
-    border-radius: 5px;
-    outline: none;
-    position: absolute;
-    left: 75%;
-    top:65%;
-    transform: translate(-50%,-50%);
-    transition: all .5s;
-}
-#signup_btn{
-    left: 25%;
-}
-#login_btn:hover,#signup_btn:hover{
-    background-color:white;
-    color:#2d2d2d;
-    cursor: pointer;
-}
-#login_msg,#signup_msg{
-    font-family: arial;
-    font-size: 25px;
-    color:white;
-    position: absolute;
-    top:35%;
-    left: 75%;
-    transform: translate(-50%,-50%);
-    z-index: 1;
-}
-#signup_msg{
-    left: 25%;
+/*
+Styling for login and sign up form
+Authors: Kevin Katzkowski
+Last modified: 30.06.2020
+*/
+
+.login {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  width: 25rem;
+  margin: 6rem auto 0;
+  padding: 2rem;
+
+  border: var(--border-chat);
+  background-color: var(--color-surface-light);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-large);
+  box-sizing: border-box;
 }
 
 
+.login button.secondary, .login button.primary,
+.login input[type="text"], .login input[type="password"] {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
 
+.login input[type="text"], .login input[type="password"] {
+  color: var(--color-message-user);
+  box-sizing: border-box;
+  border: var(--border-input);
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius);
+}
 
+.login h2 {
+  text-transform: uppercase;
+  text-align: center;
+}
 
+.login p {
+  margin: 0.5rem 0rem;
+  text-align: center;
+}
 
+.login form {
+  margin: 3rem 0 0;
+}
 
+.login p#sign-up {
+  opacity: 0.8;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
 
+.login p#sign-up:hover {
+  opacity: 1;
+  transition: all .2s ease-in-out;
+}
 
-
+.login label {
+  opacity: 0.8;
+  display: inline-block;
+  margin: .75rem 0 0;
+  font-size: 0.9rem;
+}

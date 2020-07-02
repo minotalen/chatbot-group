@@ -40,10 +40,11 @@ def signup():
         password = request.form['password']
         print('username: ' + username)
         print('password: ' + password)
-        userExists = database.is_user_valid(username, password)
+        userExists = database.does_user_exist(username)
         if not userExists:
             database.insert_user(username,password)
-            return redirect(url_for('send_profile_page()'))
+            return redirect(url_for('send_profile_page', username=username))
+        
 
 @app.route('/profile/<username>')
 def send_profile_page(username):

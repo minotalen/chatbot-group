@@ -1,7 +1,111 @@
 {
     "rooms": [
-    {
+     {
         "id": 0,
+        "location": "University",
+        "roomName": "startgame",
+        "intro": "To start the game, type: go to intro",
+        "descri": "",
+        "connections": [
+            {
+                "conNames": ["intro"],
+                "conRoomId": 1,
+                "needStates": [null],
+                "needStatesValue": [null]
+            }
+        ],
+        "items": [null],
+        "objects": [null],
+        "triggers": [null]
+    },
+     {
+        "id": 1,
+        "location": "University",
+        "roomName": "professors office",
+        "intro": "...you are in Professor Kraysee's office and you wait for him to call you up.<br>The nervousness rises with each second passing.<br>Will this be my last hour as a student of the university of Bremen?...<br>type in '<b>look around</b>' to get details of the room.<br>type in '<b>ready</b>' if you already played the tutorial.",
+        "descri": "professor Kraysee's office looks like it hasn't been tidied up for over a decade. You can see alot of interesting things laying around in his office but nothing all too useful.<br>He looks at you and you begin to chat...<br>type in '<b>talk to professor</b>' to talk to a person",
+        "connections": [],
+        "items": [null],
+        "objects": [
+            {
+                "objName": "door",
+                "lookAt": "You are now standing in front of the door.<br> Type in '<b>open</b> door' to exit the office.<br>",
+                "needStates": ["ownNotes", "sawDoor"],
+                "needStatesValue": [true, false],
+                "newStates": ["sawDoor"],
+                "newStatesValue": [true]
+            }
+        ],
+        "triggers": [
+            {
+                "trigName": "open door",
+                "needStates": ["sawDoor", "triggeredOpenDoor"],
+                "needStatesValue": [true, false],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "<em>You walk out of the room.</em><br><br>Yes! We did it! I’m so glad the Professor gave me a second chance! Or should I say third? Well, this doesn’t matter. Actually, let’s take a look at the notes he handed me.<br><br>type in '<b>look at</b> notes' to inspect an item or object." ,
+                "fail": null,
+                "newStates": ["triggeredOpenDoor"],
+                "newStatesValue": [true],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+            {
+                "trigName": "pick up notes",
+                "needStates": ["gotNotes", "ownNotes"],
+                "needStatesValue": [true, false],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You receive some notes.</b><br><br><b>Player:</b> Thank you Professor! I will not disappoint you, I promise!<br>type in '<b>go to</b> door' to go to the exit." ,
+                "fail": null,
+                "newStates": ["ownNotes"],
+                "newStatesValue": [true],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+            {
+                "trigName": "look at notes",
+                "needStates": ["triggeredOpenDoor"],
+                "needStatesValue": [true],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You take a look at the notes. <br> You manage to read the notes, even though your eyes are watery and your Professors handwriting is awful, to say the least.<br><br><br>'Go to the elephant monument in the Nelson-Mandela-Park,<br>there you will have to find a hidden box.<br>Once you found it, you will have to solve a riddle.<br>If you manage to solve the riddle I will contact you.<br>Good luck, you will need it.'<br><br>- Kraysee<br><br><em>There’s nothing on the back of the paper. But there’s a stain on the bottom of the front page.</em><br><em>You taste it.</em><br><em>Chocolate.</em><br><br>Ugh. I hate chocolate! Professor Kraysee always eats lots and lots of chocolate, no wonder there are stains on every paper we receive…<br><br>Type in '<b>ready</b>' to start your journey.<br>" ,
+                "fail": null,
+                "newStates": ["solvedTutorial"],
+                "newStatesValue": [true],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+            {
+                "trigName": "talk to professor",
+                "needStates": ["gotNotes"],
+                "needStatesValue": [false],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "Professor Kraysee:</b> … I’ve told you, this was your last chance! You already cheated once on your bachelor thesis.<br> <b>Player:</b> But Professor Kraysee, I really need my degree!<br><b>Professor Kraysee:</b> I know that. And I also know that I would ruin your life if I would make you fail. But I need to follow the rules.<br> <b>Player:</b> … <br> <em>Player’s eyes getting wet..</em><br><b>Professor Kraysee:</b> Alright, look I may have a task for you. I give you a very last chance for your bachelor thesis. I choose the topic and I conduct your research. If you successfully complete what I ask for I will let you pass. This way you will get your degree even though you cheated. But this will be a difficult tasks and I’m not sure whether you will be able to do it or not.<br><b>Player:</b> Please please please. I will do anything!<br> <em>Not literally!</em><br><b>Professor Kraysee:</b> Alright, here you have some notes. If you solve this riddle I will give you the chance to start your quest.<br> Type in '<b>pick up</b> notes' to pick up or receive an item.<br>" ,
+                "fail": null,
+                "newStates": ["gotNotes"],
+                "newStatesValue": [true],
+                "actions": [null],
+                "actionsValue": [null]
+            }, 
+            {
+                "trigName": "ready",
+                "needStates": ["solvedTutorial"],
+                "needStatesValue": [true],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You are now standing in front of the elephant monument in the Nelson Mandela Park. Your task is to find the hidden box to solve the riddle the professor gave you." ,
+                "fail": null,
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": ["changeLocation"],
+                "actionsValue": [2]
+            }
+        ]
+    },
+    {
+        "id": 2,
         "location": "Nelson Mandela Park",
         "roomName": "elephant monument",
         "intro": "You are now standing in front of the elephant monument in the Nelson Mandela Park. Your task is to find the hidden box to solve the riddle the professor gave you.",
@@ -9,19 +113,19 @@
         "connections": [
             {
                 "conNames": ["door"],
-                "conRoomId": 0,
+                "conRoomId": 2,
                 "needStates": ["DOORCANTOPENYET"],
                 "needStatesValue": [true]
             },
             {
                 "conNames": ["bush"],
-                "conRoomId": 1,
+                "conRoomId": 3,
                 "needStates": [null],
                 "needStatesValue": [null]
             },
             {
                 "conNames": ["market"],
-                "conRoomId": 2,
+                "conRoomId": 4,
                 "needStates": ["solvedPinCode"],
                 "needStatesValue": [true]
             }
@@ -114,7 +218,7 @@
         ]
     },
     {
-        "id": 1,
+        "id": 3,
         "location": "Nelson Mandela Park",
         "roomName": "Bush",
         "intro": "You walk for a bit, away from the monument to reach the bush. You look at this strange, suspicious looking odd bush! Do you want to take a closer look?",
@@ -122,7 +226,7 @@
         "connections": [
             {
                 "conNames": ["back", "monument"],
-                "conRoomId": 0,
+                "conRoomId": 2,
                 "needStates": [null],
                 "needStatesValue": [null]
             }
@@ -178,7 +282,7 @@
         ]
     },
     {
-        "id": 2,
+        "id": 4,
         "location": "Schlachte Flea Market",
         "roomName": "Stands",
         "intro": "You are making your way downtown. <br>... <br>You arrive at the Schlachte flea market.",
@@ -186,7 +290,7 @@
         "connections": [
             {
                 "conNames": ["back"],
-                "conRoomId": 0,
+                "conRoomId": 2,
                 "needStates": [null],
                 "needStatesValue": [null]
             }
@@ -267,34 +371,9 @@
                 "newStatesValue": [true],
                 "actions": ["addItem"],
                 "actionsValue": ["chest"]
-            },
-	    {
-                "trigName": "bargain",
-                "needStates": ["solvedBargain"],
-                "needStatesValue": [false],
-                "needItems": [null],
-                "needItemsRoomId": [null],
-                "accept": "Player: Yo! How much you want for that ol' wooden box, Mister?<br>The salesman: 50 bucks.<br>Player: FIFTY BUCKS?!? mumbling This thing ain't even worth 5 bucks..<br>The salesman: What was that?<br>Player: Nothing.<br>Player: I think I need to bargain better here... Let's find a good price.",
-                "fail": "You literally have no money left to buy anything from the salesman.",
-                "newStates": [null],
-                "newStatesValue": [null],
-                "actions": ["changeMode"],
-                "actionsValue": ["riddle"]
-            },
-	    {
-                "trigName": "picture",
-                "needStates": ["solvedBargain"],
-                "needStatesValue": [true],
-                "needItems": [null],
-                "needItemsRoomId": [null],
-                "accept": "You send Prof K. a picture of the ancient chest. And he writes a message back.",
-                "fail": "What picture are you talking about?",
-                "newStates": ["triggeredPicture"],
-                "newStatesValue": [true],
-                "actions": [null],
-                "actionsValue": [null]
             }
         ]
     }
     ]
 }
+ 

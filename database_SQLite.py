@@ -550,7 +550,7 @@ def update_login(username: str, set_login: bool):
         print("There is no such username that can update a login")
 
 
-def add_user_into_user_table(username, password):
+def add_user(username, password):
     query = """ INSERT INTO users VALUES (?,?,?)"""
     if not does_user_exist(username):
         fetch = execute_database(query, (None, username, password,))
@@ -562,5 +562,3 @@ def add_user_into_user_table(username, password):
             print("succesfully added user")
     else:
         print("This username is taken. Try another one.")
-
-add_user_into_user_table("Test", "test")

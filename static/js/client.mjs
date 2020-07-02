@@ -21,8 +21,7 @@ let socket = io.connect("http://127.0.0.1:5000"),
   modeName = 'test_mode',
   msg,
   typeIndicator = document.getElementById('type-indicator'),
-  userMessageSendingAllowed = true,
-  hamburgerMenu = document.getElementById('toggle');
+  userMessageSendingAllowed = true;
 
 
 socket.on('connect', function () {
@@ -271,20 +270,6 @@ window.addEventListener('click', (evt) => {
 
 window.addEventListener('keyup', (evt) => {
   evt.preventDefault(); // ???????
-});
-
-
-/**
- * Mobile Layout Transition Overlay
- */
-hamburgerMenu.addEventListener('click', () => {
-  let container = document.getElementsByClassName('container')[0];
-  if (hamburgerMenu.checked) {
-    container.style.filter = "brightness(50%)";
-    container.style.top = "11.75rem";
-  } else {
-    container.style = "";
-  }
 });
 
 

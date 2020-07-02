@@ -29,7 +29,7 @@ def login():
         if database.is_user_valid(username, password):
              return redirect(url_for('send_profile_page', username=username))
         else:
-            return render_template('login.html', error_message='Login failed')
+            return render_template('login.html', error_message='username and password do not match.')
     else:
         return render_template('login.html')
 
@@ -38,12 +38,20 @@ def signup():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        r_password = request.form['repeat-password']
         print('username: ' + username)
         print('password: ' + password)
+        print('repeat password: ' + r_password)
+        if password != r_password: 
+          return render_template('signup.html', error_message='Entered passwords do not match. Please make sure to enter identical passwords.')
         userExists = database.does_user_exist(username)
         if not userExists:
             database.insert_user(username,password)
             return redirect(url_for('send_profile_page', username=username))
+        else:
+            return render_template('signup.html', error_message='Username already taken. Please choose another one.')
+    else:
+      return render_template('signup.html')
         
 
 @app.route('/profile/<username>')

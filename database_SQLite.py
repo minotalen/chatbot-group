@@ -114,6 +114,7 @@ def insert_user(username, password):
         if e is not None:
             print("Failed to add user", e)
         else:
+            insert_login(username, 1)
             print("succesfully added user")
     else:
         print("This username is taken. Try another one.")
@@ -548,3 +549,18 @@ def update_login(username: str, set_login: bool):
     else:
         print("There is no such username that can update a login")
 
+
+def add_user_into_user_table(username, password):
+    query = """ INSERT INTO users VALUES (?,?,?)"""
+    if not does_user_exist(username):
+        fetch = execute_database(query, (None, username, password,))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to add user", e)
+        else:
+            insert_login(username, 1)
+            print("succesfully added user")
+    else:
+        print("This username is taken. Try another one.")
+
+add_user_into_user_table("Test", "test")

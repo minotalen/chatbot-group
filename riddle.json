@@ -1,7 +1,7 @@
 {
     "rooms": [
     {
-        "roomId": 1,
+        "roomId": 3,
         "rightAnswer": "2375",
         "rightText": "Congrats! You have now solved the riddle and are able to use the mobile phone. While you solved the riddle you moved unconscious to the entrance of the park. And you received a message on your new phone!",
         "falseText": "Mhh... That number didn't work. Try another number.",
@@ -12,7 +12,7 @@
         "actionsValue": [0]
     },
     {
-        "roomId": 2,
+        "roomId": 4,
         "rightAnswer": "20",
         "rightText": "Aight. There you have it.<br><b>You receive the ancient chest. Inside the chest, you find a wooden totem.<br>The moment you have a closer look at the totem, you notice you receive a message on your mobile phone. Ahh, it's Professor Kraysee again!</b>",
         "falseText": "That is not even a number! I only take money.",

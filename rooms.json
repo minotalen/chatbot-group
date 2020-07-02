@@ -122,12 +122,6 @@
                 "conRoomId": 3,
                 "needStates": [null],
                 "needStatesValue": [null]
-            },
-            {
-                "conNames": ["market"],
-                "conRoomId": 4,
-                "needStates": ["solvedPinCode"],
-                "needStatesValue": [true]
             }
         ],
         "items": [
@@ -287,14 +281,7 @@
         "roomName": "Stands",
         "intro": "You are making your way downtown. <br>... <br>You arrive at the Schlachte flea market.",
         "descri": "There are dozens and dozens of little stands with people selling anything you could imagine. From trash to very nice and expensive coats to various paintings. <br>You have a closer look at one of the stands and an ancient treasure chest catches your eye. You take the chest to gain a better view. The salesman looks at you.",
-        "connections": [
-            {
-                "conNames": ["back"],
-                "conRoomId": 2,
-                "needStates": [null],
-                "needStatesValue": [null]
-            }
-        ],
+        "connections": [],
         "items": [null],
         "objects": [
             {

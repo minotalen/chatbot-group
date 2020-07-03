@@ -114,7 +114,7 @@ def tellAnswer(msg: str) -> str:
     for dictionary in questions:
         if int(dictionary.get("id")) == intentId:
             return dictionary.get("answer")
-    return "I didn't understand you question"
+    return "I didn't understand your question"
 
 
 """

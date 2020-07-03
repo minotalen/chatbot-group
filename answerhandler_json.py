@@ -5,7 +5,7 @@ import data_json_functions as djf
 from gps import handleGPS, printLocations
 from pathlib import Path
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
-from phone import handleAnswer
+from phone import handleAnswer, getSizeofMessagequeue
 from riddlemode import checkAnswer
 import logging_time as l
 #import audio as audio
@@ -236,7 +236,7 @@ def findAnswer(username, msg, roomId=-1):
     # START PHONE: Der Handymodus wird gestartet
     elif intentID == 7:
         if database.get_user_state_value(username, 'solvedPinCode') == True:
-            return ('You are now chatting with the professor', getRoomName(roomId), 'phone')
+            return ('Phone started  <em>Type help to show usage instructions</em><br>You are now chatting with the professor. <br>' + 'You have ' + str(getSizeofMessagequeue(username)) + ' new messages in your mailbox', getRoomName(roomId), 'phone')
 
     # START GPS DEVICE
     elif intentID == 8:

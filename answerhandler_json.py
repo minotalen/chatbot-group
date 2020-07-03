@@ -197,7 +197,7 @@ def findAnswer(username, msg, roomId=-1):
 
         elemCount = -1
         # OBJEKTE
-        if rooms[roomId]['items'][0] is not None:
+        if rooms[roomId]['objects'][0] is not None:
             for elem in rooms[roomId]['objects']:
                 elemCount += 1
 
@@ -211,15 +211,16 @@ def findAnswer(username, msg, roomId=-1):
 
     # PICK UP: Hebt ein item auf und gibt den Text zurück
     elif intentID == 3:
-        elemCount = -1
-        for elem in rooms[roomId]['items']:
-            elemCount += 1
+        if rooms[roomId]['items'][0] is not None:
+            elemCount = -1
+            for elem in rooms[roomId]['items']:
+                elemCount += 1
 
-            if elem['itemName'] in msg and djf.checkNeededStates(rooms[roomId]['items'][elemCount], username):
-                djf.updateStates(rooms[roomId]['items'][elemCount], username)
-                djf.add_to_inventory(elem['itemName'], roomId, username)
+                if elem['itemName'] in msg and djf.checkNeededStates(rooms[roomId]['items'][elemCount], username):
+                    djf.updateStates(rooms[roomId]['items'][elemCount], username)
+                    djf.add_to_inventory(elem['itemName'], roomId, username)
 
-                return (elem['pickUp'], getRoomName(roomId), 'game')
+                    return (elem['pickUp'], getRoomName(roomId), 'game')
 
     # ITEMS: NOCH NICHT FERTIG. BAUSTELLE
     elif intentID == 4:

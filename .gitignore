@@ -3,9 +3,6 @@
 .idea/
 .vs/
 
-# Databases
-elephanture.db
-
 # Vagrant
 .vagrant/
 

@@ -141,3 +141,68 @@ input[type="checkbox"].settings:checked:after {
   background-color: var(--color-primary);
   color: var(--color-onprimary);
 }
+
+@media only screen and (max-width: 600px) {
+
+  .user-bar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .account-display {
+    display: flex;
+  }
+
+  .avatar.large {
+    min-width: 60px;
+    width: 60px;
+    min-height: 60px;
+    height: 60px;
+  }
+
+  .user-name {
+    font-size: 1.2rem;
+  }
+
+  .setting-content {
+    justify-content: start;
+  }
+
+  .settings-container {
+    height: auto;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .settings-container>div {
+    margin: 0.75rem 0;
+  }
+
+  .settings-container button {
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 0.5rem 0.25rem;
+  }
+
+  input[type="checkbox"].settings {
+    width: 2.5rem;
+    height: 1.5rem;
+  }
+
+  input[type="checkbox"].settings:after {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  input[type="checkbox"].settings:checked:after {
+    left: calc(100% - 1.5rem);
+  }
+
+  .settings-container>.theme-select {
+    flex-direction: column;
+  }
+
+  .settings-container>.theme-select p {
+    margin-bottom: 1rem;
+  }
+}

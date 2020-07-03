@@ -26,12 +26,19 @@
 
 <body>
   <nav>
-    <h1 id="brand">Elephanture</h1>
+    <div class="menu-bar">
+      <h1 id="brand">Elephanture</h1>
+
+      <!-- Hamburger Menu -->
+      <label for="toggle" id="hamburger">&#9776;</label>
+      <input type="checkbox" id="toggle" />
+    </div>
 
     <ul id="nav-links">
       <li><a href="{{ url_for('send_play_page', username= username) }}">Play</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">More</a></li>
+      <li><a href="#">{{ username }}</a></li>
     </ul>
 
 
@@ -42,10 +49,10 @@
 
   </nav>
 
-  <div class="container">
+  <div class="container setting-content">
 
     <div class="user-bar">
-      <div class="user-account">
+      <div class="user-account account-display">
         <img class="avatar large">
         <h1 class="user-name">{{ username }}</h1>
       </div>
@@ -72,10 +79,10 @@
         <input type="checkbox" class="settings" id="show-suggestion" checked></input>
       </div>
       <div>
-        <p>Read received messages with text-to-speech</p>
+        <p>Text-to-speech</p>
         <input type="checkbox" class="settings" id="read-messages"></input>
       </div>
-      <div>
+      <div class="theme-select">
         <p>Select theme</p>
         <div class="theme-radio-buttons">
           <div>
@@ -99,6 +106,8 @@
 
       <div>
         <p>Delete game progress</p>
+        <button id="delete-game-progress" class="primary">Delete</button>
+
       </div>
     </div>
 

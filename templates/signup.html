@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../static/css/base.css">
   <link rel="stylesheet" href="../static/css/colors.css">
   <link rel="stylesheet" href="../static/css/user.css">
-  <link rel="stylesheet" href="../static/css/login-signup.css">  
+  <link rel="stylesheet" href="../static/css/login-signup.css">
 
   <!-- TODO change title -->
   <title>Sing Up</title>
@@ -27,16 +27,20 @@
 
 <body>
   <nav>
-    <h1 id="brand">Elephanture</h1>
+    <div class="menu-bar">
+      <h1 id="brand">Elephanture</h1>
 
-    <!-- Hamburger Menu -->
-    <label for="toggle" id="hamburger">&#9776;</label>
-    <input type="checkbox" id="toggle" />
+      <!-- Hamburger Menu -->
+      <label for="toggle" id="hamburger">&#9776;</label>
+      <input type="checkbox" id="toggle" />
+    </div>
 
     <ul id="nav-links">
-      <li><a href="{{ url_for('send_play_page', username= username) }}">Play</a></li> <!--- TODO do not redirect without user name -->
+      <li><a href="{{ url_for('send_play_page', username= username) }}">Play</a></li>
+      <!--- TODO do not redirect without user name -->
       <li><a href="#">About</a></li>
       <li><a href="#">More</a></li>
+      <li></li>
     </ul>
 
 
@@ -55,18 +59,18 @@
     <form id="signup-form" method="POST" action="/signup">
       <input id="user-name" name="username" type="text" placeholder="username" required>
       <input id="user-password" name="password" type="password" placeholder="password" required>
-      
+
       <input id="repeat-password" name="repeat-password" type="password" placeholder="repeat password" required>
       <label for="repeat-password">You cannot reset your password.</label>
 
       <button id="signup-button" type="submit" class="primary">Sign Up</button>
-  
+
     </form>
-    
+
     <a id="login-instead" href="/login">log in instead</a>
 
   </div>
-  
+
   <!-- load custom javascript -->
   <script type="module" src="../static/js/mobile.js"></script>
 </body>

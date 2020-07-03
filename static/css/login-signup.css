@@ -4,7 +4,8 @@ Authors: Kevin Katzkowski
 Last modified: 02.07.2020
 */
 
-.login, .signup {
+.login,
+.signup {
   position: relative;
   /* .container class can be added because of auto */
   top: auto;
@@ -14,6 +15,7 @@ Last modified: 02.07.2020
 
   display: flex;
   flex-direction: column;
+  justify-content: start;
 
   width: 25rem;
   margin: 6rem auto 0;
@@ -27,18 +29,24 @@ Last modified: 02.07.2020
 }
 
 
-.login button.secondary, .login button.primary,
-.login input[type="text"], .login input[type="password"],
-.signup button.secondary, .signup button.primary,
-.signup input[type="text"], .signup input[type="password"] {
+.login button.secondary,
+.login button.primary,
+.login input[type="text"],
+.login input[type="password"],
+.signup button.secondary,
+.signup button.primary,
+.signup input[type="text"],
+.signup input[type="password"] {
   width: 100%;
   margin: 0.5rem 0;
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
 }
 
-.login input[type="text"], .login input[type="password"],
-.signup input[type="text"], .signup input[type="password"] {
+.login input[type="text"],
+.login input[type="password"],
+.signup input[type="text"],
+.signup input[type="password"] {
   color: var(--color-message-user);
   box-sizing: border-box;
   border: var(--border-input);
@@ -46,12 +54,16 @@ Last modified: 02.07.2020
   border-radius: var(--border-radius);
 }
 
-.login h2, .signup h2 {
+.login h2,
+.signup h2 {
   text-transform: uppercase;
   text-align: center;
 }
 
-.login p, .signup p, .login a, .signup a {
+.login p,
+.signup p,
+.login a,
+.signup a {
   margin: 0.5rem 0rem;
   text-align: center;
 }
@@ -60,23 +72,27 @@ p.error-message {
   color: var(--color-error);
 }
 
-.login form, .signup form {
+.login form,
+.signup form {
   margin: 3rem 0 0;
 }
 
-.login a#signup-instead, .signup a#login-instead {
+.login a#signup-instead,
+.signup a#login-instead {
   opacity: 0.8;
   font-size: 0.9rem;
   text-decoration: underline;
   cursor: pointer;
 }
 
-.login a#signup-instead:hover, .signup a#login-instead:hover {
+.login a#signup-instead:hover,
+.signup a#login-instead:hover {
   opacity: 1;
   transition: all .2s ease-in-out;
 }
 
-.login label, .signup label {
+.login label,
+.signup label {
   opacity: 0.8;
   display: inline-block;
   margin: .75rem 0 0;
@@ -84,7 +100,9 @@ p.error-message {
 }
 
 @media only screen and (max-width: 600px) {
-  .login, .signup {
+
+  .login,
+  .signup {
     position: absolute;
     top: 3rem;
     bottom: 0;

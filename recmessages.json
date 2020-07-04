@@ -13,16 +13,6 @@
             "id": 3,
             "str_message": "In fact this chest was once in possession of the Atikuku tribe.",
             "user_state": "solvedPinCode"
-        },
-	{
-            "id": 4,
-            "str_message": "Congrats, you found the item.<br>Oh you found something interesting. Do you mind sending me a picture?",
-            "user_state": "solvedBargain"
-        },
-	{
-            "id": 5,
-            "str_message": "Thank you. Very cool.<br><br> I did some research and I found out that this chest has indeed some kind of connections to the colonialism. In fact this chest was once in possession of the Atikuku tribe. The Überseestadtmuseum has an exhibition about the Atikuku's. You should go there and investigate.",
-            "user_state": "triggeredPicture"
         }
     ]
 }

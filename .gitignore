@@ -3,6 +3,7 @@
 .idea/
 .vs/
 
+
 # Vagrant
 .vagrant/
 
@@ -94,7 +95,6 @@ ipython_config.py
 
 # pyenv
 .python-version
-pyvenv.*
 
 # celery beat schedule file
 celerybeat-schedule

@@ -23,23 +23,20 @@ roomId: current room id
 Returns: triple containing (msg, new roomID, new gamemode)
 """
 def handleGPS(msg: str, username: str, level: int, roomId: int = -1):
-
-    if not database.does_user_exist(username):
-         raise ValueError("username " + username + " does not exist in the database!")
-    
     if roomId == -1: raise ValueError("Invalid Room Id Parameter")
     else: resultRoomId = -1
 
-    intentID = classifyIntent(msg, ["go to", "beam to", "print locations"])
+    intentID = classifyIntent(msg, ["go to", "print locations"])
     print("intentID", intentID)
-    if intentID == 1 or intentID == 2:
+    if intentID == 1:
         possibleLocations = getPossibleLocations(username)
         intentID = classifyIntent(msg, possibleLocations)
         if intentID != -1:
             for location in locations:
                 if location.get("locationName") == possibleLocations[intentID - 1]:
                     resultRoomId = location.get("startRoomId")
-    elif intentID == 3:
+
+    elif intentID == 2:
         return (printLocations(username), roomId, 'gps')
 
     # if location has not changed -> stay in gps mode
@@ -63,15 +60,11 @@ Parameters
 ----------
 username: the current username
 
-Returns: list of strings, possible locations 
-(per default "Nelson Mandela Park" is in it because its the start location of the game)
+Returns: list of strings, possible locations
 """
 def getPossibleLocations(username: str) -> list:
-    return [location.get("locationName")
-        for location in locations
-            if all(list(map(lambda x: 
-                database.get_user_state_value(username, x, False),
-                location.get("neededStates"))))]
+    return [location.get("locationName") for location in locations if all(list(map(lambda x: database.get_user_state_value(username, x, False), location.get("neededStates"))))]
+
 
 """
 @author:: Max Petendra, Jakob Hackstein
@@ -87,5 +80,4 @@ username: the current username
 Returns: a string containing all possible locations
 """
 def printLocations(username: str) -> str:
-    print("Hello")
     return "You can beam yourself to:<br>" + '<br>'.join(getPossibleLocations(username))

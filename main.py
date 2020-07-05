@@ -20,7 +20,7 @@ def send_index_page():
     if username:
         
         print(username)
-        if database.is_user_logged_in(username):
+        if username: #database.is_user_logged_in(username):
             return redirect(url_for('send_profile_page'))
 
     return redirect(url_for('login'))
@@ -37,7 +37,7 @@ def login():
             """if database.is_user_logged_in(username):
                 return render_template('login.html', error_message='user already logged in on another device.')
             else:"""
-            database.update_login(username, True)
+            # database.update_login(username, True)
             session['username'] = username
             session['is_logged_in'] = True
             return redirect(url_for('send_profile_page', username=username))
@@ -48,7 +48,7 @@ def login():
       if username:
           
           print(username)
-          if database.is_user_logged_in(username):
+          if username: #database.is_user_logged_in(username):
               return redirect(url_for('send_profile_page'))
       else:
         return render_template('login.html')
@@ -81,7 +81,7 @@ def signup():
 def send_profile_page():
     username = session.get('username')
 
-    if username and database.is_user_logged_in(username): 
+    if username: # database.is_user_logged_in(username): 
         return render_template('user.html', username=username)
     else: 
         print('no user is logged in (username source: session)')
@@ -92,7 +92,7 @@ def send_profile_page():
 def send_play_page():
     username = session.get('username')
 
-    if username and database.is_user_logged_in(username):
+    if username: # database.is_user_logged_in(username):
         return render_template('play.html', username=username)
     else: 
         print('no user is logged in (username source: session)')
@@ -106,7 +106,7 @@ def logout():
     if username: #and database.is_user_logged_in(username): 
         session.pop('username', None)
         session.pop('is_logged_in', None)
-        database.update_login(username, False)
+        # database.update_login(username, False)
         print(username + ' has been logged out')
         return redirect(url_for('login'))
     else: 

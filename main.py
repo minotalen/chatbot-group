@@ -34,13 +34,13 @@ def login():
         print('password: ' + password)
 
         if database.is_user_valid(username, password):
-            if database.is_user_logged_in(username):
+            """if database.is_user_logged_in(username):
                 return render_template('login.html', error_message='user already logged in on another device.')
-            else:
-                database.update_login(username, True)
-                session['username'] = username
-                session['is_logged_in'] = True
-                return redirect(url_for('send_profile_page', username=username))
+            else:"""
+            database.update_login(username, True)
+            session['username'] = username
+            session['is_logged_in'] = True
+            return redirect(url_for('send_profile_page', username=username))
         else:
             return render_template('login.html', error_message='username and password do not match.')
     else:
@@ -103,7 +103,7 @@ def logout():
     username = session.get('username')
     print(username)
 
-    if username and database.is_user_logged_in(username): 
+    if username: #and database.is_user_logged_in(username): 
         session.pop('username', None)
         session.pop('is_logged_in', None)
         database.update_login(username, False)
@@ -113,14 +113,6 @@ def logout():
         print('no user is logged in (username source: session)')
         return redirect(url_for('login'))
 
-
-def authenticate_user(username, desired_login_state): 
-    if desired_login_state and not database.is_user_logged_in(username): 
-        return True
-    elif not desired_login_state and database.is_user_logged_in(username): 
-        return True
-    else:
-        return False
 
 @socketio.on('json')
 def handleJson(payload):

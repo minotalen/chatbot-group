@@ -4,20 +4,25 @@
  * Last modified: 18.06.2020
  */
 
-import { closeSuggestions, userInput } from './suggestions.mjs';
-import { closeSettings } from './settings.mjs';
+import {
+  closeSuggestions,
+  userInput
+} from './suggestions.mjs';
+import {
+  closeSettings
+} from './settings.mjs';
 
-let socket = io.connect(protocol + '//' + document.domain + ':' + location.port),
+let socket = io.connect("http://127.0.0.1:5000"),
   sendButton = document.getElementById('send-button'),
   userName = undefined,
   levelID = 'test_level_ID',
   senderName = 'test_sender_name',
   roomName = 'test_room_name',
   modeName = 'test_mode',
-  msg, 
+  msg,
   typeIndicator = document.getElementById('type-indicator'),
   userMessageSendingAllowed = true;
- 
+
 
 socket.on('connect', function () {
   console.log('connected client');
@@ -50,7 +55,7 @@ sendButton.addEventListener('click', () => {
 /**
  * Sends the message from the chat input to the socket.
  */
-function sendMessage(evt='json') {
+function sendMessage(evt = 'json') {
   let json;
 
   if (!userMessageSendingAllowed) {
@@ -64,7 +69,7 @@ function sendMessage(evt='json') {
   senderName = 'user';
 
   // store user name in client variables
-  if(evt == 'user_registration') {
+  if (evt == 'user_registration') {
     userName = msg;
   }
 
@@ -112,6 +117,9 @@ function printMessage(msg) {
 
       // remove bottom margin since element size works as bottom spacing when visiblity is set to hidden
       typeIndicator.style.marginBottom = '0';
+
+      // typewriter effect  
+      // writeEachChar(elem, msg);
       break;
 
     case 'bot':
@@ -120,6 +128,9 @@ function printMessage(msg) {
 
       // remove bottom margin since element size works as bottom spacing when visiblity is set to hidden
       typeIndicator.style.marginBottom = '0';
+
+      // typewriter effect  
+      // writeEachChar(elem, msg);
       break;
 
     default:
@@ -128,6 +139,7 @@ function printMessage(msg) {
 
       // add margin equal to element size for consistent bottom spacing
       typeIndicator.style.marginBottom = typeIndicator.getBoundingClientRect().height + 'px';
+      // elem.innerHTML = msg;
       break;
   }
 
@@ -153,9 +165,9 @@ function updateMode() {
 /**
  * Updates the room name.
  */
-function updateRoomName(){
-	let rName = document.getElementById('room_name');
-	rName.innerHTML = roomName;
+function updateRoomName() {
+  let rName = document.getElementById('room-name');
+  rName.innerHTML = roomName;
 }
 
 
@@ -163,11 +175,11 @@ function updateRoomName(){
  * Updates the currently level.
  * @param {String} level new level
  */
-function updateCurrentLevel(level){
+function updateCurrentLevel(level) {
   let currentLevel = document.getElementById('level');
   console.log(currentLevel);
-  
-	currentLevel.innerHTML = level;
+
+  currentLevel.innerHTML = level;
 }
 
 
@@ -228,20 +240,39 @@ function sendUserName() {
 
 
 /**
+ * Writes each char of the message individually into the element.
+ * @param {HTML element} elem The HTML element where the message shall be added.
+ * @param {String} msg The message to be written. 
+ */
+function writeEachChar(elem, msg) {
+  if (msg.length > 0) {
+    elem.innerHTML += msg.charAt(0);
+    msg = msg.slice(1, msg.length)
+
+    setTimeout(() => {
+      writeEachChar(elem, msg)
+    }, 30);
+  }
+}
+
+
+/**
  * Close input field suggestions on click outside of input field.
  */
 window.addEventListener('click', (evt) => {
   // console.log(evt.target);
-  
+
   // console.log('window click');
-  if(evt.target.id != 'input-user') closeSuggestions();
-  if(!document.getElementById('settings-window').contains(evt.target) && evt.target.id != 'settings') closeSettings();
+  if (evt.target.id != 'input-user') closeSuggestions();
+  if (!document.getElementById('settings-window').contains(evt.target) && !evt.path.includes(document.getElementById('settings'))) closeSettings();
 }, false);
 
 
-window.addEventListener('keyup', (evt) => {  
+window.addEventListener('keyup', (evt) => {
   evt.preventDefault(); // ???????
 });
 
 
-export { sendButton }
+export {
+  sendButton
+}

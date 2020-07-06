@@ -1,11 +1,11 @@
 /**
  * Settings implementation.
  * Authors: Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modified: 25.05.2020
+ * Last modified: 24.06.2020
  */
 
 let settingsButton = document.getElementById('settings'),
-  settingsWindow = document.getElementById('settings-window'),
+  settingsWindow  = document.getElementById('settings-window'),
   closeSettingsButton = document.getElementById('close-settings'),
   settingsEntries,
   settings = {}; // settings object, stores settings as key/value pairs
@@ -17,7 +17,10 @@ const toggleSwitch = document.getElementById('setting-dark-mode'),
 settingsEntries = Array.from(document.getElementsByClassName('settings-entry'));
 
 // setup event listeners to open and close settings window
-settingsButton.addEventListener('click', toggleSettingsWindow, false);
+// settingsButton.addEventListener('click', (evt) => {
+//   // evt.stopImmediatePropagation();
+//   toggleSettingsWindow(); 
+// }, false);
 closeSettingsButton.addEventListener('click', toggleSettingsWindow, false);
 
 
@@ -118,8 +121,7 @@ function toggleSettingsWindow() {
     closeSettings();
   } else {
     settingsWindow.style.display = 'block';
-
-  }
+  };
 }
 
 

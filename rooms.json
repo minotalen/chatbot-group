@@ -322,34 +322,20 @@
             },
             {
                 "trigName": "talk to salesman",
-                "needStates": ["triggerdSpeakToSalesman"],
+                "needStates": ["triggeredTalkToSalesman"],
                 "needStatesValue": [false],
                 "needItems": [null],
                 "needItemsRoomId": [null],
                 "accept": "Player: Yo! How much you want for that ol' wooden box, Mister? <br>The salesman: 50 bucks. <br>Player: FIFTY BUCKS?!? mumbling This thing ain't even worth 5 bucks.. <br>The salesman: What was that? <br>Player: Nothing. <br>Player: ... <br><br>You should try to bargain. Maybe he will lower the price if you ask nice enough.",
                 "fail": "You already asked him. Better not make him too angry.",
-                "newStates": ["triggerdSpeakToSalesman"],
+                "newStates": ["triggeredTalkToSalesman"],
                 "newStatesValue": [true],
                 "actions": [null],
                 "actionsValue": [null]
             },
-	       
-	        {
-                "trigName": "nicely",
-                "needStates": ["triggerdAskPrice"],
-                "needStatesValue": [true],
-                "needItems": [null],
-                "needItemsRoomId": [null],
-                "accept": "Player: Can we agree on 15 bucks? <br>Salesman: thinking <br>Salesman: Let's do 20. <br>Player: Alright, sounds fair. <br><br>You receive ancient chest. <br>Inside the chest, you find a wooden totem. The moment you have a closer look at the totem, you notice you receive a message on your mobile phone. <br>Ahh, it's Professor Kraysee again!",
-                "fail": "What are you doing? Maybe ask for the price first.",
-                "newStates": ["ownChest"],
-                "newStatesValue": [true],
-                "actions": ["addItem"],
-                "actionsValue": ["chest"]
-            },
             {
                 "trigName": "bargain",
-                "needStates": ["solvedBargain", "triggeredSpeakToSalesman"],
+                "needStates": ["solvedBargain", "triggeredTalkToSalesman"],
                 "needStatesValue": [false, true],
                 "needItems": [null],
                 "needItemsRoomId": [null],

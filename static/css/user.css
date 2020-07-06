@@ -47,7 +47,7 @@ Last modified: 29.06.2020
   align-items: center;
 }
 
-.settings-container button.primary {
+.settings-container button.secondary {
   width: 6rem;
   padding: 0.25rem 0;
 }

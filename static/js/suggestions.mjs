@@ -11,33 +11,17 @@ let suggestions = [{
       name: 'look around'
     },
     {
-      name: 'pick up [object]'
+      name: 'pick up [item]'
     },
     {
-      name: 'open [object]'
+      name: 'look at [object, item]'
     },
-    {
-      name: 'use [object]'
-    },
-    {
-      name: 'inspect [object]'
-    },
-    {
-      name: 'give [object] '
-    }, // two layers
-    // {name: 'give [object] to [person]'}, //dual layer not yet properly working
     {
       name: 'go to [location]'
     },
     {
-      name: 'talk to [person]'
-    },
-    {
-      name: 'about [any]'
-    },
-    {
-      name: 'look at [person, object]'
-    }
+      name: 'use [item in inventory]'
+    } // TODO shorter option: inventory item
   ],
   userInput = document.getElementById('input-user'),
   chatForm = document.getElementById('chat-input-form'),

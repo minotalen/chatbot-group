@@ -1396,3 +1396,164 @@ time spent: 0.009972810745239258
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 157-146-376
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 101-486-802
+0.0 - start
+0.0010416507720947266 - classify-Intent
+0.00469517707824707 - end
+time spent: 0.0059926509857177734
+---------------------------------------
+0.0 - start
+0.0018677711486816406 - classify-Intent
+0.013566732406616211 - end
+time spent: 0.015974044799804688
+---------------------------------------
+0.0 - start
+0.0006489753723144531 - classify-Intent
+0.002010822296142578 - end
+time spent: 0.002820253372192383
+---------------------------------------
+0.0 - start
+0.020117759704589844 - end
+time spent: 0.020269155502319336
+---------------------------------------
+0.0 - start
+0.03573274612426758 - end
+time spent: 0.035947322845458984
+---------------------------------------
+0.0 - start
+0.00048065185546875 - classify-Intent
+0.019235610961914062 - end
+time spent: 0.02001357078552246
+---------------------------------------
+0.0 - start
+0.03128862380981445 - end
+time spent: 0.031453609466552734
+---------------------------------------
+0.0 - start
+0.013679265975952148 - end
+time spent: 0.013968229293823242
+---------------------------------------
+0.0 - start
+0.002965211868286133 - end
+time spent: 0.003106832504272461
+---------------------------------------
+0.0 - start
+0.00060272216796875 - classify-Intent
+0.022608041763305664 - end
+time spent: 0.0238802433013916
+---------------------------------------
+0.0 - start
+0.0002186298370361328 - classify-Intent
+7.295608520507812e-05 - check
+6.270408630371094e-05 - filter
+0.05944347381591797 - typeofwords
+0.0003139972686767578 - wordsandtype
+0.00013184547424316406 - listofchoices
+9.107589721679688e-05 - pre-loop
+0.04971432685852051 - post-loop
+0.0009961128234863281 - classify-Intent
+0.0003745555877685547 - check
+0.001861572265625 - filter
+0.017246484756469727 - typeofwords
+0.0006530284881591797 - wordsandtype
+0.00028061866760253906 - listofchoices
+0.00013256072998046875 - pre-loop
+0.02452826499938965 - pre-checkSimilarity
+4.092962265014648 - post-checkSimilarity
+0.14853405952453613 - pre-checkSimilarity
+0.6168999671936035 - post-checkSimilarity
+0.009805917739868164 - pre-checkSimilarity
+1.173168659210205 - post-checkSimilarity
+0.024198055267333984 - pre-checkSimilarity
+1.2059478759765625 - post-checkSimilarity
+0.0006434917449951172 - post-loop
+0.0020432472229003906 - end
+time spent: 7.430532693862915
+---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 101-486-802
+0.0 - start
+0.0006525516510009766 - classify-Intent
+0.00921940803527832 - end
+time spent: 0.010326862335205078
+---------------------------------------
+0.0 - start
+0.0009405612945556641 - classify-Intent
+0.0031065940856933594 - end
+time spent: 0.00963282585144043
+---------------------------------------
+0.0 - start
+0.017387866973876953 - end
+time spent: 0.01850295066833496
+---------------------------------------
+0.0 - start
+0.0007672309875488281 - classify-Intent
+0.014762163162231445 - end
+time spent: 0.01610255241394043
+---------------------------------------
+0.0 - start
+0.00037670135498046875 - classify-Intent
+0.00011038780212402344 - check
+7.653236389160156e-05 - filter
+0.04434943199157715 - typeofwords
+0.00029158592224121094 - wordsandtype
+0.0002694129943847656 - listofchoices
+9.489059448242188e-05 - pre-loop
+0.10001730918884277 - post-loop
+0.005419731140136719 - classify-Intent
+0.00019812583923339844 - check
+0.00011849403381347656 - filter
+0.032399892807006836 - typeofwords
+0.0006487369537353516 - wordsandtype
+0.00028252601623535156 - listofchoices
+0.00013136863708496094 - pre-loop
+0.03134918212890625 - pre-checkSimilarity
+6.820903062820435 - post-checkSimilarity
+0.2952587604522705 - pre-checkSimilarity
+1.5207233428955078 - post-checkSimilarity
+0.012311220169067383 - pre-checkSimilarity
+1.632584571838379 - post-checkSimilarity
+0.03134512901306152 - pre-checkSimilarity
+2.034463882446289 - post-checkSimilarity
+0.0008852481842041016 - post-loop
+0.00504302978515625 - end
+time spent: 12.56987476348877
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/intentclassificator.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 101-486-802
+112.84783458709717 - check
+0.000720977783203125 - filter
+0.018037080764770508 - typeofwords
+0.0002467632293701172 - wordsandtype
+0.00011563301086425781 - listofchoices
+5.316734313964844e-05 - pre-loop
+0.02121424674987793 - pre-checkSimilarity
+2.368103265762329 - post-checkSimilarity
+0.0502927303314209 - pre-checkSimilarity
+0.5385563373565674 - post-checkSimilarity
+0.00930929183959961 - pre-checkSimilarity
+0.5943796634674072 - post-checkSimilarity
+0.01457667350769043 - pre-checkSimilarity
+0.7512578964233398 - post-checkSimilarity
+0.00023937225341796875 - post-loop
+ * Detected change in '/home/max/chatbot-group/phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 101-486-802
+ * Detected change in '/home/max/chatbot-group/phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 101-486-802
+ * Detected change in '/home/max/chatbot-group/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 101-486-802
+ * Detected change in '/home/max/chatbot-group/intentclassificator.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 101-486-802

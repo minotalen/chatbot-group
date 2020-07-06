@@ -91,8 +91,8 @@
             }, 
             {
                 "trigName": "ready",
-                "needStates": ["solvedTutorial"],
-                "needStatesValue": [true],
+                "needStates": [null],
+                "needStatesValue": [null],
                 "needItems": [null],
                 "needItemsRoomId": [null],
                 "accept": "You are now standing in front of the elephant monument in the Nelson Mandela Park. Your task is to find the hidden box to solve the riddle the professor gave you." ,
@@ -321,31 +321,19 @@
                 "actionsValue": [null]
             },
             {
-                "trigName": "ask for the price",
-                "needStates": ["triggerdAskPrice"],
+                "trigName": "talk to salesman",
+                "needStates": ["triggerdSpeakToSalesman"],
                 "needStatesValue": [false],
                 "needItems": [null],
                 "needItemsRoomId": [null],
-                "accept": "Player: Yo! How much you want for that ol' wooden box, Mister? <br>The salesman: 50 bucks. <br>Player: FIFTY BUCKS?!? mumbling This thing ain't even worth 5 bucks.. <br>The salesman: What was that? <br>Player: Nothing. <br>Player: ... <br><br>You should try to bargain. Maybe he will lower the price if you ask nice enough. <br><br>Do you want to bargain naughty or nicely?",
+                "accept": "Player: Yo! How much you want for that ol' wooden box, Mister? <br>The salesman: 50 bucks. <br>Player: FIFTY BUCKS?!? mumbling This thing ain't even worth 5 bucks.. <br>The salesman: What was that? <br>Player: Nothing. <br>Player: ... <br><br>You should try to bargain. Maybe he will lower the price if you ask nice enough.",
                 "fail": "You already asked him. Better not make him too angry.",
-                "newStates": ["triggerdAskPrice"],
+                "newStates": ["triggerdSpeakToSalesman"],
                 "newStatesValue": [true],
                 "actions": [null],
                 "actionsValue": [null]
             },
-	        {
-                "trigName": "naughty",
-                "needStates": ["triggerdAskPrice"],
-                "needStatesValue": [true],
-                "needItems": [null],
-                "needItemsRoomId": [null],
-                "accept": "Player: Hey Mister, look, I don't have enough money to buy your chest. But I have different skills to make up for the money I can't give you. <br>*You smile at the salesman* <br>The Salesman seems kinda confused and ignores your approach. <br>*You look very sad*",
-                "fail": "You already asked him. Better not make him too angry.",
-                "newStates": [null],
-                "newStatesValue": [null],
-                "actions": [null],
-                "actionsValue": [null]
-            },
+	       
 	        {
                 "trigName": "nicely",
                 "needStates": ["triggerdAskPrice"],
@@ -358,7 +346,250 @@
                 "newStatesValue": [true],
                 "actions": ["addItem"],
                 "actionsValue": ["chest"]
+            },
+            {
+                "trigName": "bargain",
+                "needStates": ["solvedBargain", "triggeredSpeakToSalesman"],
+                "needStatesValue": [false, true],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "Player: Yo! How much you want for that ol' wooden box, Mister?<br>The salesman: 50 bucks.<br>Player: FIFTY BUCKS?!? mumbling This thing ain't even worth 5 bucks..<br>The salesman: What was that?<br>Player: Nothing.<br>Player: I think I need to bargain better here... Let's find a good price.",
+                "fail": "You literally have no money left to buy anything from the salesman.",
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": ["changeMode"],
+                "actionsValue": ["riddle"]
+            },
+	        {
+                "trigName": "picture",
+                "needStates": ["solvedBargain", "triggeredPicture"],
+                "needStatesValue": [true, false],
+                "needItems": ["chest"],
+                "needItemsRoomId": [4],
+                "accept": "You send Prof K. a picture of the ancient chest. And he writes a message back.",
+                "fail": "What picture are you talking about?",
+                "newStates": ["triggeredPicture"],
+                "newStatesValue": [true],
+                "actions": [null],
+                "actionsValue": [null]
             }
+        ]
+    },
+    {
+        "id": 5,
+        "location": "Outside of Überseestadtmuseum",
+        "roomName": "In front of Überseestadtmuseum",
+        "intro": "You are now at the Überseestadtmuseum, it's getting dark outside. Your new task is to find out more about the ancient item you found. Look for hints concerning colonialism.",
+        "descri": "You are standing at the entrance of the Überseestadt-Museum. The building looks ancient and is very big. This is a place where historical moments are captured. <br>The doors are very big and wide. And they look very nice even though they are clearly very old. <br>On the left side is a construction site going on, but it seems inactive at the moment. On the right hand side you can see a window that belongs to the nearby building.",
+        "connections": [
+            {
+                "conNames": ["left", "construction"],
+                "conRoomId": 6,
+                "needStates": [null],
+                "needStatesValue": [null]
+            },
+            {
+                "conNames": ["right", "window"],
+                "conRoomId": 7,
+                "needStates": [null],
+                "needStatesValue": [null]
+            }
+        ],
+        "items": [
+            null
+        ],
+        "objects": [
+            null
+        ],
+        "triggers": [
+            {
+                "trigName": "open door",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You try to open the big and heavy doors to enter the museum. The doors are locked. It seems like the museum is closed at the moment.<br>There must be a different way to enter the museum.<br>",
+                "fail": null,
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": [null],
+                "actionsValue": [null]
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "location": "Outside of Überseestadtmuseum",
+        "roomName": "Construction",
+        "intro": "You make your way to the construction site. While you move around the museum you notice a crate that is small enough for you to climb on.<br>",
+        "descri": "Other than that you don't see anything interesting laying around.<br>",
+        "connections": [
+            {
+                "conNames": ["back", "entrance", "museum"],
+                "conRoomId": 5,
+                "needStates": ["triggeredClimbConstruction"],
+                "needStatesValue": [false]
+            }
+        ],
+        "items": [
+            {
+                "itemName": "crate",
+                "lookAt": "It is a regular crate. It seems stable enough to hold a grown up man",
+                "pickUp": "You pick up the crate, to your surprise there is no snake underneath it. <br>Now you only need to find a place where you need it.",
+                "needStates": ["ownCrate"],
+                "needStatesValue": [false],
+                "newStates": ["ownCrate"],
+                "newStatesValue": [true]
+            }
+        ],
+        "objects": [
+            null
+        ],
+        "triggers": [
+            {
+                "trigName": "climb construction",
+                "needStates": ["triggeredUseCrate", "triggeredClimbConstruction"],
+                "needStatesValue": [true, false],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You climb up the construction using the crate and you make it succesfully to the top. <br>You start posing victoriously until you realise your illegal actions.<br>You can see the balcony of the museum now. A risky jump should be enough to get there but you won't be able to get back. Do you jump or climb down again?",
+                "fail": "You try to climb up the construction site but quickly realise that you can't reach the top without some help.<br>You climb back down.<br>",
+                "newStates": ["triggeredClimbConstruction"],
+                "newStatesValue": [true],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+            {
+                "trigName": "use crate",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "needItems": ["crate"],
+                "needItemsRoomId": [6],
+                "accept": "You carefully place the crate beneath you.<br>This should give you a height boost.",
+                "fail": "You remember the crate you walked past. Maybe you can pick it up and bring it here.",
+                "newStates": ["triggeredUseCrate", "ownCrate"],
+                "newStatesValue": [true, false],
+                "actions": ["removeItem"],
+                "actionsValue": ["crate"]
+            },
+            {
+                "trigName": "jump",
+                "needStates": ["triggeredClimbConstruction"],
+                "needStatesValue": [true],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You are now high enough to jump to the balcony on the first floor of the museum.<br>You try to jump...<br>... and you made it!<br>You are now on the balcony of the museum.<br>",
+                "fail": "You remember the crate you walked past. Maybe you can pick it up and bring it here.",
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": ["changeLocation"],
+                "actionsValue": [8]
+            },
+            {
+                "trigName": "climb down",
+                "needStates": ["triggeredClimbConstruction"],
+                "needStatesValue": [true],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You climb back down again... scaredy cat",
+                "fail": "You need to climb up first.",
+                "newStates": ["triggeredClimbConstruction"],
+                "newStatesValue": [false],
+                "actions": [null],
+                "actionsValue": [null]
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "location": "Outside of Überseestadtmuseum",
+        "roomName": "Fuse box",
+        "intro": "You make your way down the right hand side of the museum. You notice that the window you saw is actually a big fuse box and it is not even as high as you thought.<br>Maybe your eyes should be checked.",
+        "descri": "This side of the museum is incredibly dirty. Cardboard suggests that there might be homeless people living here.<br>I cannot describe all of the dirt I see here but for example a thick piece of cardboard that lays in a puddle totally soaked. <br>Everything in your body goes against touching it.<br>There is also a rusty old crowbar laying around.",
+        "connections": [
+            {
+                "conNames": ["back", "entrance", "museum"],
+                "conRoomId": 5,
+                "needStates": [null],
+                "needStatesValue": [null]
+            }
+        ],
+        "items": [
+            {
+                "itemName": "cardboard",
+                "lookAt": "There is a note on the edge of the cardboard: Never touch the red wire!<br>It will deactivate the alarm. If you need to shut down the light take out the blue wire. This is not recommended.<br>",
+                "pickUp": "You summon all your courage to pick up that gross piece of cardboard. While picking it up it almost falls apart.",
+                "needStates": ["ownCardboard"],
+                "needStatesValue": [false],
+                "newStates": ["ownCardboard"],
+                "newStatesValue": [true]
+            },
+            {
+                "itemName": "crowbar",
+                "lookAt": "A rusty old crowbar. There is nothing more useful in this world.",
+                "pickUp": "As soon as you touch the cold wet steel your whole body starts to shiver. <br>Still you manage to control your iron will and tighten your grip around this almighty tool.<br>Congratulations, you picked it up.",
+                "needStates": ["ownCrowbar"],
+                "needStatesValue": [false],
+                "newStates": ["ownCrowbar"],
+                "newStatesValue": [true]
+            }
+        ],
+        "objects": [
+            {
+                "itemName": "fuse box",
+                "lookAt": "The fuse box is huge and you are amazed by it. <br>Opening it with bare hands is not possible, there is some mechanism behind it. Maybe this becomes a difficult riddle you have to solve in order to achieve your goals or maybe you can just crack it open..<br>You decide to try the second option.",
+                "needStates": ["sawFuseBox"],
+                "needStatesValue": [false],
+                "newStates": ["sawFuseBox"],
+                "newStatesValue": [true]
+            }
+        ],
+        "triggers": [
+            {
+                "trigName": "use crowbar",
+                "needStates": ["sawFuseBox"],
+                "needStatesValue": [true],
+                "needItems": ["crowbar"],
+                "needItemsRoomId": [7],
+                "accept": "You crack up the fuse box and it seems to belong to the museum.<br>Inside are many tiny wires along with two big ones. A red and a blue one.<br>Do you wish to cut through the red or the blue wire? Or both?<br>",
+                "fail": "You imagine how you would swing a crowbar through the air. It would look pretty cool probably.<br>It would be even cooler if you would have one and use it against something, like a door or a box or a fuse box.",
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+            {
+                "trigName": "open fuse box",
+                "needStates": ["sawFuseBox"],
+                "needStatesValue": [true],
+                "needItems": ["crowbar"],
+                "needItemsRoomId": [7],
+                "accept": "You crack up the fuse box and it seems to belong to the museum.<br>Inside are many tiny wires along with two big ones. A red and a blue one.<br>Do you wish to cut through the red or the blue wire? Or both?<br>",
+                "fail": "You imagine how you would swing a crowbar through the air. It would look pretty cool probably.<br>It would be even cooler if you would have one and use it against something, like a door or a box or a fuse box.",
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": [null],
+                "actionsValue": [null]
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "location": "Inside of Überseestadtmuseum",
+        "roomName": "Balcony",
+        "intro": "You finished everything for now. More is coming soon.",
+        "descri": "Seriously this is the end for now. Restart the game if you want to try out more stuff.",
+        "connections": [
+            null
+        ],
+        "items": [
+            null
+        ],
+        "objects": [
+            null
+        ],
+        "triggers": [
+            null
         ]
     }
     ]

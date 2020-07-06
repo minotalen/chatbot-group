@@ -21,7 +21,7 @@
         },
 	{
             "id": 5,
-            "str_message": "Thank you. Very cool.<br><br> I did some research and I found out that this chest has indeed some kind of connections to the colonialism. In fact this chest was once in possession of the Atikuku tribe. The Überseestadtmuseum has an exhibition about the Atikuku's. You should go there and investigate.",
+            "str_message": "Thank you. Very cool. You completed the research study. We are very proud of you. Please fill out the questionaire or start the next version of the game!<br><br> I did some research and I found out that this chest has indeed some kind of connections to the colonialism. In fact this chest was once in possession of the Atikuku tribe. The Überseestadtmuseum has an exhibition about the Atikuku's. You should go there and investigate.",
             "user_state": "triggeredPicture"
         }
     ]

@@ -5,7 +5,7 @@
         "rightAnswer": "2375",
         "rightText": "Congrats! You have now solved the riddle and are able to use the mobile phone. While you solved the riddle you moved unconscious to the entrance of the park. And you received a message on your new phone!",
         "falseText": "Mhh... That number didn't work. Try another number.",
-        "descri": "Now for the phone. You start it, but you need a 4-digit pin to unlock it. Maybe the piece of paper can help? Your task is to solve the riddle. \nYou pick up the piece of paper inside the box and read it.\nHint: It’s prime time!\n629387445 \n That’s a lot of numbers. What does this have to do with the 4-digit code? Maybe there is something special about these numbers.",  
+        "descri": "Now for the phone. You start it, but you need a 4-digit pin to unlock it. Maybe the piece of paper can help? Your task is to solve the riddle. <br>Hint: It’s prime time!",  
     	"newStates": ["solvedPinCode"],
         "newStatesValue": [true],
         "actions": ["changeLocation"],
@@ -19,8 +19,8 @@
         "descri": "You are standing in front of the salesman and really want to buy that ancient chest. You need to find a price both of you can agree on. But you only got 20 bucks in your pocket.",  
     	"newStates": ["solvedBargain"],
         "newStatesValue": [true],
-        "actions": [null],
-        "actionsValue": [null]
+        "actions": ["addItem"],
+        "actionsValue": ["chest"]
     }
     ]
 }

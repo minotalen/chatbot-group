@@ -42,10 +42,12 @@
     </ul>
 
 
-    <div class="user-account">
-      <p class="user-name">{{ username }}</p>
-      <div class="avatar small"></div>
-    </div>
+    <a class="link-profile" href="{{ url_for('send_profile_page', username= username) }}">
+      <div class="user-account">
+        <p class="user-name">{{ username }}</p>
+        <div class="avatar small"></div>
+      </div>
+    </a>
 
   </nav>
 

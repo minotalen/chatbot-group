@@ -40,6 +40,12 @@ ul {
   list-style-type: none;
 }
 
+
+a {
+  /* TODO necessary? */
+  color: var(--color-text);
+}
+
 #hamburger {
   /* position: absolute;
   top: 0.3rem;
@@ -93,17 +99,13 @@ nav ul li {
   font-size: 1.2rem;
   text-transform: uppercase;
 
-  border: 2px solid rgba(0, 0, 0, 0);
+  border: 2px solid rgba(0, 0, 0, 0); /* TODO move to colors.css */
 }
 
-a {
-  /* TODO necessary? */
-  color: var(--color-text);
-}
 
 nav ul li a {
   display: block;
-  padding: 0.5rem 3rem;
+  padding: 0.25rem 3rem;
 
 
   color: var(--gradient-primary);
@@ -127,7 +129,8 @@ nav ul li:hover {
   border: var(--border-default);
   box-shadow: var(--box-shadow-small);
 
-  transition: .5s;
+  /* transition: .2s; */
+
 }
 
 .user-account {
@@ -141,6 +144,18 @@ nav ul li:hover {
   /* box-shadow: var(--box-shadow-small); */
 
   transition: .5s;
+}
+
+a.link-profile {
+  text-decoration: none;
+}
+
+
+nav button.secondary {
+  padding: 0.25rem 1rem;
+  font-weight: 900;
+  font-size: 1rem;
+  text-transform: uppercase;
 }
 
 nav .user-account {
@@ -180,6 +195,10 @@ nav .user-account {
   width: 96px;
   min-height: 96px;
   height: 96px;
+}
+
+button {
+  cursor: pointer;
 }
 
 button.primary {

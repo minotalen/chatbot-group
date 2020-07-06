@@ -98,7 +98,7 @@ function printMessage(msg) {
   let chat = document.getElementById('chat-content-container'),
     elem = window.document.createElement('li');
 
-  // elem.innerHTML = msg;
+  elem.innerHTML = msg;
 
   // set message type depending on sender 
   switch (senderName) {
@@ -119,7 +119,7 @@ function printMessage(msg) {
       typeIndicator.style.marginBottom = '0';
 
       // typewriter effect  
-      writeEachChar(elem, msg);
+      // writeEachChar(elem, msg);
       break;
 
     case 'bot':
@@ -130,7 +130,7 @@ function printMessage(msg) {
       typeIndicator.style.marginBottom = '0';
 
       // typewriter effect  
-      writeEachChar(elem, msg);
+      // writeEachChar(elem, msg);
       break;
 
     default:
@@ -139,7 +139,7 @@ function printMessage(msg) {
 
       // add margin equal to element size for consistent bottom spacing
       typeIndicator.style.marginBottom = typeIndicator.getBoundingClientRect().height + 'px';
-      elem.innerHTML = msg;
+      // elem.innerHTML = msg;
       break;
   }
 

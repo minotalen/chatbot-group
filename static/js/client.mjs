@@ -12,7 +12,7 @@ import {
   closeSettings
 } from './settings.mjs';
 
-let socket = io.connect("http://127.0.0.1:5000"),
+let socket = io.connect('https://' + document.domain + ':' + location.port),
   sendButton = document.getElementById('send-button'),
   userName = undefined,
   levelID = 'test_level_ID',

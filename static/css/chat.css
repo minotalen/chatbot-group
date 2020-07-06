@@ -1,29 +1,22 @@
 /* 
 Main stylesheet for chat layout
-Authors: Kevin Katzkowski, mon janssen
-Last modified: 17.06.2020
+Authors: Kevin Katzkowski, mon janssen, Jeffrey Pillmann
+Last modified: 29.06.2020
 */
 
-#chat-container {
-  position: relative;
-  background-color: var(--color-surface-light);
-  width: 80%;
-  /* replace with @media */
-  height: 91%;
-  height: -webkit-fill-available;
-  margin: 2rem auto 0;
-  border: var(--border-chat);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-}
-
 #chat-content-container {
-  overflow-y: scroll;
-  height: 83.25%;
+  position: relative;
+  /* height: 100%; */
+  /* height: -webkit-fill-available; */
+  /* 15.5rem = content-container (top + bot) + top-bar + est. input (3.5rem) */
+  height: calc(100vh - 15.5rem);
+  /* TODO browser with calc() support */
+  background-color: var(--color-surface-light);
+
   scrollbar-color: var(--color-primary) var(--color-surface-light);
   scrollbar-width: thin;
   scroll-behavior: smooth;
-  background-color: var(--color-surface-light);
+  overflow-y: scroll;
 }
 
 #chat-content-container::-webkit-scrollbar {
@@ -43,12 +36,33 @@ Last modified: 17.06.2020
   border-radius: var(--border-radius);
 }
 
+
+#top-bar {
+  height: 2rem;
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-surface);
+  margin-bottom: 0.25rem;
+}
+
+#top-bar h3 {
+  padding: 0;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+#top-bar h3#room-name {
+  text-transform: capitalize;
+}
+
 .chat-message-user,
 .chat-message-bot,
 .chat-message-inventory,
 .ticontainer {
   margin: 1rem;
-  padding: 0.25rem;
+  padding: 0.25rem 0.5rem;
 }
 
 .chat-message-user {
@@ -59,21 +73,23 @@ Last modified: 17.06.2020
   color: var(--color-message-bot);
 }
 
-.chat-message-sender-name {
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
 .chat-message-inventory {
   color: var(--color-message-inventory);
   border-radius: var(--border-radius);
   background-color: var(--color-message-inventory-background);
 }
 
+.chat-message-sender-name {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+
+
 #chat-input-user {
-  width: 80%;
-  position: fixed;
-  margin: 0.75rem 10%;
+  width: 100%;
+  position: absolute;
+  margin: 0.75rem 0;
   bottom: 0;
 }
 
@@ -87,6 +103,10 @@ Last modified: 17.06.2020
   width: 100%;
 }
 
+#chat-input-user input[type="text"]:focus {
+  outline: none;
+}
+
 #chat-input-user input[type="text"]::placeholder {
   color: var(--color-text-placeholder);
 }
@@ -94,30 +114,18 @@ Last modified: 17.06.2020
 /* does not work properly in Chrome -> grey instead of #fff */
 
 #chat-input-user input[type="text"]::selection {
-  color: var(--color-message-user);
-  background-color: var(--color-surface-light);
-}
-
-#chat-input-user input[type="text"]:focus {
-  outline: none;
-  border-color: var(--color-primary-light);
+  color: var(--color-message-bot);
+  background-color: var(--color-primary-light);
 }
 
 #chat-input-user button {
-  background-color: var(--color-primary);
-  border-radius: var(--border-radius);
-  border: 1px solid var(--color-message-user);
-  transition: 0.2s;
-  color: var(--color-onprimary);
-  font-weight: 600;
-  flex-basis: calc(17.5% - 1rem);
   padding: 0.5rem 1rem;
   margin: 0 0 0 1rem;
+
+  flex-basis: calc(12.5% - 1rem);
+  /* size before flex */
 }
 
-#chat-input-user button:hover {
-  background-color: var(--color-primary-light);
-}
 
 form#chat-input-form {
   display: flex;
@@ -127,23 +135,26 @@ form#chat-input-form {
 }
 
 #chat-input-user-window {
-  flex-basis: 82.5%;
+  /* TODO rename: window -> container */
+  flex-basis: 87.5%;
   background-color: var(--color-surface-dark);
   border-radius: var(--border-radius);
   overflow: hidden;
 }
 
 #suggestion-container {
-  display: none;
-  overflow: hidden;
-  background-color: var(--color-surface-dark);
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
-  border: var(--border-input);
-  border-bottom: none;
   margin-bottom: -1rem;
   padding-top: 0.25rem;
   padding-bottom: 1.25rem;
+
+  display: none;
+  overflow: hidden;
+
+  background-color: var(--color-surface-dark);
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  border: var(--border-default);
+  border-bottom: none;
 }
 
 .suggestion {
@@ -163,9 +174,9 @@ mark {
 }
 
 #suggestion-heading {
-  font-size: 75%;
+  font-size: 80%;
   font-weight: bold;
-  color: var(--color-text);
+  color: var(--color-suggestion-heading);
   /* was color-text-placeholder */
   padding: 0 1rem;
 }
@@ -217,16 +228,14 @@ mark {
   -webkit-animation-delay: 400ms;
 }
 
+/* TODO comment code below */
 @media only screen and (max-width: 600px) {
-  #chat-container {
-    border: none;
-    width: 100%;
-    margin-top: 0;
-    border-radius: 0;
-    background-color: var(--color-surface);
-  }
-
   #chat-content-container {
+    height: 100%;
+    margin-top: 0;
+    /* TODO: Calculate margin-bottin in JS */
+    margin-bottom: 2.75rem;
+    border-radius: 0;
     border-radius: var(--border-radius);
   }
 
@@ -240,6 +249,7 @@ mark {
   #chat-input-user {
     width: 100%;
     margin: 0.25rem 0;
+    position: absolute;
   }
 
   #chat-input-user input[type="text"] {
@@ -248,10 +258,5 @@ mark {
 
   form#chat-input-form {
     padding: 0 0.5rem;
-  }
-
-  #top-bar h1,
-  h2 {
-    padding: 0.25rem 0.5rem;
   }
 }

@@ -1,29 +1,41 @@
 /*
 Color definitions prepared for different themes
-Authors: Kevin Katzkowski
-Last modified: 20.05.2020
+Authors: Kevin Katzkowski, Jeffrey Pillmann
+Last modified: 29.06.2020
 */
 
 :root {
   /* --color-primary: #365fc5; */
   --color-primary: #16697A;
+  --color-secondary: #ffc4ff;
+  /* #8ab9ff; */
+  --gradient-primary: -webkit- linear-gradient(193deg, #6c91c9, #16697A);
   --color-primary-light: #6c91c9;
+  /* --color-primary-dark: #16697A; */
   --color-onprimary: var(--color-surface);
-  --color-background: #E1E2E1;
+  --color-background: #fff;
   --color-surface: #edf0f7;
-  --color-surface-light: rgba(255, 255, 255, 0.99);
+  --color-surface-light: #fff;
   --color-surface-dark: #D6D8DB;
   --color-text: #021D42;
+  --color-text-light: #fff;
   --color-text-placeholder: #757575;
   --color-message-user: var(--color-primary);
   --color-message-bot: var(--color-text);
   --color-message-inventory: var(--color-message-bot);
   --color-message-inventory-background: lightgreen;
-  --border-chat: 1px solid #000;
-  --border-radius: 5px;
-  --border-input: 1px solid #9EA7B8;
-  --color-button-text: #000000;
+  --color-error: red;
+  --border-chat: 3px solid #000;
+  --border-radius: 2px;
+  --border-input: 2px solid #9EA7B8;
+  --border-default: 2px solid var(--color-text);
+  --color-button-text: #000;
+  --color-suggestion-heading: #000;
   --color-settings-btn-surface: #D6D8DB;
+  --box-shadow-small: 2px 2px 0px rgba(0, 0, 0, 0.65);
+  --box-shadow-medium: 4px 4px 0px rgba(0, 0, 0, 0.65);
+  --box-shadow-large: 6px 6px 0px rgba(0, 0, 0, 0.65);
+  --box-shadow-glow: 0 0 .25rem rgba(0, 0, 0, .3);
 }
 
 [data-theme="dark"] {
@@ -40,8 +52,8 @@ Last modified: 20.05.2020
   --color-message-bot: var(--color-text);
   --color-message-inventory: var(--color-message-bot);
   --color-message-inventory-background: darkgreen;
-  --border-chat: 1px solid #1C2541;
-  --border-radius: 5px;
+  --border-chat: 3px solid #1C2541;
+  --border-radius: 2px;
   --shadow: 0px 4px 8px #757575;
   --color-button-text: #ffffff;
   --color-settings-btn-surface: var(--color-background);

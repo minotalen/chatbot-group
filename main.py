@@ -129,7 +129,7 @@ def update_users(payload):
     initial_data = {"level": 0, "sender": "bot", "room": "startgame", "mode": "game", "message": "Hello, " + readable_json['message'] + "!"}
     json_data = json.dumps(initial_data)
     send(json_data, json=True)
-    intro_text = {"level": 0, "sender": "bot", "room": "startgame, "mode": "game", "message": "current room"}
+    intro_text = {"level": 0, "sender": "bot", "room": "startgame", "mode": "game", "message": "current room"}
     json_data = json.dumps(intro_text)
     send(answerHandler(json_data, get_username_by_sid(request.sid)), json=True)
 

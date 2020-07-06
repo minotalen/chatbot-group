@@ -62,7 +62,7 @@ def handleAnswer(msg: str, username: str, level: int, roomId: int = -1) -> str:
     elif intent == 4:
         return tellAnswer(msg)
     elif intent == 5:
-        return "print recent message: print the oldest message in you mailbox you havent read <br> messages index: to show possible messages with ids from your mailbox <br> message [id] : to show specific message from mailbox <br> ask professor: : to ask the professor something<br> exit phone: to exit the phone"    
+        return "print recent message: print the oldest message in you mailbox you havent read <br> messages retrievable: to show possible messages with ids from your mailbox <br> message [id] : to show specific message from mailbox <br> ask professor: : to ask the professor something<br> exit phone: to exit the phone"    
 
     # returns the answer of the prof if it is not empty
     answer = get_generated_answer(msg)
@@ -82,7 +82,7 @@ Returns: a number which represent a intent of the user // -1 if no intent is fou
 """
 def askProf(msg: str) -> int:
     choices = ["tell task", "print recent message",
-               "messages index", "ask professor:", "help"]
+               "messages retrieve", "ask professor:", "help"]
     return classifyIntent(msg, choices)
 
 

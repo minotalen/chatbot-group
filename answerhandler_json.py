@@ -5,9 +5,10 @@ import data_json_functions as djf
 from gps import handleGPS, printLocations
 from pathlib import Path
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
-from phone import handleAnswer
+from phone import handleAnswer, getSizeofMessagequeue
 from riddlemode import checkAnswer
 import logging_time as l
+#import audio as audio
 
 with open('rooms.json', encoding="utf8") as allLevels:
     data = json.load(allLevels)
@@ -77,12 +78,26 @@ def answerHandler(inputjson, username):
     else:
         print("added nothing to training data")
 
+    """
+    #make the audio output
+    audio.text2audio(answer[0])
+    audio.playSoundfile()
+    """
+    
     # json wird wieder zusammen gepackt
     l.log_time('end')  # logging
     l.log_end()  # logging
+
+
+    #Check if a differnt sender is given
+    if len(answer) <= 3:newSender = "bot"
+    else:newSender = answer[3]
+        
+
+    
     return json.dumps(
-        {"level": 1, "sender": "bot", "room": answer[1], "items": [], "mode": answer[2], "message": answer[0]})
-        #{"level": 1, "sender": answer[3] if answer[3] is not None else "bot", "room": answer[1], "items": [], "mode": answer[2], "message": answer[0]})
+        {"level": 1, "sender": newSender, "room": answer[1], "items": [], "mode": answer[2], "message": answer[0]})
+        
 
 
 """
@@ -121,7 +136,7 @@ def findAnswer(username, msg, roomId=-1):
 
                 altMode = 'game'
                 altRoom = roomId
-                # altSender ='bot'
+                altSender ='bot'
                 if elem['actions'][0] is not None:
                     for action, actionValue in zip(elem['actions'], elem['actionsValue']):
                         altAction = djf.doAction(
@@ -130,9 +145,9 @@ def findAnswer(username, msg, roomId=-1):
                             altRoom = altAction[0]
                         elif altAction[1] is not None:
                             altMode = altAction[1]
-                        # elif altAction[2] is not None: altSender = altAction[2]
+                        elif altAction[2] is not None: altSender = altAction[2]
 
-                return (elem['accept'], getRoomName(altRoom), altMode)
+                return (elem['accept'], getRoomName(altRoom), altMode, altSender)
             
             elif elem['trigName'] in msg:
                 return (elem['fail'], getRoomName(roomId), 'game')
@@ -173,10 +188,17 @@ def findAnswer(username, msg, roomId=-1):
                 if elem['itemName'] in msg and djf.checkNeededStates(rooms[roomId]['items'][elemCount], username):
 
                     return (elem['lookAt'], getRoomName(roomId), 'game')
+        
+        # INVENTORY
+        for i in database.get_all_user_items(username):
+            if i[0] in msg:
+                for elem in rooms[i[1]]['items']:
+                    if elem['itemName'] == i[0]:
+                        return (elem['lookAt'], getRoomName(roomId), 'game', 'inventory')
 
         elemCount = -1
         # OBJEKTE
-        if rooms[roomId]['items'][0] is not None:
+        if rooms[roomId]['objects'][0] is not None:
             for elem in rooms[roomId]['objects']:
                 elemCount += 1
 
@@ -190,19 +212,20 @@ def findAnswer(username, msg, roomId=-1):
 
     # PICK UP: Hebt ein item auf und gibt den Text zurück
     elif intentID == 3:
-        elemCount = -1
-        for elem in rooms[roomId]['items']:
-            elemCount += 1
+        if rooms[roomId]['items'][0] is not None:
+            elemCount = -1
+            for elem in rooms[roomId]['items']:
+                elemCount += 1
 
-            if elem['itemName'] in msg and djf.checkNeededStates(rooms[roomId]['items'][elemCount], username):
-                djf.updateStates(rooms[roomId]['items'][elemCount], username)
-                djf.add_to_inventory(elem['itemName'], roomId, username)
+                if elem['itemName'] in msg and djf.checkNeededStates(rooms[roomId]['items'][elemCount], username):
+                    djf.updateStates(rooms[roomId]['items'][elemCount], username)
+                    djf.add_to_inventory(elem['itemName'], roomId, username)
 
-                return (elem['pickUp'], getRoomName(roomId), 'game')
+                    return (elem['pickUp'], getRoomName(roomId), 'game')
 
     # ITEMS: NOCH NICHT FERTIG. BAUSTELLE
     elif intentID == 4:
-        return (djf.get_inventory(roomId, username), getRoomName(roomId), 'game')
+        return (djf.get_inventory(roomId, username), getRoomName(roomId), 'game', 'inventory')
 
     # CURRENT ROOM: Gibt den Raumtext nochmal aus
     elif intentID == 5:
@@ -215,7 +238,7 @@ def findAnswer(username, msg, roomId=-1):
     # START PHONE: Der Handymodus wird gestartet
     elif intentID == 7:
         if database.get_user_state_value(username, 'solvedPinCode') == True:
-            return ('You are now chatting with the professor', getRoomName(roomId), 'phone')
+            return ('Phone started  <em>Type manual to open usage instructions</em><br>You are now chatting with the professor. <br>' + 'You have ' + str(getSizeofMessagequeue(username)) + ' new messages in your mailbox', getRoomName(roomId), 'phone')
 
     # START GPS DEVICE
     elif intentID == 8:

@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request
-from flask_socketio import SocketIO, send
+from flask import Flask, render_template, request, redirect, url_for, session
+from flask_socketio import SocketIO, send, emit
 import json
 import database_SQLite as database
 from answerhandler_json import answerHandler
@@ -16,7 +16,102 @@ user_sessions = []
 
 @app.route('/')
 def send_index_page():
-    return render_template('index.html')
+    username = session.get('username')
+    if username:
+        
+        print(username)
+        if username: #database.is_user_logged_in(username):
+            return redirect(url_for('send_profile_page'))
+
+    return redirect(url_for('login'))
+
+@app.route('/login', methods=['GET','POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        print('username: ' + username)
+        print('password: ' + password)
+
+        if database.is_user_valid(username, password):
+            """if database.is_user_logged_in(username):
+                return render_template('login.html', error_message='user already logged in on another device.')
+            else:"""
+            # database.update_login(username, True)
+            session['username'] = username
+            session['is_logged_in'] = True
+            return redirect(url_for('send_profile_page', username=username))
+        else:
+            return render_template('login.html', error_message='username and password do not match.')
+    else:
+      username = session.get('username')
+      if username:
+          
+          print(username)
+          if username: #database.is_user_logged_in(username):
+              return redirect(url_for('send_profile_page'))
+      else:
+        return render_template('login.html')
+
+@app.route('/signup', methods=['GET','POST'])
+def signup():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        r_password = request.form['repeat-password']
+
+        print('username: ' + username)
+        print('password: ' + password)
+        print('repeat password: ' + r_password)
+
+        if password != r_password: 
+          return render_template('signup.html', error_message='Entered passwords do not match. Please make sure to enter identical passwords.')
+        userExists = database.does_user_exist(username)
+        if not userExists:
+            database.add_user(username,password)
+            session['username'] = username
+            return redirect(url_for('send_profile_page', username=username))
+        else:
+            return render_template('signup.html', error_message='Username already taken. Please choose another one.')
+    else:
+      return render_template('signup.html')
+        
+
+@app.route('/profile')
+def send_profile_page():
+    username = session.get('username')
+
+    if username: # database.is_user_logged_in(username): 
+        return render_template('user.html', username=username)
+    else: 
+        print('no user is logged in (username source: session)')
+        return redirect(url_for('login'))
+
+
+@app.route('/play')
+def send_play_page():
+    username = session.get('username')
+
+    if username: # database.is_user_logged_in(username):
+        return render_template('play.html', username=username)
+    else: 
+        print('no user is logged in (username source: session)')
+        return redirect(url_for('login'))
+
+@app.route('/logout')
+def logout():
+    username = session.get('username')
+    print(username)
+
+    if username: #and database.is_user_logged_in(username): 
+        session.pop('username', None)
+        session.pop('is_logged_in', None)
+        # database.update_login(username, False)
+        print(username + ' has been logged out')
+        return redirect(url_for('login'))
+    else: 
+        print('no user is logged in (username source: session)')
+        return redirect(url_for('login'))
 
 
 @socketio.on('json')
@@ -31,17 +126,18 @@ def update_users(payload):
         
     database.insert_user(readable_json['message'], '123456')
     user_sessions.append({"user": readable_json['message'], "sid": request.sid})
-    initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "mode": "game", "message": "Hello, " + readable_json['message'] + "!"}
+    initial_data = {"level": 0, "sender": "bot", "room": "startgame", "mode": "game", "message": "Hello, " + readable_json['message'] + "!"}
     json_data = json.dumps(initial_data)
     send(json_data, json=True)
-    intro_text = {"level": 0, "sender": "bot", "room": "elephant monument", "mode": "game", "message": "current room"}
+    intro_text = {"level": 0, "sender": "bot", "room": "startgame", "mode": "game", "message": "current room"}
     json_data = json.dumps(intro_text)
     send(answerHandler(json_data, get_username_by_sid(request.sid)), json=True)
 
 
 @socketio.on('connect')
 def connect():
-    initial_data = {"level": 0, "sender": "bot", "room": "elephant monument", "mode": "game", "message": "Welcome! Insert username."}
+    """ (KK) TODO Move this content to a custom event, e.g. play"""
+    initial_data = {"level": 0, "sender": "bot", "room": "startgame", "mode": "game", "message": "Welcome! Insert username."}
     json_data = json.dumps(initial_data)
     send(json_data, json=True)
     print("You are now connected with the server")
@@ -69,5 +165,5 @@ def get_current_username():
     return get_username_by_sid(request.sid)
 
 if __name__ == "__main__":
-    print("Try to start server...")
-    socketio.run(app, host='0.0.0.0', port=5000, debug=True)
+    print("Trying to start server...")
+    socketio.run(app, host='0.0.0.0', debug=True)

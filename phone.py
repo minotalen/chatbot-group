@@ -54,13 +54,13 @@ def handleAnswer(msg: str, username: str, level: int, roomId: int = -1) -> str:
 
     intent = askProf(msg)
     if intent == 1:
-        return "Your task is to play the game"  # replace return with some method
-    elif intent == 2:
         return printRecentMessage(username)
-    elif intent == 3:
+    elif intent == 2:
         return getMessageRange(username)
-    elif intent == 4:
+    elif intent == 3:
         return tellAnswer(msg)
+    elif intent == 4:
+        return "print recent message: print the oldest message in you mailbox you havent read <br> messages retrievable: to show possible messages with ids from your mailbox <br> message [id] : to show specific message from mailbox <br> ask professor: : to ask the professor something<br> exit phone: to exit the phone"    
 
     # returns the answer of the prof if it is not empty
     answer = get_generated_answer(msg)
@@ -79,8 +79,8 @@ msg: the message of the user
 Returns: a number which represent a intent of the user // -1 if no intent is found
 """
 def askProf(msg: str) -> int:
-    choices = ["tell task", "print recent message",
-               "messages index", "ask professor:"]
+    choices = ["print recent message",
+               "messages retrieve", "ask professor:", "manual"]
     return classifyIntent(msg, choices)
 
 
@@ -112,7 +112,7 @@ def tellAnswer(msg: str) -> str:
     for dictionary in questions:
         if int(dictionary.get("id")) == intentId:
             return dictionary.get("answer")
-    return "I didn't understand you question"
+    return "I didn't understand your question"
 
 
 """
@@ -126,13 +126,14 @@ msg: the message of the user
 
 Returns: a string as an answer
 """
-def get_generated_answer(input_context: str) -> str:
+def get_generated_answer(input_context: str, output_len = True) -> str:
 
     # add . if sentence doesnt end with a punctuation
-    input_len = len(input_context)
+
     if tokenize.sent_tokenize(input_context)[-1][-1] not in "?.,!":
         input_context = input_context + '.'
-    input_context = input_context.replace("\n", '')
+    for elem in ["\n", "<br>", "<b>", "<em>", "</em>", "</b>"]:    
+        input_context = input_context.replace(elem, '')
 
     # text = text_generator(input_context, max_length=int(20))[0].get('generated_text')
     # for char in "?\n": text = text.replace(char,'')
@@ -142,9 +143,11 @@ def get_generated_answer(input_context: str) -> str:
     # print(proftext)
 
     # Encode input with gpt2 tokenizer
+    input_len = len(input_context)
     input_ids = tokenizer.encode(input_context, return_tensors='pt')
-    outputs = model.generate(
-        input_ids=input_ids, max_length=input_len+25, do_sample=True)
+    if output_len == True: mlenght = input_len + 25
+    else: mlenght = output_len
+    outputs = model.generate(input_ids=input_ids, max_length= mlenght, do_sample=True)
 
     # Postprocessing string
     decoded_text = tokenizer.decode(outputs[0]).format()
@@ -167,7 +170,7 @@ def get_generated_answer(input_context: str) -> str:
 
 """
 @author:: Max Petendra, Jakob Hackstein, Canh Dinh
-@state: 17.06.20
+@state: 03.07.20
 adds message to message queue if message is triggerd
 
 Parameters
@@ -176,7 +179,29 @@ username: the username of the current player as a string
 
 Returns: the last sent message of the prof (from the messagequeue)
 """
-def printRecentMessage(username) -> str:
+def printRecentMessage(username: str) -> str:
+    updateMessagequeue(username)
+    return "you have no new messages yet" if messagequeue.empty() else messagequeue.get()
+
+"""
+@author:: Max Petendra
+@state: 03.07.20
+returns the size of the messagequeue
+"""
+def getSizeofMessagequeue(username: str):
+    updateMessagequeue(username)
+    return messagequeue.qsize()
+
+"""
+@author:: Max Petendra, Jakob Hackstein, Canh Dinh
+@state: 03.07.20
+updates the messagequeue // adds message to message queue if message is triggerd
+
+Parameters
+----------
+username: the username of the current player as a string
+"""
+def updateMessagequeue(username: str):
     for msgdict in messages:
         if database.get_user_state_value(username, msgdict.get("user_state"), False):
             if not database.does_user_recmessage_exist(username, msgdict.get("id")):
@@ -184,9 +209,7 @@ def printRecentMessage(username) -> str:
                 database.insert_user_recmessage(username, msgdict.get("id"))
         else:
             print("user state of msg is not in database yet")
-
-    return "you have no new messages yet" if messagequeue.empty() else messagequeue.get()
-
+    
 
 """
 @author:: Max Petendra, Jakob Hackstein, Canh Dinh
@@ -199,7 +222,7 @@ username: the username of the current player as a string
 
 Returns: all sent message of the prof as a list
 """
-def getAllMessages(username) -> list:
+def getAllMessages(username: str) -> list:
     allmessages = []
     for msgdict in messages:
         if database.does_user_recmessage_exist(username, msgdict.get("id")):

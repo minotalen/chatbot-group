@@ -522,7 +522,7 @@
         ],
         "objects": [
             {
-                "itemName": "fuse box",
+                "objName": "fuse box",
                 "lookAt": "The fuse box is huge and you are amazed by it. <br>Opening it with bare hands is not possible, there is some mechanism behind it. Maybe this becomes a difficult riddle you have to solve in order to achieve your goals or maybe you can just crack it open..<br>You decide to try the second option.",
                 "needStates": ["sawFuseBox"],
                 "needStatesValue": [false],

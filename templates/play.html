@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-mode="game">
+
+<!--
+  Chat interface page
+  Authors: Kevin Katzkowski, Jeffrey Pillmann
+  Last modified: 02.07.2020
+-->
+
+<head>
+  <!-- required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no">
+
+  <!-- Google icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="../static/css/base.css">
+  <link rel="stylesheet" href="../static/css/colors.css">
+  <link rel="stylesheet" href="../static/css/chat.css">
+  <link rel="stylesheet" href="../static/css/settings.css">
+  <link rel="stylesheet" href="../static/css/login.css">
+
+  <!-- TODO change title -->
+  <title>Elephanture</title>
+</head>
+
+<body>
+
+  <nav>
+    <div class="menu-bar">
+      <h1 id="brand">Elephanture</h1>
+
+      <!-- Hamburger Menu -->
+      <label for="toggle" id="hamburger">&#9776;</label>
+      <input type="checkbox" id="toggle" />
+    </div>
+
+    <ul id="nav-links">
+      <li><a href="{{ url_for('send_play_page', username= username) }}">Play</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">More</a></li>
+      <li><a href="#">{{ username }}</a></li>
+    </ul>
+
+    <div class="user-account">
+      <p class="user-name">{{ username }}</p>
+      <div class="avatar small"></div>
+    </div>
+
+  </nav>
+
+  <div class="container">
+
+    <div id="top-bar">
+      <h3 id="room-name">Room 3</h3>
+      <h3 id="level">Lvl. 1</h3>
+    </div>
+
+    <div id="settings-window">
+      <h3>Settings</h3>
+
+      <!-- settings entries -->
+      <div class="settings-entry">
+        <label for="setting-suggestions" class="checkbox-container">Show suggestions
+          <input id="setting-suggestions" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+
+      <div class="settings-entry">
+        <label for="setting-dark-mode" class="checkbox-container">
+          Dark Mode
+          <input id="setting-dark-mode" type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+
+      <div class="settings-entry">
+        <label for="setting-3" class="checkbox-container">
+          Setting 3
+          <input id="setting-3" type="checkbox" disabled>
+          <span class="checkmark"></span>
+        </label>
+      </div>
+
+      <div class="settings-entry">
+        <label for="setting-4" class="checkbox-container">
+          Setting 4
+          <input id="setting-4" type="checkbox" disabled>
+          <span class="checkmark"></span>
+        </label>
+      </div>
+
+      <button id="close-settings">close</button>
+
+    </div>
+
+    <ul id="chat-content-container">
+      <!-- example messages for chat -->
+      <!-- <li class="chat-message-bot">
+        You go down an alley and see a strange woman. <br> She checks her watch nervously multiple times and looks
+        around, as if she doesn't want to be seen. She is standing betwen multiple big Flowerpots, but they are all
+        empty.
+      </li>
+
+      <li class="chat-message-user">
+        I'll hide behind a big pot and observe.
+      </li>
+
+      <li class="chat-message-bot">
+        A tall man approraches her and the woman quickly jumps into one of the pots aswell, her head sticking out like a
+        turnip. The man walks up to her and stops. "Come out little turnip" he says. The woman steps out and bows down
+        before him. She hands him a white paper bag, which he almost rips out of her hand, and opens. smiles and nods at
+        her, then they both walk away into two different directions.
+      </li>
+
+      <li class="chat-message-user">
+        Step out of the flower pot.
+      </li>
+
+      <li class="chat-message-bot">
+        As you step out of the pot, you hear a strange sound from behind you. You see another guy stepping out of a pot,
+        holding a camera and a pack of tissues, the chubby man tries hide his face behind his cap as he notices you. He
+        escapes into a side alley.
+      </li> -->
+
+      <!-- new messages are added here-->
+
+
+      <!-- type indicator -->
+      <div id="type-indicator" class="ticontainer">
+        <div class="tiblock">
+          <div class="tidot"></div>
+          <div class="tidot"></div>
+          <div class="tidot"></div>
+        </div>
+      </div>
+
+    </ul>
+
+    <div id="chat-input-user">
+      <form id="chat-input-form">
+        <div id="chat-input-user-window">
+
+          <div id="suggestion-container">
+            <!-- suggestions are added here -->
+          </div>
+
+          <input id="input-user" type="text" placeholder="Enter your name" spellcheck="false" autocomplete="off"
+            tabindex="0" autofocus> </input>
+        </div>
+
+        <button type="button" class="primary" id="send-button">send</button>
+      </form>
+    </div>
+  </div>
+
+
+
+  <!-- load socket libary -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+
+  <!-- load custom javascript -->
+  <script type="module" src="../static/js/client.mjs"></script>
+  <script type="module" src="../static/js/mobile.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1398 @@
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 271-746-569
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 177-718-547
+0.0 - start
+0.00099945068359375 - 1
+0.0009968280792236328 - check
+0.0 - filter
+0.039891958236694336 - typeofwords
+0.0009987354278564453 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.0718071460723877 - pre-checkSimilarity
+2.2997658252716064 - post-checkSimilarity
+0.01994633674621582 - pre-checkSimilarity
+0.13464093208312988 - post-checkSimilarity
+0.013961553573608398 - pre-checkSimilarity
+0.15658044815063477 - post-checkSimilarity
+0.053856611251831055 - pre-checkSimilarity
+0.17752504348754883 - post-checkSimilarity
+0.011967658996582031 - pre-checkSimilarity
+0.2613029479980469 - post-checkSimilarity
+0.010970354080200195 - pre-checkSimilarity
+0.0863654613494873 - post-checkSimilarity
+0.0 - post-loop
+0.0019638538360595703 - end
+time spent: 3.343541145324707
+---------------------------------------
+0.0 - start
+0.0029914379119873047 - 1
+0.0 - check
+0.0 - filter
+0.016982316970825195 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.006954193115234375 - pre-checkSimilarity
+0.9943065643310547 - post-checkSimilarity
+0.018950939178466797 - pre-checkSimilarity
+0.1874990463256836 - post-checkSimilarity
+0.005983829498291016 - pre-checkSimilarity
+0.6587893962860107 - post-checkSimilarity
+0.020540475845336914 - pre-checkSimilarity
+0.18949294090270996 - post-checkSimilarity
+0.05385613441467285 - pre-checkSimilarity
+0.3620302677154541 - post-checkSimilarity
+0.019947052001953125 - pre-checkSimilarity
+0.804314374923706 - post-checkSimilarity
+0.0398867130279541 - post-loop
+0.0019881725311279297 - end
+time spent: 3.3845138549804688
+---------------------------------------
+0.0 - start
+0.0019948482513427734 - 1
+0.0 - check
+0.0 - filter
+0.020972728729248047 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.0059545040130615234 - pre-checkSimilarity
+1.385692834854126 - post-checkSimilarity
+0.028925657272338867 - pre-checkSimilarity
+0.012963533401489258 - post-checkSimilarity
+0.013962030410766602 - pre-checkSimilarity
+1.0915851593017578 - post-checkSimilarity
+0.024935483932495117 - pre-checkSimilarity
+0.041886091232299805 - post-checkSimilarity
+0.047872304916381836 - pre-checkSimilarity
+0.15079069137573242 - post-checkSimilarity
+0.01994776725769043 - pre-checkSimilarity
+0.16156816482543945 - post-checkSimilarity
+0.011965513229370117 - pre-checkSimilarity
+0.16954922676086426 - post-checkSimilarity
+0.0279233455657959 - pre-checkSimilarity
+1.2217419147491455 - post-checkSimilarity
+0.034906864166259766 - pre-checkSimilarity
+0.21658873558044434 - post-checkSimilarity
+0.019946813583374023 - pre-checkSimilarity
+0.3001980781555176 - post-checkSimilarity
+0.021940946578979492 - pre-checkSimilarity
+0.14860296249389648 - post-checkSimilarity
+0.0 - post-loop
+0.005982160568237305 - end
+time spent: 5.188398361206055
+---------------------------------------
+0.0 - start
+0.0019941329956054688 - 1
+0.0 - check
+0.0 - filter
+0.020983457565307617 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.005982875823974609 - pre-checkSimilarity
+1.467200756072998 - post-checkSimilarity
+0.02704334259033203 - pre-checkSimilarity
+0.013963699340820312 - post-checkSimilarity
+0.016954421997070312 - pre-checkSimilarity
+1.1007487773895264 - post-checkSimilarity
+0.02892327308654785 - pre-checkSimilarity
+0.03989243507385254 - post-checkSimilarity
+0.06682229042053223 - pre-checkSimilarity
+0.16655611991882324 - post-checkSimilarity
+0.023934364318847656 - pre-checkSimilarity
+0.17958712577819824 - post-checkSimilarity
+0.004988908767700195 - pre-checkSimilarity
+1.2287752628326416 - post-checkSimilarity
+0.08976078033447266 - post-loop
+0.0049860477447509766 - end
+time spent: 4.489098072052002
+---------------------------------------
+0.0 - start
+0.0009958744049072266 - 1
+0.0 - check
+0.0009980201721191406 - filter
+0.010969877243041992 - typeofwords
+0.0 - wordsandtype
+0.000997781753540039 - listofchoices
+0.0 - pre-loop
+0.11369514465332031 - post-loop
+0.003989219665527344 - end
+time spent: 0.13164591789245605
+---------------------------------------
+0.0 - start
+0.001995086669921875 - 1
+0.0 - check
+0.0 - filter
+0.017951488494873047 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.12067890167236328 - pre-checkSimilarity
+0.06084156036376953 - post-checkSimilarity
+0.00597834587097168 - pre-checkSimilarity
+0.1765303611755371 - post-checkSimilarity
+0.06382918357849121 - post-loop
+0.0039865970611572266 - end
+time spent: 0.45179152488708496
+---------------------------------------
+0.0 - start
+0.0009992122650146484 - 1
+0.0009937286376953125 - check
+0.0 - filter
+0.014960527420043945 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.006979465484619141 - pre-checkSimilarity
+1.121338129043579 - post-checkSimilarity
+0.02094411849975586 - pre-checkSimilarity
+0.17305350303649902 - post-checkSimilarity
+0.006981849670410156 - pre-checkSimilarity
+0.5704760551452637 - post-checkSimilarity
+0.018949031829833984 - pre-checkSimilarity
+0.22539639472961426 - post-checkSimilarity
+0.046880245208740234 - pre-checkSimilarity
+0.31017065048217773 - post-checkSimilarity
+0.016955137252807617 - pre-checkSimilarity
+0.7131123542785645 - post-checkSimilarity
+0.0438840389251709 - post-loop
+0.0019941329956054688 - end
+time spent: 3.2940685749053955
+---------------------------------------
+0.0 - start
+0.0020284652709960938 - 1
+0.0 - check
+0.0 - filter
+0.018917083740234375 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.14461112022399902 - pre-checkSimilarity
+0.06183600425720215 - post-checkSimilarity
+0.006979942321777344 - pre-checkSimilarity
+0.14711880683898926 - post-checkSimilarity
+0.052858829498291016 - post-loop
+0.005983829498291016 - end
+time spent: 0.4403340816497803
+---------------------------------------
+0.0 - start
+0.001993894577026367 - 1
+0.0 - check
+0.0 - filter
+0.023966550827026367 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.007950067520141602 - pre-checkSimilarity
+0.7973480224609375 - post-checkSimilarity
+0.04088902473449707 - pre-checkSimilarity
+0.37320518493652344 - post-checkSimilarity
+0.13763904571533203 - pre-checkSimilarity
+0.15817975997924805 - post-checkSimilarity
+0.005983114242553711 - pre-checkSimilarity
+0.01296687126159668 - post-checkSimilarity
+0.007974863052368164 - pre-checkSimilarity
+0.5671935081481934 - post-checkSimilarity
+0.07280302047729492 - post-loop
+0.0059850215911865234 - end
+time spent: 2.214077949523926
+---------------------------------------
+0.0 - start
+0.0030231475830078125 - 1
+0.0 - check
+0.0 - filter
+0.0278933048248291 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.000997781753540039 - pre-loop
+0.008978128433227539 - pre-checkSimilarity
+0.8984966278076172 - post-checkSimilarity
+0.036904096603393555 - pre-checkSimilarity
+0.35504889488220215 - post-checkSimilarity
+0.049866437911987305 - pre-checkSimilarity
+0.20445561408996582 - post-checkSimilarity
+0.037895917892456055 - pre-checkSimilarity
+0.1366422176361084 - post-checkSimilarity
+0.01695561408996582 - pre-checkSimilarity
+0.1356358528137207 - post-checkSimilarity
+0.039893150329589844 - pre-checkSimilarity
+0.48821568489074707 - post-checkSimilarity
+0.02692699432373047 - pre-checkSimilarity
+0.1515955924987793 - post-checkSimilarity
+0.01695537567138672 - pre-checkSimilarity
+0.30817532539367676 - post-checkSimilarity
+0.028923988342285156 - pre-checkSimilarity
+0.2847473621368408 - post-checkSimilarity
+0.0 - post-loop
+0.009972810745239258 - end
+time spent: 3.268199920654297
+---------------------------------------
+0.0 - start
+0.0009987354278564453 - 1
+0.0 - check
+0.0 - filter
+0.020200014114379883 - typeofwords
+0.000990152359008789 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.007977962493896484 - pre-checkSimilarity
+1.111034870147705 - post-checkSimilarity
+0.02293992042541504 - pre-checkSimilarity
+0.15062546730041504 - post-checkSimilarity
+0.0059528350830078125 - pre-checkSimilarity
+0.5788748264312744 - post-checkSimilarity
+0.02393960952758789 - pre-checkSimilarity
+0.24884319305419922 - post-checkSimilarity
+0.06682085990905762 - pre-checkSimilarity
+0.43184566497802734 - post-checkSimilarity
+0.022941112518310547 - pre-checkSimilarity
+0.8680448532104492 - post-checkSimilarity
+0.048870086669921875 - post-loop
+0.001994609832763672 - end
+time spent: 3.6128947734832764
+---------------------------------------
+0.0 - start
+0.0009963512420654297 - 1
+0.0 - check
+0.0 - filter
+0.028923988342285156 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.007977008819580078 - pre-checkSimilarity
+1.0763211250305176 - post-checkSimilarity
+0.023962736129760742 - pre-checkSimilarity
+0.14045286178588867 - post-checkSimilarity
+0.010972738265991211 - pre-checkSimilarity
+0.5405261516571045 - post-checkSimilarity
+0.026926755905151367 - pre-checkSimilarity
+0.19648170471191406 - post-checkSimilarity
+0.046874046325683594 - pre-checkSimilarity
+0.19904351234436035 - post-checkSimilarity
+0.019946575164794922 - pre-checkSimilarity
+0.2226414680480957 - post-checkSimilarity
+0.017952442169189453 - pre-checkSimilarity
+0.3550529479980469 - post-checkSimilarity
+0.03191804885864258 - pre-checkSimilarity
+0.8323168754577637 - post-checkSimilarity
+0.026897430419921875 - pre-checkSimilarity
+0.20576238632202148 - post-checkSimilarity
+0.016953229904174805 - pre-checkSimilarity
+0.28227663040161133 - post-checkSimilarity
+0.014931440353393555 - pre-checkSimilarity
+0.1466078758239746 - post-checkSimilarity
+0.0 - post-loop
+0.0059814453125 - end
+time spent: 4.478697776794434
+---------------------------------------
+0.0 - start
+0.04487800598144531 - end
+time spent: 0.04487800598144531
+---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 177-718-547
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 169-715-947
+0.0 - start
+0.00299072265625 - classify-Intent
+0.0 - check
+0.0 - filter
+0.04402518272399902 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.17922115325927734 - pre-checkSimilarity
+3.2829172611236572 - post-checkSimilarity
+0.006844043731689453 - pre-checkSimilarity
+0.20194625854492188 - post-checkSimilarity
+0.04183387756347656 - pre-checkSimilarity
+0.1751546859741211 - post-checkSimilarity
+0.09093570709228516 - pre-checkSimilarity
+0.2743854522705078 - post-checkSimilarity
+0.015737056732177734 - pre-checkSimilarity
+0.5073263645172119 - post-checkSimilarity
+0.026523113250732422 - pre-checkSimilarity
+0.3082451820373535 - post-checkSimilarity
+0.0 - post-loop
+0.006172657012939453 - end
+time spent: 5.165067195892334
+---------------------------------------
+0.0 - start
+0.003993988037109375 - classify-Intent
+0.0 - check
+0.0 - filter
+0.028064489364624023 - typeofwords
+0.0009968280792236328 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.15404081344604492 - pre-checkSimilarity
+0.23930764198303223 - post-checkSimilarity
+0.017529964447021484 - pre-checkSimilarity
+0.3239283561706543 - post-checkSimilarity
+0.04111886024475098 - pre-checkSimilarity
+0.4249107837677002 - post-checkSimilarity
+0.16106820106506348 - pre-checkSimilarity
+0.5069403648376465 - post-checkSimilarity
+0.05635499954223633 - pre-checkSimilarity
+0.5963094234466553 - post-checkSimilarity
+0.030190229415893555 - pre-checkSimilarity
+0.342637300491333 - post-checkSimilarity
+0.000997781753540039 - post-loop
+0.028254270553588867 - end
+time spent: 2.9576380252838135
+---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 162-673-403
+0.0 - start
+0.0010271072387695312 - classify-Intent
+0.0019447803497314453 - end
+time spent: 0.0029892921447753906
+---------------------------------------
+0.0 - start
+0.002061605453491211 - classify-Intent
+0.000667572021484375 - check
+0.0 - filter
+0.035012245178222656 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.006162166595458984 - pre-checkSimilarity
+2.7389607429504395 - post-checkSimilarity
+0.02739882469177246 - pre-checkSimilarity
+0.4106314182281494 - post-checkSimilarity
+0.031050682067871094 - pre-checkSimilarity
+0.4186549186706543 - post-checkSimilarity
+0.026929378509521484 - pre-checkSimilarity
+0.1788039207458496 - post-checkSimilarity
+0.020943880081176758 - pre-checkSimilarity
+0.1526501178741455 - post-checkSimilarity
+0.02792644500732422 - pre-checkSimilarity
+0.5401003360748291 - post-checkSimilarity
+0.017285823822021484 - pre-checkSimilarity
+0.24363183975219727 - post-checkSimilarity
+0.013523578643798828 - pre-checkSimilarity
+0.3268294334411621 - post-checkSimilarity
+0.013133764266967773 - pre-checkSimilarity
+0.17788982391357422 - post-checkSimilarity
+0.0004210472106933594 - post-loop
+0.0015730857849121094 - end
+time spent: 5.412242650985718
+---------------------------------------
+0.0 - start
+0.002448558807373047 - classify-Intent
+0.015656709671020508 - end
+time spent: 0.018105268478393555
+---------------------------------------
+0.0 - start
+0.0009980201721191406 - classify-Intent
+0.0009975433349609375 - check
+0.0 - filter
+0.014247655868530273 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.09739112854003906 - pre-checkSimilarity
+0.11470222473144531 - post-checkSimilarity
+0.026927947998046875 - post-loop
+0.00467681884765625 - end
+time spent: 0.25994133949279785
+---------------------------------------
+0.0 - start
+0.0027008056640625 - classify-Intent
+0.018668174743652344 - end
+time spent: 0.021368980407714844
+---------------------------------------
+0.0 - start
+0.0028798580169677734 - classify-Intent
+0.002992868423461914 - end
+time spent: 0.0058727264404296875
+---------------------------------------
+0.0 - start
+0.0 - USER_DISCONNECTED!
+time spent: 0.0
+---------------------------------------
+0.0 - start
+0.0017247200012207031 - classify-Intent
+0.0019922256469726562 - end
+time spent: 0.004141807556152344
+---------------------------------------
+0.0 - start
+0.0019958019256591797 - classify-Intent
+0.0020694732666015625 - end
+time spent: 0.004065275192260742
+---------------------------------------
+0.0 - start
+0.0 - USER_DISCONNECTED!
+time spent: 0.0
+---------------------------------------
+0.0 - start
+0.0029926300048828125 - classify-Intent
+0.0019998550415039062 - end
+time spent: 0.004992485046386719
+---------------------------------------
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\database_SQLite.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 162-673-403
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 162-673-403
+0.0 - start
+0.0018813610076904297 - classify-Intent
+0.0016698837280273438 - end
+time spent: 0.003812551498413086
+---------------------------------------
+0.0 - start
+0.001996278762817383 - classify-Intent
+0.0051195621490478516 - end
+time spent: 0.007115840911865234
+---------------------------------------
+0.0 - start
+0.06006217002868652 - end
+time spent: 0.06006217002868652
+---------------------------------------
+0.0 - start
+0.0015747547149658203 - classify-Intent
+0.002996206283569336 - end
+time spent: 0.004570960998535156
+---------------------------------------
+0.0 - start
+0.02118682861328125 - end
+time spent: 0.02118682861328125
+---------------------------------------
+0.0 - start
+0.027898073196411133 - end
+time spent: 0.0290067195892334
+---------------------------------------
+0.0 - start
+0.0025177001953125 - classify-Intent
+0.014772653579711914 - end
+time spent: 0.018289804458618164
+---------------------------------------
+0.0 - start
+0.0018596649169921875 - classify-Intent
+0.011110544204711914 - end
+time spent: 0.012970209121704102
+---------------------------------------
+0.0 - start
+0.026272296905517578 - end
+time spent: 0.026272296905517578
+---------------------------------------
+0.0 - start
+0.02067852020263672 - end
+time spent: 0.02067852020263672
+---------------------------------------
+0.0 - start
+0.013181686401367188 - end
+time spent: 0.013181686401367188
+---------------------------------------
+0.0 - start
+0.00997304916381836 - end
+time spent: 0.010970115661621094
+---------------------------------------
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 162-673-403
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 162-673-403
+0.0 - start
+0.0009925365447998047 - classify-Intent
+0.0021514892578125 - end
+time spent: 0.003958940505981445
+---------------------------------------
+0.0 - start
+0.0018892288208007812 - classify-Intent
+0.004938602447509766 - end
+time spent: 0.006964683532714844
+---------------------------------------
+0.0 - start
+0.002394437789916992 - classify-Intent
+0.007523536682128906 - end
+time spent: 0.009917974472045898
+---------------------------------------
+0.0 - start
+0.012672901153564453 - end
+time spent: 0.012911558151245117
+---------------------------------------
+0.0 - start
+0.001986980438232422 - classify-Intent
+0.018456459045410156 - end
+time spent: 0.020443439483642578
+---------------------------------------
+0.0 - start
+0.0029790401458740234 - classify-Intent
+0.009164094924926758 - end
+time spent: 0.012143135070800781
+---------------------------------------
+0.0 - start
+0.0012664794921875 - classify-Intent
+0.003967761993408203 - end
+time spent: 0.005234241485595703
+---------------------------------------
+0.0 - start
+0.0808095932006836 - end
+time spent: 0.0808095932006836
+---------------------------------------
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 162-673-403
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 162-673-403
+0.0 - start
+0.0009961128234863281 - classify-Intent
+0.0019919872283935547 - end
+time spent: 0.002988100051879883
+---------------------------------------
+0.0 - start
+0.0019953250885009766 - classify-Intent
+0.0009965896606445312 - end
+time spent: 0.003988981246948242
+---------------------------------------
+0.0 - start
+0.0009970664978027344 - classify-Intent
+0.0 - check
+0.0 - filter
+0.041832685470581055 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.019947052001953125 - pre-checkSimilarity
+2.208146572113037 - post-checkSimilarity
+0.012964725494384766 - pre-checkSimilarity
+0.059839725494384766 - post-checkSimilarity
+0.011968374252319336 - pre-checkSimilarity
+0.1675858497619629 - post-checkSimilarity
+0.023933887481689453 - pre-checkSimilarity
+0.19743990898132324 - post-checkSimilarity
+0.043883323669433594 - post-loop
+0.004984617233276367 - end
+time spent: 2.7935237884521484
+---------------------------------------
+0.0 - start
+0.0020265579223632812 - classify-Intent
+0.0009644031524658203 - end
+time spent: 0.0039882659912109375
+---------------------------------------
+0.0 - start
+0.001994609832763672 - classify-Intent
+0.000997304916381836 - end
+time spent: 0.003988504409790039
+---------------------------------------
+0.0 - start
+0.002992391586303711 - classify-Intent
+0.0 - check
+0.0 - filter
+0.0139923095703125 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.07576823234558105 - pre-checkSimilarity
+0.19946599006652832 - post-checkSimilarity
+0.006979703903198242 - pre-checkSimilarity
+0.5984010696411133 - post-checkSimilarity
+0.020369291305541992 - pre-checkSimilarity
+0.188035249710083 - post-checkSimilarity
+0.05884218215942383 - pre-checkSimilarity
+0.24089503288269043 - post-checkSimilarity
+0.041887521743774414 - pre-checkSimilarity
+0.31116795539855957 - post-checkSimilarity
+0.014961004257202148 - pre-checkSimilarity
+0.16356277465820312 - post-checkSimilarity
+0.0 - post-loop
+0.006979227066040039 - end
+time spent: 1.9442999362945557
+---------------------------------------
+0.0 - start
+0.0029914379119873047 - classify-Intent
+0.002992868423461914 - end
+time spent: 0.005984306335449219
+---------------------------------------
+0.0 - start
+0.000997304916381836 - classify-Intent
+0.0 - check
+0.0 - filter
+0.012965679168701172 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0009982585906982422 - pre-loop
+0.1211860179901123 - pre-checkSimilarity
+0.017952442169189453 - post-checkSimilarity
+0.04587602615356445 - pre-checkSimilarity
+0.04919075965881348 - post-checkSimilarity
+0.015958786010742188 - post-loop
+0.0039882659912109375 - end
+time spent: 0.2701115608215332
+---------------------------------------
+0.0 - start
+0.0019948482513427734 - classify-Intent
+0.0 - check
+0.0 - filter
+0.012964010238647461 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.13464117050170898 - pre-checkSimilarity
+0.015956401824951172 - post-checkSimilarity
+0.04188871383666992 - pre-checkSimilarity
+0.0359036922454834 - post-checkSimilarity
+0.024932384490966797 - post-loop
+0.009974479675292969 - end
+time spent: 0.2792534828186035
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.000997781753540039 - check
+0.0 - filter
+0.01396322250366211 - typeofwords
+0.0005481243133544922 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.022908926010131836 - pre-checkSimilarity
+0.0688180923461914 - post-checkSimilarity
+0.02031540870666504 - pre-checkSimilarity
+0.11121916770935059 - post-checkSimilarity
+0.021937131881713867 - pre-checkSimilarity
+0.2842397689819336 - post-checkSimilarity
+0.045876502990722656 - pre-checkSimilarity
+0.35206174850463867 - post-checkSimilarity
+0.06781625747680664 - post-loop
+0.006979465484619141 - end
+time spent: 1.01768159866333
+---------------------------------------
+0.0 - start
+0.001993417739868164 - classify-Intent
+0.0 - check
+0.0 - filter
+0.007012128829956055 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.10568690299987793 - pre-checkSimilarity
+0.014960050582885742 - post-checkSimilarity
+0.03690147399902344 - pre-checkSimilarity
+0.03490567207336426 - post-checkSimilarity
+0.012966156005859375 - post-loop
+0.005983591079711914 - end
+time spent: 0.22040939331054688
+---------------------------------------
+0.0 - start
+0.0019943714141845703 - classify-Intent
+0.006983518600463867 - end
+time spent: 0.008977890014648438
+---------------------------------------
+0.0 - start
+0.0009975433349609375 - classify-Intent
+0.0 - check
+0.0 - filter
+0.013962507247924805 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.21265459060668945 - post-loop
+0.006983757019042969 - end
+time spent: 0.23558974266052246
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0009961128234863281 - filter
+0.010976076126098633 - typeofwords
+0.0 - wordsandtype
+0.0009930133819580078 - listofchoices
+0.0 - pre-loop
+0.23524093627929688 - post-loop
+0.012966156005859375 - end
+time spent: 0.262174129486084
+---------------------------------------
+0.0 - start
+0.0009975433349609375 - classify-Intent
+0.0 - check
+0.0009963512420654297 - filter
+0.013969182968139648 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.2669031620025635 - post-loop
+0.014959573745727539 - end
+time spent: 0.29782581329345703
+---------------------------------------
+0.0 - start
+0.0019812583923339844 - classify-Intent
+0.0 - check
+0.0 - filter
+0.010970115661621094 - typeofwords
+0.0009970664978027344 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.25031089782714844 - post-loop
+0.007982254028320312 - end
+time spent: 0.27224159240722656
+---------------------------------------
+0.0 - start
+0.001997232437133789 - classify-Intent
+0.0059814453125 - end
+time spent: 0.007978677749633789
+---------------------------------------
+0.0 - start
+0.0009965896606445312 - classify-Intent
+0.017952680587768555 - end
+time spent: 0.01994633674621582
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.01695990562438965 - end
+time spent: 0.01795816421508789
+---------------------------------------
+0.0 - start
+0.001999378204345703 - classify-Intent
+0.009966850280761719 - end
+time spent: 0.01296377182006836
+---------------------------------------
+0.0 - start
+0.000997781753540039 - classify-Intent
+0.007978200912475586 - end
+time spent: 0.009973764419555664
+---------------------------------------
+0.0 - start
+0.001995086669921875 - classify-Intent
+0.0 - check
+0.0 - filter
+0.011968374252319336 - typeofwords
+0.0 - wordsandtype
+0.0009958744049072266 - listofchoices
+0.0 - pre-loop
+0.15827131271362305 - pre-checkSimilarity
+1.358593225479126 - post-checkSimilarity
+0.10272574424743652 - post-loop
+0.0109710693359375 - end
+time spent: 1.6455206871032715
+---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 162-673-403
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 594-927-462
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+0.0 - start
+0.005982875823974609 - classify-Intent
+0.01296544075012207 - end
+time spent: 0.01894831657409668
+---------------------------------------
+0.0 - start
+0.002993345260620117 - classify-Intent
+0.0019927024841308594 - end
+time spent: 0.0049860477447509766
+---------------------------------------
+0.0 - start
+0.0009975433349609375 - classify-Intent
+0.005984306335449219 - end
+time spent: 0.006981849670410156
+---------------------------------------
+0.0 - start
+0.0009970664978027344 - classify-Intent
+0.012966394424438477 - end
+time spent: 0.014961004257202148
+---------------------------------------
+0.0 - start
+0.0009987354278564453 - classify-Intent
+0.009972095489501953 - end
+time spent: 0.010970830917358398
+---------------------------------------
+0.0 - start
+0.000997304916381836 - classify-Intent
+0.005982637405395508 - end
+time spent: 0.006979942321777344
+---------------------------------------
+0.0 - start
+0.0009953975677490234 - classify-Intent
+0.006981611251831055 - end
+time spent: 0.007977008819580078
+---------------------------------------
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\riddlemode.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\database_SQLite.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\riddlemode.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+0.0 - start
+0.003991842269897461 - classify-Intent
+0.005980968475341797 - end
+time spent: 0.009972810745239258
+---------------------------------------
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 174-739-626
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 194-406-765
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 194-406-765
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 194-406-765
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 635-706-716
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 635-706-716
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 635-706-716
+ * Detected change in 'C:\\Users\\Kevin Katzkowski\\Documents\\Uni\\Chatbot\\main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 635-706-716
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 157-146-376

@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="../static/css/login-signup.css">
 
   <!-- TODO change title -->
-  <title>Login</title>
+  <title>Sign Up</title>
 </head>
 
 <body>
@@ -43,6 +43,7 @@
       <li></li>
     </ul>
 
+
     <div class="user-account">
       <p class="user-name">Santa Claus</p>
       <div class="avatar small"></div>
@@ -50,21 +51,23 @@
 
   </nav>
 
-  <div class="container login">
-    <h2 id="login-heading">Log in</h2>
-    <p id="login-text">to load your game progress</p>
+  <div class="container signup">
+    <h2 id="singup-heading">Sign Up</h2>
+    <p id="singup-text">for free, no email required</p>
     <p class="error-message">{{ error_message }}</p>
 
-    <form id="login-form" method="POST" action="/login">
+    <form id="signup-form" method="POST" action="/signup">
       <input id="user-name" name="username" type="text" placeholder="username" required>
       <input id="user-password" name="password" type="password" placeholder="password" required>
 
-      <!-- <button class="secondary">sign up</button> -->
-      <button id="login-button" type="submit" class="primary">log in</button>
+      <input id="repeat-password" name="repeat-password" type="password" placeholder="repeat password" required>
+      <label for="repeat-password">You cannot reset your password.</label>
+
+      <button id="signup-button" type="submit" class="primary">Sign Up</button>
 
     </form>
 
-    <a id="signup-instead" href="/signup">sign up instead</a>
+    <a id="login-instead" href="/login">log in instead</a>
 
   </div>
 

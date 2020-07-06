@@ -90,8 +90,9 @@ def answerHandler(inputjson, username):
 
 
     #Check if a differnt sender is given
-    if len(answer) <= 3: newSender = "bot"
-    else: newSender = answer[3]
+    if len(answer) <= 3:newSender = "bot"
+    else:newSender = answer[3]
+        
 
     
     return json.dumps(
@@ -193,7 +194,7 @@ def findAnswer(username, msg, roomId=-1):
             if i[0] in msg:
                 for elem in rooms[i[1]]['items']:
                     if elem['itemName'] == i[0]:
-                        return (elem['lookAt'], getRoomName(roomId), 'game')
+                        return (elem['lookAt'], getRoomName(roomId), 'game', 'inventory')
 
         elemCount = -1
         # OBJEKTE
@@ -224,7 +225,7 @@ def findAnswer(username, msg, roomId=-1):
 
     # ITEMS: NOCH NICHT FERTIG. BAUSTELLE
     elif intentID == 4:
-        return (djf.get_inventory(roomId, username), getRoomName(roomId), 'game')
+        return (djf.get_inventory(roomId, username), getRoomName(roomId), 'game', 'inventory')
 
     # CURRENT ROOM: Gibt den Raumtext nochmal aus
     elif intentID == 5:

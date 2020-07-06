@@ -126,13 +126,14 @@ msg: the message of the user
 
 Returns: a string as an answer
 """
-def get_generated_answer(input_context: str) -> str:
+def get_generated_answer(input_context: str, output_len = True) -> str:
 
     # add . if sentence doesnt end with a punctuation
-    input_len = len(input_context)
+
     if tokenize.sent_tokenize(input_context)[-1][-1] not in "?.,!":
         input_context = input_context + '.'
-    input_context = input_context.replace("\n", '')
+    for elem in ["\n", "<br>", "<b>", "<em>", "</em>", "</b>"]:    
+        input_context = input_context.replace(elem, '')
 
     # text = text_generator(input_context, max_length=int(20))[0].get('generated_text')
     # for char in "?\n": text = text.replace(char,'')
@@ -142,9 +143,11 @@ def get_generated_answer(input_context: str) -> str:
     # print(proftext)
 
     # Encode input with gpt2 tokenizer
+    input_len = len(input_context)
     input_ids = tokenizer.encode(input_context, return_tensors='pt')
-    outputs = model.generate(
-        input_ids=input_ids, max_length=input_len+25, do_sample=True)
+    if output_len == True: mlenght = input_len + 25
+    else: mlenght = output_len
+    outputs = model.generate(input_ids=input_ids, max_length= mlenght, do_sample=True)
 
     # Postprocessing string
     decoded_text = tokenizer.decode(outputs[0]).format()

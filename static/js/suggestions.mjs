@@ -5,7 +5,7 @@
  */
 
 import { sendButton } from './client.mjs';
-import { closeSettings, getSettingValue } from './settings.mjs';
+// import { closeSettings, getSettingValue } from './settings.mjs';
 
 let suggestions = [{
       name: 'look around'
@@ -112,7 +112,7 @@ function showSuggestions() {
     // find already selected element
     findSelectedSuggestion();
   }
-  if (getSettingValue('setting-suggestions')) {
+  if (true) { //getSettingValue('setting-suggestions')
 
     hideSuggestions = false;
 
@@ -313,7 +313,7 @@ window.addEventListener('keydown', (evt) => {
       closeSuggestions();
       hideSuggestions = true;
 
-      closeSettings();
+      // closeSettings();
       break;
 
     default:

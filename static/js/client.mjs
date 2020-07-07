@@ -8,11 +8,9 @@ import {
   closeSuggestions,
   userInput
 } from './suggestions.mjs';
-import {
-  closeSettings
-} from './settings.mjs';
 
-let socket = io.connect('https://' + document.domain + ':' + location.port),
+
+let socket = io.connect("http://127.0.0.1:5000"),
   sendButton = document.getElementById('send-button'),
   userName = undefined,
   levelID = 'test_level_ID',
@@ -264,7 +262,7 @@ window.addEventListener('click', (evt) => {
 
   // console.log('window click');
   if (evt.target.id != 'input-user') closeSuggestions();
-  if (!document.getElementById('settings-window').contains(evt.target) && !evt.path.includes(document.getElementById('settings'))) closeSettings();
+  // if (!document.getElementById('settings-window').contains(evt.target) && !evt.path.includes(document.getElementById('settings'))) closeSettings();
 }, false);
 
 

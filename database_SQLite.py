@@ -533,7 +533,6 @@ def is_user_logged_in(username: str):
 
 
 def update_login(username: str, set_login: bool):
-    user_id = get_user_id(username)
     # Query to database
     login = 0;
     if set_login:
@@ -562,3 +561,77 @@ def add_user(username, password):
             print("succesfully added user")
     else:
         print("This username is taken. Try another one.")
+
+
+"""
+============================================================================================================
+setting_id | user_name |   set1    |   set2    |   set3    |   set4    |   set5    |   set6    |   set7    | 
+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+  1        | "Dinh"    |   "1"     |   "2"     |   "3"     |   "4"     |   "5"     |   "6"     |   "7"     |
+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+"""
+
+# Check if the user_name is taken in login table
+def does_setting_exist(user_name):
+    # Query to database
+    query = """SELECT * FROM user_settings WHERE user_name = ?"""
+    fetch = execute_database(query, (user_name,))
+    setting = fetch[1]
+    print(setting)
+
+    if setting is None or not setting:
+        return False
+
+    if setting[0] is not None:
+        return True
+    else:
+        return False
+
+
+# Add one record into login table
+def insert_user_settings(user_name: str, set1: str, set2: str, set3: str, set4: str, set5: str, set6: str, set7: str,):
+    if does_user_exist(user_name):
+        query = """ INSERT INTO user_settings VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"""
+        fetch = execute_database(query, (None, user_name, set1, set2, set3, set4, set5, set6, set7))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to add item into login table", e)
+        else:
+            print("Successfully added item into login table")
+    else:
+        print("User doesn't exist in 'users' table")
+
+
+# Update user settings
+def update_user_settings(username: str, set1: str, set2: str, set3: str, set4: str, set5: str, set6: str, set7: str):
+    # Query to database
+    if does_setting_exist(username):
+        query = """UPDATE user_settings SET set1 = ?, set2 = ?, set3 = ?, set4 = ?, set5 = ?, set6 = ?, set7 = ? WHERE user_name= ?"""
+        fetch = execute_database(query, (set1, set2, set3, set4, set5, set6, set7, username, ))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to update setting", e)
+        else:
+            print("setting was updated successful")
+    else:
+        query = """INSERT INTO user_settings VALUES (?,?,?,?,?,?,?,?)"""
+        fetch = execute_database(query, ( username, set1, set2, set3, set4, set5, set6, set7,))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to add setting", e)
+        else:
+            print("setting was added successful")
+
+
+# Find all of settings by username
+def find_all_settings_by_username(username):
+    if does_setting_exist(username):
+        query = """SELECT * FROM user_settings WHERE user_name= ?"""
+        fetch = execute_database(query, (username, ))
+        e = fetch[0]
+        result = fetch[1][0]
+        return result
+    else:
+        print("There is no such username that can update a login")
+        return None;
+

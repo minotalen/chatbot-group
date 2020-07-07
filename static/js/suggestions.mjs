@@ -5,7 +5,7 @@
  */
 
 import { sendButton } from './client.mjs';
-import { closeSettings, getSettingValue } from './settings.mjs';
+// import { closeSettings, getSettingValue } from './settings.mjs';
 
 let suggestions = [{
       name: 'look around'

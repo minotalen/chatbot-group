@@ -83,7 +83,7 @@
                 "needItems": [null],
                 "needItemsRoomId": [null],
                 "accept": "Professor Kraysee:</b> … I’ve told you, this was your last chance! You already cheated once on your bachelor thesis.<br> <b>Player:</b> But Professor Kraysee, I really need my degree!<br><b>Professor Kraysee:</b> I know that. And I also know that I would ruin your life if I would make you fail. But I need to follow the rules.<br> <b>Player:</b> … <br> <em>Player’s eyes getting wet..</em><br><b>Professor Kraysee:</b> Alright, look I may have a task for you. I give you a very last chance for your bachelor thesis. I choose the topic and I conduct your research. If you successfully complete what I ask for I will let you pass. This way you will get your degree even though you cheated. But this will be a difficult tasks and I’m not sure whether you will be able to do it or not.<br><b>Player:</b> Please please please. I will do anything!<br> <em>Not literally!</em><br><b>Professor Kraysee:</b> Alright, here you have some notes. If you solve this riddle I will give you the chance to start your quest.<br> Type in '<b>pick up</b> notes' to pick up or receive an item.<br>" ,
-                "fail": null,
+                "fail": "<em>You already played the tutorial, please type in '<b>ready</b>' to continue the game</em>",
                 "newStates": ["gotNotes"],
                 "newStatesValue": [true],
                 "actions": [null],

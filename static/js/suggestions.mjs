@@ -112,7 +112,7 @@ function showSuggestions() {
     // find already selected element
     findSelectedSuggestion();
   }
-  if (getSettingValue('setting-suggestions')) {
+  if (true) { //getSettingValue('setting-suggestions')
 
     hideSuggestions = false;
 
@@ -313,7 +313,7 @@ window.addEventListener('keydown', (evt) => {
       closeSuggestions();
       hideSuggestions = true;
 
-      closeSettings();
+      // closeSettings();
       break;
 
     default:

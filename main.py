@@ -3,6 +3,7 @@ from flask_socketio import SocketIO, send, emit
 import json
 import database_SQLite as database
 from answerhandler_json import answerHandler
+import sys
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -126,8 +127,14 @@ def logout():
 @socketio.on('json')
 def handleJson(payload):
     print("sending: " + payload)
-    send(answerHandler(payload, get_username_by_sid(request.sid)), json=True)
-
+    try:
+        send(answerHandler(payload, get_username_by_sid(request.sid)), json=True)
+    except:
+        obj = json.loads(payload)
+        print("Unexpected error:", sys.exc_info()[1])
+        print("Traceback:", sys.exc_info()[2])
+        print("Type:", sys.exc_info()[0])
+        send(json.dumps({"level": obj['level'], "sender": "bot", "room": obj['room'], "mode": obj['mode'], "message": "Sorry, something went wrong on the server. Try something different."}),  json=True)
 
 @socketio.on('user_registration')
 def update_users(payload):

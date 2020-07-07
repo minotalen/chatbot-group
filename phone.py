@@ -117,23 +117,22 @@ def tellAnswer(msg: str) -> str:
 
 """
 @author:: Max Petendra, Jakob Hackstein
-@state: 15.06.20
+@state: 07.07.20
 get a  formatted text answer by transformers using a pretrained gpt-2
 
 Parameters
 ----------
 msg: the message of the user
+output_len: must me a integer if set default it is 25
 
 Returns: a string as an answer
 """
-def get_generated_answer(input_context: str, output_len = True) -> str:
+def get_generated_answer(input_context: str, output_len: int = 25) -> str:
 
     # add . if sentence doesnt end with a punctuation
-
     if tokenize.sent_tokenize(input_context)[-1][-1] not in "?.,!":
         input_context = input_context + '.'
-    for elem in ["\n", "<br>", "<b>", "<em>", "</em>", "</b>"]:    
-        input_context = input_context.replace(elem, '')
+    input_context = formatHTMLText(input_context)
 
     # text = text_generator(input_context, max_length=int(20))[0].get('generated_text')
     # for char in "?\n": text = text.replace(char,'')
@@ -145,13 +144,13 @@ def get_generated_answer(input_context: str, output_len = True) -> str:
     # Encode input with gpt2 tokenizer
     input_len = len(input_context)
     input_ids = tokenizer.encode(input_context, return_tensors='pt')
-    if output_len == True: mlenght = input_len + 25
-    else: mlenght = output_len
-    outputs = model.generate(input_ids=input_ids, max_length= mlenght, do_sample=True)
+
+    print("GPT2 is trying to generating text")
+    outputs = model.generate(input_ids=input_ids, max_length= input_len + output_len , do_sample=True)
 
     # Postprocessing string
     decoded_text = tokenizer.decode(outputs[0]).format()
-    decoded_text = decoded_text.replace('\n', ' ').replace('  ', ' ')
+    decoded_text = decoded_text.replace('\n', ' ').replace('  ', ' ').replace('|', '')
     # better filter for special chars?
     decoded_text = re.sub('\"\'', '', decoded_text)
     answer = decoded_text[input_len:]
@@ -167,6 +166,22 @@ def get_generated_answer(input_context: str, output_len = True) -> str:
     except:
         return rustyprof
 
+
+"""
+@author:: Max Petendra, Jakob Hackstein
+@state: 07.07.20
+get a  formatted text answer without html elements
+
+Parameters
+----------
+input_context: the input text string
+
+Returns: a string as an answer
+"""
+def formatHTMLText(input_context: str = ''):
+    for elem in ["\n", "<br>", "<b>", "<em>", "</em>", "</b>"]:    
+        input_context = input_context.replace(elem, '')
+    return input_context   
 
 """
 @author:: Max Petendra, Jakob Hackstein, Canh Dinh

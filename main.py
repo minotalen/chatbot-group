@@ -178,10 +178,8 @@ def get_current_username():
 
 def get_settings_by_username(username: str):
     if database.does_setting_exist(username):
-        data = database.find_all_settings_by_username(username)
-        initial_data = {"username": data[1], "set1": data[2], "set2": data[2], "set3": data[3], "set4": data[4],
-                        "set5": data[5], "set6": data[6], "set7": data[7]}
-        print(initial_data)
+        data = database.find_settings_by_username(username)
+        initial_data = {"username": data[1], "json": data[2]}
         json_data = json.dumps(initial_data)
         return json_data
 
@@ -189,9 +187,7 @@ def get_settings_by_username(username: str):
 def update_settings_by_jsondata(payload):
     readable_json = json.loads(payload)
     username = readable_json["username"]
-    database.update_user_settings(username, readable_json["set1"], readable_json["set2"]
-                                  , readable_json["set3"], readable_json["set4"], readable_json["set5"]
-                                  , readable_json["set6"], readable_json["set7"])
+    database.update_user_settings(username, payload)
 
 
 if __name__ == "__main__":

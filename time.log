@@ -1798,3 +1798,38 @@ time spent: 9.692469120025635
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 772-854-217
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 772-854-217
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 772-854-217
+0.0 - start
+0.0032002925872802734 - classify-Intent
+0.0 - start
+0.0009257793426513672 - classify-Intent
+0.0 - start
+0.0054471492767333984 - classify-Intent
+0.0 - start
+0.002712249755859375 - classify-Intent
+0.0 - start
+0.010005474090576172 - classify-Intent
+0.0 - start
+0.006532430648803711 - classify-Intent
+0.0 - start
+0.003519296646118164 - classify-Intent
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 772-854-217
+0.0 - start
+0.04763507843017578 - classify-Intent
+0.0 - start
+0.001483917236328125 - classify-Intent
+0.0 - start
+0.001371622085571289 - classify-Intent
+0.0 - start
+0.0010285377502441406 - classify-Intent
+ * Detected change in '/home/dinhnguyen/Desktop/Bachelor Project/Master Branch/chatbot-group/database_SQLite.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 772-854-217

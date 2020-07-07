@@ -127,7 +127,7 @@ output_len: must me a integer if set default it is 25
 
 Returns: a string as an answer
 """
-def get_generated_answer(input_context: str, output_len: int = 25) -> str:
+def get_generated_answer(input_context: str, output_tokens: int = 25) -> str:
 
     # add . if sentence doesnt end with a punctuation
     if tokenize.sent_tokenize(input_context)[-1][-1] not in "?.,!":
@@ -142,20 +142,21 @@ def get_generated_answer(input_context: str, output_len: int = 25) -> str:
     # print(proftext)
 
     # Encode input with gpt2 tokenizer
-    input_len = len(input_context)
+    input_tokens = len(input_context.split())
     input_ids = tokenizer.encode(input_context, return_tensors='pt')
 
-    print("GPT2 is trying to generating text")
-    outputs = model.generate(input_ids=input_ids, max_length= input_len + output_len , do_sample=True)
+    n_tokens = input_tokens + output_tokens
+    print("GPT2 is trying to generate text for {} tokens".format(n_tokens))
+    outputs = model.generate(input_ids=input_ids, max_length=input_tokens+output_tokens, do_sample=True)
 
     # Postprocessing string
     decoded_text = tokenizer.decode(outputs[0]).format()
     decoded_text = decoded_text.replace('\n', ' ').replace('  ', ' ').replace('|', '')
     # better filter for special chars?
     decoded_text = re.sub('\"\'', '', decoded_text)
-    answer = decoded_text[input_len:]
+    answer = decoded_text[len(input_context):]
 
-    # split into sentences and slice unfinished // returns rustyprof if exception is throwed
+    # split into sentences and slice unfinished // returns rustyprof if exception is thrown
     try:
         def formatstart(msg): return msg[2:] if msg[0:2] == '. ' else (
             msg.strip() if msg[0] == ' ' else msg)

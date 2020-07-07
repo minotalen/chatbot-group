@@ -209,17 +209,17 @@ def findAnswer(username, msg, roomId=-1):
 
                     return (elem['lookAt'], getRoomName(roomId), 'game')
 
-        #room discription from json
-        rawdiscsentences = tokenize.sent_tokenize(formatHTMLText(getRoomDescription(roomId))) 
+        # room discription from json
+        raw_desc_sentences = tokenize.sent_tokenize(formatHTMLText(getRoomDescription(roomId))) 
 
         # take last 3 sentences from input
-        if len(rawdiscsentences) > 3 : rawdiscsentences = rawdiscsentences[-3:]
-        rawdiscription = " ".join(rawdiscsentences)
+        if len(raw_desc_sentences) > 3 : raw_desc_sentences = raw_desc_sentences[-3:]
+        raw_desc_sentences = " ".join(raw_desc_sentences)
 
-        #with a generated text added by gpt2 on context of the room discription 
-        gendiscription = getRoomDescription(roomId) + ' ' + get_generated_answer(rawdiscription, 8)
+        # with a generated text added by gpt2 on context of the room discription 
+        gen_description = getRoomDescription(roomId) + ' ' + get_generated_answer(raw_desc_sentences, 55)
 
-        return (gendiscription, getRoomName(roomId), 'game')
+        return (gen_description, getRoomName(roomId), 'game')
 
     # PICK UP: Hebt ein item auf und gibt den Text zurück
     elif intentID == 3:

@@ -15,57 +15,68 @@ const changeUsername = document.getElementById('change-username'),
   gpt2Output = document.getElementById('gpt2-output'),
   settings = {
     username: "",
-    showSuggestions: "",
-    readMessages: "",
-    userTheme: "",
-    gpt2Output: ""
-  };
+    showSuggestions: true, // TODO default settings can be changed here 
+    readMessages: false,
+    gpt2Output: true,
+    userTheme: 'system'
+  },
+  settingsUrl = '/settings';
+
+// TODO rework this function to get username from server
+function getUsernameFromURL() {
+  let current_url = window.location.href, 
+  url = new URL(current_url);
+  return url.searchParams.get('username');
+}
+
+settings.username = getUsernameFromURL();
 
 // get from database or set initially
-getSetttingsJSON(null);
+getSettingsJSON();
 
-changeUsername.addEventListener('click', () => {
-  console.log("changeUsername");
-}, false);
+if(changeUsername) {
+  changeUsername.addEventListener('click', () => {
+    console.log("changeUsername");
+  }, false);
 
-deleteAccount.addEventListener('click', () => {
-  console.log("deleteAccount");
-}, false);
+  deleteAccount.addEventListener('click', () => {
+    console.log("deleteAccount");
+  }, false);
 
-showSuggestions.addEventListener('click', () => {
-  settings.showSuggestions = showSuggestions.checked;
-  sendSettingsJSON();
-}, false);
+  showSuggestions.addEventListener('click', () => {
+    settings.showSuggestions = showSuggestions.checked;
+    sendSettingsJSON();
+  }, false);
 
-readMessages.addEventListener('click', () => {
-  settings.readMessages = readMessages.checked;
-  sendSettingsJSON();
-}, false);
+  readMessages.addEventListener('click', () => {
+    settings.readMessages = readMessages.checked;
+    sendSettingsJSON();
+  }, false);
 
-gpt2Output.addEventListener('click', () => {
-  settings.gpt2Output = gpt2Output.checked;
-  sendSettingsJSON();
-}, false);
+  gpt2Output.addEventListener('click', () => {
+    settings.gpt2Output = gpt2Output.checked;
+    sendSettingsJSON();
+  }, false);
 
-systemTheme.addEventListener('click', () => {
-  settings.userTheme = "system";
-  sendSettingsJSON();
-}, false);
+  systemTheme.addEventListener('click', () => {
+    settings.userTheme = "system";
+    sendSettingsJSON();
+  }, false);
 
-lightTheme.addEventListener('click', () => {
-  settings.userTheme = "light";
-  sendSettingsJSON();
-}, false);
+  lightTheme.addEventListener('click', () => {
+    settings.userTheme = "light";
+    sendSettingsJSON();
+  }, false);
 
-darkTheme.addEventListener('click', () => {
-  settings.userTheme = "dark";
-  sendSettingsJSON(); 
-}, false);
+  darkTheme.addEventListener('click', () => {
+    settings.userTheme = "dark";
+    sendSettingsJSON(); 
+  }, false);
 
-deleteGameProgress.addEventListener('click', () => {
-  console.log("deleteGameProgress");
-}, false);
-
+  deleteGameProgress.addEventListener('click', () => {
+    console.log("deleteGameProgress");
+  }, false);
+}
 
 /**
  * Update the interface by checking or unchecking the input elements.
@@ -83,6 +94,8 @@ function updateDisplayedSettings() {
  * @param value new value
  */
 function setDisplayedValue(setting, value) {
+  console.log(setting);
+  
   setting.checked = value;
 }
 
@@ -90,12 +103,34 @@ function getSettingValue(name) {
   return settings[name] ? settings[name] : null;
 }
 
-function getSetttingsJSON(json) {
-  // parse JSON String into JS object
-  let obj = JSON.parse(json);
-  console.log('received settings JSON: ' + JSON.stringify(obj));
+function getSettingsJSON() {  
+  let xhttp = new XMLHttpRequest(), obj; 
 
-  if(obj) {
+  xhttp.open('GET', settingsUrl, true);
+  xhttp.addEventListener('readystatechange', () => {
+    if(xhttp.readyState === 4 && xhttp.readyState === 200) {
+      obj = JSON.parse(xhttp.responseText);
+      console.log(obj);
+      console.log(xhttp.responseText);
+      
+      // TODO reactivate this when database is working
+      updateSettingsObj(obj);
+    }
+  });
+  xhttp.send();
+}
+
+let o = {username: "f", showSuggestions: false, readMessages: false, userTheme: "system", gpt2Output: true};
+document.addEventListener('DOMContentLoaded', function() {
+  console.log("DOM fully loaded and parsed");
+  // updateSettingsObj(o);
+}); 
+
+function updateSettingsObj(obj) {
+  // let obj = JSON.parse(json);
+  // console.log('received settings JSON: ' + JSON.stringify(obj));
+
+  if(obj.username != undefined) { // TODO replace
     // update settings from database
     settings.username = obj.username;
     settings.showSuggestions = obj.showSuggestions;
@@ -105,31 +140,29 @@ function getSetttingsJSON(json) {
 
     console.log(settings);
     console.log('settings updated from database');
-  } else{
-    // new account default settings 
-    settings.showSuggestions = true;
-    settings.readMessages = false;
-    settings.gpt2Output = true;
-    settings.userTheme = 'system';
-  }
+  } 
   updateDisplayedSettings();
   console.log(settings);
 }
 
 
 function sendSettingsJSON() {
-  let xhr = new XMLHttpRequest(), url = '/settings';
+  let xhr = new XMLHttpRequest(), obj, settingsJSON;
+  console.log(settings);
 
-  xhr.open('POST', url, true);
+  xhr.open('POST', settingsUrl, true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.addEventListener('readystatechange', () => {
     // if DONE and OK
     if(xhr.readyState === 4 && xhr.readyState === 200) {
-      let json = JSON.parse(xhr.responseText);
-      getSetttingsJSON(json);
+      obj = JSON.parse(xhr.responseText);
+      console.log(obj);
+      
+      // TODO reactivate this when database is working
+      updateSettingsObj(obj);
     }
   });
-  let settingsJSON = JSON.stringify(settings); 
+  settingsJSON = JSON.stringify(settings); 
   xhr.send(settingsJSON);
 }
 

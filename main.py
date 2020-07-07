@@ -22,7 +22,7 @@ def send_index_page():
 
         print(username)
         if username:  # database.is_user_logged_in(username):
-            return redirect(url_for('send_profile_page'))
+            return redirect(url_for('send_profile_page', username=username))
 
     return redirect(url_for('login'))
 
@@ -42,7 +42,7 @@ def login():
             # database.update_login(username, True)
             session['username'] = username
             session['is_logged_in'] = True
-            return redirect(url_for('send_profile_page'))
+            return redirect(url_for('send_profile_page', username=username))
         else:
             return render_template('login.html', error_message='username and password do not match.')
     else:
@@ -51,7 +51,7 @@ def login():
 
             print(username)
             if username:  # database.is_user_logged_in(username):
-                return redirect(url_for('send_profile_page'))
+                return redirect(url_for('send_profile_page', username=username))
         else:
             return render_template('login.html')
 
@@ -81,24 +81,27 @@ def signup():
         return render_template('signup.html')
 
 
-@app.route('/settings', methods=['POST'])
+@app.route('/settings', methods=['GET','POST'])
 def get_user_settings():
     if request.method == 'POST':
-      settings_data = request.get_data()
-      print('settings data received')
+        settings_data = request.get_data()
+        print('settings data received')
 
-      update_settings_by_jsondata(settings_data)
+        update_settings_by_jsondata(settings_data)
+        return settings_data
     else:
-      print('no settings data received')
-
+        username = session.get('username')
+        if username:
+            settings = get_settings_by_username(username)
+            return settings
+        return ""
 
 @app.route('/profile')
 def send_profile_page():
     username = session.get('username')
 
     if username:  # database.is_user_logged_in(username):
-        user = get_settings_by_username(username)
-        return render_template('user.html', username=username, user=user)
+        return render_template('user.html', username=username)
     else:
         print('no user is logged in (username source: session)')
         return redirect(url_for('login'))
@@ -194,6 +197,7 @@ def get_settings_by_username(username: str):
     if database.does_setting_exist(username):
         data = database.find_settings_by_username(username)
         initial_data = {"username": data[1], "json": data[2]}
+        print(data[2])
         json_data = json.dumps(initial_data)
         return json_data
 

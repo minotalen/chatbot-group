@@ -42,10 +42,12 @@
     </ul>
 
 
-    <div class="user-account">
-      <p class="user-name">{{ username }}</p>
-      <div class="avatar small"></div>
-    </div>
+    <a class="link-profile" href="{{ url_for('send_profile_page', username= username) }}">
+      <div class="user-account">
+        <p class="user-name">{{ username }}</p>
+        <div class="avatar small"></div>
+      </div>
+    </a>
 
   </nav>
 
@@ -64,11 +66,11 @@
       <h3>Account</h3>
       <div>
         <p>Change Username</p>
-        <button id="change-username" class="primary">Change</button>
+        <button id="change-username" class="secondary">Change</button>
       </div>
       <div>
         <p>Delete your account</p>
-        <button id="delete-account" class="primary">Delete</button>
+        <button id="delete-account" class="secondary">Delete</button>
       </div>
     </div>
 
@@ -76,18 +78,22 @@
       <h3>Game</h3>
       <div>
         <p>Show input suggestions</p>
-        <input type="checkbox" class="settings" id="show-suggestion" checked></input>
+        <input type="checkbox" class="settings" id="show-suggestion"></input>
       </div>
       <div>
         <p>Text-to-speech</p>
         <input type="checkbox" class="settings" id="read-messages"></input>
       </div>
+      <div>
+        <p>GPT-2 LookAt Text</p>
+        <input id="gpt2-output" type="checkbox" class="settings"></input>
+      </div>
       <div class="theme-select">
         <p>Select theme</p>
         <div class="theme-radio-buttons">
           <div>
-            <input type="radio" id="auto" name="interface-mode" checked></input>
-            <label for="auto">Auto</label>
+            <input type="radio" id="system" name="interface-mode"></input>
+            <label for="system">System</label>
           </div>
           <div>
             <input type="radio" id="light" name="interface-mode"></input>
@@ -97,16 +103,12 @@
             <input type="radio" id="dark" name="interface-mode"></input>
             <label for="dark">Dark</label>
           </div>
-          <div>
-            <input type="radio" id="system" name="interface-mode"></input>
-            <label for="system">System</label>
-          </div>
         </div>
       </div>
 
       <div>
         <p>Delete game progress</p>
-        <button id="delete-game-progress" class="primary">Delete</button>
+        <button id="delete-game-progress" class="secondary">Delete</button>
 
       </div>
     </div>
@@ -114,6 +116,7 @@
   </div>
 
   <!-- load custom javascript -->
+  <script type="module" src="../static/js/settings.mjs"></script>
   <script type="module" src="../static/js/mobile.js"></script>
 </body>
 

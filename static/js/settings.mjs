@@ -108,12 +108,11 @@ function getSettingsJSON() {
 
   xhttp.open('GET', settingsUrl, true);
   xhttp.addEventListener('readystatechange', () => {
-    if(xhttp.readyState === 4 && xhttp.readyState === 200) {
+    if(xhttp.readyState === 4 ) {
       obj = JSON.parse(xhttp.responseText);
       console.log(obj);
       console.log(xhttp.responseText);
       
-      // TODO reactivate this when database is working
       updateSettingsObj(obj);
     }
   });
@@ -132,7 +131,9 @@ function updateSettingsObj(obj) {
 
   if(obj.username != undefined) { // TODO replace
     // update settings from database
-    settings.username = obj.username;
+    settings.username = document.getElementById('username').innerText; //obj.username;
+    console.log(settings.username);
+    
     settings.showSuggestions = obj.showSuggestions;
     settings.readMessages = obj.readMessages;
     settings.gpt2Output = obj.gpt2Output;

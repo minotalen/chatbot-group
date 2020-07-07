@@ -606,7 +606,7 @@ def find_settings_by_username(username):
         query = """SELECT * FROM user_settings WHERE username= ?"""
         fetch = execute_database(query, (username, ))
         result = fetch[1][0]
-        return result[2]
+        return result
     else:
         print("There is no such username that can update a login")
         return None;

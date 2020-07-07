@@ -93,7 +93,13 @@ def get_user_settings():
         username = session.get('username')
         if username:
             settings = get_settings_by_username(username)
-            return settings
+            print('return settings')
+            print(settings)
+
+            if settings:
+                return settings
+            else:
+                return ""
         return ""
 
 @app.route('/profile')
@@ -198,8 +204,11 @@ def get_settings_by_username(username: str):
         data = database.find_settings_by_username(username)
         initial_data = {"username": data[1], "json": data[2]}
         print(data[2])
-        json_data = json.dumps(initial_data)
-        return json_data
+        json_string = data[2]
+        # json_data = json.dumps(json_string[1:])
+        return json_string
+    else:
+        print('user does not exist')
 
 
 def update_settings_by_jsondata(payload):

@@ -22,7 +22,7 @@ with open('questions.json', encoding="utf8") as questions:
 # Initialize tokenizer
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 # Load gpt2 model
-model = GPT2LMHeadModel.from_pretrained('gpt2')
+model = GPT2LMHeadModel.from_pretrained('./models/collection_7k_pt')
 
 rustyprof = "I am completely absent-minded. The proof of my theory is not yet..."
 

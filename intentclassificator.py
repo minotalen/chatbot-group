@@ -107,8 +107,7 @@ Returns: Returns True if user msg is put to trainingdata.csv otherwise it return
 """
 def writeMessagetoTrainingData(msg: str) -> bool:
 
-    try: msg.decode('utf-8')
-    except: return False
+    if len(ascii(msg)) - 2 > len(msg): return False
 
     filteredmessage = filterMessage(msg)
     print(filteredmessage)
@@ -119,7 +118,6 @@ def writeMessagetoTrainingData(msg: str) -> bool:
 
     with open(file_location, 'r', newline = '') as file:
         reader = csv.reader(file, delimiter = '$')
-        print(reader)
         stringlist = [ " ".join(word) for word in [row for row in reader]]
 
     with open(file_location, 'a', newline = '') as file:

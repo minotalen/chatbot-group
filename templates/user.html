@@ -42,7 +42,7 @@
     </ul>
 
 
-    <a class="link-profile" href="{{ url_for('send_profile_page', username= username) }}">
+    <a class="link-profile" href="{{ url_for('send_profile_page') }}">
       <div class="user-account">
         <p class="user-name">{{ username }}</p>
         <div class="avatar small"></div>
@@ -118,6 +118,11 @@
   <!-- load custom javascript -->
   <script type="module" src="../static/js/settings.mjs"></script>
   <script type="module" src="../static/js/mobile.js"></script>
+  <script>
+    var jsonSettings = '{{ user|tojson }}';
+    console.log(jsonSettings);
+    
+  </script>
 </body>
 
 </html>

@@ -42,7 +42,7 @@ def login():
             # database.update_login(username, True)
             session['username'] = username
             session['is_logged_in'] = True
-            return redirect(url_for('send_profile_page', username=username))
+            return redirect(url_for('send_profile_page'))
         else:
             return render_template('login.html', error_message='username and password do not match.')
     else:
@@ -74,16 +74,22 @@ def signup():
         if not userExists:
             database.add_user(username, password)
             session['username'] = username
-            return redirect(url_for('send_profile_page', username=username))
+            return redirect(url_for('send_profile_page'))
         else:
             return render_template('signup.html', error_message='Username already taken. Please choose another one.')
     else:
         return render_template('signup.html')
 
 
-@app.route('/settings', methods=['GET', 'POST'])
+@app.route('/settings', methods=['POST'])
 def get_user_settings():
-    data = request.get_json()
+    if request.method == 'POST':
+      settings_data = request.get_data()
+      print('settings data received')
+
+      update_settings_by_jsondata(settings_data)
+    else:
+      print('no settings data received')
 
 
 @app.route('/profile')
@@ -91,7 +97,8 @@ def send_profile_page():
     username = session.get('username')
 
     if username:  # database.is_user_logged_in(username):
-        return render_template('user.html', username=username)
+        user = get_settings_by_username(username)
+        return render_template('user.html', username=username, user=user)
     else:
         print('no user is logged in (username source: session)')
         return redirect(url_for('login'))

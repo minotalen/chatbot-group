@@ -107,6 +107,8 @@ Returns: Returns True if user msg is put to trainingdata.csv otherwise it return
 """
 def writeMessagetoTrainingData(msg: str) -> bool:
 
+    if len(ascii(msg)) - 2 > len(msg): return False
+
     filteredmessage = filterMessage(msg)
     print(filteredmessage)
 

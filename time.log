@@ -1781,6 +1781,1298 @@ time spent: 9.692469120025635
 ---------------------------------------
  * Detected change in '/home/max/chatbot-group/phone.py', reloading
  * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 290-759-042
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 772-854-217
+ * Detected change in '/home/dinhnguyen/Desktop/Bachelor Project/Master Branch/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 772-854-217
+ * Detected change in '/home/dinhnguyen/Desktop/Bachelor Project/Master Branch/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 772-854-217
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 772-854-217
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 772-854-217
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 772-854-217
+0.0 - start
+0.0032002925872802734 - classify-Intent
+0.0 - start
+0.0009257793426513672 - classify-Intent
+0.0 - start
+0.0054471492767333984 - classify-Intent
+0.0 - start
+0.002712249755859375 - classify-Intent
+0.0 - start
+0.010005474090576172 - classify-Intent
+0.0 - start
+0.006532430648803711 - classify-Intent
+0.0 - start
+0.003519296646118164 - classify-Intent
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 772-854-217
+0.0 - start
+0.04763507843017578 - classify-Intent
+0.0 - start
+0.001483917236328125 - classify-Intent
+0.0 - start
+0.001371622085571289 - classify-Intent
+0.0 - start
+0.0010285377502441406 - classify-Intent
+ * Detected change in '/home/dinhnguyen/Desktop/Bachelor Project/Master Branch/chatbot-group/database_SQLite.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 772-854-217
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.04808759689331055 - classify-Intent
+0.0004973411560058594 - end
+time spent: 0.048584938049316406
+---------------------------------------
+0.0 - start
+0.0004932880401611328 - classify-Intent
+0.00049591064453125 - end
+time spent: 0.001486063003540039
+---------------------------------------
+0.0 - start
+0.0024785995483398438 - end
+time spent: 0.0024785995483398438
+---------------------------------------
+0.0 - start
+0.0004951953887939453 - classify-Intent
+5.8748109340667725 - end
+time spent: 5.875306129455566
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.0014882087707519531 - classify-Intent
+0.0 - end
+time spent: 0.0014882087707519531
+---------------------------------------
+0.0 - start
+0.0004961490631103516 - classify-Intent
+0.000993967056274414 - end
+time spent: 0.0014901161193847656
+---------------------------------------
+0.0 - start
+0.0014882087707519531 - end
+time spent: 0.0014882087707519531
+---------------------------------------
+0.0 - start
+0.00049591064453125 - classify-Intent
+6.283350467681885 - end
+time spent: 6.283846378326416
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.0004875659942626953 - classify-Intent
+0.00049591064453125 - end
+time spent: 0.0009834766387939453
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0004949569702148438 - end
+time spent: 0.0004949569702148438
+---------------------------------------
+0.0 - start
+0.001979351043701172 - end
+time spent: 0.001979351043701172
+---------------------------------------
+0.0 - start
+0.00048613548278808594 - classify-Intent
+5.76401162147522 - end
+time spent: 5.764994144439697
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.0 - classify-Intent
+0.0009913444519042969 - end
+time spent: 0.0009913444519042969
+---------------------------------------
+0.0 - start
+0.000993490219116211 - classify-Intent
+0.000989675521850586 - end
+time spent: 0.001983165740966797
+---------------------------------------
+0.0 - start
+0.0014870166778564453 - end
+time spent: 0.0014870166778564453
+---------------------------------------
+0.0 - start
+0.0005114078521728516 - classify-Intent
+0.012880086898803711 - end
+time spent: 0.013391494750976562
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.0004954338073730469 - classify-Intent
+0.0004968643188476562 - end
+time spent: 0.0009922981262207031
+---------------------------------------
+0.0 - start
+0.000993967056274414 - classify-Intent
+0.0004942417144775391 - end
+time spent: 0.0019838809967041016
+---------------------------------------
+0.0 - start
+0.0024797916412353516 - end
+time spent: 0.0024797916412353516
+---------------------------------------
+0.0 - start
+0.0004963874816894531 - classify-Intent
+0.8109579086303711 - end
+time spent: 0.8114542961120605
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.010976076126098633 - classify-Intent
+0.00048351287841796875 - end
+time spent: 0.011459589004516602
+---------------------------------------
+0.0 - start
+0.00049591064453125 - classify-Intent
+0.00049591064453125 - end
+time spent: 0.0009918212890625
+---------------------------------------
+0.0 - start
+0.00046944618225097656 - classify-Intent
+0.2096877098083496 - end
+time spent: 0.21015715599060059
+---------------------------------------
+0.0 - start
+0.0004818439483642578 - classify-Intent
+0.0005207061767578125 - end
+time spent: 0.0010025501251220703
+---------------------------------------
+0.0 - start
+0.0004971027374267578 - classify-Intent
+0.0004942417144775391 - end
+time spent: 0.0009913444519042969
+---------------------------------------
+0.0 - start
+0.0014882087707519531 - end
+time spent: 0.0014882087707519531
+---------------------------------------
+0.0 - start
+0.0004963874816894531 - classify-Intent
+0.0039670467376708984 - end
+time spent: 0.0044634342193603516
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.010911226272583008 - classify-Intent
+0.0024805068969726562 - end
+time spent: 0.013391733169555664
+---------------------------------------
+0.0 - start
+0.0004961490631103516 - classify-Intent
+0.0 - end
+time spent: 0.0004961490631103516
+---------------------------------------
+0.0 - start
+0.0014641284942626953 - end
+time spent: 0.0014641284942626953
+---------------------------------------
+0.0 - start
+0.0004961490631103516 - classify-Intent
+6.236206293106079 - end
+time spent: 6.2367024421691895
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.0004956722259521484 - classify-Intent
+0.00049591064453125 - end
+time spent: 0.0009915828704833984
+---------------------------------------
+0.0 - start
+0.00046324729919433594 - classify-Intent
+0.0004954338073730469 - end
+time spent: 0.0009586811065673828
+---------------------------------------
+0.0 - start
+0.0009922981262207031 - end
+time spent: 0.0009922981262207031
+---------------------------------------
+0.0 - start
+0.0004966259002685547 - classify-Intent
+5.619179010391235 - end
+time spent: 5.620172023773193
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.0004951953887939453 - classify-Intent
+0.0 - end
+time spent: 0.0009913444519042969
+---------------------------------------
+0.0 - start
+0.00049591064453125 - classify-Intent
+0.0 - end
+time spent: 0.00049591064453125
+---------------------------------------
+0.0 - start
+0.001982450485229492 - end
+time spent: 0.001982450485229492
+---------------------------------------
+0.0 - start
+0.00049591064453125 - classify-Intent
+5.18865180015564 - end
+time spent: 5.189643621444702
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.006289958953857422 - classify-Intent
+0.0005092620849609375 - end
+time spent: 0.006799221038818359
+---------------------------------------
+0.0 - start
+0.0004956722259521484 - classify-Intent
+0.0009911060333251953 - end
+time spent: 0.0014867782592773438
+---------------------------------------
+0.0 - start
+0.0014832019805908203 - end
+time spent: 0.0014832019805908203
+---------------------------------------
+0.0 - start
+0.00049591064453125 - classify-Intent
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.011408090591430664 - classify-Intent
+0.00049591064453125 - end
+time spent: 0.011904001235961914
+---------------------------------------
+0.0 - start
+0.00049591064453125 - classify-Intent
+0.0009913444519042969 - end
+time spent: 0.0014872550964355469
+---------------------------------------
+0.0 - start
+0.0024814605712890625 - end
+time spent: 0.0024814605712890625
+---------------------------------------
+0.0 - start
+0.0004925727844238281 - classify-Intent
+0.2040109634399414 - end
+time spent: 0.20499968528747559
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.0004963874816894531 - classify-Intent
+0.0014879703521728516 - end
+time spent: 0.0024802684783935547
+---------------------------------------
+0.0 - start
+0.0004956722259521484 - classify-Intent
+0.0005381107330322266 - end
+time spent: 0.001033782958984375
+---------------------------------------
+0.0 - start
+0.0024483203887939453 - end
+time spent: 0.0024483203887939453
+---------------------------------------
+0.0 - start
+0.0004956722259521484 - classify-Intent
+0.013391971588134766 - end
+time spent: 0.014384031295776367
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.00049591064453125 - classify-Intent
+0.00049591064453125 - end
+time spent: 0.0009918212890625
+---------------------------------------
+0.0 - start
+0.0004951953887939453 - classify-Intent
+0.0009913444519042969 - end
+time spent: 0.0014865398406982422
+---------------------------------------
+0.0 - start
+0.0019834041595458984 - end
+time spent: 0.0019834041595458984
+---------------------------------------
+0.0 - start
+0.0004956722259521484 - classify-Intent
+1.339465618133545 - end
+time spent: 1.339961290359497
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.0 - classify-Intent
+0.00049591064453125 - end
+time spent: 0.00049591064453125
+---------------------------------------
+0.0 - start
+0.0004718303680419922 - classify-Intent
+0.0004987716674804688 - end
+time spent: 0.0009706020355224609
+---------------------------------------
+0.0 - start
+0.0014917850494384766 - end
+time spent: 0.0014917850494384766
+---------------------------------------
+0.0 - start
+0.0004909038543701172 - classify-Intent
+5.327036380767822 - end
+time spent: 5.327527284622192
+---------------------------------------
+0.0 - start
+0.0004961490631103516 - classify-Intent
+0.20682549476623535 - end
+time spent: 0.20781564712524414
+---------------------------------------
+0.0 - start
+0.00049591064453125 - classify-Intent
+0.0 - check
+0.0 - filter
+0.28858375549316406 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.04661989212036133 - pre-checkSimilarity
+2.864229679107666 - post-checkSimilarity
+0.039160728454589844 - pre-checkSimilarity
+0.5694077014923096 - post-checkSimilarity
+0.04317498207092285 - pre-checkSimilarity
+0.14728879928588867 - post-checkSimilarity
+0.03176736831665039 - pre-checkSimilarity
+0.4538450241088867 - post-checkSimilarity
+0.0 - post-loop
+0.0004801750183105469 - classify-Intent
+0.0 - check
+0.0 - filter
+0.11954641342163086 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0004985332489013672 - pre-loop
+0.2330939769744873 - pre-checkSimilarity
+0.11559081077575684 - post-checkSimilarity
+0.037177324295043945 - pre-checkSimilarity
+0.44444990158081055 - post-checkSimilarity
+0.04559779167175293 - pre-checkSimilarity
+0.10071420669555664 - post-checkSimilarity
+0.032213449478149414 - pre-checkSimilarity
+0.3859140872955322 - post-checkSimilarity
+0.005429267883300781 - pre-checkSimilarity
+0.5352077484130859 - post-checkSimilarity
+0.014359474182128906 - pre-checkSimilarity
+0.31148791313171387 - post-checkSimilarity
+0.051584720611572266 - pre-checkSimilarity
+0.23214936256408691 - post-checkSimilarity
+0.022324085235595703 - pre-checkSimilarity
+0.6160058975219727 - post-checkSimilarity
+0.012895822525024414 - pre-checkSimilarity
+0.30454301834106445 - post-checkSimilarity
+0.0431523323059082 - pre-checkSimilarity
+0.23311996459960938 - post-checkSimilarity
+0.16417622566223145 - post-loop
+3.2447867393493652 - end
+time spent: 11.791073083877563
+---------------------------------------
+0.0 - start
+0.0004963874816894531 - classify-Intent
+0.0 - check
+0.0004954338073730469 - filter
+0.0074405670166015625 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.08233642578125 - pre-checkSimilarity
+0.07836651802062988 - post-checkSimilarity
+0.03124833106994629 - pre-checkSimilarity
+0.09225678443908691 - post-checkSimilarity
+0.01587080955505371 - post-loop
+0.0004963874816894531 - end
+time spent: 0.3090076446533203
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0009927749633789062 - end
+time spent: 0.0009927749633789062
+---------------------------------------
+0.0 - start
+0.0004961490631103516 - classify-Intent
+0.00049591064453125 - end
+time spent: 0.0009920597076416016
+---------------------------------------
+0.0 - start
+0.0014863014221191406 - end
+time spent: 0.0014863014221191406
+---------------------------------------
+0.0 - start
+0.0004956722259521484 - classify-Intent
+5.447563409805298 - end
+time spent: 5.44805908203125
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.027147293090820312 - classify-Intent
+0.0 - end
+time spent: 0.027147293090820312
+---------------------------------------
+0.0 - start
+0.0004718303680419922 - classify-Intent
+0.0004951953887939453 - end
+time spent: 0.0009670257568359375
+---------------------------------------
+0.0 - start
+0.001970052719116211 - end
+time spent: 0.001970052719116211
+---------------------------------------
+0.0 - start
+0.0004954338073730469 - classify-Intent
+0.8675172328948975 - end
+time spent: 0.8685081005096436
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.01925516128540039 - classify-Intent
+0.0004851818084716797 - end
+time spent: 0.01974034309387207
+---------------------------------------
+0.0 - start
+0.0009906291961669922 - classify-Intent
+0.0004966259002685547 - end
+time spent: 0.0014872550964355469
+---------------------------------------
+0.0 - start
+0.0014891624450683594 - end
+time spent: 0.0019922256469726562
+---------------------------------------
+0.0 - start
+0.0004961490631103516 - classify-Intent
+0.8363556861877441 - end
+time spent: 0.8368518352508545
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.005044221878051758 - classify-Intent
+0.0005221366882324219 - end
+time spent: 0.00556635856628418
+---------------------------------------
+0.0 - start
+0.00049591064453125 - classify-Intent
+0.0 - end
+time spent: 0.00049591064453125
+---------------------------------------
+0.0 - start
+0.0020105838775634766 - end
+time spent: 0.0020105838775634766
+---------------------------------------
+0.0 - start
+0.0004956722259521484 - classify-Intent
+1.109318733215332 - end
+time spent: 1.1103105545043945
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.0059795379638671875 - classify-Intent
+0.0004968643188476562 - end
+time spent: 0.006476402282714844
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0009903907775878906 - end
+time spent: 0.0009903907775878906
+---------------------------------------
+0.0 - start
+0.001986265182495117 - end
+time spent: 0.001986265182495117
+---------------------------------------
+0.0 - start
+0.00049591064453125 - classify-Intent
+1.5605747699737549 - end
+time spent: 1.5610706806182861
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.0054569244384765625 - classify-Intent
+0.0 - end
+time spent: 0.005952596664428711
+---------------------------------------
+0.0 - start
+0.0004956722259521484 - classify-Intent
+0.0009922981262207031 - end
+time spent: 0.0019838809967041016
+---------------------------------------
+0.0 - start
+0.0014867782592773438 - end
+time spent: 0.0014867782592773438
+---------------------------------------
+0.0 - start
+0.0004966259002685547 - classify-Intent
+1.0638113021850586 - end
+time spent: 1.0643079280853271
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.014856815338134766 - classify-Intent
+0.0 - end
+time spent: 0.015353202819824219
+---------------------------------------
+0.0 - start
+0.0004982948303222656 - classify-Intent
+0.0010025501251220703 - end
+time spent: 0.001500844955444336
+---------------------------------------
+0.0 - start
+0.001977682113647461 - end
+time spent: 0.002466917037963867
+---------------------------------------
+0.0 - start
+0.0004961490631103516 - classify-Intent
+1.4870047569274902 - end
+time spent: 1.4875009059906006
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.0005059242248535156 - classify-Intent
+0.0009829998016357422 - end
+time spent: 0.0014889240264892578
+---------------------------------------
+0.0 - start
+0.00046825408935546875 - classify-Intent
+0.0009908676147460938 - end
+time spent: 0.0014591217041015625
+---------------------------------------
+0.0 - start
+0.001983642578125 - end
+time spent: 0.001983642578125
+---------------------------------------
+0.0 - start
+0.0004944801330566406 - classify-Intent
+0.012400388717651367 - end
+time spent: 0.013390302658081055
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.0004928112030029297 - classify-Intent
+0.0005240440368652344 - end
+time spent: 0.001016855239868164
+---------------------------------------
+0.0 - start
+0.0005004405975341797 - classify-Intent
+0.0 - end
+time spent: 0.0009920597076416016
+---------------------------------------
+0.0 - start
+0.0019834041595458984 - end
+time spent: 0.0019834041595458984
+---------------------------------------
+0.0 - start
+0.00049591064453125 - classify-Intent
+0.013886690139770508 - end
+time spent: 0.014382600784301758
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.00049591064453125 - classify-Intent
+0.0005042552947998047 - end
+time spent: 0.0010001659393310547
+---------------------------------------
+0.0 - start
+0.0004687309265136719 - classify-Intent
+0.0014874935150146484 - end
+time spent: 0.002451658248901367
+---------------------------------------
+0.0 - start
+0.0014874935150146484 - end
+time spent: 0.0019834041595458984
+---------------------------------------
+0.0 - start
+0.0004911422729492188 - classify-Intent
+0.014877796173095703 - end
+time spent: 0.015865087509155273
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.008916854858398438 - classify-Intent
+0.0004949569702148438 - end
+time spent: 0.009411811828613281
+---------------------------------------
+0.0 - start
+0.0004963874816894531 - classify-Intent
+0.0004944801330566406 - end
+time spent: 0.0009908676147460938
+---------------------------------------
+0.0 - start
+0.0024864673614501953 - end
+time spent: 0.0024864673614501953
+---------------------------------------
+0.0 - start
+0.0004968643188476562 - classify-Intent
+1.3830721378326416 - end
+time spent: 1.3835690021514893
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.01931929588317871 - classify-Intent
+0.0 - end
+time spent: 0.01931929588317871
+---------------------------------------
+0.0 - start
+0.0004947185516357422 - classify-Intent
+0.0014889240264892578 - end
+time spent: 0.001983642578125
+---------------------------------------
+0.0 - start
+0.0014870166778564453 - end
+time spent: 0.001983642578125
+---------------------------------------
+0.0 - start
+0.0004954338073730469 - classify-Intent
+1.507218360900879 - end
+time spent: 1.507713794708252
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.00049591064453125 - classify-Intent
+0.0004956722259521484 - end
+time spent: 0.0009915828704833984
+---------------------------------------
+0.0 - start
+0.0004949569702148438 - classify-Intent
+0.0004951953887939453 - end
+time spent: 0.0014863014221191406
+---------------------------------------
+0.0 - start
+0.0014996528625488281 - end
+time spent: 0.0014996528625488281
+---------------------------------------
+0.0 - start
+0.0004525184631347656 - classify-Intent
+0.923551082611084 - end
+time spent: 0.9240036010742188
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.00049591064453125 - classify-Intent
+0.001984834671020508 - end
+time spent: 0.002480745315551758
+---------------------------------------
+0.0 - start
+0.0004954338073730469 - classify-Intent
+0.0005202293395996094 - end
+time spent: 0.0010156631469726562
+---------------------------------------
+0.0 - start
+0.0009915828704833984 - end
+time spent: 0.0014889240264892578
+---------------------------------------
+0.0 - start
+0.0004985332489013672 - classify-Intent
+2.7012102603912354 - end
+time spent: 2.7017087936401367
+---------------------------------------
+0.0 - start
+0.0009915828704833984 - classify-Intent
+2.20174241065979 - end
+time spent: 2.2032296657562256
+---------------------------------------
+0.0 - start
+0.0004961490631103516 - classify-Intent
+0.0004956722259521484 - end
+time spent: 0.0009918212890625
+---------------------------------------
+0.0 - start
+0.0004954338073730469 - classify-Intent
+0.0005242824554443359 - end
+time spent: 0.0010197162628173828
+---------------------------------------
+0.0 - start
+0.0019838809967041016 - end
+time spent: 0.0019838809967041016
+---------------------------------------
+0.0 - start
+0.00049591064453125 - classify-Intent
+2.3733575344085693 - end
+time spent: 2.3743491172790527
+---------------------------------------
+0.0 - start
+0.0004961490631103516 - classify-Intent
+2.3470687866210938 - end
+time spent: 2.3480613231658936
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.0004940032958984375 - classify-Intent
+2.451725959777832 - end
+time spent: 2.4522199630737305
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.0004954338073730469 - classify-Intent
+0.00049591064453125 - end
+time spent: 0.0009913444519042969
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0009930133819580078 - end
+time spent: 0.0009930133819580078
+---------------------------------------
+0.0 - start
+0.0014557838439941406 - end
+time spent: 0.0014557838439941406
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+2.599533796310425 - end
+time spent: 2.600029706954956
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+2.4646215438842773 - end
+time spent: 2.4656143188476562
+---------------------------------------
+0.0 - start
+0.00049591064453125 - classify-Intent
+2.514221668243408 - end
+time spent: 2.5147175788879395
+---------------------------------------
+0.0 - start
+0.0004954338073730469 - classify-Intent
+2.74833345413208 - end
+time spent: 2.748828887939453
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.0005042552947998047 - classify-Intent
+0.000476837158203125 - end
+time spent: 0.0009810924530029297
+---------------------------------------
+0.0 - start
+0.0004956722259521484 - classify-Intent
+0.0014882087707519531 - end
+time spent: 0.0019838809967041016
+---------------------------------------
+0.0 - start
+0.0014872550964355469 - end
+time spent: 0.0019826889038085938
+---------------------------------------
+0.0 - start
+0.0004982948303222656 - classify-Intent
+0.013390302658081055 - end
+time spent: 0.01388859748840332
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0004951953887939453 - check
+0.0 - filter
+0.24056077003479004 - typeofwords
+0.0004951953887939453 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.07142400741577148 - post-loop
+0.0004973411560058594 - classify-Intent
+0.0 - check
+0.0 - filter
+0.038190603256225586 - typeofwords
+0.00049591064453125 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.16516947746276855 - pre-checkSimilarity
+3.917855739593506 - post-checkSimilarity
+0.032735586166381836 - pre-checkSimilarity
+1.076319694519043 - post-checkSimilarity
+0.08184003829956055 - post-loop
+1.239006519317627 - end
+time spent: 6.865086078643799
+---------------------------------------
+0.0 - start
+0.0004968643188476562 - classify-Intent
+0.0 - check
+0.0 - filter
+0.03372693061828613 - typeofwords
+0.0 - wordsandtype
+0.0004961490631103516 - listofchoices
+0.0 - pre-loop
+0.06844830513000488 - post-loop
+0.0 - classify-Intent
+0.0004954338073730469 - check
+0.0 - filter
+0.036708831787109375 - typeofwords
+0.0004918575286865234 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.1706230640411377 - pre-checkSimilarity
+0.44937634468078613 - post-checkSimilarity
+0.02678394317626953 - pre-checkSimilarity
+0.43204760551452637 - post-checkSimilarity
+0.058495521545410156 - post-loop
+1.134847640991211 - end
+time spent: 2.413534164428711
+---------------------------------------
+0.0 - start
+0.0004947185516357422 - classify-Intent
+0.0 - check
+0.0 - filter
+0.046128273010253906 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.05059218406677246 - pre-checkSimilarity
+0.3670387268066406 - post-checkSimilarity
+0.05059313774108887 - pre-checkSimilarity
+0.19443202018737793 - post-checkSimilarity
+0.0004963874816894531 - post-loop
+0.0004954338073730469 - classify-Intent
+0.0 - check
+0.0 - filter
+0.06348752975463867 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0004961490631103516 - pre-loop
+0.15475153923034668 - pre-checkSimilarity
+0.13888049125671387 - post-checkSimilarity
+0.0481114387512207 - pre-checkSimilarity
+0.12300801277160645 - post-checkSimilarity
+0.03471970558166504 - pre-checkSimilarity
+0.4845919609069824 - post-checkSimilarity
+0.046624183654785156 - pre-checkSimilarity
+0.47020745277404785 - post-checkSimilarity
+0.10317158699035645 - post-loop
+1.102107048034668 - end
+time spent: 3.480923891067505
+---------------------------------------
+0.0 - start
+0.0004966259002685547 - classify-Intent
+0.0009906291961669922 - end
+time spent: 0.0019834041595458984
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+2.5028140544891357 - end
+time spent: 2.5028140544891357
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.0004961490631103516 - classify-Intent
+0.0009965896606445312 - end
+time spent: 0.0014927387237548828
+---------------------------------------
+0.0 - start
+0.0004963874816894531 - classify-Intent
+0.0009908676147460938 - end
+time spent: 0.0014872550964355469
+---------------------------------------
+0.0 - start
+0.002964019775390625 - end
+time spent: 0.002964019775390625
+---------------------------------------
+0.0 - start
+0.0004968643188476562 - classify-Intent
+2.4566845893859863 - end
+time spent: 2.457181453704834
+---------------------------------------
+0.0 - start
+0.0004963874816894531 - classify-Intent
+2.384765625 - end
+time spent: 2.3852620124816895
+---------------------------------------
+0.0 - start
+0.0004968643188476562 - classify-Intent
+0.013886451721191406 - end
+time spent: 0.014879703521728516
+---------------------------------------
+0.0 - start
+0.0004951953887939453 - classify-Intent
+0.0 - check
+0.0 - filter
+0.01639580726623535 - typeofwords
+0.0 - wordsandtype
+0.000492095947265625 - listofchoices
+0.0 - pre-loop
+0.02778172492980957 - post-loop
+0.0004949569702148438 - classify-Intent
+0.0 - check
+0.0 - filter
+0.012868404388427734 - typeofwords
+0.0005223751068115234 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.12446904182434082 - post-loop
+1.0485424995422363 - end
+time spent: 1.2325589656829834
+---------------------------------------
+0.0 - start
+0.0004956722259521484 - classify-Intent
+0.0 - check
+0.0 - filter
+0.07191967964172363 - typeofwords
+0.0004966259002685547 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.04067182540893555 - pre-checkSimilarity
+3.153069496154785 - post-checkSimilarity
+0.06943941116333008 - pre-checkSimilarity
+0.18203186988830566 - post-checkSimilarity
+0.03174424171447754 - post-loop
+0.0004956722259521484 - classify-Intent
+0.0 - check
+0.0 - filter
+0.07936239242553711 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0004940032958984375 - pre-loop
+0.134415864944458 - pre-checkSimilarity
+0.09175992012023926 - post-checkSimilarity
+0.03869891166687012 - pre-checkSimilarity
+0.136885404586792 - post-checkSimilarity
+0.07638430595397949 - pre-checkSimilarity
+0.13590383529663086 - post-checkSimilarity
+0.05257773399353027 - pre-checkSimilarity
+0.6953902244567871 - post-checkSimilarity
+0.019343137741088867 - pre-checkSimilarity
+0.2891674041748047 - post-checkSimilarity
+0.06894397735595703 - pre-checkSimilarity
+0.6031355857849121 - post-checkSimilarity
+0.015871286392211914 - pre-checkSimilarity
+0.31992244720458984 - post-checkSimilarity
+0.19690966606140137 - post-loop
+1.2221426963806152 - end
+time spent: 7.727673292160034
+---------------------------------------
  * Restarting with windowsapi reloader
  * Debugger is active!
  * Debugger PIN: 121-393-206
+0.0 - start
+0.004021644592285156 - classify-Intent
+0.004969358444213867 - end
+time spent: 0.00998997688293457
+---------------------------------------
+0.0 - start
+0.0009996891021728516 - classify-Intent
+0.007006645202636719 - end
+time spent: 0.00800633430480957
+---------------------------------------
+0.0 - start
+0.0010085105895996094 - classify-Intent
+0.0 - start
+0.0009989738464355469 - classify-Intent
+0.0 - start
+0.04097580909729004 - end
+time spent: 0.04097580909729004
+---------------------------------------
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 121-393-206
+0.0 - start
+0.0040247440338134766 - classify-Intent
+0.004969120025634766 - end
+time spent: 0.009993791580200195
+---------------------------------------
+0.0 - start
+0.0010089874267578125 - classify-Intent
+0.006983757019042969 - end
+time spent: 0.007992744445800781
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0010111331939697266 - filter
+0.02323770523071289 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0010139942169189453 - pre-loop
+0.03797411918640137 - pre-checkSimilarity
+0.0 - start
+0.03397035598754883 - end
+time spent: 0.03397035598754883
+---------------------------------------
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 121-393-206
+0.0 - start
+0.0009989738464355469 - classify-Intent
+0.0010006427764892578 - end
+time spent: 0.0019996166229248047
+---------------------------------------
+0.0 - start
+0.00700831413269043 - classify-Intent
+0.03796195983886719 - end
+time spent: 0.04497027397155762
+---------------------------------------
+0.0 - start
+0.00503087043762207 - end
+time spent: 0.00503087043762207
+---------------------------------------
+0.0 - start
+0.00099945068359375 - classify-Intent
+0.0 - check
+0.0 - filter
+0.018987417221069336 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.005995750427246094 - pre-checkSimilarity
+2.514343023300171 - post-checkSimilarity
+0.021985530853271484 - pre-checkSimilarity
+0.010992765426635742 - post-checkSimilarity
+0.00999307632446289 - pre-checkSimilarity
+0.3757648468017578 - post-checkSimilarity
+0.020985841751098633 - pre-checkSimilarity
+0.03297877311706543 - post-checkSimilarity
+0.010992288589477539 - pre-checkSimilarity
+0.4357008934020996 - post-checkSimilarity
+0.020986318588256836 - pre-checkSimilarity
+0.12191939353942871 - post-checkSimilarity
+0.06197547912597656 - pre-checkSimilarity
+0.1608896255493164 - post-checkSimilarity
+0.020986080169677734 - pre-checkSimilarity
+0.15690135955810547 - post-checkSimilarity
+0.004996538162231445 - pre-checkSimilarity
+0.6181938648223877 - post-checkSimilarity
+0.03096771240234375 - pre-checkSimilarity
+0.5886211395263672 - post-checkSimilarity
+0.026973247528076172 - pre-checkSimilarity
+0.16591167449951172 - post-checkSimilarity
+0.04097270965576172 - post-loop
+0.006995201110839844 - end
+time spent: 5.4870100021362305
+---------------------------------------
+0.0 - start
+0.002010345458984375 - classify-Intent
+0.0 - check
+0.0 - filter
+0.012046337127685547 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.005996227264404297 - pre-checkSimilarity
+0.7948324680328369 - post-checkSimilarity
+0.021975994110107422 - pre-checkSimilarity
+0.40921521186828613 - post-checkSimilarity
+0.020986318588256836 - pre-checkSimilarity
+0.36775684356689453 - post-checkSimilarity
+0.028981685638427734 - pre-checkSimilarity
+0.19087457656860352 - post-checkSimilarity
+0.026981830596923828 - pre-checkSimilarity
+0.220963716506958 - post-checkSimilarity
+0.02798151969909668 - pre-checkSimilarity
+0.5823957920074463 - post-checkSimilarity
+0.01499032974243164 - pre-checkSimilarity
+0.20771217346191406 - post-checkSimilarity
+0.005984067916870117 - pre-checkSimilarity
+0.5676283836364746 - post-checkSimilarity
+0.024991989135742188 - pre-checkSimilarity
+0.25783586502075195 - post-checkSimilarity
+0.009988069534301758 - pre-checkSimilarity
+0.13791346549987793 - post-checkSimilarity
+0.0009827613830566406 - post-loop
+0.00899505615234375 - end
+time spent: 3.9500210285186768
+---------------------------------------
+0.0 - start
+0.3496725559234619 - end
+time spent: 0.3496725559234619
+---------------------------------------
+0.0 - start
+0.10410642623901367 - end
+time spent: 0.10410642623901367
+---------------------------------------
+0.0 - start
+0.0009961128234863281 - end
+time spent: 0.0009961128234863281
+---------------------------------------
+0.0 - start
+0.1379539966583252 - end
+time spent: 0.1379539966583252
+---------------------------------------
+0.0 - start
+0.0009989738464355469 - classify-Intent
+0.2586629390716553 - end
+time spent: 0.2596619129180908
+---------------------------------------
+0.0 - start
+0.0009996891021728516 - classify-Intent
+0.0 - check
+0.0 - filter
+0.006006002426147461 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.010995149612426758 - post-loop
+0.0 - classify-Intent
+0.0010004043579101562 - check
+0.0 - filter
+0.004996538162231445 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.044957637786865234 - post-loop
+0.0 - start
+0.0 - classify-Intent
+0.0009989738464355469 - check
+0.0 - filter
+0.0369870662689209 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.0649571418762207 - post-loop
+0.002002716064453125 - classify-Intent
+0.0 - check
+0.0 - filter
+0.03795957565307617 - typeofwords
+0.0010128021240234375 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.18886137008666992 - pre-checkSimilarity
+0.2978036403656006 - post-checkSimilarity
+0.07296419143676758 - post-loop

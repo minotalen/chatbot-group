@@ -8,6 +8,11 @@
             "locationName": "Schlachte Flea Market",
             "neededStates": ["solvedPinCode"],
             "startRoomId": 4
+        },
+        {
+            "locationName": "Überseestadtmuseum",
+            "neededStates": ["triggeredPicture"],
+            "startRoomId": 5
         }
     ]
 }

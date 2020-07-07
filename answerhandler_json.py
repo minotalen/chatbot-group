@@ -3,9 +3,10 @@ import pandas as pd
 import database_SQLite as database
 import data_json_functions as djf
 from gps import handleGPS, printLocations
+from nltk import tokenize
 from pathlib import Path
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
-from phone import handleAnswer, getSizeofMessagequeue
+from phone import handleAnswer, getSizeofMessagequeue, get_generated_answer, formatHTMLText
 from riddlemode import checkAnswer
 import logging_time as l
 #import audio as audio
@@ -189,7 +190,7 @@ def findAnswer(username, msg, roomId=-1):
 
                     return (elem['lookAt'], getRoomName(roomId), 'game')
         
-        # INVENTORY
+        # INThere is a bench, a trash bin and a strange looking bush near the monument. You also notice a small staircase leading below the base of the monument.On a side view you can see a number of buildings surrounding the monuments. If you take a look at the left-hand side of the stairs, you will see only two other building. In the center is the stone shrine. If you look at the left-hand side of the stairs, you can see the same side. There's a great view from here. At the top of the stairs, you can see several wooden crosses. The second thing you see while looking up is something very peculiar. If you look at the left-hand side of each picture, you will see an enormous structure that resembles the pyramid of Saturn.VENTORY
         for i in database.get_all_user_items(username):
             if i[0] in msg:
                 for elem in rooms[i[1]]['items']:
@@ -208,7 +209,17 @@ def findAnswer(username, msg, roomId=-1):
 
                     return (elem['lookAt'], getRoomName(roomId), 'game')
 
-        return (getRoomDescription(roomId), getRoomName(roomId), 'game')
+        # room discription from json
+        raw_desc_sentences = tokenize.sent_tokenize(formatHTMLText(getRoomDescription(roomId))) 
+
+        # take last 3 sentences from input
+        if len(raw_desc_sentences) > 3 : raw_desc_sentences = raw_desc_sentences[-3:]
+        raw_desc_sentences = " ".join(raw_desc_sentences)
+
+        # with a generated text added by gpt2 on context of the room discription 
+        gen_description = getRoomDescription(roomId) + ' ' + get_generated_answer(raw_desc_sentences, 55)
+
+        return (gen_description, getRoomName(roomId), 'game')
 
     # PICK UP: Hebt ein item auf und gibt den Text zurück
     elif intentID == 3:

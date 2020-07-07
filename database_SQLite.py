@@ -533,7 +533,6 @@ def is_user_logged_in(username: str):
 
 
 def update_login(username: str, set_login: bool):
-    user_id = get_user_id(username)
     # Query to database
     login = 0;
     if set_login:
@@ -562,3 +561,68 @@ def add_user(username, password):
             print("succesfully added user")
     else:
         print("This username is taken. Try another one.")
+
+
+""" user_settings
+====================================
+setting_id | user_name |   set1    |  
+-----------+-----------+-----------+
+  1        | "Dinh"    |   "1"     |
+-----------+-----------+-----------+
+"""
+
+# Check if the user_name is taken in login table
+def does_setting_exist(username):
+    # Query to database
+    query = """SELECT * FROM user_settings WHERE username = ?"""
+    fetch = execute_database(query, (username,))
+    setting = fetch[1]
+    print(setting)
+
+    if setting is None or not setting:
+        return False
+    if setting[0] is not None:
+        return True
+    else:
+        return False
+
+
+# Add one record into login table
+def insert_user_settings(user_name: str, json: str):
+    if does_user_exist(user_name):
+        query = """ INSERT INTO user_settings VALUES (?, ?, ?)"""
+        fetch = execute_database(query, (None, user_name, json))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to add item into login table", e)
+        else:
+            print("Successfully added item into login table")
+    else:
+        print("User doesn't exist in 'users' table")
+
+# Find settings by username
+def find_settings_by_username(username):
+    if does_setting_exist(username):
+        query = """SELECT * FROM user_settings WHERE username= ?"""
+        fetch = execute_database(query, (username, ))
+        result = fetch[1][0]
+        return result[2]
+    else:
+        print("There is no such username that can update a login")
+        return None;
+
+# Update user settings
+def update_user_settings(username: str, json: str):
+    # Query to database
+    if does_setting_exist(username):
+        query = """UPDATE user_settings SET json = ? WHERE username= ?"""
+        fetch = execute_database(query, (json, username, ))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to update setting", e)
+        else:
+            print("setting was updated successful")
+    else:
+        insert_user_settings(username, json)
+
+update_user_settings("Dinh", '{ "name":"Dinh", "age":30, "city":"New York"}')

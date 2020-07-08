@@ -10,7 +10,7 @@ import {
 } from './suggestions.mjs';
 
 
-let socket = io.connect('https://' + document.domain + ':' + location.port),
+let socket = io.connect("http://127.0.0.1:5000"),
   sendButton = document.getElementById('send-button'),
   userName = undefined,
   levelID = 'test_level_ID',
@@ -24,6 +24,9 @@ let socket = io.connect('https://' + document.domain + ':' + location.port),
 
 socket.on('connect', function () {
   console.log('connected client');
+  userName = document.getElementById('username').innerText;
+  console.log(userName);
+  socket.emit('username', userName);
 });
 
 
@@ -46,7 +49,7 @@ socket.on('json', (json) => {
  * Handle send button click event.
  */
 sendButton.addEventListener('click', () => {
-  userName == undefined ? sendUserName() : sendMessage();
+  sendMessage();
 }, false);
 
 
@@ -65,11 +68,6 @@ function sendMessage(evt = 'json') {
 
   // set user as sender on outgoing messages
   senderName = 'user';
-
-  // store user name in client variables
-  if (evt == 'user_registration') {
-    userName = msg;
-  }
 
   // send JSON String to socket
   if (msg.trim() != '') {
@@ -101,7 +99,7 @@ function printMessage(msg) {
   // set message type depending on sender 
   switch (senderName) {
 
-    case 'bot': // zum testen auf 'bot' setzen, solange kein inventory sender name vorhanden ist
+    case 'inventory': // zum testen auf 'bot' setzen, solange kein inventory sender name vorhanden ist
       elem.className = 'chat-message-inventory';
 
       // p for sender name
@@ -225,15 +223,6 @@ function readJSON(json) {
 
   console.log('received message: ' + message);
   return message;
-}
-
-
-/**
- * Sends the user name to the server and changes the placeholder text.
- */
-function sendUserName() {
-  sendMessage('user_registration');
-  userInput.placeholder = 'What will you do?';
 }
 
 

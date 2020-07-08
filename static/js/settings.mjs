@@ -96,7 +96,7 @@ function updateDisplayedSettings() {
 function setDisplayedValue(setting, value) {
   console.log(setting);
   
-  setting.checked = value;
+  if (setting) setting.checked = value;
 }
 
 function getSettingValue(name) {
@@ -108,28 +108,29 @@ function getSettingsJSON() {
 
   xhttp.open('GET', settingsUrl, true);
   xhttp.addEventListener('readystatechange', () => {
-    if(xhttp.readyState === 4 ) {
-      obj = JSON.parse(xhttp.responseText);
-      console.log(obj);
-      console.log(xhttp.responseText);
+    if(xhttp.readyState === 4) {
+      try {
+        obj = JSON.parse(xhttp.responseText);
+        console.log(obj);
+        console.log(xhttp.responseText);
       
-      updateSettingsObj(obj);
+        updateSettingsObj(obj);
+        sendSettingsJSON();
+      }
+      catch(e){
+        updateDisplayedSettings();
+        console.log(e);
+      }
     }
   });
   xhttp.send();
 }
 
-let o = {username: "f", showSuggestions: false, readMessages: false, userTheme: "system", gpt2Output: true};
-document.addEventListener('DOMContentLoaded', function() {
-  console.log("DOM fully loaded and parsed");
-  // updateSettingsObj(o);
-}); 
-
 function updateSettingsObj(obj) {
   // let obj = JSON.parse(json);
   // console.log('received settings JSON: ' + JSON.stringify(obj));
 
-  if(obj.username != undefined) { // TODO replace
+  if(true) { // TODO replace
     // update settings from database
     settings.username = document.getElementById('username').innerText; //obj.username;
     console.log(settings.username);
@@ -155,7 +156,7 @@ function sendSettingsJSON() {
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.addEventListener('readystatechange', () => {
     // if DONE and OK
-    if(xhr.readyState === 4 && xhr.readyState === 200) {
+    if(xhr.readyState === 4) {
       obj = JSON.parse(xhr.responseText);
       console.log(obj);
       

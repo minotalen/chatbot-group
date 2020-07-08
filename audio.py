@@ -1,5 +1,9 @@
+import os
+import datetime
 from gtts import gTTS
 from playsound import playsound
+ 
+i = 0
 
 """
 @author Max Petendra
@@ -10,16 +14,12 @@ Parameters:
 inputtext: The inputtext that sould be converteted to a mp3
 audio filename: The audio outplut filename default is given.
 """
-def text2audio(inputtext: str = ""):
+def playSound(inputtext: str = ""):
+    global i
     text2speach = gTTS(text = inputtext , lang = 'en')
-    text2speach.save('currentaudio.mp3') 
+    filename = str(i) + ".mp3"
+    i = i + 1 
+    text2speach.save(filename) 
+    playsound(filename)
+    os.remove(filename)
 
-"""
-@author Max Petendra
-@version 26.06.20
-Play an mp3 file
-----------------
-audio_filename: The name of the mp3 file
-"""
-def playSoundfile():
-    playsound('currentaudio.mp3')

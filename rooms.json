@@ -23,7 +23,7 @@
         "location": "University",
         "roomName": "professors office",
         "intro": "...you are in Professor Kraysee's office and you wait for him to call you up.<br>The nervousness rises with each second passing.<br>Will this be my last hour as a student of the university of Bremen?...<br>type in '<b>look around</b>' to get details of the room.<br>type in '<b>ready</b>' if you already played the tutorial.",
-        "descri": "professor Kraysee's office looks like it hasn't been tidied up for over a decade. You can see alot of interesting things laying around in his office but nothing all too useful.<br>He looks at you and you begin to chat...<br>type in '<b>talk to professor</b>' to talk to a person",
+        "descri": "Professor Kraysee's office looks like it hasn't been tidied up for over a decade. You can see alot of interesting things laying around in his office but nothing all too useful.<br>He looks at you and you begin to chat...<br>type in '<b>talk to professor</b>' to talk to a person",
         "connections": [],
         "items": [null],
         "objects": [
@@ -44,7 +44,7 @@
                 "needItems": [null],
                 "needItemsRoomId": [null],
                 "accept": "<em>You walk out of the room.</em><br><br>Yes! We did it! I’m so glad the Professor gave me a second chance! Or should I say third? Well, this doesn’t matter. Actually, let’s take a look at the notes he handed me.<br><br>type in '<b>look at</b> notes' to inspect an item or object." ,
-                "fail": null,
+                "fail": "<em>You already opened the door</em>",
                 "newStates": ["triggeredOpenDoor"],
                 "newStatesValue": [true],
                 "actions": [null],
@@ -57,7 +57,7 @@
                 "needItems": [null],
                 "needItemsRoomId": [null],
                 "accept": "You receive some notes.</b><br><br><b>Player:</b> Thank you Professor! I will not disappoint you, I promise!<br>type in '<b>go to</b> door' to go to the exit." ,
-                "fail": null,
+                "fail": "<em>You already got the notes</em>",
                 "newStates": ["ownNotes"],
                 "newStatesValue": [true],
                 "actions": [null],
@@ -70,7 +70,7 @@
                 "needItems": [null],
                 "needItemsRoomId": [null],
                 "accept": "You take a look at the notes. <br> You manage to read the notes, even though your eyes are watery and your Professors handwriting is awful, to say the least.<br><br><br>'Go to the elephant monument in the Nelson-Mandela-Park,<br>there you will have to find a hidden box.<br>Once you found it, you will have to solve a riddle.<br>If you manage to solve the riddle I will contact you.<br>Good luck, you will need it.'<br><br>- Kraysee<br><br><em>There’s nothing on the back of the paper. But there’s a stain on the bottom of the front page.</em><br><em>You taste it.</em><br><em>Chocolate.</em><br><br>Ugh. I hate chocolate! Professor Kraysee always eats lots and lots of chocolate, no wonder there are stains on every paper we receive…<br><br>Type in '<b>ready</b>' to start your journey.<br>" ,
-                "fail": null,
+                "fail": "<em>You already looked at the notes.</em>",
                 "newStates": ["solvedTutorial"],
                 "newStatesValue": [true],
                 "actions": [null],
@@ -83,7 +83,7 @@
                 "needItems": [null],
                 "needItemsRoomId": [null],
                 "accept": "Professor Kraysee:</b> … I’ve told you, this was your last chance! You already cheated once on your bachelor thesis.<br> <b>Player:</b> But Professor Kraysee, I really need my degree!<br><b>Professor Kraysee:</b> I know that. And I also know that I would ruin your life if I would make you fail. But I need to follow the rules.<br> <b>Player:</b> … <br> <em>Player’s eyes getting wet..</em><br><b>Professor Kraysee:</b> Alright, look I may have a task for you. I give you a very last chance for your bachelor thesis. I choose the topic and I conduct your research. If you successfully complete what I ask for I will let you pass. This way you will get your degree even though you cheated. But this will be a difficult tasks and I’m not sure whether you will be able to do it or not.<br><b>Player:</b> Please please please. I will do anything!<br> <em>Not literally!</em><br><b>Professor Kraysee:</b> Alright, here you have some notes. If you solve this riddle I will give you the chance to start your quest.<br> Type in '<b>pick up</b> notes' to pick up or receive an item.<br>" ,
-                "fail": "<em>You already played the tutorial, please type in '<b>ready</b>' to continue the game</em>",
+                "fail": "<em>You already talked with the professor.</em>",
                 "newStates": ["gotNotes"],
                 "newStatesValue": [true],
                 "actions": [null],
@@ -101,6 +101,19 @@
                 "newStatesValue": [null],
                 "actions": ["changeLocation"],
                 "actionsValue": [2]
+            },
+            {
+                "trigName": "look around",
+                "needStates": ["solvedTutorial"],
+                "needStatesValue": [false],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "Professor Kraysee's office looks like it hasn't been tidied up for over a decade. You can see alot of interesting things laying around in his office but nothing all too useful.<br>He looks at you and you begin to chat...<br>type in '<b>talk to professor</b>' to talk to a person" ,
+                "fail": "<em>You already played the tutorial, please type in '<b>ready</b>' to continue the game</em>.",
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": [null],
+                "actionsValue": [null]
             }
         ]
     },
@@ -228,7 +241,7 @@
         "items": [
             {
                 "itemName": "paper",
-                "lookAt": "It is a tiny piece of paper with random numbers on it. You should take it. Maybe they will be important in the future.",
+                "lookAt": "It is a tiny piece of paper with random numbers on it. <br>629387445 <br>",
                 "pickUp": "You pick up the piece of paper inside the box and read it. <br>629387445 <br>That’s a lot of numbers. What does this have to do with the 4-digit code? Maybe there is something special about these numbers.",
                 "needStates": ["triggeredOpenBox", "ownPaper"],
                 "needStatesValue": [true, false],
@@ -282,11 +295,29 @@
         "intro": "You are making your way downtown. <br>... <br>You arrive at the Schlachte flea market.",
         "descri": "There are dozens and dozens of little stands with people selling anything you could imagine. From trash to very nice and expensive coats to various paintings. <br>You have a closer look at one of the stands and an ancient treasure chest catches your eye. You take the chest to gain a better view. The salesman looks at you.",
         "connections": [],
-        "items": [null],
+        "items": [
+            {
+                "itemName": "chest",
+                "lookAt": "It is an ancient treasure chest. It magically attracts you.",
+                "pickUp": "There should be no way to just pick it up, you broke the game..",
+                "needStates": ["ownChest", "ownChest"],
+                "needStatesValue": [true, false],
+                "newStates": [null],
+                "newStatesValue": [null]
+            }
+        ],
         "objects": [
             {
-                "objName": "chest",
-                "lookAt": "It is an ancient treasure chest. It magically attracts you.",
+                "objName": "salesman",
+                "lookAt": "He looks kind of tired. He also looks back at you. This silence feels very awkward but you continue to stare at him. Maybe talking helps.",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "newStates": [null],
+                "newStatesValue": [null]
+            },
+            {
+                "objName": "stands",
+                "lookAt": "The flea market stretches itself out pretty far along the riverside. Very present are stands with piles of clothes and ones with many toys. The latter usually surrounded by excited children, pulling at their parents sleeves after finding a toy, that has caught their interest. <br>Closeby you witness an elderly couple, hands behind their backs as they lean forward to inspect a dusty vinyl. The noise level is steady with a few people laughing and raising their voice, to underline their bargaining attempts.",
                 "needStates": [null],
                 "needStatesValue": [null],
                 "newStates": [null],
@@ -339,7 +370,7 @@
                 "needStatesValue": [false, true],
                 "needItems": [null],
                 "needItemsRoomId": [null],
-                "accept": "Player: Yo! How much you want for that ol' wooden box, Mister?<br>The salesman: 50 bucks.<br>Player: FIFTY BUCKS?!? mumbling This thing ain't even worth 5 bucks..<br>The salesman: What was that?<br>Player: Nothing.<br>Player: I think I need to bargain better here... Let's find a good price.",
+                "accept": "Player: I think I need to bargain better here... Let's find a good price.",
                 "fail": "You literally have no money left to buy anything from the salesman.",
                 "newStates": [null],
                 "newStatesValue": [null],
@@ -406,7 +437,7 @@
     {
         "id": 6,
         "location": "Outside of Überseestadtmuseum",
-        "roomName": "Construction",
+        "roomName": "Construction Site",
         "intro": "You make your way to the construction site. While you move around the museum you notice a crate that is small enough for you to climb on.<br>",
         "descri": "Other than that you don't see anything interesting laying around.<br>",
         "connections": [
@@ -513,7 +544,7 @@
             {
                 "itemName": "crowbar",
                 "lookAt": "A rusty old crowbar. There is nothing more useful in this world.",
-                "pickUp": "As soon as you touch the cold wet steel your whole body starts to shiver. <br>Still you manage to control your iron will and tighten your grip around this almighty tool.<br>Congratulations, you picked it up.",
+                "pickUp": "As soon as you touch the cold wet steel your whole body starts to shiver. <br>Nonetheless, you manage to control your iron will and tighten your grip around this almighty tool.<br>Congratulations, you picked it up.",
                 "needStates": ["ownCrowbar"],
                 "needStatesValue": [false],
                 "newStates": ["ownCrowbar"],
@@ -523,7 +554,7 @@
         "objects": [
             {
                 "objName": "fuse box",
-                "lookAt": "The fuse box is huge and you are amazed by it. <br>Opening it with bare hands is not possible, there is some mechanism behind it. Maybe this becomes a difficult riddle you have to solve in order to achieve your goals or maybe you can just crack it open..<br>You decide to try the second option.",
+                "lookAt": "The fuse box is huge and you are amazed by it. <br>Opening it with bare hands is not possible, there is some mechanism behind it. Maybe this becomes a difficult riddle you have to solve in order to achieve your goals or maybe you can just crack it open..",
                 "needStates": ["sawFuseBox"],
                 "needStatesValue": [false],
                 "newStates": ["sawFuseBox"],
@@ -533,27 +564,66 @@
         "triggers": [
             {
                 "trigName": "use crowbar",
-                "needStates": ["sawFuseBox"],
-                "needStatesValue": [true],
+                "needStates": ["sawFuseBox", "triggeredUseCrowbar"],
+                "needStatesValue": [true, false],
                 "needItems": ["crowbar"],
                 "needItemsRoomId": [7],
-                "accept": "You crack up the fuse box and it seems to belong to the museum.<br>Inside are many tiny wires along with two big ones. A red and a blue one.<br>Do you wish to cut through the red or the blue wire? Or both?<br>",
-                "fail": "You imagine how you would swing a crowbar through the air. It would look pretty cool probably.<br>It would be even cooler if you would have one and use it against something, like a door or a box or a fuse box.",
-                "newStates": [null],
-                "newStatesValue": [null],
+                "accept": "You crack up the fuse box and suddenly your crowbar snaps into two pieces. You are really sad about it. <br>The fuse box seems to belong to the museum. Inside are many tiny wires along with two big ones. A red and a blue one.<br>Do you wish to cut through the red or the blue wire? Or both?<br>",
+                "fail": "You imagine how you would swing a crowbar through the air. It would look pretty cool probably.<br>It would be even cooler if you would have one and use it to open up something, like a door or a box..",
+                "newStates": ["triggeredUseCrowbar", "triggeredOpenFuseBox"],
+                "newStatesValue": [true, true],
+                "actions": ["removeItem"],
+                "actionsValue": ["crowbar"]
+            },
+            {
+                "trigName": "open fuse box",
+                "needStates": ["sawFuseBox", "triggeredUseCrowbar"],
+                "needStatesValue": [true, true],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You open the fuse box. <br>Inside are many tiny wires along with two big ones. A red and a blue one.<br>Do you wish to cut through the red or the blue wire? Or both?<br>",
+                "fail": "The fuse box is locked. There has to be a way to open it.",
+                "newStates": ["triggeredOpenFuseBox"],
+                "newStatesValue": [true],
                 "actions": [null],
                 "actionsValue": [null]
             },
             {
-                "trigName": "open fuse box",
-                "needStates": ["sawFuseBox"],
-                "needStatesValue": [true],
-                "needItems": ["crowbar"],
-                "needItemsRoomId": [7],
-                "accept": "You crack up the fuse box and it seems to belong to the museum.<br>Inside are many tiny wires along with two big ones. A red and a blue one.<br>Do you wish to cut through the red or the blue wire? Or both?<br>",
-                "fail": "You imagine how you would swing a crowbar through the air. It would look pretty cool probably.<br>It would be even cooler if you would have one and use it against something, like a door or a box or a fuse box.",
-                "newStates": [null],
-                "newStatesValue": [null],
+                "trigName": "cut blue",
+                "needStates": ["triggeredOpenFuseBox", "triggeredCutBlue"],
+                "needStatesValue": [true, false],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You cut through the thick blue wire. Suddenly it got a lot darker. You notice that the light inside of the museum turned off. <br>Hopefully this wasn't your fault.",
+                "fail": "You cut with your arms through the air like a ninja.<br>Nothing happens..<br>There might be something blue in the fuse box that you could cut instead.",
+                "newStates": ["triggeredCutBlue", "triggeredOpenFuseBox"],
+                "newStatesValue": [true, false],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+            {
+                "trigName": "cut red",
+                "needStates": ["triggeredOpenFuseBox", "triggeredCutRed"],
+                "needStatesValue": [true, false],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You cut through the thick red wire. You don't notice any difference. That probably did something.. or did it?",
+                "fail": "You cut with your arms through the air like a ninja.<br>Nothing happens..<br>There might be something red in the fuse box that you could cut instead.",
+                "newStates": ["triggeredCutRed", "triggeredOpenFuseBox"],
+                "newStatesValue": [true, false],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+            {
+                "trigName": "cut both",
+                "needStates": ["triggeredOpenFuseBox", "triggeredCutBlue", "triggeredCutRed"],
+                "needStatesValue": [true, false, false],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You cut through both thick wires. Suddenly it got a lot darker. You notice that the light inside of the museum turned off. <br>Hopefully this wasn't your fault.",
+                "fail": "You cut with your arms through the air like a ninja.<br>Nothing happens..<br>There might be something in the fuse box that you could cut instead.",
+                "newStates": ["triggeredCutBlue", "triggeredCutRed", "triggeredOpenFuseBox"],
+                "newStatesValue": [true, true, false],
                 "actions": [null],
                 "actionsValue": [null]
             }
@@ -561,10 +631,106 @@
     },
     {
         "id": 8,
-        "location": "Inside of Überseestadtmuseum",
+        "location": "Outside of Überseestadtmuseum",
         "roomName": "Balcony",
-        "intro": "You finished everything for now. More is coming soon.",
-        "descri": "Seriously this is the end for now. Restart the game if you want to try out more stuff.",
+        "intro": "This is a balcony with a nice view. You remember your spectecular jump to get here.",
+        "descri": "There is a plant pot on the balcony and a glass door right in front of you.<br>Also there seems to be a shaft that is just big enough for you to crawl through.",
+        "connections": [
+            {
+                "conNames": ["back", "construction"],
+                "conRoomId": 6,
+                "needStates": [null],
+                "needStatesValue": [null]
+            }
+        ],
+        "items": [
+            {
+                "itemName": "pot",
+                "lookAt": "A rusty old crowbar. There is nothing more useful in this world.",
+                "pickUp": "As soon as you touch the cold wet steel your whole body starts to shiver. <br>Nonetheless, you manage to control your iron will and tighten your grip around this almighty tool.<br>Congratulations, you picked it up.",
+                "needStates": ["ownPot"],
+                "needStatesValue": [false],
+                "newStates": ["ownPot"],
+                "newStatesValue": [true]
+            }
+        ],
+        "objects": [
+            null
+        ],
+        "triggers": [
+            {
+                "trigName": "open door",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You try to open the door. Unfortunately this door is locked aswell.<br>",
+                "fail": null,
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+            {
+                "trigName": "use pot",
+                "needStates": ["triggeredCutRed"],
+                "needStatesValue": [true],
+                "needItems": ["pot"],
+                "needItemsRoomId": [8],
+                "accept": "You feel the need to throw something.<br>You take the plant pot and throw it through the glass door.<br><em>shatter noise</em><br>You smashed the glass door.<br><br>You manage to squeeze through the shattered door without hurting yourself.<br>You are now inside of the museum.<br>",
+                "fail": "You feel the need to throw something.<br>You take the plant pot and and you are about to throw it through the glass door.<br>You think about it for a second.<br>You decide against smashing the door because you fear the alarm going off.<br>",
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": ["removeItem", "changeLocation"],
+                "actionsValue": ["pot", 10]
+            },
+            {
+                "trigName": "climb down",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You climb back down to the construction site.",
+                "fail": null,
+                "newStates": ["triggeredClimbConstruction"],
+                "newStatesValue": [false],
+                "actions": ["changeLocation"],
+                "actionsValue": [6]
+            },
+            {
+                "trigName": "crawl",
+                "needStates": ["triggeredCutBlue"],
+                "needStatesValue": [false],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You crawl through the shaft. At the end of the shaft you notice a rope hanging down the ceiling. Maybe you can use it to get down?",
+                "fail": "You try to crawl through the shaft, even though it's dark. You move through it for a bit but it is too dangerous to go any further. <br>You return to the balcony.",
+                "newStates": ["triggeredCrawl"],
+                "newStatesValue": [true],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+            {
+                "trigName": "use rope",
+                "needStates": ["triggeredCrawl", "triggeredCutRed"],
+                "needStatesValue": [true, true],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You climb down the rope inside the museum.",
+                "fail": "You think about climbing down but than you remember all those agent movies with the red lasers.. <br>You fear the alarm going off, so you crawl back to the balcony.",
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": ["changeLocation"],
+                "actionsValue": [9]
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "location": "Inside of Überseestadtmuseum",
+        "roomName": "Hallway",
+        "intro": "You see alot of paintings and various exhibitions of past centuries.<br>There are 2 exhibitions you want to take a closer look at, and one painting that has caught your eye.<br>",
+        "descri": "To your left you see an exhibition with african animals.<br>To your right there is another exhibition",
         "connections": [
             null
         ],
@@ -575,7 +741,19 @@
             null
         ],
         "triggers": [
-            null
+            {
+                "trigName": "balcony",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "There is no need to go back now. Better find what you are here for.",
+                "fail": null,
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": [null],
+                "actionsValue": [null]
+            }
         ]
     }
     ]

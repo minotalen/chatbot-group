@@ -202,4 +202,4 @@ def update_settings_by_jsondata(payload):
 
 if __name__ == "__main__":
     print("Trying to start server...")
-    socketio.run(app, host='0.0.0.0', debug=True)
+    socketio.run(app, port='5000', host='0.0.0.0', debug=True)

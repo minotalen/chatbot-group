@@ -80,7 +80,8 @@ def answerHandler(inputjson, username):
         print("added nothing to training data")
 
     #text to spreech if it is turned on in the setting @author Max Petendra
-    if json.loads(database.get_settings_by_username(username))['readMessages']: audio.playSound(answer[0])
+    if json.loads(get_settings_by_username(username))['readMessages']: audio.playSound(formatHTMLText(answer[0])[0:200])
+        
     
     
     # json wird wieder zusammen gepackt

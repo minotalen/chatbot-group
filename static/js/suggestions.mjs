@@ -5,7 +5,7 @@
  */
 
 import { sendButton } from './client.mjs';
-// import { closeSettings, getSettingValue } from './settings.mjs';
+import { getSettingValue } from './settings.mjs';
 
 let suggestions = [{
       name: 'look around'
@@ -112,7 +112,7 @@ function showSuggestions() {
     // find already selected element
     findSelectedSuggestion();
   }
-  if (true) { //getSettingValue('setting-suggestions')
+  if (getSettingValue('showSuggestions')) { 
 
     hideSuggestions = false;
 

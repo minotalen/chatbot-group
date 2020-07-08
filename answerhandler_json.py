@@ -9,7 +9,7 @@ from intentclassificator import classifyIntent, writeMessagetoTrainingData
 from phone import handleAnswer, getSizeofMessagequeue, get_generated_answer, formatHTMLText
 from riddlemode import checkAnswer
 import logging_time as l
-#import audio as audio
+import audio as audio
 
 with open('rooms.json', encoding="utf8") as allLevels:
     data = json.load(allLevels)
@@ -79,11 +79,11 @@ def answerHandler(inputjson, username):
     else:
         print("added nothing to training data")
 
-    """
-    #make the audio output
-    audio.text2audio(answer[0])
-    audio.playSoundfile()
-    """
+    #text to spreech if it is turned on in the setting @author Max Petendra
+    if json.loads(get_settings_by_username(username))['readMessages']:
+        audio.text2audio(answer[0])
+        audio.playSoundfile()
+    
     
     # json wird wieder zusammen gepackt
     l.log_time('end')  # logging
@@ -209,17 +209,20 @@ def findAnswer(username, msg, roomId=-1):
 
                     return (elem['lookAt'], getRoomName(roomId), 'game')
 
-        # room discription from json
-        raw_desc_sentences = tokenize.sent_tokenize(formatHTMLText(getRoomDescription(roomId))) 
+        if json.loads(get_settings_by_username(username))['gpt2Output']:
+            # room discription from json
+            raw_desc_sentences = tokenize.sent_tokenize(formatHTMLText(getRoomDescription(roomId))) 
 
-        # take last 3 sentences from input
-        if len(raw_desc_sentences) > 3 : raw_desc_sentences = raw_desc_sentences[-3:]
-        raw_desc_sentences = " ".join(raw_desc_sentences)
+            # take last 3 sentences from input
+            if len(raw_desc_sentences) > 3 : raw_desc_sentences = raw_desc_sentences[-3:]
+            raw_desc_sentences = " ".join(raw_desc_sentences)
 
-        # with a generated text added by gpt2 on context of the room discription 
-        gen_description = getRoomDescription(roomId) + ' ' + get_generated_answer(raw_desc_sentences, 55)
+            # with a generated text added by gpt2 on context of the room discription 
+            gen_description = getRoomDescription(roomId) + ' ' + get_generated_answer(raw_desc_sentences, 55)
 
-        return (gen_description, getRoomName(roomId), 'game')
+            return (gen_description, getRoomName(roomId), 'game')
+        else:
+            return (getRoomDescription(roomId), getRoomName(roomId), 'game') 
 
     # PICK UP: Hebt ein item auf und gibt den Text zurück
     elif intentID == 3:
@@ -298,6 +301,20 @@ def getRoomIntroduction(id: int) -> str:
 def getRoomDescription(id: int) -> str:
     return rooms[id]['descri']
 
+#@author Canh Dinh, Kevin
+def get_settings_by_username(username: str):
+    if database.does_setting_exist(username):
+        data = database.find_settings_by_username(username)
+        initial_data = {"username": data[1], "json": data[2]}
+        #print(data[2])
+        json_string = data[2]
+        # json_data = json.dumps(json_string[1:])
+        return json_string
+    else:
+        print('user does not exist')
+
+
+
 
 """
 @author Max Petendra
@@ -309,8 +326,6 @@ msg = the user message
 
 Returns a answer for the interrogative of the player
 """
-
-
 def aboutHandler(msg: str) -> str:
     if "who has" in msg:
         return "I am programmed by student members of the Chatbots:Talk-To-Me Team"

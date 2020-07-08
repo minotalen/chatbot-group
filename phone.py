@@ -167,7 +167,6 @@ def get_generated_answer(input_context: str, output_tokens: int = 25) -> str:
     except:
         return rustyprof
 
-
 """
 @author:: Max Petendra, Jakob Hackstein
 @state: 07.07.20
@@ -304,3 +303,16 @@ def checkforMsgQuery(msg: str, username: str) -> str:
             if listofmsg[indexofmsgnumber].isdecimal():
                 return (True, printCertainMessage(username, int(listofmsg[indexofmsgnumber])))
     return (False, "")
+
+
+#@author Canh Dinh, Kevin
+def get_settings_by_username(username: str):
+    if database.does_setting_exist(username):
+        data = database.find_settings_by_username(username)
+        initial_data = {"username": data[1], "json": data[2]}
+        #print(data[2])
+        json_string = data[2]
+        # json_data = json.dumps(json_string[1:])
+        return json_string
+    else:
+        print('user does not exist')

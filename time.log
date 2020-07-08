@@ -2889,3 +2889,96 @@ time spent: 1.2325589656829834
 1.2221426963806152 - end
 time spent: 7.727673292160034
 ---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+0.0 - start
+0.0036411285400390625 - classify-Intent
+0.0 - start
+0.002880573272705078 - classify-Intent
+ * Detected change in '/home/max/chatbot-group/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+ * Detected change in '/home/max/chatbot-group/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+0.0 - start
+0.0025415420532226562 - classify-Intent
+0.008142471313476562 - end
+time spent: 0.01139211654663086
+---------------------------------------
+0.0 - start
+0.0015442371368408203 - classify-Intent
+0.010994672775268555 - end
+time spent: 0.012962579727172852
+---------------------------------------
+0.0 - start
+0.0024764537811279297 - end
+time spent: 0.0025801658630371094
+---------------------------------------
+0.0 - start
+0.002206087112426758 - classify-Intent
+4.680635690689087 - end
+time spent: 4.682992219924927
+---------------------------------------
+0.0 - start
+0.0019030570983886719 - classify-Intent
+0.008900165557861328 - end
+time spent: 0.011385917663574219
+---------------------------------------
+0.0 - start
+0.0020661354064941406 - classify-Intent
+0.019977807998657227 - end
+time spent: 0.02261638641357422
+---------------------------------------
+0.0 - start
+0.01375579833984375 - end
+time spent: 0.014051675796508789
+---------------------------------------
+0.0 - start
+0.0024352073669433594 - classify-Intent
+0.020465612411499023 - end
+time spent: 0.023256778717041016
+---------------------------------------
+0.0 - start
+0.002123594284057617 - classify-Intent
+4.75467586517334 - end
+time spent: 4.757002592086792
+---------------------------------------
+0.0 - start
+0.0025177001953125 - classify-Intent
+36.231513261795044 - end
+time spent: 36.23475527763367
+---------------------------------------

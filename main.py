@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_socketio import SocketIO, send, emit
 import json
 import database_SQLite as database
-from answerhandler_json import answerHandler
+from answerhandler_json import answerHandler, get_settings_by_username
 import sys
 
 app = Flask(__name__, static_url_path='/static')
@@ -13,7 +13,6 @@ socketio = SocketIO(app)
 socketio.init_app(app, cors_allowed_origins="*")
 
 user_sessions = []
-
 
 @app.route('/')
 def send_index_page():
@@ -197,19 +196,6 @@ def get_username_by_sid(sid):
 
 def get_current_username():
     return get_username_by_sid(request.sid)
-
-
-def get_settings_by_username(username: str):
-    if database.does_setting_exist(username):
-        data = database.find_settings_by_username(username)
-        initial_data = {"username": data[1], "json": data[2]}
-        print(data[2])
-        json_string = data[2]
-        # json_data = json.dumps(json_string[1:])
-        return json_string
-    else:
-        print('user does not exist')
-
 
 def update_settings_by_jsondata(payload):
     readable_json = json.loads(payload)

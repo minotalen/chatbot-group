@@ -99,7 +99,7 @@ function printMessage(msg) {
   // set message type depending on sender 
   switch (senderName) {
 
-    case 'bot': // zum testen auf 'bot' setzen, solange kein inventory sender name vorhanden ist
+    case 'inventory': // zum testen auf 'bot' setzen, solange kein inventory sender name vorhanden ist
       elem.className = 'chat-message-inventory';
 
       // p for sender name

@@ -71,6 +71,8 @@ Last modified: 29.06.2020
 
 .chat-message-bot {
   color: var(--color-message-bot);
+  border-radius: var(--border-radius);
+  background-color: var(--color-message-bot-background);
 }
 
 .chat-message-inventory {

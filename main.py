@@ -73,7 +73,7 @@ def signup():
         if not userExists:
             database.add_user(username, password)
             session['username'] = username
-            return redirect(url_for('send_profile_page'))
+            return redirect(url_for('send_profile_page', username= username))
         else:
             return render_template('signup.html', error_message='Username already taken. Please choose another one.')
     else:
@@ -151,30 +151,27 @@ def handleJson(payload):
         print("Type:", sys.exc_info()[0])
         send(json.dumps({"level": obj['level'], "sender": "bot", "room": obj['room'], "mode": obj['mode'], "message": "Sorry, something went wrong on the server. Try something different."}),  json=True)
 
-@socketio.on('user_registration')
-def update_users(payload):
-    readable_json = json.loads(payload)
+ 
+@socketio.on('username')
+def mapsUsernameToSession(payload):
+    username = payload
 
-    database.insert_user(readable_json['message'], '123456')
-    user_sessions.append({"user": readable_json['message'], "sid": request.sid})
-    initial_data = {"level": 0, "sender": "bot", "room": "startgame", "mode": "game",
-                    "message": "Hello, " + readable_json['message'] + "!"}
-    json_data = json.dumps(initial_data)
-    send(json_data, json=True)
-    intro_text = {"level": 0, "sender": "bot", "room": "startgame", "mode": "game", "message": "current room"}
-    json_data = json.dumps(intro_text)
-    send(answerHandler(json_data, get_username_by_sid(request.sid)), json=True)
+    user_sessions.append({"user": username, "sid": request.sid}) 
+
+    initial_data = {"level": 0, "sender": "bot", "room": "startgame", "mode": "game", 
+                    "message": "Welcome "+ username + "!"} 
+    json_data = json.dumps(initial_data) 
+    send(json_data, json=True) 
+
+    intro_text = {"level": 0, "sender": "bot", "room": "startgame", "mode": "game", "message": "current room"} 
+    json_data = json.dumps(intro_text) 
+    send(answerHandler(json_data, get_username_by_sid(request.sid)), json=True) 
 
 
-@socketio.on('connect')
-def connect():
-    """ (KK) TODO Move this content to a custom event, e.g. play"""
-    initial_data = {"level": 0, "sender": "bot", "room": "startgame", "mode": "game",
-                    "message": "Welcome! Insert username."}
-    json_data = json.dumps(initial_data)
-    send(json_data, json=True)
-    print("You are now connected with the server")
-
+@socketio.on('connect') 
+def connect(): 
+    print("You are now connected with the server") 
+     
 
 @socketio.on('disconnect')
 def disconnect():

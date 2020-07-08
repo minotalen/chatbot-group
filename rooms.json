@@ -105,7 +105,7 @@
             {
                 "trigName": "look around",
                 "needStates": ["solvedTutorial"],
-                "needStatesValue": [true],
+                "needStatesValue": [false],
                 "needItems": [null],
                 "needItemsRoomId": [null],
                 "accept": "Professor Kraysee's office looks like it hasn't been tidied up for over a decade. You can see alot of interesting things laying around in his office but nothing all too useful.<br>He looks at you and you begin to chat...<br>type in '<b>talk to professor</b>' to talk to a person" ,

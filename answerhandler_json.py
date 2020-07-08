@@ -301,7 +301,7 @@ def getRoomIntroduction(id: int) -> str:
 def getRoomDescription(id: int) -> str:
     return rooms[id]['descri']
 
-#@author Canh Dinh, Kevin
+#@author Canh Dinh
 def get_settings_by_username(username: str):
     if database.does_setting_exist(username):
         data = database.find_settings_by_username(username)

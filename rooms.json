@@ -295,11 +295,29 @@
         "intro": "You are making your way downtown. <br>... <br>You arrive at the Schlachte flea market.",
         "descri": "There are dozens and dozens of little stands with people selling anything you could imagine. From trash to very nice and expensive coats to various paintings. <br>You have a closer look at one of the stands and an ancient treasure chest catches your eye. You take the chest to gain a better view. The salesman looks at you.",
         "connections": [],
-        "items": [null],
+        "items": [
+            {
+                "itemName": "chest",
+                "lookAt": "It is an ancient treasure chest. It magically attracts you.",
+                "pickUp": "There should be no way to just pick it up, you broke the game..",
+                "needStates": ["ownChest", "ownChest"],
+                "needStatesValue": [true, false],
+                "newStates": [null],
+                "newStatesValue": [null]
+            }
+        ],
         "objects": [
             {
-                "objName": "chest",
-                "lookAt": "It is an ancient treasure chest. It magically attracts you.",
+                "objName": "salesman",
+                "lookAt": "He looks kind of tired. He also looks back at you. This silence feels very awkward but you continue to stare at him. Maybe talking helps.",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "newStates": [null],
+                "newStatesValue": [null]
+            },
+            {
+                "objName": "stands",
+                "lookAt": "The flea market stretches itself out pretty far along the riverside. Very present are stands with piles of clothes and ones with many toys. The latter usually surrounded by excited children, pulling at their parents sleeves after finding a toy, that has caught their interest. <br>Closeby you witness an elderly couple, hands behind their backs as they lean forward to inspect a dusty vinyl. The noise level is steady with a few people laughing and raising their voice, to underline their bargaining attempts.",
                 "needStates": [null],
                 "needStatesValue": [null],
                 "newStates": [null],

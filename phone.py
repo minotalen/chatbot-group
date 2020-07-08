@@ -60,7 +60,7 @@ def handleAnswer(msg: str, username: str, level: int, roomId: int = -1) -> str:
     elif intent == 3:
         return tellAnswer(msg)
     elif intent == 4:
-        return "print recent message: print the oldest message in you mailbox you havent read <br> messages retrievable: to show possible messages with ids from your mailbox <br> message [id] : to show specific message from mailbox <br> ask professor: : to ask the professor something<br> exit phone: to exit the phone"    
+        return "print recent message: print the oldest message in you mailbox you havent read <br> messages retrievable: to show possible messages with ids from your mailbox <br> message [id] : to show specific message from mailbox <br> professor: to ask the professor something<br> exit phone: to exit the phone"    
 
     # returns the answer of the prof if it is not empty
     if not json.loads(database.get_settings_by_username(username))['gpt2Output']:
@@ -82,7 +82,7 @@ Returns: a number which represent a intent of the user // -1 if no intent is fou
 """
 def askProf(msg: str) -> int:
     choices = ["print recent message",
-               "messages retrieve", "ask professor:", "manual"]
+               "messages retrieve", "professor", "manual"]
     return classifyIntent(msg, choices)
 
 

@@ -120,7 +120,7 @@ def findAnswer(username, msg, roomId=-1):
     if roomId == -1:
         raise ValueError("Invalid room id!")
 
-    choices = ["go to", "look at", "pick up", "items", "current room",
+    choices = ["go to", "look at", "pick up", "inventory", "current room",
                "about chatbot:", "start phone", "start gps", "help assistant:"]
 
     elemCount = -1
@@ -236,7 +236,7 @@ def findAnswer(username, msg, roomId=-1):
 
                     return (elem['pickUp'], getRoomName(roomId), 'game')
 
-    # ITEMS: NOCH NICHT FERTIG. BAUSTELLE
+    # INVENTORY: NOCH NICHT FERTIG. BAUSTELLE
     elif intentID == 4:
         return (djf.get_inventory(roomId, username), getRoomName(roomId), 'game', 'inventory')
 

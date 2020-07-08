@@ -44,7 +44,7 @@
       <li><a href="#">{{ username }}</a></li>
     </ul>
 
-    <a class="link-profile" href="{{ url_for('send_profile_page') }}">
+    <a class="link-profile" href="{{ url_for('send_profile_page', username= username) }}">
       <div class="user-account">
         <p id="username" class="user-name">{{ username }}</p>
         <div class="avatar small"></div>
@@ -150,7 +150,7 @@
             <!-- suggestions are added here -->
           </div>
 
-          <input id="input-user" type="text" placeholder="Enter your name" spellcheck="false" autocomplete="off"
+          <input id="input-user" type="text" placeholder="What will you do?" spellcheck="false" autocomplete="off"
             tabindex="0" autofocus> </input>
         </div>
 

@@ -42,7 +42,7 @@
     </ul>
 
 
-    <a class="link-profile" href="{{ url_for('send_profile_page') }}">
+    <a class="link-profile" href="{{ url_for('send_profile_page', username= username) }}">
       <div class="user-account">
         <p id="username" class="user-name">{{ username }}</p>
         <div class="avatar small"></div>
@@ -85,7 +85,7 @@
         <input type="checkbox" class="settings" id="read-messages"></input>
       </div>
       <div>
-        <p>GPT-2 LookAt Text</p>
+        <p>Game version for study</p>
         <input id="gpt2-output" type="checkbox" class="settings"></input>
       </div>
       <div class="theme-select">

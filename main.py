@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_socketio import SocketIO, send, emit
 import json
 import database_SQLite as database
-from answerhandler_json import answerHandler, get_settings_by_username
+from answerhandler_json import answerHandler
 import sys
 
 app = Flask(__name__, static_url_path='/static')
@@ -91,7 +91,7 @@ def get_user_settings():
     else:
         username = session.get('username')
         if username:
-            settings = get_settings_by_username(username)
+            settings = database.get_settings_by_username(username)
             print('return settings')
             print(settings)
 

@@ -80,7 +80,7 @@ def answerHandler(inputjson, username):
         print("added nothing to training data")
 
     #text to spreech if it is turned on in the setting @author Max Petendra
-    if json.loads(get_settings_by_username(username))['readMessages']:
+    if json.loads(database.get_settings_by_username(username))['readMessages']:
         audio.text2audio(answer[0])
         audio.playSoundfile()
     
@@ -209,7 +209,7 @@ def findAnswer(username, msg, roomId=-1):
 
                     return (elem['lookAt'], getRoomName(roomId), 'game')
 
-        if json.loads(get_settings_by_username(username))['gpt2Output']:
+        if json.loads(database.get_settings_by_username(username))['gpt2Output']:
             # room discription from json
             raw_desc_sentences = tokenize.sent_tokenize(formatHTMLText(getRoomDescription(roomId))) 
 
@@ -300,18 +300,6 @@ def getRoomIntroduction(id: int) -> str:
 # Get description of the room with id
 def getRoomDescription(id: int) -> str:
     return rooms[id]['descri']
-
-#@author Canh Dinh, Kevin
-def get_settings_by_username(username: str):
-    if database.does_setting_exist(username):
-        data = database.find_settings_by_username(username)
-        initial_data = {"username": data[1], "json": data[2]}
-        #print(data[2])
-        json_string = data[2]
-        # json_data = json.dumps(json_string[1:])
-        return json_string
-    else:
-        print('user does not exist')
 
 
 

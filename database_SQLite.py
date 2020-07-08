@@ -625,4 +625,18 @@ def update_user_settings(username: str, json: str):
     else:
         insert_user_settings(username, json)
 
-update_user_settings("Dinh", '{ "name":"Dinh", "age":30, "city":"New York"}')
+#@author Canh Dinh, Kevin
+def get_settings_by_username(username: str):
+    if does_setting_exist(username):
+        data = find_settings_by_username(username)
+        initial_data = {"username": data[1], "json": data[2]}
+        #print(data[2])
+        json_string = data[2]
+        # json_data = json.dumps(json_string[1:])
+        return json_string
+    else:
+        print('user does not exist')
+
+
+
+#update_user_settings("Dinh", '{ "name":"Dinh", "age":30, "city":"New York"}')

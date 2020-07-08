@@ -2982,3 +2982,170 @@ time spent: 4.757002592086792
 36.231513261795044 - end
 time spent: 36.23475527763367
 ---------------------------------------
+<<<<<<< HEAD
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+0.0 - start
+0.0009992122650146484 - classify-Intent
+ * Restarting with windowsapi reloader
+=======
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+0.0 - start
+0.0021080970764160156 - classify-Intent
+0.0 - start
+0.002454042434692383 - classify-Intent
+ * Detected change in '/home/max/chatbot-group/audio.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+ * Detected change in '/home/max/chatbot-group/audio.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+0.0 - start
+0.0006737709045410156 - classify-Intent
+4.334303617477417 - end
+time spent: 4.33549952507019
+---------------------------------------
+0.0 - start
+0.0025200843811035156 - classify-Intent
+35.70322132110596 - end
+time spent: 35.70639729499817
+---------------------------------------
+0.0 - start
+0.0020093917846679688 - classify-Intent
+0.0007336139678955078 - check
+0.0026819705963134766 - filter
+0.07521271705627441 - typeofwords
+0.0003631114959716797 - wordsandtype
+0.0003409385681152344 - listofchoices
+0.00018310546875 - pre-loop
+0.16091275215148926 - post-loop
+0.0 - start
+0.0005006790161132812 - classify-Intent
+4.145442724227905 - end
+time spent: 4.146540880203247
+---------------------------------------
+0.0 - start
+0.0031311511993408203 - classify-Intent
+35.44657778739929 - end
+time spent: 35.45020294189453
+---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+0.0 - start
+0.0005114078521728516 - classify-Intent
+4.819603204727173 - end
+time spent: 4.820350646972656
+---------------------------------------
+0.0 - start
+0.0006911754608154297 - classify-Intent
+35.43274426460266 - end
+time spent: 35.4340717792511
+---------------------------------------
+0.0 - start
+0.0015087127685546875 - classify-Intent
+0.013941049575805664 - end
+time spent: 0.016033172607421875
+---------------------------------------
+0.0 - start
+0.0022628307342529297 - classify-Intent
+0.01691746711730957 - end
+time spent: 0.019695043563842773
+---------------------------------------
+0.0 - start
+0.012275218963623047 - end
+time spent: 0.012881040573120117
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+0.0 - start
+0.0030450820922851562 - classify-Intent
+4.757099151611328 - end
+time spent: 4.760993480682373
+---------------------------------------
+0.0 - start
+0.003152608871459961 - classify-Intent
+35.18430209159851 - end
+time spent: 35.18823862075806
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+0.0 - start
+0.005730867385864258 - classify-Intent
+ * Detected change in '/home/max/chatbot-group/audio.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+0.0 - start
+0.003034830093383789 - classify-Intent
+ * Detected change in '/home/max/chatbot-group/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+0.0 - start
+0.0039021968841552734 - classify-Intent
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+0.0 - start
+0.0020215511322021484 - classify-Intent
+4.689335107803345 - end
+time spent: 4.696187257766724
+---------------------------------------
+0.0 - start
+0.002474546432495117 - classify-Intent
+35.27823519706726 - end
+time spent: 35.28152656555176
+---------------------------------------
+0.0 - start
+0.0047206878662109375 - classify-Intent
+0.0005686283111572266 - check
+0.0003676414489746094 - filter
+0.10257315635681152 - typeofwords
+0.0009706020355224609 - wordsandtype
+0.00023818016052246094 - listofchoices
+0.00010347366333007812 - pre-loop
+0.2779405117034912 - post-loop
+0.0 - start
+0.002486705780029297 - classify-Intent
+0.0009751319885253906 - check
+0.0004031658172607422 - filter
+0.06315875053405762 - typeofwords
+0.0007746219635009766 - wordsandtype
+0.0014159679412841797 - listofchoices
+0.0005092620849609375 - pre-loop
+0.27400827407836914 - post-loop
+ * Detected change in '/home/max/chatbot-group/audio.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-864-113
+0.0 - start
+0.0023522377014160156 - classify-Intent
+5.459085941314697 - end
+time spent: 5.4619879722595215
+---------------------------------------
+0.0 - start
+0.002556324005126953 - classify-Intent
+35.54412388801575 - end
+time spent: 35.547826290130615
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/audio.py', reloading
+ * Restarting with stat
+>>>>>>> master

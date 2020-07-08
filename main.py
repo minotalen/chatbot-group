@@ -2,14 +2,14 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_socketio import SocketIO, send, emit
 import json
 import database_SQLite as database
-from answerhandler_json import answerHandler, get_settings_by_username
+from answerhandler_json import answerHandler
 import sys
 
 app = Flask(__name__, static_url_path='/static')
 
 app.config["SECRET_KEY"] = "x!\x84Iy\xf9#gE\xedBQqg+\xf3A+\xe3\xd3\x01\x1a\xdf\xd2"
 
-socketio = SocketIO(app)
+socketio = SocketIO(app, ping_timeout=1000, ping_interval=25)
 socketio.init_app(app, cors_allowed_origins="*")
 
 user_sessions = []
@@ -91,7 +91,7 @@ def get_user_settings():
     else:
         username = session.get('username')
         if username:
-            settings = get_settings_by_username(username)
+            settings = database.get_settings_by_username(username)
             print('return settings')
             print(settings)
 

@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_socketio import SocketIO, send, emit
 import json
 import database_SQLite as database
-from answerhandler_json import answerHandler
+from answerhandler_json import answerHandler, get_settings_by_username
 import sys
 
 app = Flask(__name__, static_url_path='/static')
@@ -14,7 +14,6 @@ socketio.init_app(app, cors_allowed_origins="*")
 
 user_sessions = []
 
-
 @app.route('/')
 def send_index_page():
     username = session.get('username')
@@ -22,7 +21,7 @@ def send_index_page():
 
         print(username)
         if username:  # database.is_user_logged_in(username):
-            return redirect(url_for('send_profile_page'))
+            return redirect(url_for('send_profile_page', username=username))
 
     return redirect(url_for('login'))
 
@@ -51,7 +50,7 @@ def login():
 
             print(username)
             if username:  # database.is_user_logged_in(username):
-                return redirect(url_for('send_profile_page'))
+                return redirect(url_for('send_profile_page', username=username))
         else:
             return render_template('login.html')
 
@@ -74,17 +73,33 @@ def signup():
         if not userExists:
             database.add_user(username, password)
             session['username'] = username
-            return redirect(url_for('send_profile_page', username=username))
+            return redirect(url_for('send_profile_page'))
         else:
             return render_template('signup.html', error_message='Username already taken. Please choose another one.')
     else:
         return render_template('signup.html')
 
 
-@app.route('/settings', methods=['GET', 'POST'])
+@app.route('/settings', methods=['GET','POST'])
 def get_user_settings():
-    data = request.get_json()
+    if request.method == 'POST':
+        settings_data = request.get_data()
+        print('settings data received')
 
+        update_settings_by_jsondata(settings_data)
+        return settings_data
+    else:
+        username = session.get('username')
+        if username:
+            settings = get_settings_by_username(username)
+            print('return settings')
+            print(settings)
+
+            if settings:
+                return settings
+            else:
+                return ""
+        return ""
 
 @app.route('/profile')
 def send_profile_page():
@@ -182,15 +197,6 @@ def get_username_by_sid(sid):
 def get_current_username():
     return get_username_by_sid(request.sid)
 
-
-def get_settings_by_username(username: str):
-    if database.does_setting_exist(username):
-        data = database.find_settings_by_username(username)
-        initial_data = {"username": data[1], "json": data[2]}
-        json_data = json.dumps(initial_data)
-        return json_data
-
-
 def update_settings_by_jsondata(payload):
     readable_json = json.loads(payload)
     username = readable_json["username"]
@@ -199,4 +205,4 @@ def update_settings_by_jsondata(payload):
 
 if __name__ == "__main__":
     print("Trying to start server...")
-    socketio.run(app, port='5000', host='0.0.0.0', debug=True)
+    socketio.run(app, host='0.0.0.0', debug=True)

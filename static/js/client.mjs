@@ -4,29 +4,27 @@
  * Last modified: 09.07.2020
  */
 
-import {
-  closeSuggestions,
-  userInput
-} from './suggestions.mjs';
+import { closeSuggestions, userInput } from './suggestions.mjs';
+import { getSettingValue } from './settings.mjs';
 
 
 let socket = io.connect("http://127.0.0.1:5000"),
   sendButton = document.getElementById('send-button'),
-  userName = undefined,
-  levelID = 'test_level_ID',
-  senderName = 'test_sender_name',
-  roomName = 'test_room_name',
-  modeName = 'test_mode',
-  msg,
   typeIndicator = document.getElementById('type-indicator'),
+  userName, 
+  levelID,
+  senderName,
+  roomName,
+  modeName,
+  msg,
+  messageQueue = [],
   userMessageSendingAllowed = true,
-  botMessagePrintingAllowed = true,
-  messageQueue = [];
+  botMessagePrintingAllowed = true;
 
 
 socket.on('connect', function () {
   console.log('connected client');
-  userName = document.getElementById('username').innerText;
+  userName = getSettingValue('username'); 
   socket.emit('username', userName);
 });
 
@@ -88,9 +86,9 @@ function printMessageQueueHead() {
     let json = messageQueue.shift();
 
     botMessagePrintingAllowed = false;
+    userMessageSendingAllowed = false;
 
     msg = readJSON(json);
-    userMessageSendingAllowed = false;
 
     updateMode();
     updateRoomName();
@@ -155,7 +153,7 @@ function printMessage(msg) {
     writeEachChar(elem, msg, function () {
       botMessagePrintingAllowed = true;
       printMessageQueueHead();
-    }, '', 0);
+    });
   }
 
   // scroll to bottom
@@ -169,18 +167,18 @@ function printMessage(msg) {
  * @param {String} msg The message to be written. 
  * @param {Function} callback Function to call after message has been written.
  * @param {String} tag Storage for the tag currently being parsed
- * @param {Int} negativeIndex Index from the end of the string to insert content inbetween tags
+ * @param {Int} reverseIndex Index from the end of the string to insert content inbetween tags
  */
-function writeEachChar(elem, msg, callback, tag, negativeIndex) {
+function writeEachChar(elem, msg, callback, tag = '', reverseIndex = 0) {
   if (msg.length > 0) {
-    let c = msg.charAt(0), html;
+    let c = msg.charAt(0), html, speed = 30;
 
     if (c == '<') {
       // begin of HTML tag -> start parsing tag
       tag = '<';
       msg = msg.slice(1, msg.length);
 
-      writeEachChar(elem, msg, callback, tag, negativeIndex);
+      writeEachChar(elem, msg, callback, tag, reverseIndex);
     } else if (c == '>') {
       // end of HTML tag -> apply tag depending on cases
       tag += '>';
@@ -191,27 +189,27 @@ function writeEachChar(elem, msg, callback, tag, negativeIndex) {
         elem.innerHTML += tag;
         tag = '';
 
-        writeEachChar(elem, msg, callback, tag, negativeIndex);
+        writeEachChar(elem, msg, callback, tag, reverseIndex);
       } else if (tag.includes('/')) {
         // closing tag parsed -> remove it
         // jump behind closing tag
-        negativeIndex -= tag.length;
+        reverseIndex -= tag.length;
         tag = '';
 
-        writeEachChar(elem, msg, callback, tag, negativeIndex);
+        writeEachChar(elem, msg, callback, tag, reverseIndex);
       } else {
         html = elem.innerHTML;
 
         // opening tag parsed -> insert opening and closing tag and jump inbetween the tags
-        elem.innerHTML = html.substring(0, html.length - negativeIndex)
+        elem.innerHTML = html.substring(0, html.length - reverseIndex)
           + tag + '</' + tag.slice(1, tag.length)
-          + html.substring(html.length - negativeIndex, html.length);
+          + html.substring(html.length - reverseIndex, html.length);
 
         // jump before closing tag
-        negativeIndex += tag.length + 1;
+        reverseIndex += tag.length + 1;
         tag = '';
 
-        writeEachChar(elem, msg, callback, tag, negativeIndex);
+        writeEachChar(elem, msg, callback, tag, reverseIndex);
       }
 
     } else if (tag != '') {
@@ -219,20 +217,20 @@ function writeEachChar(elem, msg, callback, tag, negativeIndex) {
       tag += c;
       msg = msg.slice(1, msg.length);
 
-      writeEachChar(elem, msg, callback, tag, negativeIndex);
+      writeEachChar(elem, msg, callback, tag, reverseIndex);
     } else {
       html = elem.innerHTML;
       msg = msg.slice(1, msg.length);
 
       // add non-tag character inbetween tags 
-      // -> if negativeIndex == 0, the character is appended
-      elem.innerHTML = html.substring(0, html.length - negativeIndex)
+      // -> if reverseIndex == 0, the character is appended
+      elem.innerHTML = html.substring(0, html.length - reverseIndex)
         + c
-        + html.substring(html.length - negativeIndex, html.length);
+        + html.substring(html.length - reverseIndex, html.length);
 
       setTimeout(() => {
-        writeEachChar(elem, msg, callback, tag, negativeIndex);
-      }, 30);
+        writeEachChar(elem, msg, callback, tag, reverseIndex);
+      }, speed);
     }
   } else {
     callback();

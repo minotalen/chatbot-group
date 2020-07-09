@@ -4,16 +4,10 @@
  * Last modified: 09.07.2020
  */
 
-const changeUsername = document.getElementById('change-username'),
-  deleteAccount = document.getElementById('delete-account'),
-  showSuggestions = document.getElementById('show-suggestion'),
-  readMessages = document.getElementById('read-messages'),
-  systemTheme = document.getElementById('system'),
-  lightTheme = document.getElementById('light'),
-  darkTheme = document.getElementById('dark'),
-  deleteGameProgress = document.getElementById('delete-game-progress'),
-  gpt2Output = document.getElementById('gpt2-output'),
-  settings = {
+import { updateDisplayedSettings } from './profile.js';
+
+
+const settings = {
     username: undefined,
     showSuggestions: undefined, 
     readMessages: undefined,
@@ -26,73 +20,19 @@ const changeUsername = document.getElementById('change-username'),
 getSettingsJSON();
 
 
-if(changeUsername) {
-  changeUsername.addEventListener('click', () => {
-    console.log("changeUsername");
-  }, false);
+function getSettingValue(name) {  
+  return settings[name];
+}
 
-  deleteAccount.addEventListener('click', () => {
-    console.log("deleteAccount");
-  }, false);
 
-  showSuggestions.addEventListener('click', () => {
-    settings.showSuggestions = showSuggestions.checked;
-    sendSettingsJSON();
-  }, false);
-
-  readMessages.addEventListener('click', () => {
-    settings.readMessages = readMessages.checked;
-    sendSettingsJSON();
-  }, false);
-
-  gpt2Output.addEventListener('click', () => {
-    settings.gpt2Output = gpt2Output.checked;
-    sendSettingsJSON();
-  }, false);
-
-  systemTheme.addEventListener('click', () => {
-    settings.userTheme = "system";
-    sendSettingsJSON();
-  }, false);
-
-  lightTheme.addEventListener('click', () => {
-    settings.userTheme = "light";
-    sendSettingsJSON();
-  }, false);
-
-  darkTheme.addEventListener('click', () => {
-    settings.userTheme = "dark";
-    sendSettingsJSON(); 
-  }, false);
-
-  deleteGameProgress.addEventListener('click', () => {
-    console.log("deleteGameProgress");
-  }, false);
+function setSettingValue(name, value) {
+  settings[name] = value;
+  sendSettingsJSON();
 }
 
 /**
- * Update the interface by checking or unchecking the input elements.
+ * Get setting json from database and update the client's settings.
  */
-function updateDisplayedSettings() {
-  setDisplayedValue(showSuggestions, settings.showSuggestions);
-  setDisplayedValue(readMessages, settings.readMessages);
-  setDisplayedValue(gpt2Output, settings.gpt2Output);
-  setDisplayedValue(document.getElementById(settings.userTheme), settings.userTheme);
-}
-
-/**
- * Check or uncheck the specified setting in the interface
- * @param setting the setting to be updated
- * @param value new value
- */
-function setDisplayedValue(setting, value) {
-  if (setting) setting.checked = value;
-}
-
-function getSettingValue(name) {
-  return settings[name] ? settings[name] : null;
-}
-
 function getSettingsJSON() {  
   let xhttp = new XMLHttpRequest(), obj; 
 
@@ -114,6 +54,31 @@ function getSettingsJSON() {
   xhttp.send();
 }
 
+/**
+ * Send the client's stored settings as json to the database
+ */
+function sendSettingsJSON() {
+  let xhr = new XMLHttpRequest(), obj, settingsJSON;
+
+  xhr.open('POST', settingsUrl, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.addEventListener('readystatechange', () => {
+    if(xhr.readyState === 4) {
+      obj = JSON.parse(xhr.responseText);
+      console.log(obj);
+      
+      updateSettingsObj(obj);
+    }
+  });
+  settingsJSON = JSON.stringify(settings); 
+  xhr.send(settingsJSON);
+}
+
+
+/**
+ * Update the client's stored settings from the specified object. 
+ * @param obj object with new settings
+ */
 function updateSettingsObj(obj) {
   // update settings from database
   settings.username = obj.username;
@@ -126,21 +91,4 @@ function updateSettingsObj(obj) {
   updateDisplayedSettings();
 }
 
-
-function sendSettingsJSON() {
-  let xhr = new XMLHttpRequest(), obj, settingsJSON;
-
-  xhr.open('POST', settingsUrl, true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.addEventListener('readystatechange', () => {
-    if(xhr.readyState === 4) {
-      obj = JSON.parse(xhr.responseText);
-      
-      updateSettingsObj(obj);
-    }
-  });
-  settingsJSON = JSON.stringify(settings); 
-  xhr.send(settingsJSON);
-}
-
-export { getSettingValue }
+export { getSettingValue, setSettingValue }

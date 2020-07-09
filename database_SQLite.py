@@ -1,4 +1,5 @@
 import sqlite3
+import json
 
 
 # ist not used, this is a global variable
@@ -558,7 +559,8 @@ def add_user(username, password):
             print("Failed to add user", e)
         else:
             insert_login(username, 1)
-            print("succesfully added user")
+            print("successfully added user")
+            update_user_settings(username, '{"username": "' + username + '","showSuggestions": true,"readMessages": false,"gpt2Output": true,"userTheme":"system"}')
     else:
         print("This username is taken. Try another one.")
 
@@ -629,10 +631,8 @@ def update_user_settings(username: str, json: str):
 def get_settings_by_username(username: str):
     if does_setting_exist(username):
         data = find_settings_by_username(username)
-        initial_data = {"username": data[1], "json": data[2]}
-        #print(data[2])
         json_string = data[2]
-        # json_data = json.dumps(json_string[1:])
+        print(json_string)
         return json_string
     else:
         print('user does not exist')

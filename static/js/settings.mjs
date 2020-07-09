@@ -1,7 +1,7 @@
 /**
  * Settings implementation.
- * Authors: Kevin Katzkowski, Jeffrey Pillmann
- * Last modified: 06.07.2020
+ * Authors: Kevin Katzkowski, Jeffrey Pillmann, Cedric Nering
+ * Last modified: 09.07.2020
  */
 
 const changeUsername = document.getElementById('change-username'),
@@ -14,25 +14,17 @@ const changeUsername = document.getElementById('change-username'),
   deleteGameProgress = document.getElementById('delete-game-progress'),
   gpt2Output = document.getElementById('gpt2-output'),
   settings = {
-    username: "",
-    showSuggestions: true, // TODO default settings can be changed here 
-    readMessages: false,
-    gpt2Output: true,
-    userTheme: 'system'
+    username: undefined,
+    showSuggestions: undefined, 
+    readMessages: undefined,
+    gpt2Output: undefined,
+    userTheme: undefined
   },
   settingsUrl = '/settings';
 
-// TODO rework this function to get username from server
-function getUsernameFromURL() {
-  let current_url = window.location.href, 
-  url = new URL(current_url);
-  return url.searchParams.get('username');
-}
-
-settings.username = getUsernameFromURL();
-
-// get from database or set initially
+// get settings from database
 getSettingsJSON();
+
 
 if(changeUsername) {
   changeUsername.addEventListener('click', () => {
@@ -94,8 +86,6 @@ function updateDisplayedSettings() {
  * @param value new value
  */
 function setDisplayedValue(setting, value) {
-  console.log(setting);
-  
   if (setting) setting.checked = value;
 }
 
@@ -111,8 +101,6 @@ function getSettingsJSON() {
     if(xhttp.readyState === 4) {
       try {
         obj = JSON.parse(xhttp.responseText);
-        console.log(obj);
-        console.log(xhttp.responseText);
       
         updateSettingsObj(obj);
         sendSettingsJSON();
@@ -127,40 +115,27 @@ function getSettingsJSON() {
 }
 
 function updateSettingsObj(obj) {
-  // let obj = JSON.parse(json);
-  // console.log('received settings JSON: ' + JSON.stringify(obj));
+  // update settings from database
+  settings.username = obj.username;
+  settings.showSuggestions = obj.showSuggestions;
+  settings.readMessages = obj.readMessages;
+  settings.gpt2Output = obj.gpt2Output;
+  settings.userTheme = obj.userTheme;
 
-  if(true) { // TODO replace
-    // update settings from database
-    settings.username = document.getElementById('username').innerText; //obj.username;
-    console.log(settings.username);
-    
-    settings.showSuggestions = obj.showSuggestions;
-    settings.readMessages = obj.readMessages;
-    settings.gpt2Output = obj.gpt2Output;
-    settings.userTheme = obj.userTheme;
-
-    console.log(settings);
-    console.log('settings updated from database');
-  } 
+  console.log('settings updated from database');
   updateDisplayedSettings();
-  console.log(settings);
 }
 
 
 function sendSettingsJSON() {
   let xhr = new XMLHttpRequest(), obj, settingsJSON;
-  console.log(settings);
 
   xhr.open('POST', settingsUrl, true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.addEventListener('readystatechange', () => {
-    // if DONE and OK
     if(xhr.readyState === 4) {
       obj = JSON.parse(xhr.responseText);
-      console.log(obj);
       
-      // TODO reactivate this when database is working
       updateSettingsObj(obj);
     }
   });

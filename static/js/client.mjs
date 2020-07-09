@@ -1,7 +1,7 @@
 /**
  * Client-side script to receive, send and display messages.
- * Authors: ?, Katja Schneider, Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modified: 18.06.2020
+ * Authors: Katja Schneider, Kevin Katzkowski, mon janssen, Jeffrey Pillmann
+ * Last modified: 09.07.2020
  */
 
 import {
@@ -19,13 +19,14 @@ let socket = io.connect("http://127.0.0.1:5000"),
   modeName = 'test_mode',
   msg,
   typeIndicator = document.getElementById('type-indicator'),
-  userMessageSendingAllowed = true;
+  userMessageSendingAllowed = true,
+  botMessagePrintingAllowed = true,
+  messageQueue = [];
 
 
 socket.on('connect', function () {
   console.log('connected client');
   userName = document.getElementById('username').innerText;
-  console.log(userName);
   socket.emit('username', userName);
 });
 
@@ -35,29 +36,22 @@ socket.on('connect', function () {
  */
 socket.on('json', (json) => {
   console.log('message received');
-  msg = readJSON(json);
-  userMessageSendingAllowed = true;
 
-  updateMode();
-  updateRoomName();
-  // updateCurrentLevel(levelID);
-  printMessage(msg);
+  messageQueue.push(json);
+  printMessageQueueHead();
 });
 
 
 /**
  * Handle send button click event.
  */
-sendButton.addEventListener('click', () => {
-  sendMessage();
-}, false);
-
+sendButton.addEventListener('click', sendMessage, false);
 
 /**
  * Sends the message from the chat input to the socket.
  */
-function sendMessage(evt = 'json') {
-  let json;
+function sendMessage() {
+  let json, evt = 'json';
 
   if (!userMessageSendingAllowed) {
     console.log('message sending forbidden, no message sent!');
@@ -73,6 +67,7 @@ function sendMessage(evt = 'json') {
   if (msg.trim() != '') {
     json = createJSON(msg);
     socket.emit(evt, json);
+
     console.log('message ' + msg + ' has been sent!');
     userInput.value = null;
     closeSuggestions();
@@ -85,6 +80,27 @@ function sendMessage(evt = 'json') {
   }
 }
 
+/**
+ * Prints message at the head the queue if allowed and the queue is not empty.
+ */
+function printMessageQueueHead() {
+  if (botMessagePrintingAllowed && messageQueue.length > 0) {
+    let json = messageQueue.shift();
+
+    botMessagePrintingAllowed = false;
+
+    msg = readJSON(json);
+    userMessageSendingAllowed = false;
+
+    updateMode();
+    updateRoomName();
+    updateCurrentLevel(levelID);
+    printMessage(msg);
+  } else if (messageQueue.length <= 0) {
+    userMessageSendingAllowed = true;
+  }
+}
+
 
 /**
  * Prints the message into the chat.
@@ -94,12 +110,10 @@ function printMessage(msg) {
   let chat = document.getElementById('chat-content-container'),
     elem = window.document.createElement('li');
 
-  elem.innerHTML = msg;
-
   // set message type depending on sender 
   switch (senderName) {
 
-    case 'inventory': // zum testen auf 'bot' setzen, solange kein inventory sender name vorhanden ist
+    case 'inventory':
       elem.className = 'chat-message-inventory';
 
       // p for sender name
@@ -113,9 +127,6 @@ function printMessage(msg) {
 
       // remove bottom margin since element size works as bottom spacing when visiblity is set to hidden
       typeIndicator.style.marginBottom = '0';
-
-      // typewriter effect  
-      // writeEachChar(elem, msg);
       break;
 
     case 'bot':
@@ -124,9 +135,6 @@ function printMessage(msg) {
 
       // remove bottom margin since element size works as bottom spacing when visiblity is set to hidden
       typeIndicator.style.marginBottom = '0';
-
-      // typewriter effect  
-      // writeEachChar(elem, msg);
       break;
 
     default:
@@ -135,14 +143,100 @@ function printMessage(msg) {
 
       // add margin equal to element size for consistent bottom spacing
       typeIndicator.style.marginBottom = typeIndicator.getBoundingClientRect().height + 'px';
-      // elem.innerHTML = msg;
       break;
   }
 
   chat.insertBefore(elem, typeIndicator);
 
+  if (elem.className == 'chat-message-user') {
+    elem.innerHTML = msg;
+  } else {
+    // print message character by character
+    writeEachChar(elem, msg, function () {
+      botMessagePrintingAllowed = true;
+      printMessageQueueHead();
+    }, '', 0);
+  }
+
   // scroll to bottom
   chat.scrollTop = chat.scrollHeight - chat.clientHeight;
+}
+
+
+/**
+ * Writes each char of the message individually into the element.
+ * @param {HTML element} elem The HTML element where the message shall be added.
+ * @param {String} msg The message to be written. 
+ * @param {Function} callback Function to call after message has been written.
+ * @param {String} tag Storage for the tag currently being parsed
+ * @param {Int} negativeIndex Index from the end of the string to insert content inbetween tags
+ */
+function writeEachChar(elem, msg, callback, tag, negativeIndex) {
+  if (msg.length > 0) {
+    let c = msg.charAt(0), html;
+
+    if (c == '<') {
+      // begin of HTML tag -> start parsing tag
+      tag = '<';
+      msg = msg.slice(1, msg.length);
+
+      writeEachChar(elem, msg, callback, tag, negativeIndex);
+    } else if (c == '>') {
+      // end of HTML tag -> apply tag depending on cases
+      tag += '>';
+      msg = msg.slice(1, msg.length);
+
+      if (tag == '<br>') {
+        // insert <br> without further action
+        elem.innerHTML += tag;
+        tag = '';
+
+        writeEachChar(elem, msg, callback, tag, negativeIndex);
+      } else if (tag.includes('/')) {
+        // closing tag parsed -> remove it
+        // jump behind closing tag
+        negativeIndex -= tag.length;
+        tag = '';
+
+        writeEachChar(elem, msg, callback, tag, negativeIndex);
+      } else {
+        html = elem.innerHTML;
+
+        // opening tag parsed -> insert opening and closing tag and jump inbetween the tags
+        elem.innerHTML = html.substring(0, html.length - negativeIndex)
+          + tag + '</' + tag.slice(1, tag.length)
+          + html.substring(html.length - negativeIndex, html.length);
+
+        // jump before closing tag
+        negativeIndex += tag.length + 1;
+        tag = '';
+
+        writeEachChar(elem, msg, callback, tag, negativeIndex);
+      }
+
+    } else if (tag != '') {
+      // parse tag type (between '<' and '>')
+      tag += c;
+      msg = msg.slice(1, msg.length);
+
+      writeEachChar(elem, msg, callback, tag, negativeIndex);
+    } else {
+      html = elem.innerHTML;
+      msg = msg.slice(1, msg.length);
+
+      // add non-tag character inbetween tags 
+      // -> if negativeIndex == 0, the character is appended
+      elem.innerHTML = html.substring(0, html.length - negativeIndex)
+        + c
+        + html.substring(html.length - negativeIndex, html.length);
+
+      setTimeout(() => {
+        writeEachChar(elem, msg, callback, tag, negativeIndex);
+      }, 30);
+    }
+  } else {
+    callback();
+  }
 }
 
 
@@ -151,7 +245,7 @@ function printMessage(msg) {
  */
 function updateMode() {
   if (modeName != 'riddle' && modeName != 'phone') {
-    document.documentElement.setAttribute('data-mode', '')
+    document.documentElement.setAttribute('data-mode', '');
   } else {
     document.documentElement.setAttribute('data-mode', modeName);
   }
@@ -172,10 +266,8 @@ function updateRoomName() {
  * @param {String} level new level
  */
 function updateCurrentLevel(level) {
-  let currentLevel = document.getElementById('level');
-  console.log(currentLevel);
-
-  currentLevel.innerHTML = level;
+  let levelLabel = document.getElementById('level');
+  levelLabel.innerHTML = 'Lvl. ' + level;
 }
 
 
@@ -212,7 +304,6 @@ function createJSON(msg) {
 function readJSON(json) {
   // parse JSON String into JS object
   let message, obj = JSON.parse(json);
-  console.log('received JSON String: ' + JSON.stringify(obj));
 
   // update client variables
   levelID = obj.level;
@@ -227,31 +318,10 @@ function readJSON(json) {
 
 
 /**
- * Writes each char of the message individually into the element.
- * @param {HTML element} elem The HTML element where the message shall be added.
- * @param {String} msg The message to be written. 
- */
-function writeEachChar(elem, msg) {
-  if (msg.length > 0) {
-    elem.innerHTML += msg.charAt(0);
-    msg = msg.slice(1, msg.length)
-
-    setTimeout(() => {
-      writeEachChar(elem, msg)
-    }, 30);
-  }
-}
-
-
-/**
  * Close input field suggestions on click outside of input field.
  */
 window.addEventListener('click', (evt) => {
-  // console.log(evt.target);
-
-  // console.log('window click');
   if (evt.target.id != 'input-user') closeSuggestions();
-  // if (!document.getElementById('settings-window').contains(evt.target) && !evt.path.includes(document.getElementById('settings'))) closeSettings();
 }, false);
 
 

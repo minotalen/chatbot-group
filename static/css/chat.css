@@ -1,7 +1,7 @@
 /* 
 Main stylesheet for chat layout
 Authors: Kevin Katzkowski, mon janssen, Jeffrey Pillmann
-Last modified: 29.06.2020
+Last modified: 14.07.2020
 */
 
 #chat-content-container {
@@ -117,7 +117,7 @@ Last modified: 29.06.2020
 
 #chat-input-user input[type="text"]::selection {
   color: var(--color-message-bot);
-  background-color: var(--color-primary-light);
+  background-color: var(--color-input-selection);
 }
 
 #chat-input-user button {
@@ -155,7 +155,7 @@ form#chat-input-form {
   background-color: var(--color-surface-dark);
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
-  border: var(--border-default);
+  border: var(--border-input);
   border-bottom: none;
 }
 
@@ -166,13 +166,13 @@ form#chat-input-form {
 
 .suggestion.selected,
 .suggestion:focus {
-  background-color: var(--color-surface);
+  background-color: var(--color-surface-light);
   outline: none;
   cursor: default;
 }
 
 mark {
-  background-color: var(--color-primary-light);
+  background-color: var(--color-input-selection);
 }
 
 #suggestion-heading {

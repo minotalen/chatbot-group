@@ -1,10 +1,10 @@
 /**
  * Proile page implementation.
  * Authors: Kevin Katzkowski, Jeffrey Pillmann
- * Last modified: 09.07.2020
+ * Last modified: 14.07.2020
  */
 
-import { getSettingValue, setSettingValue } from './settings.mjs';
+import { getSettingValue, setSettingValue, updateTheme } from './settings.mjs';
 
 
 const changeUsername = document.getElementById('change-username'),
@@ -41,14 +41,17 @@ if(changeUsername) {
 
   systemTheme.addEventListener('click', () => {
     setSettingValue('userTheme', 'system');
+    updateTheme();
   }, false);
 
   lightTheme.addEventListener('click', () => {
     setSettingValue('userTheme', 'light');
+    updateTheme();
   }, false);
 
   darkTheme.addEventListener('click', () => {
     setSettingValue('userTheme', 'dark');
+    updateTheme();
   }, false);
 
   deleteGameProgress.addEventListener('click', () => {

@@ -1,26 +1,26 @@
 /**
  * Settings implementation.
  * Authors: Kevin Katzkowski, Jeffrey Pillmann, Cedric Nering
- * Last modified: 09.07.2020
+ * Last modified: 14.07.2020
  */
 
 import { updateDisplayedSettings } from './profile.js';
 
 
 const settings = {
-    username: undefined,
-    showSuggestions: undefined, 
-    readMessages: undefined,
-    gpt2Output: undefined,
-    userTheme: undefined
-  },
+  username: undefined,
+  showSuggestions: undefined,
+  readMessages: undefined,
+  gpt2Output: undefined,
+  userTheme: undefined
+},
   settingsUrl = '/settings';
 
 // get settings from database
-getSettingsJSON();
+getSettingsJSON(updateTheme);
 
 
-function getSettingValue(name) {  
+function getSettingValue(name) {
   return settings[name];
 }
 
@@ -33,22 +33,23 @@ function setSettingValue(name, value) {
 /**
  * Get setting json from database and update the client's settings.
  */
-function getSettingsJSON() {  
-  let xhttp = new XMLHttpRequest(), obj; 
+async function getSettingsJSON(callback = undefined) {
+  let xhttp = new XMLHttpRequest(), obj;
 
   xhttp.open('GET', settingsUrl, true);
   xhttp.addEventListener('readystatechange', () => {
-    if(xhttp.readyState === 4) {
+    if (xhttp.readyState === 4) {
       try {
         obj = JSON.parse(xhttp.responseText);
-      
+
         updateSettingsObj(obj);
         sendSettingsJSON();
       }
-      catch(e){
+      catch (e) {
         updateDisplayedSettings();
         console.log(e);
       }
+      callback != undefined && callback(); 
     }
   });
   xhttp.send();
@@ -57,20 +58,20 @@ function getSettingsJSON() {
 /**
  * Send the client's stored settings as json to the database
  */
-function sendSettingsJSON() {
+async function sendSettingsJSON() {
   let xhr = new XMLHttpRequest(), obj, settingsJSON;
 
   xhr.open('POST', settingsUrl, true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.addEventListener('readystatechange', () => {
-    if(xhr.readyState === 4) {
+    if (xhr.readyState === 4) {
       obj = JSON.parse(xhr.responseText);
       console.log(obj);
-      
+
       updateSettingsObj(obj);
     }
   });
-  settingsJSON = JSON.stringify(settings); 
+  settingsJSON = JSON.stringify(settings);
   xhr.send(settingsJSON);
 }
 
@@ -91,4 +92,34 @@ function updateSettingsObj(obj) {
   updateDisplayedSettings();
 }
 
-export { getSettingValue, setSettingValue }
+/**
+ * Update UI theme from database or from local storage (user logged in or not). 
+ */
+function updateTheme() {
+  let theme = getSettingValue('userTheme');
+  const localStorageTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'system';
+  console.log('local storage theme: ' + localStorageTheme);
+  theme = theme != undefined ? theme : localStorageTheme;
+
+
+  if (theme == 'system' && window.matchMedia) {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+      document.documentElement.setAttribute('data-theme', 'light')
+    } 
+  } else if (theme == 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+
+    if (theme == 'system') {
+      console.log('system theme preference not supported.');
+    }
+  }
+  localStorage.setItem('theme', theme);
+  console.log(`theme was set to ${theme}`);
+}
+
+
+export { getSettingValue, setSettingValue, updateTheme }

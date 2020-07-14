@@ -204,8 +204,8 @@ button {
 button.primary {
   background-color: var(--color-primary);
 
-  color: var(--color-onprimary);
-  font-weight: 600;
+  color: var(--color-text);
+  font-weight: 900;
   text-transform: uppercase;
   font-size: 0.8rem;
   letter-spacing: 0.05rem;
@@ -221,6 +221,7 @@ button.primary:hover,
 button.primary:active {
   background-color: var(--color-primary);
   box-shadow: var(--box-shadow-small);
+  border-color: var(--color-text);
 
   transition: .5s;
 }

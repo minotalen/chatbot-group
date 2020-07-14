@@ -47,11 +47,17 @@ Last modified: 02.07.2020
 .login input[type="password"],
 .signup input[type="text"],
 .signup input[type="password"] {
-  color: var(--color-message-user);
+  color: var(--color-text);
   box-sizing: border-box;
   border: var(--border-input);
   background-color: var(--color-surface);
   border-radius: var(--border-radius);
+}
+
+.login input:focus, 
+.singup input:focus {
+  outline: none;
+  border: var(--border-highlight);
 }
 
 .login h2,

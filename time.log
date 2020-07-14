@@ -3149,3 +3149,15 @@ time spent: 35.547826290130615
  * Detected change in '/home/max/chatbot-group/audio.py', reloading
  * Restarting with stat
 >>>>>>> master
+46.269811153411865 - classify-Intent
+0.0022394657135009766 - check
+0.000492095947265625 - filter
+0.05980372428894043 - typeofwords
+0.00012755393981933594 - wordsandtype
+9.846687316894531e-05 - listofchoices
+5.125999450683594e-05 - pre-loop
+0.08700346946716309 - pre-checkSimilarity
+1.6705446243286133 - post-checkSimilarity
+0.018009185791015625 - pre-checkSimilarity
+0.281707763671875 - post-checkSimilarity
+0.042467594146728516 - post-loop

@@ -3,6 +3,7 @@ import json
 import queue
 import database_SQLite as database
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
+from better_profanity import profanity
 from nltk import tokenize
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
 
@@ -23,6 +24,9 @@ with open('questions.json', encoding="utf8") as questions:
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 # Load gpt2 model
 model = GPT2LMHeadModel.from_pretrained('gpt2')
+
+#load bad words
+profanity.load_censor_words()
 
 rustyprof = "I am completely absent-minded. The proof of my theory is not yet..."
 
@@ -60,12 +64,10 @@ def handleAnswer(msg: str, username: str, level: int, roomId: int = -1) -> str:
     elif intent == 3:
         return tellAnswer(msg)
     elif intent == 4:
-        return "print recent message: print the oldest message in you mailbox you havent read <br> messages retrievable: to show possible messages with ids from your mailbox <br> message [id] : to show specific message from mailbox <br> professor: to ask the professor something<br> exit phone: to exit the phone"    
+        return "print recent message: print the oldest message in you mailbox you havent read <br> messages retrievable: to show possible messages with ids from your mailbox <br> message [id] : to show specific message from mailbox <br> ask professor: : to ask the professor something<br> exit phone: to exit the phone"    
 
     # returns the answer of the prof if it is not empty
-    if not json.loads(database.get_settings_by_username(username))['gpt2Output']:
-        answer = get_generated_answer(msg)
-    else: answer = rustyprof
+    answer = profanity.censor(get_generated_answer(msg))
     return [answer, rustyprof][not answer]
 
 
@@ -82,7 +84,7 @@ Returns: a number which represent a intent of the user // -1 if no intent is fou
 """
 def askProf(msg: str) -> int:
     choices = ["print recent message",
-               "messages retrieve", "professor", "manual"]
+               "messages retrieve", "ask professor:", "manual"]
     return classifyIntent(msg, choices)
 
 
@@ -131,8 +133,6 @@ Returns: a string as an answer
 """
 def get_generated_answer(input_context: str, output_tokens: int = 25) -> str:
 
-    
-        
     # add . if sentence doesnt end with a punctuation
     if tokenize.sent_tokenize(input_context)[-1][-1] not in "?.,!":
         input_context = input_context + '.'
@@ -307,16 +307,3 @@ def checkforMsgQuery(msg: str, username: str) -> str:
             if listofmsg[indexofmsgnumber].isdecimal():
                 return (True, printCertainMessage(username, int(listofmsg[indexofmsgnumber])))
     return (False, "")
-
-
-#@author Canh Dinh, Kevin
-def get_settings_by_username(username: str):
-    if database.does_setting_exist(username):
-        data = database.find_settings_by_username(username)
-        initial_data = {"username": data[1], "json": data[2]}
-        #print(data[2])
-        json_string = data[2]
-        # json_data = json.dumps(json_string[1:])
-        return json_string
-    else:
-        print('user does not exist')

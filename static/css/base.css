@@ -99,7 +99,8 @@ nav ul li {
   font-size: 1.2rem;
   text-transform: uppercase;
 
-  border: 2px solid rgba(0, 0, 0, 0); /* TODO move to colors.css */
+  border: 2px solid rgba(0, 0, 0, 0);
+  /* TODO move to colors.css */
 }
 
 
@@ -265,7 +266,8 @@ button#delete-account.secondary {
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow-large);
 
-  overflow: hidden;
+  /* overflow: hidden; */
+  overflow-y: auto;
 }
 
 input[type="radio"] {

@@ -79,7 +79,7 @@ def checkSynonyms(msg: str, choices: list) -> str:
     typeofwords =  list(map(lambda x: getWordtype(x, ' '.join(listofwords)), listofwords))
     l.log_time('typeofwords')#logging
     wordsandtype = list(zip(listofwords, typeofwords))
-    msgwordsynonyms = list(map(lambda x: getSynonyms(x[0],x[1]) , wordsandtype)) #new
+    #msgwordsynonyms = list(map(lambda x: getSynonyms(x[0],x[1]) , wordsandtype)) #new
     l.log_time('wordsandtype')#logging    
     listofchoices = list(map(lambda x: filterMessage(x).split(), choices))
     l.log_time('listofchoices')#logging  
@@ -88,12 +88,13 @@ def checkSynonyms(msg: str, choices: list) -> str:
     for intent in listofchoices:
         results.append(0)
         for body in intent:
-            synsofbody = getSynonyms(body, getWordtype(body))
+            #synsofbody = getSynonyms(body, getWordtype(body)) #new
             wordratings = [0]
-            for tup, synsofword in zip(wordsandtype, msgwordsynonyms): #new
+            for tup in wordsandtype:
+            #for tup, synsofword in zip(wordsandtype, msgwordsynonyms): #new
                 if tup[1] == getWordtype(body):
-                   #wordratings.append(checkSimilarity(body, tup[0]))
-                   wordratings.append(len(set(synsofbody).intersection(synsofword)))
+                   wordratings.append(checkSimilarity(body, tup[0]))
+                   #wordratings.append(len(set(synsofbody).intersection(synsofword)))
                    results[len(results)-1] += max(wordratings)
     l.log_time('post-loop')#logging
     return ["i dont know", choices[results.index(max(results))]][max(results) > 0]               

@@ -63,7 +63,7 @@ def filterMessage(msg: str) -> str: return "".join([ c.lower() for c in msg if c
 
 """
 @author:: Max Petendra, Tobias -> (logging time)
-@state: 08.06.20
+@state: 15.07.20
 checks which of the given intents are possibly meant
 Parameters
 ----------
@@ -79,6 +79,7 @@ def checkSynonyms(msg: str, choices: list) -> str:
     typeofwords =  list(map(lambda x: getWordtype(x, ' '.join(listofwords)), listofwords))
     l.log_time('typeofwords')#logging
     wordsandtype = list(zip(listofwords, typeofwords))
+    msgwordsynonyms = list(map(lambda x: getSynonyms(x[0],x[1]) , wordsandtype)) #new
     l.log_time('wordsandtype')#logging    
     listofchoices = list(map(lambda x: filterMessage(x).split(), choices))
     l.log_time('listofchoices')#logging  
@@ -87,10 +88,12 @@ def checkSynonyms(msg: str, choices: list) -> str:
     for intent in listofchoices:
         results.append(0)
         for body in intent:
+            synsofbody = getSynonyms(body, getWordtype(body))
             wordratings = [0]
-            for tup in wordsandtype:
+            for tup, synsofword in zip(wordsandtype, msgwordsynonyms): #new
                 if tup[1] == getWordtype(body):
-                   wordratings.append(checkSimilarity(body, tup[0]))
+                   #wordratings.append(checkSimilarity(body, tup[0]))
+                   wordratings.append(len(set(synsofbody).intersection(synsofword)))
                    results[len(results)-1] += max(wordratings)
     l.log_time('post-loop')#logging
     return ["i dont know", choices[results.index(max(results))]][max(results) > 0]               
@@ -149,7 +152,7 @@ def getWordsofType(msg: str, wordtype: str) -> set:
 
 """
 @author:: Max Petendra, Tobias -> (logging)
-@state: 08.06.20
+@state: 15.07.20 // currently deprecated
 checks the similarity of two words
 Parameters
 ----------

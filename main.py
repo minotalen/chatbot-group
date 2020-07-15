@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_socketio import SocketIO, send, emit
 import json
+import threading
 import database_SQLite as database
 from answerhandler_json import answerHandler
 import sys
@@ -143,6 +144,14 @@ def logout():
 def handleJson(payload):
     print("sending: " + payload)
     try:
+        """
+        que = Queue.Queue()
+
+        t = Thread(target=lambda q, arg1: q.put(foo(arg1)), args=(payload, get_username_by_sid(request.sid)))
+        t.start()
+        t.join()
+        send(que.get(), json=True)
+        """
         send(answerHandler(payload, get_username_by_sid(request.sid)), json=True)
     except:
         obj = json.loads(payload)

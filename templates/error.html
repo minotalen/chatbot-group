@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-mode="game">
+
+<!--
+  Error page
+  Authors: Jeffrey Pillmann
+  Last modified: 16.07.2020
+-->
+
+<head>
+  <!-- required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no">
+
+  <!-- Google icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="../static/css/base.css">
+  <link rel="stylesheet" href="../static/css/colors.css">
+  <link rel="stylesheet" href="../static/css/error.css">
+
+  <!-- TODO change title -->
+  <title>Error | 404</title>
+</head>
+
+<body>
+  <div class="container error">
+    <div>
+      <img src="../static/img/placeholdericon.svg" alt="Sorry!" class="icon">
+    </div>
+    <h1>Error 404.</h1>
+    <p>The page you are looking for might have been removed, had it´s name changed, is temporarily unavailable, or
+      does
+      not exist.</p>
+    <a href="{{ url_for('login') }}">
+      <button id="home-button" type="button" class="primary">Back to home</button>
+    </a>
+  </div>
+</body>
+
+</html>

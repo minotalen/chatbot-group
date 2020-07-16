@@ -1,10 +1,12 @@
+import sys
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_socketio import SocketIO, send, emit
 import json
 import threading
-import database_SQLite as database
-from answerhandler_json import answerHandler
-import sys
+
+sys.path.insert(1, '/modules')
+from modules.answerhandler_json import answerHandler
+import modules.database_SQLite as database
 
 app = Flask(__name__, static_url_path='/static')
 

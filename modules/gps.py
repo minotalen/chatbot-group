@@ -3,7 +3,7 @@ import database_SQLite as database
 from intentclassificator import classifyIntent
 
 # open json for messages from prof
-with open('gps.json', encoding="utf8") as gps:
+with open('json/gps.json', encoding="utf8") as gps:
     rec_json = json.load(gps)
     locations = rec_json['locations']
 

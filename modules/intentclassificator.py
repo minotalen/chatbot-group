@@ -116,8 +116,9 @@ def writeMessagetoTrainingData(msg: str) -> bool:
     filteredmessage = filterMessage(msg)
     print(filteredmessage)
 
-    script_location = Path(__file__).absolute().parent
-    file_location = script_location / 'trainingdata.csv'
+    script_location = Path(__file__).absolute().parent.parent
+    file_location = script_location / 'data/trainingdata.csv'
+    print('csv file location', file_location)
     file = file_location.open()
 
     with open(file_location, 'r', newline = '') as file:

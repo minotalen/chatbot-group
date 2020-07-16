@@ -1,17 +1,20 @@
+import sys
 import json
 import pandas as pd
+from nltk import tokenize
+from pathlib import Path
+
+sys.path.append("./modules")
 import database_SQLite as database
 import data_json_functions as djf
 from gps import handleGPS, printLocations
-from nltk import tokenize
-from pathlib import Path
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
 from phone import handleAnswer, getSizeofMessagequeue, get_generated_answer, formatHTMLText
 from riddlemode import checkAnswer
 import logging_time as l
 import audio as audio
 
-with open('rooms.json', encoding="utf8") as allLevels:
+with open('json/rooms.json', encoding="utf8") as allLevels:
     data = json.load(allLevels)
     rooms = data['rooms']
 
@@ -28,8 +31,6 @@ username: the username of the user currently playing
 
 Returns the json from the client
 """
-
-
 def answerHandler(inputjson, username):
     l.log_start()  # logging
     obj = json.loads(inputjson)
@@ -114,8 +115,6 @@ roomId = the current id of the room the player is in (default = -1 if no id is g
 
 Returns a triple if the reply message of the chatbot the room id and the 
 """
-
-
 def findAnswer(username, msg, roomId=-1):
     if roomId == -1:
         raise ValueError("Invalid room id!")
@@ -276,8 +275,6 @@ roomName : the roomName the player wants to know the id from
 
 Returns the roodId specified by the room name (-1 if no roodId is found)
 """
-
-
 def getRoomId(roomName: str) -> int:
     for count in range(0, len(rooms)):
         if rooms[count]['roomName'] in roomName:

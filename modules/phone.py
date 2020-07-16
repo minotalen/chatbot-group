@@ -11,12 +11,12 @@ from intentclassificator import classifyIntent, writeMessagetoTrainingData
 # text_generator = pipeline("text-generation")
 
 # open json for messages from prof
-with open('recmessages.json', encoding="utf8") as messages:
+with open('json/recmessages.json', encoding="utf8") as messages:
     rec_json = json.load(messages)
     messages = rec_json['messages']
 
 # open json for messages from prof
-with open('questions.json', encoding="utf8") as questions:
+with open('json/questions.json', encoding="utf8") as questions:
     rec_json = json.load(questions)
     questions = rec_json['questions']
 

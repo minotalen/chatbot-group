@@ -6,7 +6,7 @@ last_time = time.time()
 start_time = time.time()
 
 #logging.basicConfig(level=logging.DEBUG, filename='time.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s')
-logging.basicConfig(level=logging.CRITICAL, filename='time.log', filemode='a', format='%(message)s')
+logging.basicConfig(level=logging.CRITICAL, filename='data/time.log', filemode='a', format='%(message)s')
 
 # starts the timer for the logging
 def log_start():

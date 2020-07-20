@@ -1,5 +1,7 @@
 import csv
 import spacy
+import time
+import re
 from nltk.corpus import wordnet as wn
 from pathlib import Path
 from fuzzywuzzy import fuzz, process
@@ -71,8 +73,14 @@ msg : the input message of the player to test
 choices: the list of intents to choose from
 
 Returns: the intent that has the most consensus with the msg as a string
+i don't know if intent has to many words or the calculation takes too long
 """
 def checkSynonyms(msg: str, choices: list) -> str:
+
+    if len(re.findall(r'[^\s!,.?":;0-9]+', msg)) > 10: return "i don't know"
+
+    start = time.time()
+
     l.log_time('check')#logging
     listofwords = filterMessage(msg).split()
     l.log_time('filter')#logging
@@ -86,18 +94,21 @@ def checkSynonyms(msg: str, choices: list) -> str:
     results = []
     l.log_time('pre-loop')#logging
     for intent in listofchoices:
+        if not time.time() < start + 10: return "i don't know"
         results.append(0)
         for body in intent:
             #synsofbody = getSynonyms(body, getWordtype(body)) #new
             wordratings = [0]
             for tup in wordsandtype:
-            #for tup, synsofword in zip(wordsandtype, msgwordsynonyms): #new
+                #for tup, synsofword in zip(wordsandtype, msgwordsynonyms): #new
                 if tup[1] == getWordtype(body):
-                   wordratings.append(checkSimilarity(body, tup[0]))
-                   #wordratings.append(len(set(synsofbody).intersection(synsofword)))
-                   results[len(results)-1] += max(wordratings)
+                    wordratings.append(checkSimilarity(body, tup[0]))
+                    #wordratings.append(len(set(synsofbody).intersection(synsofword)))
+                    results[len(results)-1] += max(wordratings)
     l.log_time('post-loop')#logging
-    return ["i dont know", choices[results.index(max(results))]][max(results) > 0]               
+    return ["i dont know", choices[results.index(max(results))]][max(results) > 0] 
+
+                     
 
 """
 @author:: Max Petendra

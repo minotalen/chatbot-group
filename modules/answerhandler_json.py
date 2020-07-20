@@ -1,6 +1,5 @@
 import sys
 import json
-import time
 import pandas as pd
 from nltk import tokenize
 from pathlib import Path
@@ -37,70 +36,66 @@ def answerHandler(inputjson, username):
     l.log_start()  # logging
     obj = json.loads(inputjson)
     
-    start = time.time()
-    while time.time() < start + 15:
-        # When the mode is phone and player inputs exit phone
-        if str(obj['mode']) == 'phone' and classifyIntent(str(obj['message'].lower()), ['exit phone']) == 1:
-            answer = ('You stop looking at the bad quality of your phone',
-                    getRoomName(getRoomId(str(obj['room']))), 'game')
+    # When the mode is phone and player inputs exit phone
+    if str(obj['mode']) == 'phone' and classifyIntent(str(obj['message'].lower()), ['exit phone']) == 1:
+        answer = ('You stop looking at the bad quality of your phone',
+                getRoomName(getRoomId(str(obj['room']))), 'game')
 
-        # When the mode is phone
-        elif str(obj['mode']) == 'phone':
-            answer = [handleAnswer(str(obj['message'].lower()), username, int(obj['level']), getRoomId(
-                str(obj['room']))), getRoomName(getRoomId(str(obj['room']))), 'phone']
+    # When the mode is phone
+    elif str(obj['mode']) == 'phone':
+        answer = [handleAnswer(str(obj['message'].lower()), username, int(obj['level']), getRoomId(
+            str(obj['room']))), getRoomName(getRoomId(str(obj['room']))), 'phone']
 
-        # When the mode is gps and player inputs exit gps
-        elif str(obj['mode']) == 'gps' and classifyIntent(str(obj['message'].lower()), ['exit gps']) == 1:
-            answer = ('Your gps device is now turned off',
-                    getRoomName(getRoomId(str(obj['room']))), 'game')
+    # When the mode is gps and player inputs exit gps
+    elif str(obj['mode']) == 'gps' and classifyIntent(str(obj['message'].lower()), ['exit gps']) == 1:
+        answer = ('Your gps device is now turned off',
+                getRoomName(getRoomId(str(obj['room']))), 'game')
 
-        # When the mode is gps
-        elif str(obj['mode']) == 'gps':
-            cur_room_id = getRoomId(str(obj['room']))
-            gpsTriple = handleGPS(str(obj['message'].lower()), username, int(obj['level']), getRoomId(str(obj['room'])))
-            if cur_room_id == gpsTriple[1]:
-                answer = [gpsTriple[0], getRoomName(gpsTriple[1]), gpsTriple[2]]
-            else:
-                answer = [gpsTriple[0] + "<br>" + getRoomIntroduction(gpsTriple[1]), getRoomName(gpsTriple[1]), gpsTriple[2]]
-
-        # When the mode is riddle
-        elif str(obj['mode']) == 'riddle':
-            answer = checkAnswer(str(obj['message'].lower()), getRoomId(
-                str(obj['room'])), username)
-            answer[1] = getRoomName(answer[1])
-
-        # When mode is game
+    # When the mode is gps
+    elif str(obj['mode']) == 'gps':
+        cur_room_id = getRoomId(str(obj['room']))
+        gpsTriple = handleGPS(str(obj['message'].lower()), username, int(obj['level']), getRoomId(str(obj['room'])))
+        if cur_room_id == gpsTriple[1]:
+            answer = [gpsTriple[0], getRoomName(gpsTriple[1]), gpsTriple[2]]
         else:
-            #l.log_time('remove_tables')
-            #database.remove_unused_tables()
-            answer = findAnswer(username, str(
-                obj['message'].lower()), getRoomId(str(obj['room'])))
+            answer = [gpsTriple[0] + "<br>" + getRoomIntroduction(gpsTriple[1]), getRoomName(gpsTriple[1]), gpsTriple[2]]
 
-        if writeMessagetoTrainingData(str(obj['message'])):
-            print("added message to training data")
-        else:
-            print("added nothing to training data")
+    # When the mode is riddle
+    elif str(obj['mode']) == 'riddle':
+        answer = checkAnswer(str(obj['message'].lower()), getRoomId(
+            str(obj['room'])), username)
+        answer[1] = getRoomName(answer[1])
 
-        #text to spreech if it is turned on in the setting @author Max Petendra
-        if json.loads(database.get_settings_by_username(username))['readMessages']: audio.playSound(formatHTMLText(answer[0])[0:200])
-            
+    # When mode is game
+    else:
+        #l.log_time('remove_tables')
+        #database.remove_unused_tables()
+        answer = findAnswer(username, str(
+            obj['message'].lower()), getRoomId(str(obj['room'])))
+
+    if writeMessagetoTrainingData(str(obj['message'])):
+        print("added message to training data")
+    else:
+        print("added nothing to training data")
+
+    #text to spreech if it is turned on in the setting @author Max Petendra
+    if json.loads(database.get_settings_by_username(username))['readMessages']: audio.playSound(formatHTMLText(answer[0])[0:200])
         
+    
+    
+    # json wird wieder zusammen gepackt
+    l.log_time('end')  # logging
+    l.log_end()  # logging
+
+
+    #Check if a differnt sender is given
+    if len(answer) <= 3: newSender = "bot"
+    else: newSender = answer[3]
         
-        # json wird wieder zusammen gepackt
-        l.log_time('end')  # logging
-        l.log_end()  # logging
 
-
-        #Check if a differnt sender is given
-        if len(answer) <= 3: newSender = "bot"
-        else: newSender = answer[3]
-            
-
-        #regular return statment
-        return json.dumps({"level": 1, "sender": newSender, "room": answer[1], "items": [], "mode": answer[2], "message": answer[0]})
-    #return statment if answer calculation took to look
-    return json.dumps({"level": 1, "sender": 'bot', "room": getRoomName(getRoomId(str(obj['room']))),
-     "items": [], "mode": str(obj['mode']), "message": "The Bot seems to fell asleep while thinking, try to chat again"})    
+    #regular return statment
+    return json.dumps({"level": 1, "sender": newSender, "room": answer[1], "items": [], "mode": answer[2], "message": answer[0]})
+       
         
 
 

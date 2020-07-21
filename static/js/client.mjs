@@ -242,7 +242,7 @@ function writeEachChar(elem, msg, callback, tag = '', reverseIndex = 0) {
  * Updates the new game mode for the interface.
  */
 function updateMode() {
-  if (modeName != 'riddle' && modeName != 'phone' && mode != 'gps') {
+  if (modeName != 'riddle' && modeName != 'phone' && modeName != 'gps') {
     document.documentElement.setAttribute('data-mode', '');
   } else {
     document.documentElement.setAttribute('data-mode', modeName);

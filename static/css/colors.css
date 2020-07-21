@@ -1,7 +1,7 @@
 /*
 Color definitions prepared for different themes
 Authors: Kevin Katzkowski, Jeffrey Pillmann
-Last modified: 14.07.2020
+Last modified: 21.07.2020
 */
 
 /* TODO swap primary colors between themes */
@@ -39,6 +39,13 @@ Last modified: 14.07.2020
   --box-shadow-medium: 4px 4px 0px rgba(0, 0, 0, 0.65);
   --box-shadow-large: 6px 6px 0px rgba(0, 0, 0, 0.65);
   --box-shadow-glow: 0 0 .25rem rgba(0, 0, 0, .3);
+
+  --color-mode-primary: var(--color-primary);
+  --color-mode-surface: var(--color-surface);
+  --color-mode-background: var(--color-surface-light);
+  --color-mode-text: var(--color-text);
+  --color-mode-suggestion-background: var(--color-surface-dark);
+  --color-mode-suggestion-highlight: var(--color-surface-light);
 }
 
 [data-theme="dark"] {
@@ -72,39 +79,48 @@ Last modified: 14.07.2020
   --box-shadow-medium: 4px 4px 0px rgba(0, 0, 0, 0.65);
   --box-shadow-large: 6px 6px 0px rgba(0, 0, 0, 0.65);
   --box-shadow-glow: 0 0 .25rem rgba(0, 0, 0, .3);
+
+  --color-mode-primary: var(--color-primary);
+  --color-mode-surface: var(--color-surface);
+  --color-mode-background: var(--color-surface-light);
+  --color-mode-text: var(--color-text);
+  --color-mode-suggestion-background: var(--color-surface-dark);
+  --color-mode-suggestion-highlight: var(--color-surface-light);
 }
 
 [data-mode="riddle"] {
-  /* top bar color, button background color */
-  --color-primary: rgb(0, 255, 115);
+  --color-mode-primary: var(--color-primary);
+  --color-mode-surface: var(--color-surface);
+  --color-mode-background: var(--color-surface-light);
+  --color-mode-text: var(--color-text);
+  --color-text-placeholder: var(--color-text-placeholder);
+  --color-input-selection: var(--color-input-selection);
+  --color-mode-suggestion-background: var(--color-surface-dark);
+  --color-mode-suggestion-highlight: var(--color-surface-light);
+  --color-suggestion-heading: var(--color-suggestion-heading);
+}
 
-  /* headlines */
-  --color-onprimary: var(--color-background);
+[data-mode="phone"] {
+  --color-mode-primary: var(--color-primary);
+  --color-mode-surface: var(--color-surface);
+  --color-mode-background: var(--color-surface-light);
+  --color-mode-text: var(--color-text);
+  --color-text-placeholder: var(--color-text-placeholder);
+  --color-input-selection: var(--color-input-selection);
+  --color-mode-suggestion-background: var(--color-surface-dark);
+  --color-mode-suggestion-highlight: var(--color-surface-light);
+  --color-suggestion-heading: var(--color-suggestion-heading);
+}
 
-  /* headlines, bot messages */
-  /* --color-text: #e1e1ff; */
 
-  /* background behind chat */
-  /* --color-background: var(--color-background); */
-
-  /* text field, text field selection highlighting, settings window, settings checkmark */
-  --color-surface: rgb(0, 136, 61);
-
-  /* settings entry background */
-  /* --color-surface-light: var(--color-surface-light); */
-
-  /* suggestion background */
-  /* --color-surface-dark: var(--color-surface-dark); */
-
-  /* text marker color for matching text in input field */
-  --color-input-selection: rgb(117, 255, 179);
-
-  /* Suggestion box heading + placeholder */
-  --color-text-placeholder: var(--color-onprimary);
-
-  /* user message, input text color, primary button border */
-  /* --color-message-user: var(--color-message-user); */
-
-  /* bot message */
-  /* --color-message-bot: var(--color-message-bot); */
+[data-mode="gps"] {
+  --color-mode-primary: var(--color-primary);
+  --color-mode-surface: var(--color-surface);
+  --color-mode-background: var(--color-surface-light);
+  --color-mode-text: var(--color-text);
+  --color-text-placeholder: var(--color-text-placeholder);
+  --color-input-selection: var(--color-input-selection);
+  --color-mode-suggestion-background: var(--color-surface-dark);
+  --color-mode-suggestion-highlight: var(--color-surface-light);
+  --color-suggestion-heading: var(--color-suggestion-heading);
 }

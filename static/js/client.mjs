@@ -1,7 +1,7 @@
 /**
  * Client-side script to receive, send and display messages.
  * Authors: Katja Schneider, Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modified: 09.07.2020
+ * Last modified: 21.07.2020
  */
 
 import { closeSuggestions, userInput } from './suggestions.mjs';
@@ -242,7 +242,7 @@ function writeEachChar(elem, msg, callback, tag = '', reverseIndex = 0) {
  * Updates the new game mode for the interface.
  */
 function updateMode() {
-  if (modeName != 'riddle' && modeName != 'phone') {
+  if (modeName != 'riddle' && modeName != 'phone' && mode != 'gps') {
     document.documentElement.setAttribute('data-mode', '');
   } else {
     document.documentElement.setAttribute('data-mode', modeName);

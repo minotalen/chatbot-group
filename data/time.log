@@ -5023,3 +5023,88 @@ time spent: 0.5096206665039062
 0.00599360466003418 - end
 time spent: 2.32537841796875
 ---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/modules/phone.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.0006177425384521484 - classify-Intent
+0.0017409324645996094 - end
+time spent: 0.0024459362030029297
+---------------------------------------
+0.0 - start
+0.00037026405334472656 - classify-Intent
+0.0021762847900390625 - end
+time spent: 0.002685546875
+---------------------------------------
+0.0 - start
+0.011533975601196289 - end
+time spent: 0.011940479278564453
+---------------------------------------
+0.0 - start
+0.002317190170288086 - classify-Intent
+0.043883323669433594 - end
+time spent: 0.0467381477355957
+---------------------------------------
+0.0 - start
+0.0028982162475585938 - classify-Intent
+0.002633810043334961 - classify-Intent
+1.8792331218719482 - end
+time spent: 1.884892463684082
+---------------------------------------
+0.0 - start
+0.0011310577392578125 - classify-Intent
+0.0005090236663818359 - check
+0.00047278404235839844 - filter
+0.11657571792602539 - typeofwords
+0.0001399517059326172 - wordsandtype
+0.000102996826171875 - listofchoices
+6.437301635742188e-05 - pre-loop
+0.0860598087310791 - pre-checkSimilarity
+2.3821873664855957 - post-checkSimilarity
+0.06819772720336914 - pre-checkSimilarity
+0.4013228416442871 - post-checkSimilarity
+0.00021123886108398438 - post-loop
+0.0004324913024902344 - classify-Intent
+0.00011467933654785156 - check
+9.655952453613281e-05 - filter
+0.08600759506225586 - typeofwords
+0.00015592575073242188 - wordsandtype
+8.58306884765625e-05 - listofchoices
+5.8650970458984375e-05 - pre-loop
+0.06605863571166992 - pre-checkSimilarity
+0.3311474323272705 - post-checkSimilarity
+0.11356759071350098 - pre-checkSimilarity
+0.1888871192932129 - post-checkSimilarity
+0.05570697784423828 - pre-checkSimilarity
+0.22162675857543945 - post-checkSimilarity
+0.010055303573608398 - pre-checkSimilarity
+0.4562678337097168 - post-checkSimilarity
+0.020140409469604492 - pre-checkSimilarity
+0.36145520210266113 - post-checkSimilarity
+0.01758098602294922 - pre-checkSimilarity
+0.22432565689086914 - post-checkSimilarity
+0.011374235153198242 - pre-checkSimilarity
+0.21680927276611328 - post-checkSimilarity
+0.01709914207458496 - pre-checkSimilarity
+0.4299499988555908 - post-checkSimilarity
+0.013350963592529297 - pre-checkSimilarity
+0.3647160530090332 - post-checkSimilarity
+0.017225027084350586 - pre-checkSimilarity
+0.2701289653778076 - post-checkSimilarity
+0.012388467788696289 - pre-checkSimilarity
+0.2657284736633301 - post-checkSimilarity
+0.06815385818481445 - pre-checkSimilarity
+0.18253707885742188 - post-checkSimilarity
+0.055817604064941406 - pre-checkSimilarity
+0.17541265487670898 - post-checkSimilarity
+0.00012254714965820312 - post-loop
+1.651977777481079 - end
+time spent: 8.963667869567871
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/phone.py', reloading
+ * Restarting with stat

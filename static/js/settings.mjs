@@ -4,7 +4,7 @@
  * Last modified: 14.07.2020
  */
 
-import { updateDisplayedSettings } from './profile.js';
+import { updateDisplayedSettings } from './profile.mjs';
 
 
 const settings = {

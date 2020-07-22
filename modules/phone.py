@@ -1,6 +1,7 @@
 import re
 import json
 import queue
+import threading
 import database_SQLite as database
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 from better_profanity import profanity
@@ -65,9 +66,14 @@ def handleAnswer(msg: str, username: str, level: int, roomId: int = -1) -> str:
         return tellAnswer(msg)
     elif intent == 4:
         return "print recent message: print the oldest message in you mailbox you havent read <br> messages retrievable: to show possible messages with ids from your mailbox <br> message [id] : to show specific message from mailbox <br> ask professor: : to ask the professor something<br> exit phone: to exit the phone"    
+    
+    #only the last ten words of the msg to prevent long gpt-2 calculation
+    msg = " ".join(re.findall(r'\w+', msg)[-8:])
 
-    # returns the answer of the prof if it is not empty
+    #censor bad words
     answer = profanity.censor(get_generated_answer(msg))
+
+    #returns the answer of the prof if it is not empty
     return [answer, rustyprof][not answer]
 
 
@@ -282,9 +288,9 @@ def getMessageRange(username: str):
     if not listofmsgs:
         return "you have no messages recieved yet"
     elif len(listofmsgs) == 1:
-        return "you can access on msg 1"
+        return "you can access on message 1"
     else:
-        return "you can access on msg 1 to " + str(len(listofmsgs))
+        return "you can access on message 1 to " + str(len(listofmsgs))
 
 
 """
@@ -301,7 +307,7 @@ Returns: a tuple (bool:msg exists, string:msg)
 """
 def checkforMsgQuery(msg: str, username: str) -> str:
     listofmsg = [string.lower() for string in msg.split()]
-    if "message" in listofmsg:
+    if "message" in listofmsg or "msg" in listofmsg:
         indexofmsgnumber = listofmsg.index("message") + 1
         if indexofmsgnumber <= len(listofmsg) - 1:
             if listofmsg[indexofmsgnumber].isdecimal():

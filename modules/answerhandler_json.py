@@ -155,24 +155,26 @@ def findAnswer(username, msg, roomId=-1):
     if intentID == 1:
         elemCount = -1
         # RÄUME
-        for elem in rooms[roomId]['connections']:
-            elemCount += 1
+        if rooms[roomId]['connections'][0]:
+            for elem in rooms[roomId]['connections']:
+                elemCount += 1
 
-            for name in elem['conNames']:
-                if name in msg and djf.checkNeededStates(rooms[roomId]['connections'][elemCount], username):
-                    roomId = int(elem['conRoomId'])
+                for name in elem['conNames']:
+                    if name in msg and djf.checkNeededStates(rooms[roomId]['connections'][elemCount], username):
+                        roomId = int(elem['conRoomId'])
 
-                    return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
+                        return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
 
-        elemCount = -1
+            elemCount = -1
         # OBJEKTE
-        for elem in rooms[roomId]['objects']:
-            elemCount += 1
+        if rooms[roomId]['objects'][0] is not None:
+            for elem in rooms[roomId]['objects']:
+                elemCount += 1
 
-            if elem['objName'] in msg and djf.checkNeededStates(rooms[roomId]['objects'][elemCount], username):
-                djf.updateStates(rooms[roomId]['objects'][elemCount], username)
+                if elem['objName'] in msg and djf.checkNeededStates(rooms[roomId]['objects'][elemCount], username):
+                    djf.updateStates(rooms[roomId]['objects'][elemCount], username)
 
-                return (elem['lookAt'], getRoomName(roomId), 'game')
+                    return (elem['lookAt'], getRoomName(roomId), 'game')
 
     # LOOK AT: Items und Objekte im Raum können angeschaut werden. ansonsten wird LOOK AROUND die Raumbeschreibungs ausgegeben
     elif intentID == 2:
@@ -186,7 +188,7 @@ def findAnswer(username, msg, roomId=-1):
 
                     return (elem['lookAt'], getRoomName(roomId), 'game')
         
-        # INThere is a bench, a trash bin and a strange looking bush near the monument. You also notice a small staircase leading below the base of the monument.On a side view you can see a number of buildings surrounding the monuments. If you take a look at the left-hand side of the stairs, you will see only two other building. In the center is the stone shrine. If you look at the left-hand side of the stairs, you can see the same side. There's a great view from here. At the top of the stairs, you can see several wooden crosses. The second thing you see while looking up is something very peculiar. If you look at the left-hand side of each picture, you will see an enormous structure that resembles the pyramid of Saturn.VENTORY
+        # LOOK AT ITEMS IN INVENTORY
         for i in database.get_all_user_items(username):
             if i[0] in msg:
                 for elem in rooms[i[1]]['items']:

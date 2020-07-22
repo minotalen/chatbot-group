@@ -3286,3 +3286,1825 @@ time spent: 0.014880895614624023
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 662-722-174
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+0.0 - start
+0.0009987354278564453 - classify-Intent
+0.018988847732543945 - end
+time spent: 0.01998758316040039
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.006003618240356445 - end
+time spent: 0.006003618240356445
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.004996538162231445 - end
+time spent: 0.004996538162231445
+---------------------------------------
+0.0 - start
+0.00498652458190918 - end
+time spent: 0.00598597526550293
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.04102587699890137 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0009987354278564453 - pre-loop
+0.0059969425201416016 - pre-checkSimilarity
+2.8353219032287598 - post-checkSimilarity
+0.02499842643737793 - pre-checkSimilarity
+0.5416908264160156 - post-checkSimilarity
+0.022986173629760742 - pre-checkSimilarity
+0.5137066841125488 - post-checkSimilarity
+0.030970096588134766 - pre-checkSimilarity
+0.4177742004394531 - post-checkSimilarity
+0.024985313415527344 - pre-checkSimilarity
+0.3059999942779541 - post-checkSimilarity
+0.029983043670654297 - pre-checkSimilarity
+0.7510526180267334 - post-checkSimilarity
+0.0179898738861084 - pre-checkSimilarity
+0.3568148612976074 - post-checkSimilarity
+0.005996227264404297 - pre-checkSimilarity
+0.7440643310546875 - post-checkSimilarity
+0.028983592987060547 - pre-checkSimilarity
+0.4368312358856201 - post-checkSimilarity
+0.01699042320251465 - pre-checkSimilarity
+0.3508124351501465 - post-checkSimilarity
+0.0 - post-loop
+0.003994941711425781 - end
+time spent: 7.5099687576293945
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.010004758834838867 - end
+time spent: 0.010004758834838867
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.003996849060058594 - end
+time spent: 0.003996849060058594
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.010003328323364258 - end
+time spent: 0.010003328323364258
+---------------------------------------
+0.0 - start
+0.0009999275207519531 - classify-Intent
+0.0 - check
+0.0 - filter
+0.014004707336425781 - typeofwords
+0.0 - wordsandtype
+0.000985860824584961 - listofchoices
+0.0 - pre-loop
+0.1309351921081543 - pre-checkSimilarity
+0.23085784912109375 - post-checkSimilarity
+0.0060100555419921875 - pre-checkSimilarity
+0.13192510604858398 - post-checkSimilarity
+0.04297494888305664 - pre-checkSimilarity
+0.24186205863952637 - post-checkSimilarity
+0.0059931278228759766 - pre-checkSimilarity
+0.18689703941345215 - post-checkSimilarity
+0.023985862731933594 - post-loop
+0.004994392395019531 - end
+time spent: 1.0224261283874512
+---------------------------------------
+0.0 - start
+0.0010008811950683594 - classify-Intent
+0.0 - check
+0.0 - filter
+0.01299285888671875 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.0060083866119384766 - pre-checkSimilarity
+0.9844250679016113 - post-checkSimilarity
+0.023985862731933594 - pre-checkSimilarity
+0.518704891204834 - post-checkSimilarity
+0.02398538589477539 - pre-checkSimilarity
+0.5197029113769531 - post-checkSimilarity
+0.028983354568481445 - pre-checkSimilarity
+0.2628500461578369 - post-checkSimilarity
+0.023985624313354492 - pre-checkSimilarity
+0.15391302108764648 - post-checkSimilarity
+0.028983354568481445 - pre-checkSimilarity
+0.6946029663085938 - post-checkSimilarity
+0.017989158630371094 - pre-checkSimilarity
+0.25785326957702637 - post-checkSimilarity
+0.006997346878051758 - pre-checkSimilarity
+0.6936025619506836 - post-checkSimilarity
+0.030982255935668945 - pre-checkSimilarity
+0.33780741691589355 - post-checkSimilarity
+0.010993480682373047 - pre-checkSimilarity
+0.14991402626037598 - post-checkSimilarity
+0.0 - post-loop
+0.005997419357299805 - end
+time spent: 4.796261548995972
+---------------------------------------
+0.0 - start
+0.00099945068359375 - classify-Intent
+0.003997325897216797 - end
+time spent: 0.004996776580810547
+---------------------------------------
+0.0 - start
+0.0010001659393310547 - classify-Intent
+0.0 - check
+0.0 - filter
+0.014004707336425781 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.005997180938720703 - pre-checkSimilarity
+0.9834375381469727 - post-checkSimilarity
+0.02497243881225586 - pre-checkSimilarity
+0.48572278022766113 - post-checkSimilarity
+0.023985862731933594 - pre-checkSimilarity
+0.5586810111999512 - post-checkSimilarity
+0.029983043670654297 - pre-checkSimilarity
+0.35379815101623535 - post-checkSimilarity
+0.022986888885498047 - pre-checkSimilarity
+0.30782389640808105 - post-checkSimilarity
+0.029982566833496094 - pre-checkSimilarity
+0.7355804443359375 - post-checkSimilarity
+0.018989086151123047 - pre-checkSimilarity
+0.3508129119873047 - post-checkSimilarity
+0.005983114242553711 - pre-checkSimilarity
+0.7495846748352051 - post-checkSimilarity
+0.028970718383789062 - pre-checkSimilarity
+0.4787271022796631 - post-checkSimilarity
+0.011992692947387695 - pre-checkSimilarity
+0.2988290786743164 - post-checkSimilarity
+0.0 - post-loop
+0.0049970149993896484 - end
+time spent: 5.526843070983887
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.003998279571533203 - end
+time spent: 0.004997730255126953
+---------------------------------------
+0.0 - start
+0.0009996891021728516 - classify-Intent
+0.00793766975402832 - end
+time spent: 0.009936809539794922
+---------------------------------------
+0.0 - start
+0.6857583522796631 - end
+time spent: 0.6857583522796631
+---------------------------------------
+0.0 - start
+0.0009992122650146484 - classify-Intent
+0.0 - check
+0.0 - filter
+0.013006210327148438 - typeofwords
+0.0 - wordsandtype
+0.0009989738464355469 - listofchoices
+0.0 - pre-loop
+0.08494782447814941 - pre-checkSimilarity
+0.10594034194946289 - post-checkSimilarity
+0.005986213684082031 - pre-checkSimilarity
+0.48575425148010254 - post-checkSimilarity
+0.017987966537475586 - pre-checkSimilarity
+0.060952186584472656 - post-checkSimilarity
+0.047986507415771484 - pre-checkSimilarity
+0.1039266586303711 - post-checkSimilarity
+0.035979509353637695 - pre-checkSimilarity
+0.24186134338378906 - post-checkSimilarity
+0.01299285888671875 - pre-checkSimilarity
+0.04898524284362793 - post-checkSimilarity
+0.0 - post-loop
+0.003984212875366211 - end
+time spent: 1.2732889652252197
+---------------------------------------
+0.0 - start
+0.6321547031402588 - end
+time spent: 0.6331539154052734
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0049860477447509766 - end
+time spent: 0.0049860477447509766
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.004644155502319336 - end
+time spent: 0.004644155502319336
+---------------------------------------
+0.0 - start
+0.0009999275207519531 - classify-Intent
+0.0 - check
+0.0 - filter
+0.012006044387817383 - typeofwords
+0.0009992122650146484 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.006982326507568359 - pre-checkSimilarity
+0.982452392578125 - post-checkSimilarity
+0.02197432518005371 - pre-checkSimilarity
+0.47977471351623535 - post-checkSimilarity
+0.023972511291503906 - pre-checkSimilarity
+0.5762770175933838 - post-checkSimilarity
+0.030981779098510742 - pre-checkSimilarity
+0.18590760231018066 - post-checkSimilarity
+0.02297353744506836 - pre-checkSimilarity
+0.147932767868042 - post-checkSimilarity
+0.03098297119140625 - pre-checkSimilarity
+0.7904791831970215 - post-checkSimilarity
+0.01897597312927246 - pre-checkSimilarity
+0.19388890266418457 - post-checkSimilarity
+0.005995988845825195 - pre-checkSimilarity
+0.73563551902771 - post-checkSimilarity
+0.029983997344970703 - pre-checkSimilarity
+0.27929210662841797 - post-checkSimilarity
+0.012006759643554688 - pre-checkSimilarity
+0.13991999626159668 - post-checkSimilarity
+0.0 - post-loop
+0.009520769119262695 - end
+time spent: 4.7399163246154785
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.013005495071411133 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.011992692947387695 - pre-checkSimilarity
+0.8934903144836426 - post-checkSimilarity
+0.02297353744506836 - pre-checkSimilarity
+0.36980342864990234 - post-checkSimilarity
+0.02297234535217285 - pre-checkSimilarity
+0.4487433433532715 - post-checkSimilarity
+0.08495187759399414 - pre-checkSimilarity
+0.6526267528533936 - post-checkSimilarity
+0.0239865779876709 - pre-checkSimilarity
+0.5756840705871582 - post-checkSimilarity
+0.034979820251464844 - post-loop
+0.0039844512939453125 - end
+time spent: 3.1591947078704834
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.012993335723876953 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.008008003234863281 - pre-checkSimilarity
+1.0434629917144775 - post-checkSimilarity
+0.023973703384399414 - pre-checkSimilarity
+0.6046547889709473 - post-checkSimilarity
+0.02499556541442871 - pre-checkSimilarity
+0.5676782131195068 - post-checkSimilarity
+0.08195352554321289 - pre-checkSimilarity
+0.8089554309844971 - post-checkSimilarity
+0.024985790252685547 - pre-checkSimilarity
+0.805539608001709 - post-checkSimilarity
+0.04097604751586914 - post-loop
+0.0049974918365478516 - end
+time spent: 4.0531744956970215
+---------------------------------------
+ * Detected change in 'E:\\Users\\Kriwü\\Documents\\Unistuff\\Chatbot\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Detected change in 'E:\\Users\\Kriwü\\Documents\\Unistuff\\Chatbot\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+0.0 - start
+0.0010101795196533203 - classify-Intent
+0.003986835479736328 - end
+time spent: 0.0049970149993896484
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+ * Detected change in 'E:\\Users\\Kriwü\\Documents\\Unistuff\\Chatbot\\chatbot-group\\main.py', reloading
+ * Detected change in 'E:\\Users\\Kriwü\\Documents\\Unistuff\\Chatbot\\chatbot-group\\main.py', reloading
+ * Restarting with windowsapi reloader
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+0.0 - start
+0.0 - classify-Intent
+0.008994579315185547 - end
+time spent: 0.008994579315185547
+---------------------------------------
+0.0 - start
+0.00099945068359375 - classify-Intent
+ * Detected change in 'E:\\Users\\Kriwü\\Documents\\Unistuff\\Chatbot\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Detected change in 'E:\\Users\\Kriwü\\Documents\\Unistuff\\Chatbot\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+0.0 - start
+0.0 - classify-Intent
+0.0069997310638427734 - end
+time spent: 0.0069997310638427734
+---------------------------------------
+ * Detected change in 'E:\\Users\\Kriwü\\Documents\\Unistuff\\Chatbot\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Detected change in 'E:\\Users\\Kriwü\\Documents\\Unistuff\\Chatbot\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with windowsapi reloader
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+0.0 - start
+0.0 - classify-Intent
+0.005995988845825195 - end
+time spent: 0.005995988845825195
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.018988370895385742 - end
+time spent: 0.018988370895385742
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.006995439529418945 - end
+time spent: 0.006995439529418945
+---------------------------------------
+ * Detected change in 'E:\\Users\\Kriwü\\Documents\\Unistuff\\Chatbot\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Detected change in 'E:\\Users\\Kriwü\\Documents\\Unistuff\\Chatbot\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with windowsapi reloader
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+0.0 - start
+0.0 - classify-Intent
+0.005996227264404297 - end
+time spent: 0.005996227264404297
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.006995677947998047 - end
+time spent: 0.006995677947998047
+---------------------------------------
+0.0 - start
+0.0009992122650146484 - classify-Intent
+0.004996061325073242 - end
+time spent: 0.005995273590087891
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.004982948303222656 - end
+time spent: 0.004982948303222656
+---------------------------------------
+0.0 - start
+0.005995035171508789 - end
+time spent: 0.006994724273681641
+---------------------------------------
+0.0 - start
+0.005996227264404297 - classify-Intent
+0.027980804443359375 - end
+time spent: 0.03397703170776367
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0049970149993896484 - end
+time spent: 0.0049970149993896484
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0059969425201416016 - end
+time spent: 0.0059969425201416016
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.5743093490600586 - end
+time spent: 0.5743093490600586
+---------------------------------------
+0.0 - start
+0.005998849868774414 - classify-Intent
+0.0009999275207519531 - check
+0.0 - filter
+0.013992547988891602 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0009853839874267578 - pre-loop
+0.006014347076416016 - pre-checkSimilarity
+2.819552183151245 - post-checkSimilarity
+0.024985551834106445 - pre-checkSimilarity
+0.5565009117126465 - post-checkSimilarity
+0.024973154067993164 - pre-checkSimilarity
+0.5227446556091309 - post-checkSimilarity
+0.028969526290893555 - pre-checkSimilarity
+0.15191292762756348 - post-checkSimilarity
+0.023000001907348633 - pre-checkSimilarity
+0.16489315032958984 - post-checkSimilarity
+0.029986858367919922 - pre-checkSimilarity
+0.7225921154022217 - post-checkSimilarity
+0.018003463745117188 - pre-checkSimilarity
+0.20044612884521484 - post-checkSimilarity
+0.005996227264404297 - pre-checkSimilarity
+0.6913058757781982 - post-checkSimilarity
+0.030982494354248047 - pre-checkSimilarity
+0.23885059356689453 - post-checkSimilarity
+0.06696057319641113 - pre-checkSimilarity
+0.09694552421569824 - post-checkSimilarity
+0.0009987354278564453 - post-loop
+0.0059967041015625 - end
+time spent: 6.454588413238525
+---------------------------------------
+0.0 - start
+0.0009875297546386719 - classify-Intent
+0.014992475509643555 - end
+time spent: 0.015980005264282227
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.3672771453857422 - end
+time spent: 0.3672771453857422
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.010993003845214844 - end
+time spent: 0.010993003845214844
+---------------------------------------
+0.0 - start
+0.0009989738464355469 - classify-Intent
+0.0 - check
+0.0 - filter
+0.012006759643554688 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.0059833526611328125 - pre-checkSimilarity
+0.969459056854248 - post-checkSimilarity
+0.025973081588745117 - pre-checkSimilarity
+0.5496854782104492 - post-checkSimilarity
+0.024985074996948242 - pre-checkSimilarity
+0.5137197971343994 - post-checkSimilarity
+0.028982877731323242 - pre-checkSimilarity
+0.19987273216247559 - post-checkSimilarity
+0.023999929428100586 - pre-checkSimilarity
+0.10993719100952148 - post-checkSimilarity
+0.029982566833496094 - pre-checkSimilarity
+0.7195892333984375 - post-checkSimilarity
+0.0179898738861084 - pre-checkSimilarity
+0.1958770751953125 - post-checkSimilarity
+0.00700688362121582 - pre-checkSimilarity
+0.6976032257080078 - post-checkSimilarity
+0.029967784881591797 - pre-checkSimilarity
+0.30983400344848633 - post-checkSimilarity
+0.01198267936706543 - pre-checkSimilarity
+0.09795761108398438 - post-checkSimilarity
+0.0 - post-loop
+0.005982398986816406 - end
+time spent: 4.5893776416778564
+---------------------------------------
+0.0 - start
+0.0010001659393310547 - classify-Intent
+0.004996538162231445 - end
+time spent: 0.0059967041015625
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.005109310150146484 - end
+time spent: 0.006109476089477539
+---------------------------------------
+0.0 - start
+0.0009987354278564453 - classify-Intent
+0.6402873992919922 - end
+time spent: 0.6412861347198486
+---------------------------------------
+0.0 - start
+0.0009999275207519531 - classify-Intent
+0.011992692947387695 - end
+time spent: 0.012992620468139648
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.001999378204345703 - items_number: 1
+0.006994009017944336 - end
+time spent: 0.008993387222290039
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.006994724273681641 - end
+time spent: 0.006994724273681641
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.01998758316040039 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0010135173797607422 - pre-loop
+0.0059854984283447266 - pre-checkSimilarity
+0.937497615814209 - post-checkSimilarity
+0.022986888885498047 - pre-checkSimilarity
+0.011979341506958008 - post-checkSimilarity
+0.010994195938110352 - pre-checkSimilarity
+0.40376925468444824 - post-checkSimilarity
+0.022986650466918945 - pre-checkSimilarity
+0.03697919845581055 - post-checkSimilarity
+0.011993169784545898 - pre-checkSimilarity
+0.5097091197967529 - post-checkSimilarity
+0.023999452590942383 - pre-checkSimilarity
+0.15505433082580566 - post-checkSimilarity
+0.02398681640625 - pre-checkSimilarity
+0.32373523712158203 - post-checkSimilarity
+0.034980058670043945 - pre-checkSimilarity
+0.32216358184814453 - post-checkSimilarity
+0.010993719100952148 - pre-checkSimilarity
+0.18190836906433105 - post-checkSimilarity
+0.029982805252075195 - pre-checkSimilarity
+0.6461062431335449 - post-checkSimilarity
+0.04596853256225586 - pre-checkSimilarity
+0.34700655937194824 - post-checkSimilarity
+0.0059969425201416016 - pre-checkSimilarity
+0.6450924873352051 - post-checkSimilarity
+0.10094141960144043 - pre-checkSimilarity
+0.40784764289855957 - post-checkSimilarity
+0.018990516662597656 - pre-checkSimilarity
+0.2541384696960449 - post-checkSimilarity
+0.0 - post-loop
+0.00600743293762207 - end
+time spent: 5.580782651901245
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.020001888275146484 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.0059964656829833984 - pre-checkSimilarity
+0.9314539432525635 - post-checkSimilarity
+0.024985551834106445 - pre-checkSimilarity
+0.011992931365966797 - post-checkSimilarity
+0.011993408203125 - pre-checkSimilarity
+0.45973682403564453 - post-checkSimilarity
+0.0239865779876709 - pre-checkSimilarity
+0.03497958183288574 - post-checkSimilarity
+0.010994434356689453 - pre-checkSimilarity
+0.45374035835266113 - post-checkSimilarity
+0.023986339569091797 - pre-checkSimilarity
+0.14493060111999512 - post-checkSimilarity
+0.07294535636901855 - pre-checkSimilarity
+0.14591598510742188 - post-checkSimilarity
+0.0359804630279541 - pre-checkSimilarity
+0.09494566917419434 - post-checkSimilarity
+0.011992454528808594 - pre-checkSimilarity
+0.17589926719665527 - post-checkSimilarity
+0.028997182846069336 - pre-checkSimilarity
+0.6816103458404541 - post-checkSimilarity
+0.03196859359741211 - pre-checkSimilarity
+0.13892126083374023 - post-checkSimilarity
+0.005996227264404297 - pre-checkSimilarity
+0.6426324844360352 - post-checkSimilarity
+0.046973228454589844 - pre-checkSimilarity
+0.2628505229949951 - post-checkSimilarity
+0.017989635467529297 - pre-checkSimilarity
+0.07495665550231934 - post-checkSimilarity
+0.0 - post-loop
+0.005996227264404297 - end
+time spent: 4.636350154876709
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0009992122650146484 - check
+0.0 - filter
+0.019002676010131836 - typeofwords
+0.0009989738464355469 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.005911827087402344 - pre-checkSimilarity
+0.9244735240936279 - post-checkSimilarity
+0.023973703384399414 - pre-checkSimilarity
+0.010993242263793945 - post-checkSimilarity
+0.012006521224975586 - pre-checkSimilarity
+0.40375638008117676 - post-checkSimilarity
+0.022986650466918945 - pre-checkSimilarity
+0.03499317169189453 - post-checkSimilarity
+0.010981321334838867 - pre-checkSimilarity
+0.5087215900421143 - post-checkSimilarity
+0.024988174438476562 - pre-checkSimilarity
+0.14690136909484863 - post-checkSimilarity
+0.023996353149414062 - pre-checkSimilarity
+0.11892151832580566 - post-checkSimilarity
+0.03799104690551758 - pre-checkSimilarity
+0.07294559478759766 - post-checkSimilarity
+0.011992692947387695 - pre-checkSimilarity
+0.1719341278076172 - post-checkSimilarity
+0.028970718383789062 - pre-checkSimilarity
+0.6772298812866211 - post-checkSimilarity
+0.030984163284301758 - pre-checkSimilarity
+0.11593079566955566 - post-checkSimilarity
+0.0059967041015625 - pre-checkSimilarity
+0.6911470890045166 - post-checkSimilarity
+0.04495859146118164 - pre-checkSimilarity
+0.19190311431884766 - post-checkSimilarity
+0.016977548599243164 - pre-checkSimilarity
+0.05698084831237793 - post-checkSimilarity
+0.0 - post-loop
+0.005982875823974609 - end
+time spent: 4.456532001495361
+---------------------------------------
+0.0 - start
+0.0009996891021728516 - classify-Intent
+0.0 - check
+0.0 - filter
+0.015004158020019531 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.005983114242553711 - pre-checkSimilarity
+1.4690320491790771 - post-checkSimilarity
+0.02298879623413086 - pre-checkSimilarity
+1.0234005451202393 - post-checkSimilarity
+0.02498602867126465 - pre-checkSimilarity
+1.0470473766326904 - post-checkSimilarity
+0.08495211601257324 - pre-checkSimilarity
+1.2313683032989502 - post-checkSimilarity
+0.023986339569091797 - pre-checkSimilarity
+1.2376329898834229 - post-checkSimilarity
+0.040976524353027344 - post-loop
+0.006983518600463867 - end
+time spent: 6.235341548919678
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.014010190963745117 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.005977630615234375 - pre-checkSimilarity
+0.9814534187316895 - post-checkSimilarity
+0.02497267723083496 - pre-checkSimilarity
+0.5337252616882324 - post-checkSimilarity
+0.022986888885498047 - pre-checkSimilarity
+0.5027649402618408 - post-checkSimilarity
+0.08097076416015625 - pre-checkSimilarity
+0.023986339569091797 - post-checkSimilarity
+0.006997346878051758 - pre-checkSimilarity
+0.7676658630371094 - post-checkSimilarity
+0.022974014282226562 - pre-checkSimilarity
+0.7520828247070312 - post-checkSimilarity
+0.01898980140686035 - pre-checkSimilarity
+0.035965919494628906 - post-checkSimilarity
+0.02398538589477539 - post-loop
+0.01700115203857422 - end
+time spent: 3.836510419845581
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0059964656829833984 - end
+time spent: 0.0059964656829833984
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.004996061325073242 - end
+time spent: 0.004996061325073242
+---------------------------------------
+0.0 - start
+0.0009989738464355469 - classify-Intent
+0.008995294570922852 - end
+time spent: 0.009994268417358398
+---------------------------------------
+0.0 - start
+0.0009989738464355469 - classify-Intent
+0.00519108772277832 - end
+time spent: 0.006190061569213867
+---------------------------------------
+0.0 - start
+0.3321065902709961 - end
+time spent: 0.33310556411743164
+---------------------------------------
+0.0 - start
+0.004996776580810547 - end
+time spent: 0.004996776580810547
+---------------------------------------
+0.0 - start
+0.0059964656829833984 - end
+time spent: 0.0059964656829833984
+---------------------------------------
+0.0 - start
+0.014990568161010742 - end
+time spent: 0.014990568161010742
+---------------------------------------
+0.0 - start
+0.014991044998168945 - end
+time spent: 0.014991044998168945
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.5122115612030029 - end
+time spent: 0.5122115612030029
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.013991832733154297 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.0059969425201416016 - pre-checkSimilarity
+1.0064244270324707 - post-checkSimilarity
+0.022003173828125 - pre-checkSimilarity
+0.4677302837371826 - post-checkSimilarity
+0.022986888885498047 - pre-checkSimilarity
+0.5776569843292236 - post-checkSimilarity
+0.030996322631835938 - pre-checkSimilarity
+0.21287775039672852 - post-checkSimilarity
+0.023985862731933594 - pre-checkSimilarity
+0.16190838813781738 - post-checkSimilarity
+0.028982877731323242 - pre-checkSimilarity
+0.7365663051605225 - post-checkSimilarity
+0.017989397048950195 - pre-checkSimilarity
+0.2048962116241455 - post-checkSimilarity
+0.005983829498291016 - pre-checkSimilarity
+0.7485854625701904 - post-checkSimilarity
+0.028982877731323242 - pre-checkSimilarity
+0.2768290042877197 - post-checkSimilarity
+0.011006593704223633 - pre-checkSimilarity
+0.1519002914428711 - post-checkSimilarity
+0.0 - post-loop
+0.006005525588989258 - end
+time spent: 4.764287233352661
+---------------------------------------
+0.0 - start
+0.0010004043579101562 - classify-Intent
+0.0 - check
+0.0 - filter
+0.013000965118408203 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.006987333297729492 - pre-checkSimilarity
+1.7725403308868408 - post-checkSimilarity
+0.023986101150512695 - pre-checkSimilarity
+1.0754890441894531 - post-checkSimilarity
+0.023985862731933594 - pre-checkSimilarity
+1.1083667278289795 - post-checkSimilarity
+0.027985334396362305 - pre-checkSimilarity
+0.20088481903076172 - post-checkSimilarity
+0.023972511291503906 - pre-checkSimilarity
+0.16392016410827637 - post-checkSimilarity
+0.029982328414916992 - pre-checkSimilarity
+1.2869341373443604 - post-checkSimilarity
+0.019002199172973633 - pre-checkSimilarity
+0.262850284576416 - post-checkSimilarity
+0.006996870040893555 - pre-checkSimilarity
+1.2819902896881104 - post-checkSimilarity
+0.028967618942260742 - pre-checkSimilarity
+0.2964315414428711 - post-checkSimilarity
+0.011993169784545898 - pre-checkSimilarity
+0.1538987159729004 - post-checkSimilarity
+0.0 - post-loop
+0.00499725341796875 - end
+time spent: 7.82616400718689
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.00499725341796875 - end
+time spent: 0.00499725341796875
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.004996776580810547 - end
+time spent: 0.004996776580810547
+---------------------------------------
+0.0 - start
+0.0009989738464355469 - classify-Intent
+0.005056619644165039 - end
+time spent: 0.006055593490600586
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.003997087478637695 - end
+time spent: 0.003997087478637695
+---------------------------------------
+0.0 - start
+0.013977527618408203 - end
+time spent: 0.013977527618408203
+---------------------------------------
+0.0 - start
+0.004881858825683594 - end
+time spent: 0.004881858825683594
+---------------------------------------
+0.0 - start
+0.2789332866668701 - end
+time spent: 0.2789332866668701
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.003996610641479492 - end
+time spent: 0.003996610641479492
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0010099411010742188 - filter
+0.05097365379333496 - typeofwords
+0.00099945068359375 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.43575167655944824 - pre-checkSimilarity
+0.013978242874145508 - post-checkSimilarity
+0.007996082305908203 - pre-checkSimilarity
+0.02298712730407715 - post-checkSimilarity
+0.010993242263793945 - pre-checkSimilarity
+0.0199892520904541 - post-checkSimilarity
+0.0059967041015625 - pre-checkSimilarity
+0.02698373794555664 - post-checkSimilarity
+0.005995988845825195 - pre-checkSimilarity
+0.022986650466918945 - post-checkSimilarity
+0.005997180938720703 - pre-checkSimilarity
+0.011993169784545898 - post-checkSimilarity
+0.005996227264404297 - pre-checkSimilarity
+0.012006998062133789 - post-checkSimilarity
+0.1399073600769043 - pre-checkSimilarity
+0.023985862731933594 - post-checkSimilarity
+0.006995677947998047 - pre-checkSimilarity
+0.023996353149414062 - post-checkSimilarity
+0.006986856460571289 - pre-checkSimilarity
+0.07695531845092773 - post-checkSimilarity
+0.006997108459472656 - pre-checkSimilarity
+0.029981613159179688 - post-checkSimilarity
+0.006010532379150391 - pre-checkSimilarity
+0.03597879409790039 - post-checkSimilarity
+0.005995988845825195 - pre-checkSimilarity
+0.024982690811157227 - post-checkSimilarity
+0.005986690521240234 - pre-checkSimilarity
+0.02498650550842285 - post-checkSimilarity
+0.08496403694152832 - post-loop
+0.0059947967529296875 - end
+time spent: 1.1733415126800537
+---------------------------------------
+0.0 - start
+0.0010006427764892578 - classify-Intent
+0.0 - check
+0.0 - filter
+0.013991355895996094 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.006011009216308594 - pre-checkSimilarity
+1.0024127960205078 - post-checkSimilarity
+0.023999452590942383 - pre-checkSimilarity
+0.5097088813781738 - post-checkSimilarity
+0.022986412048339844 - pre-checkSimilarity
+0.5706610679626465 - post-checkSimilarity
+0.07895493507385254 - pre-checkSimilarity
+0.18390846252441406 - post-checkSimilarity
+0.006997823715209961 - pre-checkSimilarity
+0.7415742874145508 - post-checkSimilarity
+0.022979021072387695 - pre-checkSimilarity
+0.7130589485168457 - post-checkSimilarity
+0.017989397048950195 - pre-checkSimilarity
+0.24199390411376953 - post-checkSimilarity
+0.022985458374023438 - post-loop
+0.0059833526611328125 - end
+time spent: 4.187197208404541
+---------------------------------------
+0.0 - start
+0.00099945068359375 - classify-Intent
+0.009502172470092773 - end
+time spent: 0.011501312255859375
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.5322604179382324 - end
+time spent: 0.5322604179382324
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.005997419357299805 - check
+0.0 - filter
+0.052956342697143555 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.036978721618652344 - pre-checkSimilarity
+0.3128211498260498 - post-checkSimilarity
+0.038992881774902344 - pre-checkSimilarity
+0.18388009071350098 - post-checkSimilarity
+0.0 - post-loop
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.04097628593444824 - typeofwords
+0.00099945068359375 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.10893797874450684 - pre-checkSimilarity
+0.13892078399658203 - post-checkSimilarity
+0.03498053550720215 - pre-checkSimilarity
+0.1869068145751953 - post-checkSimilarity
+0.13690757751464844 - post-loop
+1.2733337879180908 - end
+time spent: 2.5535898208618164
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.007995367050170898 - end
+time spent: 0.007995367050170898
+---------------------------------------
+0.0 - start
+0.0010001659393310547 - classify-Intent
+0.005005836486816406 - end
+time spent: 0.006006002426147461
+---------------------------------------
+0.0 - start
+0.005912065505981445 - end
+time spent: 0.005912065505981445
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0179901123046875 - end
+time spent: 0.0179901123046875
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.026996374130249023 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.02298712730407715 - pre-checkSimilarity
+0.36579084396362305 - post-checkSimilarity
+0.02698493003845215 - pre-checkSimilarity
+0.18688011169433594 - post-checkSimilarity
+0.0 - post-loop
+0.0009989738464355469 - classify-Intent
+0.0 - check
+0.0 - filter
+0.024985790252685547 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.04397439956665039 - pre-checkSimilarity
+0.23086881637573242 - post-checkSimilarity
+0.028983116149902344 - pre-checkSimilarity
+0.14591693878173828 - post-checkSimilarity
+0.0439755916595459 - pre-checkSimilarity
+0.13492178916931152 - post-checkSimilarity
+0.14493131637573242 - post-loop
+1.1788232326507568 - end
+time spent: 2.6080193519592285
+---------------------------------------
+0.0 - start
+0.005997180938720703 - classify-Intent
+0.005010366439819336 - check
+0.005995750427246094 - filter
+0.02698540687561035 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.03498244285583496 - post-loop
+0.0009846687316894531 - classify-Intent
+0.0 - check
+0.0 - filter
+0.018988370895385742 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.14592981338500977 - post-loop
+1.1613233089447021 - end
+time spent: 1.4071965217590332
+---------------------------------------
+0.0 - start
+0.005982875823974609 - classify-Intent
+0.0059964656829833984 - classify-Intent
+0.970447301864624 - end
+time spent: 0.9834251403808594
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0009839534759521484 - classify-Intent
+1.0923752784729004 - end
+time spent: 1.0943586826324463
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.004997730255126953 - end
+time spent: 0.0059964656829833984
+---------------------------------------
+0.0 - start
+0.0009989738464355469 - classify-Intent
+0.0 - check
+0.0 - filter
+0.014001607894897461 - typeofwords
+0.0009899139404296875 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.0059964656829833984 - pre-checkSimilarity
+0.9824521541595459 - post-checkSimilarity
+0.022983312606811523 - pre-checkSimilarity
+0.553274393081665 - post-checkSimilarity
+0.023973464965820312 - pre-checkSimilarity
+0.5207030773162842 - post-checkSimilarity
+0.07897114753723145 - pre-checkSimilarity
+0.023000001907348633 - post-checkSimilarity
+0.004997968673706055 - pre-checkSimilarity
+0.7651839256286621 - post-checkSimilarity
+0.023985624313354492 - pre-checkSimilarity
+0.760124683380127 - post-checkSimilarity
+0.0179898738861084 - pre-checkSimilarity
+0.03596663475036621 - post-checkSimilarity
+0.02299976348876953 - post-loop
+0.014978408813476562 - end
+time spent: 3.8735713958740234
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.025983810424804688 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.022986173629760742 - pre-checkSimilarity
+0.49570512771606445 - post-checkSimilarity
+0.017989158630371094 - pre-checkSimilarity
+0.3528153896331787 - post-checkSimilarity
+0.025968551635742188 - post-loop
+0.0 - classify-Intent
+0.007994890213012695 - classify-Intent
+0.005996227264404297 - end
+time spent: 0.9564390182495117
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.01698589324951172 - end
+time spent: 0.01698589324951172
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.019988536834716797 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.07795548439025879 - pre-checkSimilarity
+0.24186158180236816 - post-checkSimilarity
+0.012992382049560547 - pre-checkSimilarity
+0.19388937950134277 - post-checkSimilarity
+0.0 - post-loop
+0.00099945068359375 - classify-Intent
+0.007995128631591797 - classify-Intent
+0.0 - check
+0.0 - filter
+0.019994258880615234 - typeofwords
+0.0 - wordsandtype
+0.0009944438934326172 - listofchoices
+0.0 - pre-loop
+0.0059964656829833984 - pre-checkSimilarity
+0.23186731338500977 - post-checkSimilarity
+0.011993408203125 - pre-checkSimilarity
+0.18389487266540527 - post-checkSimilarity
+0.03498029708862305 - post-loop
+0.005995750427246094 - end
+time spent: 1.052398443222046
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.005995750427246094 - end
+time spent: 0.005995750427246094
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.009979486465454102 - end
+time spent: 0.009979486465454102
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.3279414176940918 - end
+time spent: 0.3279414176940918
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.009992599487304688 - end
+time spent: 0.009992599487304688
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.013263940811157227 - end
+time spent: 0.013263940811157227
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.012993812561035156 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.08796262741088867 - pre-checkSimilarity
+0.17192673683166504 - post-checkSimilarity
+0.0069959163665771484 - pre-checkSimilarity
+0.5066967010498047 - post-checkSimilarity
+0.017989397048950195 - pre-checkSimilarity
+0.16790437698364258 - post-checkSimilarity
+0.04598855972290039 - pre-checkSimilarity
+0.16390442848205566 - post-checkSimilarity
+0.0359797477722168 - pre-checkSimilarity
+0.24930191040039062 - post-checkSimilarity
+0.011993169784545898 - pre-checkSimilarity
+0.11194920539855957 - post-checkSimilarity
+0.0 - post-loop
+0.005982160568237305 - end
+time spent: 1.5975687503814697
+---------------------------------------
+0.0 - start
+0.6609013080596924 - end
+time spent: 0.6609013080596924
+---------------------------------------
+0.0 - start
+0.27514052391052246 - end
+time spent: 0.27514052391052246
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.014001131057739258 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.0070002079010009766 - pre-checkSimilarity
+0.8808872699737549 - post-checkSimilarity
+0.022974014282226562 - pre-checkSimilarity
+0.44275999069213867 - post-checkSimilarity
+0.02397322654724121 - pre-checkSimilarity
+0.42550206184387207 - post-checkSimilarity
+0.08496594429016113 - pre-checkSimilarity
+0.6366226673126221 - post-checkSimilarity
+0.024998903274536133 - pre-checkSimilarity
+0.6236600875854492 - post-checkSimilarity
+0.0439760684967041 - post-loop
+0.01197957992553711 - end
+time spent: 3.2433011531829834
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.01300048828125 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.006001949310302734 - pre-checkSimilarity
+0.9334676265716553 - post-checkSimilarity
+0.023972034454345703 - pre-checkSimilarity
+0.5437026023864746 - post-checkSimilarity
+0.02298736572265625 - pre-checkSimilarity
+0.4987146854400635 - post-checkSimilarity
+0.08595085144042969 - pre-checkSimilarity
+0.19688749313354492 - post-checkSimilarity
+0.02898383140563965 - pre-checkSimilarity
+0.1519002914428711 - post-checkSimilarity
+0.03199410438537598 - pre-checkSimilarity
+0.7535700798034668 - post-checkSimilarity
+0.0179901123046875 - pre-checkSimilarity
+0.18789148330688477 - post-checkSimilarity
+0.00598454475402832 - pre-checkSimilarity
+0.7725715637207031 - post-checkSimilarity
+0.03098154067993164 - pre-checkSimilarity
+0.27184510231018066 - post-checkSimilarity
+0.011992454528808594 - pre-checkSimilarity
+0.1339244842529297 - post-checkSimilarity
+0.0 - post-loop
+0.016976356506347656 - end
+time spent: 4.741291046142578
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.012991905212402344 - typeofwords
+0.0 - wordsandtype
+0.0009987354278564453 - listofchoices
+0.0 - pre-loop
+0.012007951736450195 - pre-checkSimilarity
+0.32781147956848145 - post-checkSimilarity
+0.011993885040283203 - pre-checkSimilarity
+0.14591598510742188 - post-checkSimilarity
+0.0 - post-loop
+0.0 - classify-Intent
+0.014977693557739258 - end
+time spent: 0.5266976356506348
+---------------------------------------
+0.0 - start
+0.0009996891021728516 - classify-Intent
+0.0 - check
+0.0 - filter
+0.005995512008666992 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.007055521011352539 - pre-checkSimilarity
+0.37572622299194336 - post-checkSimilarity
+0.006996631622314453 - pre-checkSimilarity
+0.19588804244995117 - post-checkSimilarity
+0.0 - post-loop
+0.0009992122650146484 - classify-Intent
+0.0 - check
+0.0 - filter
+0.006009578704833984 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.017989635467529297 - pre-checkSimilarity
+0.1538991928100586 - post-checkSimilarity
+0.0059964656829833984 - pre-checkSimilarity
+0.15291261672973633 - post-checkSimilarity
+0.024985551834106445 - post-loop
+1.1703510284423828 - end
+time spent: 2.125804901123047
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.004996538162231445 - end
+time spent: 0.004996538162231445
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.016989946365356445 - end
+time spent: 0.016989946365356445
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.006009817123413086 - typeofwords
+0.0009999275207519531 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.005983829498291016 - pre-checkSimilarity
+0.32982349395751953 - post-checkSimilarity
+0.005983829498291016 - pre-checkSimilarity
+0.24286103248596191 - post-checkSimilarity
+0.0 - post-loop
+0.00099945068359375 - classify-Intent
+0.0 - check
+0.0 - filter
+0.0059964656829833984 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.016990184783935547 - pre-checkSimilarity
+0.14591646194458008 - post-checkSimilarity
+0.0059969425201416016 - pre-checkSimilarity
+0.14691615104675293 - post-checkSimilarity
+0.02298712730407715 - post-loop
+1.2178106307983398 - end
+time spent: 2.155275344848633
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.007009029388427734 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.012992143630981445 - post-loop
+0.0 - classify-Intent
+0.005982875823974609 - end
+time spent: 0.02598404884338379
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.012991666793823242 - typeofwords
+0.0009992122650146484 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.006009340286254883 - pre-checkSimilarity
+0.27733492851257324 - post-checkSimilarity
+0.011992931365966797 - pre-checkSimilarity
+0.20900297164916992 - post-checkSimilarity
+0.005995750427246094 - post-loop
+0.0 - classify-Intent
+0.0099945068359375 - end
+time spent: 0.5343213081359863
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.005997180938720703 - end
+time spent: 0.005997180938720703
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.001983642578125 - items_number: 1
+0.0069959163665771484 - end
+time spent: 0.008979558944702148
+---------------------------------------
+0.0 - start
+0.00099945068359375 - classify-Intent
+0.011010408401489258 - end
+time spent: 0.012992620468139648
+---------------------------------------
+0.0 - start
+0.011992454528808594 - end
+time spent: 0.011992454528808594
+---------------------------------------
+0.0 - start
+0.8027982711791992 - end
+time spent: 0.8037762641906738
+---------------------------------------
+0.0 - start
+0.0009996891021728516 - classify-Intent
+0.3061959743499756 - end
+time spent: 0.30719566345214844
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.006009578704833984 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.001001119613647461 - pre-loop
+0.012991189956665039 - post-loop
+0.0 - classify-Intent
+0.0059833526611328125 - end
+time spent: 0.025985240936279297
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0009987354278564453 - check
+0.0 - filter
+0.014004230499267578 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.011981487274169922 - pre-checkSimilarity
+0.29584431648254395 - post-checkSimilarity
+0.012978076934814453 - pre-checkSimilarity
+0.15990805625915527 - post-checkSimilarity
+0.0 - post-loop
+0.0 - classify-Intent
+0.015990495681762695 - end
+time spent: 0.5117053985595703
+---------------------------------------
+0.0 - start
+0.00099945068359375 - classify-Intent
+0.0 - check
+0.0 - filter
+0.019988536834716797 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.019002676010131836 - pre-checkSimilarity
+0.585651159286499 - post-checkSimilarity
+0.0179901123046875 - pre-checkSimilarity
+0.4127790927886963 - post-checkSimilarity
+0.0 - post-loop
+0.0009984970092773438 - classify-Intent
+0.0 - check
+0.0 - filter
+0.01997542381286621 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.06096506118774414 - pre-checkSimilarity
+0.4227581024169922 - post-checkSimilarity
+0.0179898738861084 - pre-checkSimilarity
+0.3567957878112793 - post-checkSimilarity
+0.0059967041015625 - pre-checkSimilarity
+0.25385475158691406 - post-checkSimilarity
+0.01898932456970215 - pre-checkSimilarity
+0.3508150577545166 - post-checkSimilarity
+0.047957420349121094 - post-loop
+1.1743285655975342 - end
+time spent: 3.7878355979919434
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.004984140396118164 - end
+time spent: 0.004984140396118164
+---------------------------------------
+0.0 - start
+0.6254074573516846 - end
+time spent: 0.6254074573516846
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0021293163299560547 - items_number: 2
+0.004732370376586914 - end
+time spent: 0.006861686706542969
+---------------------------------------
+0.0 - start
+0.0009992122650146484 - classify-Intent
+0.006995677947998047 - end
+time spent: 0.007994890213012695
+---------------------------------------
+0.0 - start
+0.0009996891021728516 - classify-Intent
+0.011006832122802734 - end
+time spent: 0.012006521224975586
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.012991905212402344 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.08796405792236328 - pre-checkSimilarity
+0.11991763114929199 - post-checkSimilarity
+0.00499725341796875 - pre-checkSimilarity
+0.5207157135009766 - post-checkSimilarity
+0.01897597312927246 - pre-checkSimilarity
+0.07197284698486328 - post-checkSimilarity
+0.04896855354309082 - pre-checkSimilarity
+0.11492371559143066 - post-checkSimilarity
+0.038977622985839844 - pre-checkSimilarity
+0.20589590072631836 - post-checkSimilarity
+0.011993169784545898 - pre-checkSimilarity
+0.060952186584472656 - post-checkSimilarity
+0.0 - post-loop
+0.0059969425201416016 - end
+time spent: 1.3252434730529785
+---------------------------------------
+0.0 - start
+0.0009996891021728516 - classify-Intent
+0.01564645767211914 - end
+time spent: 0.016646146774291992
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.019991397857666016 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.0069789886474609375 - pre-checkSimilarity
+0.49872922897338867 - post-checkSimilarity
+0.011992931365966797 - pre-checkSimilarity
+0.22986817359924316 - post-checkSimilarity
+0.016990184783935547 - post-loop
+0.0009996891021728516 - classify-Intent
+0.007994890213012695 - classify-Intent
+0.0 - check
+0.0 - filter
+0.018976688385009766 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0009989738464355469 - pre-loop
+0.0259859561920166 - pre-checkSimilarity
+0.22676396369934082 - post-checkSimilarity
+0.012991905212402344 - pre-checkSimilarity
+0.023987293243408203 - post-checkSimilarity
+0.005995988845825195 - pre-checkSimilarity
+0.4078793525695801 - post-checkSimilarity
+0.011993408203125 - pre-checkSimilarity
+0.14191865921020508 - post-checkSimilarity
+0.0179898738861084 - post-loop
+0.006764411926269531 - end
+time spent: 1.6957919597625732
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0009818077087402344 - check
+0.0 - filter
+0.019495248794555664 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.0059964656829833984 - pre-checkSimilarity
+0.43022584915161133 - post-checkSimilarity
+0.0299835205078125 - post-loop
+0.001013040542602539 - classify-Intent
+0.007981300354003906 - classify-Intent
+0.0037276744842529297 - end
+time spent: 0.4994049072265625
+---------------------------------------
+0.0 - start
+0.0009987354278564453 - classify-Intent
+0.0050008296966552734 - end
+time spent: 0.005999565124511719
+---------------------------------------
+0.0 - start
+0.0010142326354980469 - classify-Intent
+0.009978055953979492 - end
+time spent: 0.011991739273071289
+---------------------------------------
+0.0 - start
+0.0009980201721191406 - classify-Intent
+0.009994268417358398 - end
+time spent: 0.010992288589477539
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.005290508270263672 - end
+time spent: 0.005290508270263672
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.019984006881713867 - typeofwords
+0.000989675521850586 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.0060100555419921875 - pre-checkSimilarity
+1.0044257640838623 - post-checkSimilarity
+0.034967660903930664 - pre-checkSimilarity
+0.47774338722229004 - post-checkSimilarity
+0.09297609329223633 - pre-checkSimilarity
+0.5307366847991943 - post-checkSimilarity
+0.041962623596191406 - pre-checkSimilarity
+0.23789477348327637 - post-checkSimilarity
+0.005996227264404297 - pre-checkSimilarity
+0.2675952911376953 - post-checkSimilarity
+0.028982877731323242 - pre-checkSimilarity
+0.19590210914611816 - post-checkSimilarity
+0.006982564926147461 - pre-checkSimilarity
+0.17554783821105957 - post-checkSimilarity
+0.045973777770996094 - pre-checkSimilarity
+0.758580207824707 - post-checkSimilarity
+0.02297377586364746 - pre-checkSimilarity
+0.23189783096313477 - post-checkSimilarity
+0.0049970149993896484 - pre-checkSimilarity
+0.2118690013885498 - post-checkSimilarity
+0.005997180938720703 - pre-checkSimilarity
+0.7671635150909424 - post-checkSimilarity
+0.04296231269836426 - pre-checkSimilarity
+0.3158698081970215 - post-checkSimilarity
+0.0059964656829833984 - pre-checkSimilarity
+0.3478388786315918 - post-checkSimilarity
+0.012993097305297852 - pre-checkSimilarity
+0.18754220008850098 - post-checkSimilarity
+0.005998849868774414 - pre-checkSimilarity
+0.16389131546020508 - post-checkSimilarity
+0.0 - post-loop
+0.006995439529418945 - end
+time spent: 6.268238306045532
+---------------------------------------
+0.0 - start
+0.0009992122650146484 - classify-Intent
+0.5968921184539795 - end
+time spent: 0.5988900661468506
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0009987354278564453 - check
+0.0 - filter
+0.01200723648071289 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.006983041763305664 - pre-checkSimilarity
+1.469160556793213 - post-checkSimilarity
+0.023000001907348633 - pre-checkSimilarity
+1.0106329917907715 - post-checkSimilarity
+0.024971961975097656 - pre-checkSimilarity
+1.0665509700775146 - post-checkSimilarity
+0.08193850517272949 - pre-checkSimilarity
+1.2466650009155273 - post-checkSimilarity
+0.02397298812866211 - pre-checkSimilarity
+1.2817623615264893 - post-checkSimilarity
+0.09294748306274414 - post-loop
+0.0049822330474853516 - end
+time spent: 6.346574068069458
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.005995512008666992 - end
+time spent: 0.005995512008666992
+---------------------------------------
+0.0 - start
+0.0009996891021728516 - classify-Intent
+0.010993003845214844 - end
+time spent: 0.011992692947387695
+---------------------------------------
+0.0 - start
+0.0009992122650146484 - classify-Intent
+0.0 - check
+0.0 - filter
+0.018988370895385742 - typeofwords
+0.0 - wordsandtype
+0.0010106563568115234 - listofchoices
+0.0 - pre-loop
+0.004996299743652344 - pre-checkSimilarity
+0.9102523326873779 - post-checkSimilarity
+0.023986339569091797 - pre-checkSimilarity
+0.04889702796936035 - post-checkSimilarity
+0.011990547180175781 - pre-checkSimilarity
+0.42992639541625977 - post-checkSimilarity
+0.023988962173461914 - pre-checkSimilarity
+0.0762028694152832 - post-checkSimilarity
+0.012979269027709961 - pre-checkSimilarity
+0.5037600994110107 - post-checkSimilarity
+0.02200007438659668 - pre-checkSimilarity
+0.17405152320861816 - post-checkSimilarity
+0.02299976348876953 - pre-checkSimilarity
+0.1204369068145752 - post-checkSimilarity
+0.03497958183288574 - pre-checkSimilarity
+0.08593988418579102 - post-checkSimilarity
+0.01200413703918457 - pre-checkSimilarity
+0.21784639358520508 - post-checkSimilarity
+0.030969619750976562 - pre-checkSimilarity
+0.7018766403198242 - post-checkSimilarity
+0.028974294662475586 - pre-checkSimilarity
+0.12294220924377441 - post-checkSimilarity
+0.0059969425201416016 - pre-checkSimilarity
+0.6931946277618408 - post-checkSimilarity
+0.04797196388244629 - pre-checkSimilarity
+0.2119905948638916 - post-checkSimilarity
+0.01799178123474121 - pre-checkSimilarity
+0.07312417030334473 - post-checkSimilarity
+0.0 - post-loop
+0.005991220474243164 - end
+time spent: 4.699260711669922
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.9001820087432861 - end
+time spent: 0.9001820087432861
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.32810068130493164 - end
+time spent: 0.32810068130493164
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.009993314743041992 - end
+time spent: 0.009993314743041992
+---------------------------------------
+0.0 - start
+0.004996776580810547 - end
+time spent: 0.004996776580810547
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0059969425201416016 - end
+time spent: 0.0059969425201416016
+---------------------------------------
+0.0 - start
+0.907968282699585 - end
+time spent: 0.907968282699585
+---------------------------------------
+0.0 - start
+0.00099945068359375 - classify-Intent
+0.008996009826660156 - end
+time spent: 0.009995460510253906
+---------------------------------------
+0.0 - start
+0.0059964656829833984 - classify-Intent
+0.005983829498291016 - end
+time spent: 0.011980295181274414
+---------------------------------------
+0.0 - start
+0.007006168365478516 - end
+time spent: 0.007006168365478516
+---------------------------------------
+0.0 - start
+0.0 - classify-Intent
+0.0 - check
+0.0 - filter
+0.00699615478515625 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.07096028327941895 - pre-checkSimilarity
+0.16690349578857422 - post-checkSimilarity
+0.023999929428100586 - pre-checkSimilarity
+0.22287201881408691 - post-checkSimilarity
+0.01099395751953125 - post-loop
+0.006894826889038086 - end
+time spent: 0.5096206665039062
+---------------------------------------
+0.0 - start
+0.0009968280792236328 - classify-Intent
+0.0 - check
+0.0 - filter
+0.013990640640258789 - typeofwords
+0.0 - wordsandtype
+0.0 - listofchoices
+0.0 - pre-loop
+0.08594059944152832 - pre-checkSimilarity
+0.2228868007659912 - post-checkSimilarity
+0.025984764099121094 - pre-checkSimilarity
+0.18388891220092773 - post-checkSimilarity
+0.01798248291015625 - pre-checkSimilarity
+0.46874547004699707 - post-checkSimilarity
+0.028983116149902344 - pre-checkSimilarity
+0.22487640380859375 - post-checkSimilarity
+0.017989635467529297 - pre-checkSimilarity
+0.47841930389404297 - post-checkSimilarity
+0.01898980140686035 - pre-checkSimilarity
+0.36180591583251953 - post-checkSimilarity
+0.012979507446289062 - pre-checkSimilarity
+0.15492463111877441 - post-checkSimilarity
+0.0 - post-loop
+0.00599360466003418 - end
+time spent: 2.32537841796875
+---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/modules/phone.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.0006177425384521484 - classify-Intent
+0.0017409324645996094 - end
+time spent: 0.0024459362030029297
+---------------------------------------
+0.0 - start
+0.00037026405334472656 - classify-Intent
+0.0021762847900390625 - end
+time spent: 0.002685546875
+---------------------------------------
+0.0 - start
+0.011533975601196289 - end
+time spent: 0.011940479278564453
+---------------------------------------
+0.0 - start
+0.002317190170288086 - classify-Intent
+0.043883323669433594 - end
+time spent: 0.0467381477355957
+---------------------------------------
+0.0 - start
+0.0028982162475585938 - classify-Intent
+0.002633810043334961 - classify-Intent
+1.8792331218719482 - end
+time spent: 1.884892463684082
+---------------------------------------
+0.0 - start
+0.0011310577392578125 - classify-Intent
+0.0005090236663818359 - check
+0.00047278404235839844 - filter
+0.11657571792602539 - typeofwords
+0.0001399517059326172 - wordsandtype
+0.000102996826171875 - listofchoices
+6.437301635742188e-05 - pre-loop
+0.0860598087310791 - pre-checkSimilarity
+2.3821873664855957 - post-checkSimilarity
+0.06819772720336914 - pre-checkSimilarity
+0.4013228416442871 - post-checkSimilarity
+0.00021123886108398438 - post-loop
+0.0004324913024902344 - classify-Intent
+0.00011467933654785156 - check
+9.655952453613281e-05 - filter
+0.08600759506225586 - typeofwords
+0.00015592575073242188 - wordsandtype
+8.58306884765625e-05 - listofchoices
+5.8650970458984375e-05 - pre-loop
+0.06605863571166992 - pre-checkSimilarity
+0.3311474323272705 - post-checkSimilarity
+0.11356759071350098 - pre-checkSimilarity
+0.1888871192932129 - post-checkSimilarity
+0.05570697784423828 - pre-checkSimilarity
+0.22162675857543945 - post-checkSimilarity
+0.010055303573608398 - pre-checkSimilarity
+0.4562678337097168 - post-checkSimilarity
+0.020140409469604492 - pre-checkSimilarity
+0.36145520210266113 - post-checkSimilarity
+0.01758098602294922 - pre-checkSimilarity
+0.22432565689086914 - post-checkSimilarity
+0.011374235153198242 - pre-checkSimilarity
+0.21680927276611328 - post-checkSimilarity
+0.01709914207458496 - pre-checkSimilarity
+0.4299499988555908 - post-checkSimilarity
+0.013350963592529297 - pre-checkSimilarity
+0.3647160530090332 - post-checkSimilarity
+0.017225027084350586 - pre-checkSimilarity
+0.2701289653778076 - post-checkSimilarity
+0.012388467788696289 - pre-checkSimilarity
+0.2657284736633301 - post-checkSimilarity
+0.06815385818481445 - pre-checkSimilarity
+0.18253707885742188 - post-checkSimilarity
+0.055817604064941406 - pre-checkSimilarity
+0.17541265487670898 - post-checkSimilarity
+0.00012254714965820312 - post-loop
+1.651977777481079 - end
+time spent: 8.963667869567871
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/phone.py', reloading
+ * Restarting with stat

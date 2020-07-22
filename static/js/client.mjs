@@ -7,7 +7,6 @@
 import { closeSuggestions, userInput } from './suggestions.mjs';
 import { getSettingValue } from './settings.mjs';
 
-
 let socket = io.connect("http://127.0.0.1:5000"),
   sendButton = document.getElementById('send-button'),
   typeIndicator = document.getElementById('type-indicator'),
@@ -28,13 +27,15 @@ socket.on('connect', function () {
   socket.emit('username', userName);
 });
 
+// responsiveVoice.enableWindowClickHook();
+
 
 /**
  * Display received message from socket in chat interface.
  */
 socket.on('json', (json) => {
   console.log('message received');
-
+  
   messageQueue.push(json);
   printMessageQueueHead();
 });
@@ -93,6 +94,11 @@ function printMessageQueueHead() {
     updateMode();
     updateRoomName();
     updateCurrentLevel(levelID);
+
+    // if (getSettingValue('readMessages')){
+    //   responsiveVoice.speak(msg.replace(/<[^>]*>?|\.{3}/gm, ' '), "UK English Female", {pitch:0.99, rate:1.15});
+    // } 
+  
     printMessage(msg);
   } else if (messageQueue.length <= 0) {
     userMessageSendingAllowed = true;

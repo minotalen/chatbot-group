@@ -24,7 +24,7 @@
         "roomName": "professors office",
         "intro": "...you are in Professor Kraysee's office and you wait for him to call you up.<br>The nervousness rises with each second passing.<br>Will this be my last hour as a student of the university of Bremen?...<br>type in '<b>look around</b>' to get details of the room.<br>type in '<b>ready</b>' if you already played the tutorial.",
         "descri": "Professor Kraysee's office looks like it hasn't been tidied up for over a decade. You can see alot of interesting things laying around in his office but nothing all too useful.<br>He looks at you and you begin to chat...<br>type in '<b>talk to professor</b>' to talk to a person",
-        "connections": [],
+        "connections": [null],
         "items": [null],
         "objects": [
             {
@@ -51,12 +51,25 @@
                 "actionsValue": [null]
             },
             {
-                "trigName": "pick up notes",
-                "needStates": ["gotNotes", "ownNotes"],
+                "trigName": "go to safe",
+                "needStates": ["triggeredTalkToProf", "solvedSafe"],
                 "needStatesValue": [true, false],
                 "needItems": [null],
                 "needItemsRoomId": [null],
-                "accept": "You receive some notes.</b><br><br><b>Player:</b> Thank you Professor! I will not disappoint you, I promise!<br>type in '<b>go to</b> door' to go to the exit." ,
+                "accept": "<em>You are now in front of the safe. Your riddle senses are tingling.</em><br>You now have entered the <b>riddle mode</b><br>Here you have to type in the correct answer to solve the current riddle. <br>type in '<b>help</b>' to receive an explanation of the riddle. <br>type in '<b>exit</b>' to leave the riddle mode. You can re-enter it by going to the safe." ,
+                "fail": "<em>You already opened it</em>",
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": ["changeMode"],
+                "actionsValue": ["riddle"]
+            },
+            {
+                "trigName": "pick up notes",
+                "needStates": ["solvedSafe", "ownNotes"],
+                "needStatesValue": [true, false],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You receive some notes.</b><br><b>Professor Kraysee:</b> If you solve this next riddle I will give you the chance to start your quest. <b>Player:</b> Thank you Professor! I will not disappoint you, I promise!<br>Type in '<b>go to</b> door' to go to the exit." ,
                 "fail": "<em>You already got the notes</em>",
                 "newStates": ["ownNotes"],
                 "newStatesValue": [true],
@@ -78,13 +91,13 @@
             },
             {
                 "trigName": "talk to professor",
-                "needStates": ["gotNotes"],
+                "needStates": ["triggeredTalkToProf"],
                 "needStatesValue": [false],
                 "needItems": [null],
                 "needItemsRoomId": [null],
-                "accept": "Professor Kraysee:</b> … I’ve told you, this was your last chance! You already cheated once on your bachelor thesis.<br> <b>Player:</b> But Professor Kraysee, I really need my degree!<br><b>Professor Kraysee:</b> I know that. And I also know that I would ruin your life if I would make you fail. But I need to follow the rules.<br> <b>Player:</b> … <br> <em>Player’s eyes getting wet..</em><br><b>Professor Kraysee:</b> Alright, look I may have a task for you. I give you a very last chance for your bachelor thesis. I choose the topic and I conduct your research. If you successfully complete what I ask for I will let you pass. This way you will get your degree even though you cheated. But this will be a difficult tasks and I’m not sure whether you will be able to do it or not.<br><b>Player:</b> Please please please. I will do anything!<br> <em>Not literally!</em><br><b>Professor Kraysee:</b> Alright, here you have some notes. If you solve this riddle I will give you the chance to start your quest.<br> Type in '<b>pick up</b> notes' to pick up or receive an item.<br>" ,
+                "accept": "Professor Kraysee:</b> … I’ve told you, this was your last chance! You already cheated once on your bachelor thesis.<br> <b>Player:</b> But Professor Kraysee, I really need my degree!<br><b>Professor Kraysee:</b> I know that. And I also know that I would ruin your life if I would make you fail. But I need to follow the rules.<br> <b>Player:</b> … <br> <em>Player’s eyes getting wet..</em><br><b>Professor Kraysee:</b> Alright, look I may have a task for you. I give you a very last chance for your bachelor thesis. I choose the topic and I conduct your research. If you successfully complete what I ask for I will let you pass. This way you will get your degree even though you cheated. But this will be a difficult tasks and I’m not sure whether you will be able to do it or not.<br><b>Player:</b> Please please please. I will do anything!<br> <em>Not literally!</em><br><b>Professor Kraysee:</b> Alright, where are my notes? I think they are in the safe over there. Can you get them for me? The code should be 4115. <br>Type in '<b>go to</b> safe' to continue." ,
                 "fail": "<em>You already talked with the professor.</em>",
-                "newStates": ["gotNotes"],
+                "newStates": ["triggeredTalkToProf"],
                 "newStatesValue": [true],
                 "actions": [null],
                 "actionsValue": [null]
@@ -294,7 +307,7 @@
         "roomName": "Stands",
         "intro": "You are making your way downtown. <br>... <br>You arrive at the Schlachte flea market.",
         "descri": "There are dozens and dozens of little stands with people selling anything you could imagine. From trash to very nice and expensive coats to various paintings. <br>You have a closer look at one of the stands and an ancient treasure chest catches your eye. You take the chest to gain a better view. The salesman looks at you.",
-        "connections": [],
+        "connections": [null],
         "items": [
             {
                 "itemName": "chest",
@@ -730,9 +743,69 @@
         "location": "Inside of Überseestadtmuseum",
         "roomName": "Hallway",
         "intro": "You see alot of paintings and various exhibitions of past centuries.<br>There are 2 exhibitions you want to take a closer look at, and one painting that has caught your eye.<br>",
-        "descri": "To your left you see an exhibition with african animals.<br>To your right there is another exhibition",
+        "descri": "To your right you see an exhibition with african animals.<br>In front of you is another exhibition",
         "connections": [
+            {
+                "conNames": ["right", "africa", "animals"],
+                "conRoomId": 11,
+                "needStates": [null],
+                "needStatesValue": [null]
+            },
+            {
+                "conNames": ["in front", "forward", "century", "boats"],
+                "conRoomId": 12,
+                "needStates": [null],
+                "needStatesValue": [null]
+            }
+        ],
+        "items": [
             null
+        ],
+        "objects": [
+            {
+                "objName": "painting",
+                "lookAt": "You take a closer look at the painting and you notice there is a tiny bit of red paint on one of the corners.<br> The paint is fresh and it has not dried yet. The person that has left this stain was approximatly 5 minutes before you here.<br>You inspect the paint even further and you smell it. It smells like nail polish.<br>",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "newStates": ["sawPainting"],
+                "newStatesValue": [true]
+            }
+        ],
+        "triggers": [
+            {
+                "trigName": "balcony",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "There is no need to go back now. Better find what you are here for.",
+                "fail": null,
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": [null],
+                "actionsValue": [null]
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "location": "Inside of Überseestadtmuseum",
+        "roomName": "Dark Hallway",
+        "intro": "For some odd reason you can't switch the lights on. Maybe this has something to do with the wires you cut.<br> You can barely see anything at all.<br> You think you can see 2 exhibitions.<br> One is to your right and the other one is in front of you, each about 15 meters away.<br>",
+        "descri": "You cannot see anything else except the exhibitions.",
+        "connections": [
+            {
+                "conNames": ["right", "monster"],
+                "conRoomId": 13,
+                "needStates": [null],
+                "needStatesValue": [null]
+            },
+            {
+                "conNames": ["in front", "forward", "boats"],
+                "conRoomId": 14,
+                "needStates": [null],
+                "needStatesValue": [null]
+            }
         ],
         "items": [
             null
@@ -754,6 +827,272 @@
                 "actions": [null],
                 "actionsValue": [null]
             }
+        ]
+    },
+    {
+        "id": 11,
+        "location": "Inside of Überseestadtmuseum",
+        "roomName": "African animals exhibition",
+        "intro": "You go to the exhibition to your right. <br> It is a showcase of african animals. At nighttime alone in the museum those animals look incredibly scary. I hope they don't come alive like they did in the movie with Adam Sandler.<br> Maybe I am in a movie? Maybe I am Adam Sandler??? Okay, I should definitely sleep more.<br> I should investigate further.<br>",
+        "descri": "You can see a showcase with some african animals that are stuffed to look like they are alive. There is a zebra and... <b>oh no an elephant.</b> I really have enough of this particular animal.<br>",
+        "connections": [
+            {
+                "conNames": ["back", "hallway"],
+                "conRoomId": 9,
+                "needStates": [null],
+                "needStatesValue": [null]
+            }
+        ],
+        "items": [
+            null
+        ],
+        "objects": [
+            {
+                "objName": "elephant",
+                "lookAt": "You look at the elephant and you feel your anger rising. You want to throw something at the elephant.<br>",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "newStates": [null],
+                "newStatesValue": [null]
+            },
+            {
+                "objName": "zebra",
+                "lookAt": "Zebras have a really cool looking fur. The white stripes remind you of a band. You can't remember their name though.",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "newStates": [null],
+                "newStatesValue": [null]
+            }
+        ],
+        "triggers": [
+            {
+                "trigName": "throw",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "needItems": ["bottle"],
+                "needItemsRoomId": [2],
+                "accept": "You take the bottle that you picked up earlier in the park and yeet it at the stuffed elephant.<br>You shout: <b>Take this you disgusting elephant</b>. Now you feel a lot better.<br> Also you finally got rid of the dirty bottle.<br>",
+                "fail": "You have nothing to throw at it. At least nothing that you do not need any longer.",
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": ["removeItem"],
+                "actionsValue": ["bottle"]
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "location": "Inside of Überseestadtmuseum",
+        "roomName": "18th century exhibition",
+        "intro": "You are now close enough to inspect the exhibition. This part of the museum is dedicated to trading in the 18th century.<br>You can see different kinds of old boats. One particular boat has a description text attached.<br> There is a lot to look at here.<br>",
+        "descri": "You can see different kinds of old boats. One particular boat has a description text attached. There is also an old wooden chest, that looks like taken straight from a pirate movie.<br>",
+        "connections": [
+            {
+                "conNames": ["back", "hallway"],
+                "conRoomId": 9,
+                "needStates": [null],
+                "needStatesValue": [null]
+            }
+        ],
+        "items": [
+            null
+        ],
+        "objects": [
+            {
+                "objName": "boat",
+                "lookAt": "This is written in the text attached to the boat:<i>Boats have served as transportation since the earliest times.<br><i>Circumstantial evidence, such as the early settlement of Australia over 40,000 years ago, findings in Crete dated 130,000 years ago,<br>and in Flores dated to 900,000 years ago, suggest that boats have been used since prehistoric times.<br>The earliest boats are thought to have been dugouts, and the oldest boats found by archaeological excavation date from around 7,000–10,000 years ago.<br>The oldest recovered boat in the world, the Pesse canoe, found in the Netherlands,<br>is a dugout made from the hollowed tree trunk of a Pinus sylvestris that was constructed somewhere between 8200 and 7600 BC.<br>The boat in this exhibition was found in the river 'Weser' that floats through Bremen. Some contents from the ship could be restored and are displayed here.<br>The boat itself is an approximate reconstuction of the wrack that was found.<br></i>So this boat might be important but it is not the original. So maybe I can find a more authentic artefact.<br>",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "newStates": [null],
+                "newStatesValue": [null]
+            },
+            {
+                "objName": "chest",
+                "lookAt": "The box is made out of wood and is already rotten. I really don't feel like touching it. But after taking a really close look I can see a writting burned into the box.<br> It says: <i>With the blood of our enemies. Shining like the sea in the moonlight.</i><br><br><b>Suddenly you receive a message on your mobile phone.</b><br>",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "newStates": ["sawChest"],
+                "newStatesValue": [true]
+            }
+        ],
+        "triggers": [
+            null
+        ]
+    },
+    {
+        "id": 13,
+        "location": "Inside of Überseestadtmuseum",
+        "roomName": "Monster exhibition",
+        "intro": "You go to the exhibition to your right. <br> As you get closer you see weird silhouettes in different shapes and sizes. You hope they don't come alive and try to eat you.<br> They look terrifying. Maybe this quest from professor Kraysee wasn't a good decision.<br> You take all your courage and decide to investigate further.<br>",
+        "descri": "There is a monster shown with a weird zebra-like pattern and... <b>oh no a mammoth without horns.</b> I really have enough of this museum.<br>",
+        "connections": [
+            {
+                "conNames": ["back", "hallway"],
+                "conRoomId": 10,
+                "needStates": [null],
+                "needStatesValue": [null]
+            }
+        ],
+        "items": [
+            null
+        ],
+        "objects": [
+            {
+                "objName": "mammoth",
+                "lookAt": "You look at the mammoth and you feel so scared that you want to throw something at it.<br>",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "newStates": [null],
+                "newStatesValue": [null]
+            },
+            {
+                "objName": "zebra",
+                "lookAt": "Zebras have a really cool looking fur. The white stripes remind you of a band. You can't remember their name though.",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "newStates": [null],
+                "newStatesValue": [null]
+            }
+        ],
+        "triggers": [
+            {
+                "trigName": "throw",
+                "needStates": [null],
+                "needStatesValue": [null],
+                "needItems": ["bottle"],
+                "needItemsRoomId": [2],
+                "accept": "You take the bottle that you picked up earlier in the park and yeet it at the big hopefully not living mammoth.<br> It doesn't move. Now you feel a lot better.<br> Also you finally got rid of the dirty bottle.<br>",
+                "fail": "You have nothing to throw at it. At least nothing that you do not need any longer.",
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": ["removeItem"],
+                "actionsValue": ["bottle"]
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "location": "Inside of Überseestadtmuseum",
+        "roomName": "Boats exhibition",
+        "intro": "You are now close enough to inspect the exhibition. There are big constructs staying in front of you. They look like boats. At least you hope so..<br> There is also an odd statue standing around here, you didn't noticed it before.",
+        "descri": "You can see different kinds of old boats. You could move left to the one closest to you or a bigger one to your right. You can't see any details that would help you to decide.",
+        "connections": [
+            {
+                "conNames": ["back", "hallway"],
+                "conRoomId": 10,
+                "needStates": ["sawRight"],
+                "needStatesValue": [false]
+            }
+        ],
+        "items": [
+            null
+        ],
+        "objects": [
+            {
+                "objName": "left",
+                "lookAt": "You walk slowly to the left side when suddenly you bump into something. <br>You touch it and you immediately get disgusted by the feel of it but there is no other way to find out what it is. So you continue and it seems to be a chest with something burned into it. <br>You should touch the writting more.",
+                "needStates": ["sawRight"],
+                "needStatesValue": [false],
+                "newStates": ["sawLeft"],
+                "newStatesValue": [true]
+            },
+            {
+                "objName": "right",
+                "lookAt": "You walk slowly to the right side. Suddenly you notice the statue from before. Was it always standing here? <br> You start investigating the statue in the darkness by touching it. <br> Out of a sudden you get blinded by a light, did you just found a secret mechanism? <br> As your eyes start to see again you realise that the statue is actually a security officer looking weirdly at you. You should run away.",
+                "needStates": ["sawRight"],
+                "needStatesValue": [false],
+                "newStates": ["sawRight"],
+                "newStatesValue": [true]
+            },
+            {
+                "objName": "chest",
+                "lookAt": "The box is made out of wood and is already rotten. I really don't feel like touching it. But after taking a really close look I can see a writting burned into the box.<br> It says: <i>With the blood of our enemies. Shining like the sea in the moonlight.</i><br><br><b>Suddenly you receive a message on your mobile phone.</b><br>",
+                "needStates": ["sawRight"],
+                "needStatesValue": [false],
+                "newStates": ["sawChest"],
+                "newStatesValue": [true]
+            },
+            {
+                "objName": "statue",
+                "lookAt": "You move closer to the statue and you quickly realise that it is moving. You are very scared.<br>...<br>It is not a statue, it is a security officer!<br>He notices you.<br>What should you do now?",
+                "needStates": ["sawRight"],
+                "needStatesValue": [false],
+                "newStates": ["sawRight"],
+                "newStatesValue": [true]
+            }
+        ],
+        "triggers": [
+            {
+                "trigName": "run",
+                "needStates": ["sawRight"],
+                "needStatesValue": [true],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You try to run away but you trip.<br>He catches you and kicks you out of the museum.<br>It seems like anything you try is worthless against the security officer. <br>Now you have to try again.",
+                "fail": "It is so dark in here that you just should not do that.",
+                "newStates": ["sawRight"],
+                "newStatesValue": [false],
+                "actions": ["changeLocation"],
+                "actionsValue": [5]
+            },
+            {
+                "trigName": "hide",
+                "needStates": ["sawRight"],
+                "needStatesValue": [true],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "It's way too dark to find a good spot to hide but you try it anyway.<br>The security officer gets closer to you.<br>With his flashlight on he easily spots your hideout.<br>The security officer kicks you out of the museum.<br>",
+                "fail": "It is so dark in here that you just should not do that.",
+                "newStates": ["sawRight"],
+                "newStatesValue": [false],
+                "actions": ["changeLocation"],
+                "actionsValue": [5]
+            },
+            {
+                "trigName": "talk",
+                "needStates": ["sawRight"],
+                "needStatesValue": [true],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "The security officer ignores your approach to talk to him and just kicks you out of the museum.<br>",
+                "fail": "It is so dark in here that you are to scared to talk out loud.",
+                "newStates": ["sawRight"],
+                "newStatesValue": [false],
+                "actions": ["changeLocation"],
+                "actionsValue": [5]
+            },
+            {
+                "trigName": "hit",
+                "needStates": ["sawRight"],
+                "needStatesValue": [true],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You try to hit the security officer but he dodges your attack.<br>He beats you down and kicks you out of the museum.<br>",
+                "fail": "It is so dark in here that you are to scared to break anything important.",
+                "newStates": ["sawRight"],
+                "newStatesValue": [false],
+                "actions": ["changeLocation"],
+                "actionsValue": [5]
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "location": "Altstadt",
+        "roomName": "CURRENT END",
+        "intro": "You reached the current end of the game. Congratulations.",
+        "descri": "There is nothing more to see here. Go away.",
+        "connections": [
+            null
+        ],
+        "items": [
+            null
+        ],
+        "objects": [
+            null
+        ],
+        "triggers": [
+            null
         ]
     }
     ]

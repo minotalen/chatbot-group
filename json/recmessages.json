@@ -13,6 +13,11 @@
             "id": 3,
             "str_message": "Thank you. Very cool. You completed the research study. We are very proud of you. Please fill out the questionaire or start the next version of the game!<br><br> I did some research and I found out that this chest has indeed some kind of connections to the colonialism. In fact this chest was once in possession of the Atikuku tribe. The Überseestadtmuseum has an exhibition about the Atikuku's. You should go there and investigate.",
             "user_state": "triggeredPicture"
+        },
+        {
+            "id": 4,
+            "str_message": "You actually found something useful. I'm impressed.<br> With this new information we are one step closer to finding out about the secret that is lying underneath the elephant monument.<br> Earlier today I did some research and I noticed that there are some very interesting facts about the ROLAND and the SCHNOOR.<br> I have a friend that is working as a night watch in the ALTSTADT. Maybe you should ask him if he could give you a tour.<br> You will definetly learn something and perhaps it will help us to solve this mystery.<br><br><br>Good luck.<br>",
+            "user_state": "sawChest"
         }
     ]
 }

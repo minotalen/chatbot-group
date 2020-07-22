@@ -1,0 +1,18 @@
+{
+    "locations": [{
+            "locationName": "Nelson Mandela Park",
+            "neededStates": ["solvedTutorial"],
+            "startRoomId": 2
+        },
+        {
+            "locationName": "Schlachte Flea Market",
+            "neededStates": ["solvedPinCode"],
+            "startRoomId": 4
+        },
+        {
+            "locationName": "Überseestadtmuseum",
+            "neededStates": ["triggeredPicture"],
+            "startRoomId": 5
+        }
+    ]
+}

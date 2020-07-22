@@ -51,16 +51,20 @@
 
   </nav>
   <div class="container error">
-    <div>
+    <div class="circle">
       <img src="../static/img/placeholdericon.svg" alt="Sorry!" class="icon">
     </div>
-    <h1>Error {{ error_code }}</h1>
+    <h1 class="error-heading">Error {{ error_code }}</h1>
     <!-- <p>The page you are looking for might have been removed, had it´s name changed, is temporarily unavailable, or does not exist.</p> -->
     <p>{{ error }}</p>
     <a href="{{ url_for('login') }}">
       <button id="home-button" type="button" class="primary">Back to home</button>
     </a>
   </div>
+
+  <script type="module" src="../static/js/settings.mjs"></script>
+  <script type="module" src="../static/js/mobile.mjs"></script>
+
 </body>
 
 </html>

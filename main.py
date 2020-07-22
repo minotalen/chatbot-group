@@ -24,7 +24,7 @@ def send_index_page():
 
         print(username)
         if username:  # database.is_user_logged_in(username):
-            return redirect(url_for('send_profile_page', username=username))
+            return redirect(url_for('send_play_page', username=username))
 
     return redirect(url_for('login'))
 
@@ -41,10 +41,9 @@ def login():
             """if database.is_user_logged_in(username):
                 return render_template('login.html', error_message='user already logged in on another device.')
             else:"""
-            # database.update_login(username, True)
             session['username'] = username
             session['is_logged_in'] = True
-            return redirect(url_for('send_profile_page', username=username))
+            return redirect(url_for('send_play_page', username=username))
         else:
             return render_template('login.html', error_message='username and password do not match.')
     else:
@@ -52,8 +51,8 @@ def login():
         if username:
 
             print(username)
-            if username:  # database.is_user_logged_in(username):
-                return redirect(url_for('send_profile_page', username=username))
+            if username:
+                return redirect(url_for('send_play_page', username=username))
         else:
             return render_template('login.html')
 
@@ -76,7 +75,7 @@ def signup():
         if not userExists:
             database.add_user(username, password)
             session['username'] = username
-            return redirect(url_for('send_profile_page', username= username))
+            return redirect(url_for('send_play_page', username= username))
         else:
             return render_template('signup.html', error_message='Username already taken. Please choose another one.')
     else:
@@ -108,7 +107,7 @@ def get_user_settings():
 def send_profile_page():
     username = session.get('username')
 
-    if username:  # database.is_user_logged_in(username):
+    if username:
         return render_template('user.html', username=username)
     else:
         print('no user is logged in (username source: session)')
@@ -119,7 +118,7 @@ def send_profile_page():
 def send_play_page():
     username = session.get('username')
 
-    if username:  # database.is_user_logged_in(username):
+    if username:
         return render_template('play.html', username=username)
     else:
         print('no user is logged in (username source: session)')
@@ -131,15 +130,25 @@ def logout():
     username = session.get('username')
     print(username)
 
-    if username:  # and database.is_user_logged_in(username):
+    if username:
         session.pop('username', None)
         session.pop('is_logged_in', None)
-        # database.update_login(username, False)
         print(username + ' has been logged out')
         return redirect(url_for('login'))
     else:
         print('no user is logged in (username source: session)')
         return redirect(url_for('login'))
+
+
+@app.errorhandler(404)
+def show_error_page(error, error_code=404):
+    print(error)
+    return render_template('error.html', error=error, error_code=error_code)
+
+@app.errorhandler(500)
+def handle_error_500(error):
+    error = 'error 500: internal server error'
+    return show_error_page(error,500)
 
 
 @socketio.on('json')

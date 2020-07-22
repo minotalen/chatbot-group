@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-mode="game">
+<html lang="en" data-theme data-mode="game">
 
 <!--
   Chat interface page
   Authors: Kevin Katzkowski, Jeffrey Pillmann
-  Last modified: 06.07.2020
+  Last modified: 14.07.2020
 -->
 
 <head>
@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../static/css/base.css">
   <link rel="stylesheet" href="../static/css/colors.css">
   <link rel="stylesheet" href="../static/css/chat.css">
-  <link rel="stylesheet" href="../static/css/settings.css">
+  <!-- <link rel="stylesheet" href="../static/css/settings.css"> -->
   <link rel="stylesheet" href="../static/css/login-signup.css">
 
   <!-- TODO change title -->
@@ -56,47 +56,8 @@
   <div class="container">
 
     <div id="top-bar">
-      <h3 id="room-name">Room 3</h3>
-      <h3 id="level">Lvl. 1</h3>
-    </div>
-
-    <div id="settings-window">
-      <h3>Settings</h3>
-
-      <!-- settings entries -->
-      <div class="settings-entry">
-        <label for="setting-suggestions" class="checkbox-container">Show suggestions
-          <input id="setting-suggestions" type="checkbox">
-          <span class="checkmark"></span>
-        </label>
-      </div>
-
-      <div class="settings-entry">
-        <label for="setting-dark-mode" class="checkbox-container">
-          Dark Mode
-          <input id="setting-dark-mode" type="checkbox">
-          <span class="checkmark"></span>
-        </label>
-      </div>
-
-      <div class="settings-entry">
-        <label for="setting-3" class="checkbox-container">
-          Setting 3
-          <input id="setting-3" type="checkbox" disabled>
-          <span class="checkmark"></span>
-        </label>
-      </div>
-
-      <div class="settings-entry">
-        <label for="setting-4" class="checkbox-container">
-          Setting 4
-          <input id="setting-4" type="checkbox" disabled>
-          <span class="checkmark"></span>
-        </label>
-      </div>
-
-      <button id="close-settings">close</button>
-
+      <h3 id="room-name"></h3>
+      <h3 id="level"></h3>
     </div>
 
     <ul id="chat-content-container">
@@ -163,10 +124,15 @@
 
   <!-- load socket libary -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+  
+  <!-- load audio library -->
+  <!-- <script src="https://code.responsivevoice.org/responsivevoice.js?key=CVUNQWbR"></script> -->
 
   <!-- load custom javascript -->
   <script type="module" src="../static/js/client.mjs"></script>
-  <script type="module" src="../static/js/mobile.js"></script>
+  <script type="module" src="../static/js/settings.mjs"></script>
+  <script type="module" src="../static/js/mobile.mjs"></script>
+
 </body>
 
 </html>

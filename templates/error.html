@@ -2,9 +2,9 @@
 <html lang="en" data-theme="light" data-mode="game">
 
 <!--
-  Login page
-  Authors: Kevin Katzkowski
-  Last modified: 02.07.2020
+  Error page
+  Authors: Jeffrey Pillmann
+  Last modified: 16.07.2020
 -->
 
 <head>
@@ -18,11 +18,10 @@
   <!-- CSS files -->
   <link rel="stylesheet" href="../static/css/base.css">
   <link rel="stylesheet" href="../static/css/colors.css">
-  <link rel="stylesheet" href="../static/css/user.css">
-  <link rel="stylesheet" href="../static/css/login-signup.css">
+  <link rel="stylesheet" href="../static/css/error.css">
 
   <!-- TODO change title -->
-  <title>Sign Up</title>
+  <title>Error {{ error_code }}</title>
 </head>
 
 <body>
@@ -43,38 +42,29 @@
       <li></li>
     </ul>
 
-
     <!-- <div class="user-account">
       <p class="user-name">Santa Claus</p>
       <div class="avatar small"></div>
     </div> -->
-    <a href="{{ url_for('login') }}"><button class="secondary">Log In</button></a>
+
+    <button class="secondary">Log In</button>
 
   </nav>
-
-  <div class="container signup">
-    <h2 id="singup-heading">Sign Up</h2>
-    <p id="singup-text">for free, no email required</p>
-    <p class="error-message">{{ error_message }}</p>
-
-    <form id="signup-form" method="POST" action="/signup">
-      <input id="user-name" name="username" type="text" placeholder="username" required>
-      <input id="user-password" name="password" type="password" placeholder="password" required>
-
-      <input id="repeat-password" name="repeat-password" type="password" placeholder="repeat password" required>
-      <label for="repeat-password">You cannot reset your password.</label>
-
-      <button id="signup-button" type="submit" class="primary">Sign Up</button>
-
-    </form>
-
-    <a id="login-instead" href="/login">log in instead</a>
-
+  <div class="container error">
+    <div class="circle">
+      <img src="../static/img/placeholdericon.svg" alt="Sorry!" class="icon">
+    </div>
+    <h1 class="error-heading">Error {{ error_code }}</h1>
+    <!-- <p>The page you are looking for might have been removed, had it´s name changed, is temporarily unavailable, or does not exist.</p> -->
+    <p>{{ error }}</p>
+    <a href="{{ url_for('login') }}">
+      <button id="home-button" type="button" class="primary">Back to home</button>
+    </a>
   </div>
 
-  <!-- load custom javascript -->
   <script type="module" src="../static/js/settings.mjs"></script>
   <script type="module" src="../static/js/mobile.mjs"></script>
+
 </body>
 
 </html>

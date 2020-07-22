@@ -26,8 +26,7 @@ Last modified: 29.06.2020
 
 .settings-container {
   width: 100%;
-  /* height: 12rem; */
-  padding: 3rem;
+  padding: 2rem 3rem;
   box-sizing: border-box;
 
   display: flex;
@@ -88,7 +87,7 @@ input[type="checkbox"].settings:after {
   width: 1.25rem;
   height: 1.25rem;
   border-radius: var(--border-radius);
-  background: var(--color-background);
+  background: var(--color-surface-light);
   -webkit-box-shadow: var(--box-shadow-glow);
   box-shadow: var(--box-shadow-glow);
   -webkit-transform: scale(.7);
@@ -139,7 +138,7 @@ input[type="checkbox"].settings:checked:after {
 
 .theme-radio-buttons input[type="radio"]:checked~label {
   background-color: var(--color-primary);
-  color: var(--color-onprimary);
+  color: var(--color-text);
 }
 
 @media only screen and (max-width: 600px) {

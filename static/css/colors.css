@@ -1,113 +1,126 @@
 /*
 Color definitions prepared for different themes
 Authors: Kevin Katzkowski, Jeffrey Pillmann
-Last modified: 29.06.2020
+Last modified: 21.07.2020
 */
 
-:root {
+/* TODO swap primary colors between themes */
+[data-theme="light"] {
   /* --color-primary: #365fc5; */
-  --color-primary: #16697A;
-  --color-secondary: #ffc4ff;
-  /* #8ab9ff; */
-  --gradient-primary: -webkit- linear-gradient(193deg, #6c91c9, #16697A);
-  --color-primary-light: #6c91c9;
+  --color-primary: #13A198;
+  --color-onprimary: #9EA7B8;
+  --gradient-primary: -webkit-linear-gradient(193deg, #6c91c9, #16697A);
   /* --color-primary-dark: #16697A; */
-  --color-onprimary: var(--color-surface);
+
   --color-background: #fff;
   --color-surface: #edf0f7;
   --color-surface-light: #fff;
   --color-surface-dark: #D6D8DB;
+
   --color-text: #021D42;
-  --color-text-light: #fff;
   --color-text-placeholder: #757575;
+  --color-input-selection: #6c91c9;
+  --color-error: red;
+  --color-suggestion-heading: var(--color-primary);
+
   --color-message-user: var(--color-primary);
   --color-message-bot: var(--color-text);
   --color-message-bot-background: lightgreen;
   --color-message-inventory: var(--color-message-bot);
   --color-message-inventory-background: wheat;
-  --color-error: red;
-  --border-chat: 3px solid #000;
+
   --border-radius: 2px;
+  --border-default: 2px solid var(--color-onprimary); /*var(--color-text);*/
+  --border-chat: 3px solid #000;
   --border-input: 2px solid #9EA7B8;
-  --border-default: 2px solid var(--color-text);
-  --color-button-text: #000;
-  --color-suggestion-heading: #000;
-  --color-settings-btn-surface: #D6D8DB;
+  --border-highlight: 2px solid var(--color-text);
+
   --box-shadow-small: 2px 2px 0px rgba(0, 0, 0, 0.65);
   --box-shadow-medium: 4px 4px 0px rgba(0, 0, 0, 0.65);
   --box-shadow-large: 6px 6px 0px rgba(0, 0, 0, 0.65);
   --box-shadow-glow: 0 0 .25rem rgba(0, 0, 0, .3);
+
+  --color-mode-primary: var(--color-primary);
+  --color-mode-surface: var(--color-surface);
+  --color-mode-background: var(--color-surface-light);
+  --color-mode-text: var(--color-text);
+  --color-mode-suggestion-background: var(--color-surface-dark);
+  --color-mode-suggestion-highlight: var(--color-surface-light);
 }
 
 [data-theme="dark"] {
-  --color-primary: #9A97F3;
-  --color-primary-light: #818cab;
-  --color-onprimary: var(--color-text);
-  --color-background: #161625;
-  --color-surface: #434370;
-  --color-surface-light: #1d1d30;
-  --color-surface-dark: #060607;
+  --color-primary: #16697A;
+  --color-onprimary: #9EA7B8;/*var(--color-surface); /*-text*/
+
+  --color-background: #181C26; /*#161625;*/ 
+  --color-surface: #1e232f; /*#434370;*/
+  --color-surface-light: #313a4e;/*#1d1d30;*/ 
+  --color-surface-dark: var(--color-surface);/*#060607;*/
+
   --color-text: #e1e1ff;
   --color-text-placeholder: #757575;
+  --color-input-selection: #818cab;
+  --color-error: red;
+  --color-suggestion-heading: var(--color-primary);
+
   --color-message-user: var(--color-primary);
   --color-message-bot: var(--color-text);
   --color-message-bot-background: darkgreen;
   --color-message-inventory: var(--color-message-bot);
   --color-message-inventory-background: sienna;
-  --border-chat: 3px solid #1C2541;
+
   --border-radius: 2px;
-  --shadow: 0px 4px 8px #757575;
-  --color-button-text: #ffffff;
-  --color-settings-btn-surface: var(--color-background);
-}
+  --border-default: 2px solid var(--color-onprimary); /*onprimary*/
+  --border-chat: 3px solid #45516d; /*#1C2541;*/
+  --border-input: 2px solid #9EA7B8;
+  --border-highlight: 2px solid var(--color-text);
 
-[data-theme="d"] {
-  --color-primary: #9A97F3;
-  --color-secondary: #818cab;
-  --color-text: #e1e1ff;
-  --bg-color: #161625;
-  --heading-color: #818cab;
-  --font-size: 100%;
-  --summary-color: #818cab25;
-  --details-color: #818cab11;
-  --color-button-text: #ffffff;
-}
+  --box-shadow-small: 2px 2px 0px rgba(255, 255, 255, 0.25);
+  --box-shadow-medium: 4px 4px 0px rgba(0, 0, 0, 0.65);
+  --box-shadow-large: 6px 6px 0px rgba(0, 0, 0, 0.65);
+  --box-shadow-glow: 0 0 .25rem rgba(0, 0, 0, .3);
 
+  --color-mode-primary: var(--color-primary);
+  --color-mode-surface: var(--color-surface);
+  --color-mode-background: var(--color-surface-light);
+  --color-mode-text: var(--color-text);
+  --color-mode-suggestion-background: var(--color-surface-dark);
+  --color-mode-suggestion-highlight: var(--color-surface-light);
+}
 
 [data-mode="riddle"] {
-  /* top bar color, button background color */
-  --color-primary: rgb(0, 255, 115);
+  --color-mode-primary: var(--color-primary);
+  --color-mode-surface: var(--color-surface);
+  --color-mode-background: var(--color-surface-light);
+  --color-mode-text: var(--color-text);
+  --color-text-placeholder: var(--color-text-placeholder);
+  --color-input-selection: var(--color-input-selection);
+  --color-mode-suggestion-background: var(--color-surface-dark);
+  --color-mode-suggestion-highlight: var(--color-surface-light);
+  --color-suggestion-heading: var(--color-suggestion-heading);
+}
 
-  /* headlines */
-  --color-onprimary: var(--color-background);
+[data-mode="phone"] {
+  --color-mode-primary: var(--color-primary);
+  --color-mode-surface: var(--color-surface);
+  --color-mode-background: var(--color-surface-light);
+  --color-mode-text: var(--color-text);
+  --color-text-placeholder: var(--color-text-placeholder);
+  --color-input-selection: var(--color-input-selection);
+  --color-mode-suggestion-background: var(--color-surface-dark);
+  --color-mode-suggestion-highlight: var(--color-surface-light);
+  --color-suggestion-heading: var(--color-suggestion-heading);
+}
 
-  /* no usage? */
-  --color-secondary: #123;
 
-  /* headlines, bot messages */
-  /* --color-text: #e1e1ff; */
-
-  /* background behind chat */
-  /* --color-background: var(--color-background); */
-
-  /* text field, text field selection highlighting, settings window, settings checkmark */
-  --color-surface: rgb(0, 136, 61);
-
-  /* settings entry background */
-  /* --color-surface-light: var(--color-surface-light); */
-
-  /* suggestion background */
-  /* --color-surface-dark: var(--color-surface-dark); */
-
-  /* text marker color for matching text in input field */
-  --color-primary-light: rgb(117, 255, 179);
-
-  /* Suggestion box heading + placeholder */
-  --color-text-placeholder: var(--color-onprimary);
-
-  /* user message, input text color, primary button border */
-  /* --color-message-user: var(--color-message-user); */
-
-  /* bot message */
-  /* --color-message-bot: var(--color-message-bot); */
+[data-mode="gps"] {
+  --color-mode-primary: var(--color-primary);
+  --color-mode-surface: var(--color-surface);
+  --color-mode-background: var(--color-surface-light);
+  --color-mode-text: var(--color-text);
+  --color-text-placeholder: var(--color-text-placeholder);
+  --color-input-selection: var(--color-input-selection);
+  --color-mode-suggestion-background: var(--color-surface-dark);
+  --color-mode-suggestion-highlight: var(--color-surface-light);
+  --color-suggestion-heading: var(--color-suggestion-heading);
 }

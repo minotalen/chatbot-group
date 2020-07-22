@@ -1,7 +1,7 @@
 /*
-Basic styling for page
+Basic styling for all pages
 Authors: Kevin Katzkowski, Jeffrey Pillmann
-Last modified: 24.06.2020
+Last modified: 22.07.2020
 */
 
 * {
@@ -22,9 +22,6 @@ body {
 h1 {
   font-size: 1.5rem;
   color: var(--color-text);
-  /* background: var(--gradient-primary); */
-  /* -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent */
 }
 
 h2 {
@@ -47,9 +44,6 @@ a {
 }
 
 #hamburger {
-  /* position: absolute;
-  top: 0.3rem;
-  right: 1rem; */
   font-size: 24px;
   z-index: 1;
   display: none;
@@ -73,9 +67,7 @@ nav {
   align-items: center;
   justify-content: space-between;
 
-  /* border-bottom: 2px solid #000; */
   background-color: var(--color-background);
-  /* box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25); */
 }
 
 nav h2 {
@@ -99,14 +91,14 @@ nav ul li {
   font-size: 1.2rem;
   text-transform: uppercase;
 
-  border: 2px solid rgba(0, 0, 0, 0); /* TODO move to colors.css */
+  /* TODO move to colors.css */
+  border: 2px solid rgba(0, 0, 0, 0);
 }
 
 
 nav ul li a {
   display: block;
   padding: 0.25rem 3rem;
-
 
   color: var(--gradient-primary);
 
@@ -117,7 +109,6 @@ nav ul li a {
 
 nav ul li:hover>a {
   text-decoration: none;
-  /* color: var(--color-text-light); */
   transition: .2s;
 }
 
@@ -129,20 +120,13 @@ nav ul li:hover {
   border: var(--border-default);
   box-shadow: var(--box-shadow-small);
 
-  /* transition: .2s; */
-
 }
 
 .user-account {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  /* background-color: var(--color-surface); */
   border-radius: var(--border-radius);
-  /* border: var(--border-default); */
-  /* box-shadow: var(--box-shadow-small); */
-
   transition: .5s;
 }
 
@@ -157,18 +141,6 @@ nav button.secondary {
   font-size: 1rem;
   text-transform: uppercase;
 }
-
-nav .user-account {
-  /* padding: 0.25rem 1rem; */
-}
-
-/* #user-account:hover {
-  border-radius: var(--border-radius);
-  border: var(--border-default);
-  box-shadow: var(--box-shadow-small);
-
-  transition: .5s;
-} */
 
 .user-name {
   margin-right: 0.5rem;
@@ -204,8 +176,8 @@ button {
 button.primary {
   background-color: var(--color-primary);
 
-  color: var(--color-onprimary);
-  font-weight: 600;
+  color: var(--color-text);
+  font-weight: 900;
   text-transform: uppercase;
   font-size: 0.8rem;
   letter-spacing: 0.05rem;
@@ -221,6 +193,7 @@ button.primary:hover,
 button.primary:active {
   background-color: var(--color-primary);
   box-shadow: var(--box-shadow-small);
+  border-color: var(--color-text);
 
   transition: .5s;
 }
@@ -264,7 +237,9 @@ button#delete-account.secondary {
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow-large);
 
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 input[type="radio"] {
@@ -304,10 +279,6 @@ input[type="radio"] {
     text-align: center;
     margin-top: 0.5rem;
   }
-
-  /* nav ul li:last-child {
-    display: block;
-  } */
 
   .container {
     display: flex;

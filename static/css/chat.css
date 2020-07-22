@@ -1,7 +1,7 @@
 /* 
 Main stylesheet for chat layout
 Authors: Kevin Katzkowski, mon janssen, Jeffrey Pillmann
-Last modified: 29.06.2020
+Last modified: 21.07.2020
 */
 
 #chat-content-container {
@@ -11,9 +11,9 @@ Last modified: 29.06.2020
   /* 15.5rem = content-container (top + bot) + top-bar + est. input (3.5rem) */
   height: calc(100vh - 15.5rem);
   /* TODO browser with calc() support */
-  background-color: var(--color-surface-light);
+  background-color: var(--color-mode-background);
 
-  scrollbar-color: var(--color-primary) var(--color-surface-light);
+  scrollbar-color: var(--color-mode-primary) var(--color-mode-background);
   scrollbar-width: thin;
   scroll-behavior: smooth;
   overflow-y: scroll;
@@ -32,7 +32,7 @@ Last modified: 29.06.2020
 }
 
 #chat-content-container::-webkit-scrollbar-thumb {
-  background-color: var(--color-surface-dark);
+  background-color: var(--color-mode-background);
   border-radius: var(--border-radius);
 }
 
@@ -43,14 +43,14 @@ Last modified: 29.06.2020
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--color-surface);
+  background-color: var(--color-mode-surface);
   margin-bottom: 0.25rem;
 }
 
 #top-bar h3 {
   padding: 0;
   font-weight: 600;
-  color: var(--color-text);
+  color: var(--color-mode-text);
 }
 
 #top-bar h3#room-name {
@@ -96,7 +96,7 @@ Last modified: 29.06.2020
 }
 
 #chat-input-user input[type="text"] {
-  background-color: var(--color-surface);
+  background-color: var(--color-mode-surface);
   border-radius: var(--border-radius);
   border: var(--border-input);
   padding: 0.5rem 1rem;
@@ -117,7 +117,7 @@ Last modified: 29.06.2020
 
 #chat-input-user input[type="text"]::selection {
   color: var(--color-message-bot);
-  background-color: var(--color-primary-light);
+  background-color: var(--color-input-selection);
 }
 
 #chat-input-user button {
@@ -139,7 +139,7 @@ form#chat-input-form {
 #chat-input-user-window {
   /* TODO rename: window -> container */
   flex-basis: 87.5%;
-  background-color: var(--color-surface-dark);
+  background-color: var(--color-mode-suggestion-background);
   border-radius: var(--border-radius);
   overflow: hidden;
 }
@@ -152,10 +152,10 @@ form#chat-input-form {
   display: none;
   overflow: hidden;
 
-  background-color: var(--color-surface-dark);
+  background-color: var(--color-mode-suggestion-background);
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
-  border: var(--border-default);
+  border: var(--border-input);
   border-bottom: none;
 }
 
@@ -166,13 +166,13 @@ form#chat-input-form {
 
 .suggestion.selected,
 .suggestion:focus {
-  background-color: var(--color-surface);
+  background-color: var(--color-mode-suggestion-highlight);
   outline: none;
   cursor: default;
 }
 
 mark {
-  background-color: var(--color-primary-light);
+  background-color: var(--color-input-selection);
 }
 
 #suggestion-heading {
@@ -255,7 +255,7 @@ mark {
   }
 
   #chat-input-user input[type="text"] {
-    background-color: var(--color-surface-light);
+    background-color: var(--color-mode-background);
   }
 
   form#chat-input-form {

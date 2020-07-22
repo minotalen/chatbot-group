@@ -288,9 +288,9 @@ def getMessageRange(username: str):
     if not listofmsgs:
         return "you have no messages recieved yet"
     elif len(listofmsgs) == 1:
-        return "you can access on msg 1"
+        return "you can access on message 1"
     else:
-        return "you can access on msg 1 to " + str(len(listofmsgs))
+        return "you can access on message 1 to " + str(len(listofmsgs))
 
 
 """
@@ -307,7 +307,7 @@ Returns: a tuple (bool:msg exists, string:msg)
 """
 def checkforMsgQuery(msg: str, username: str) -> str:
     listofmsg = [string.lower() for string in msg.split()]
-    if "message" in listofmsg:
+    if "message" in listofmsg or "msg" in listofmsg:
         indexofmsgnumber = listofmsg.index("message") + 1
         if indexofmsgnumber <= len(listofmsg) - 1:
             if listofmsg[indexofmsgnumber].isdecimal():

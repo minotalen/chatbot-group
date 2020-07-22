@@ -1,12 +1,12 @@
 {
     "messages": [{
             "id": 1,
-            "str_message": "You are wondering why this all happens? It's simple: I want you to feel research. Experience what it means to be a historian. Uncover secrets and hidden truths. My hope is that it will inspire and motivate you to do great things, no matter the cost. Back on track: Have you noticed the elephant statue right in front of you? No? Okay you just got exmatriculated. Just kidding! I want you to find out everything about this monument and the time it was built. Don’t hold back, it might become quite the adventure. Now, head over to the flea market near the Schlachte and look for an ancient artifact. You’ll know what I mean when you see it. Good luck.<br>Oh and if there is any question, don't hesitate to send me a message with your new phone.",
+            "str_message": "You are wondering why this all happens? It's simple: I want you to feel research. Experience what it means to be a historian. Uncover secrets and hidden truths. <br>My hope is that it will inspire and motivate you to do great things, no matter the cost. <br>Back on track: Have you noticed the elephant statue right in front of you? No? <br>Okay you just got exmatriculated. <br>Just kidding! I want you to find out everything about this monument and the time it was built. Don’t hold back, it might become quite the adventure. <br>Now, head over to the flea market near the Schlachte and look for an ancient artifact. You’ll know what I mean when you see it. <br>Use the GPS device that you just received to travel there. Good luck.<br>Oh and if there is any question, don't hesitate to send me a message with your new phone.",
             "user_state": "solvedPinCode"
         },
 	    {
             "id": 2,
-            "str_message": "Congrats, you found the item.<br>Oh you found something interesting. Do you mind sending me a picture?",
+            "str_message": "Congrats, you found the item.<br>Oh you found something interesting. Do you mind sending me a picture? <br>This is an old phone model so you have to close it first to take the picture. Don't ask me why, just do it.",
             "user_state": "solvedBargain"
         },
 	    {

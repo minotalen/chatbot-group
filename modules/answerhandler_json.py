@@ -125,29 +125,30 @@ def findAnswer(username, msg, roomId=-1):
     for elem in rooms[roomId]['triggers']:
         if elem is not None:
             elemCount += 1
-            if elem['trigName'] in msg and djf.checkNeededStates(rooms[roomId]['triggers'][elemCount],
+            for name in elem['trigName']:
+                if name in msg and djf.checkNeededStates(rooms[roomId]['triggers'][elemCount],
                                                                  username) and djf.checkNeededItems(rooms[roomId]['triggers'][elemCount], username):
 
-                djf.updateStates(rooms[roomId]['triggers']
+                    djf.updateStates(rooms[roomId]['triggers']
                                  [elemCount], username)
 
-                altMode = 'game'
-                altRoom = roomId
-                altSender ='bot'
-                if elem['actions'][0] is not None:
-                    for action, actionValue in zip(elem['actions'], elem['actionsValue']):
-                        altAction = djf.doAction(
-                            action, actionValue, roomId, username)
-                        if altAction[0] is not None:
-                            altRoom = altAction[0]
-                        elif altAction[1] is not None:
-                            altMode = altAction[1]
-                        elif altAction[2] is not None: altSender = altAction[2]
+                    altMode = 'game'
+                    altRoom = roomId
+                    altSender ='bot'
+                    if elem['actions'][0] is not None:
+                        for action, actionValue in zip(elem['actions'], elem['actionsValue']):
+                            altAction = djf.doAction(
+                                action, actionValue, roomId, username)
+                            if altAction[0] is not None:
+                                altRoom = altAction[0]
+                            elif altAction[1] is not None:
+                                altMode = altAction[1]
+                            elif altAction[2] is not None: altSender = altAction[2]
 
-                return (elem['accept'], getRoomName(altRoom), altMode, altSender)
+                    return (elem['accept'], getRoomName(altRoom), altMode, altSender)
             
-            elif elem['trigName'] in msg:
-                return (elem['fail'], getRoomName(roomId), 'game')
+                elif name in msg:
+                    return (elem['fail'], getRoomName(roomId), 'game')
 
     intentID = classifyIntent(msg, choices)
 
@@ -171,10 +172,11 @@ def findAnswer(username, msg, roomId=-1):
             for elem in rooms[roomId]['objects']:
                 elemCount += 1
 
-                if elem['objName'] in msg and djf.checkNeededStates(rooms[roomId]['objects'][elemCount], username):
-                    djf.updateStates(rooms[roomId]['objects'][elemCount], username)
+                for name in elem['objName']:
+                    if name in msg and djf.checkNeededStates(rooms[roomId]['objects'][elemCount], username):
+                        djf.updateStates(rooms[roomId]['objects'][elemCount], username)
 
-                    return (elem['lookAt'], getRoomName(roomId), 'game')
+                        return (elem['lookAt'], getRoomName(roomId), 'game')
 
     # LOOK AT: Items und Objekte im Raum können angeschaut werden. ansonsten wird LOOK AROUND die Raumbeschreibungs ausgegeben
     elif intentID == 2:
@@ -201,11 +203,12 @@ def findAnswer(username, msg, roomId=-1):
             for elem in rooms[roomId]['objects']:
                 elemCount += 1
 
-                if elem['objName'] in msg and djf.checkNeededStates(rooms[roomId]['objects'][elemCount], username):
-                    djf.updateStates(
-                        rooms[roomId]['objects'][elemCount], username)
+                for name in elem['objName']:
+                    if name in msg and djf.checkNeededStates(rooms[roomId]['objects'][elemCount], username):
+                        djf.updateStates(
+                            rooms[roomId]['objects'][elemCount], username)
 
-                    return (elem['lookAt'], getRoomName(roomId), 'game')
+                        return (elem['lookAt'], getRoomName(roomId), 'game')
 
         if json.loads(database.get_settings_by_username(username))['gpt2Output']:
             # room discription from json

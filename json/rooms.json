@@ -28,7 +28,7 @@
         "items": [null],
         "objects": [
             {
-                "objName": "door",
+                "objName": ["door"],
                 "lookAt": "You are now standing in front of the door.<br> Type in '<b>open</b> door' to exit the office.<br>",
                 "needStates": ["ownNotes", "sawDoor"],
                 "needStatesValue": [true, false],
@@ -38,7 +38,7 @@
         ],
         "triggers": [
             {
-                "trigName": "open door",
+                "trigName": ["open door"],
                 "needStates": ["sawDoor", "triggeredOpenDoor"],
                 "needStatesValue": [true, false],
                 "needItems": [null],
@@ -51,7 +51,7 @@
                 "actionsValue": [null]
             },
             {
-                "trigName": "go to safe",
+                "trigName": ["go to safe"],
                 "needStates": ["triggeredTalkToProf", "solvedSafe"],
                 "needStatesValue": [true, false],
                 "needItems": [null],
@@ -64,7 +64,7 @@
                 "actionsValue": ["riddle"]
             },
             {
-                "trigName": "pick up notes",
+                "trigName": ["pick up notes"],
                 "needStates": ["solvedSafe", "ownNotes"],
                 "needStatesValue": [true, false],
                 "needItems": [null],
@@ -77,7 +77,7 @@
                 "actionsValue": [null]
             },
             {
-                "trigName": "look at notes",
+                "trigName": ["look at notes"],
                 "needStates": ["triggeredOpenDoor"],
                 "needStatesValue": [true],
                 "needItems": [null],
@@ -90,7 +90,7 @@
                 "actionsValue": [null]
             },
             {
-                "trigName": "talk to professor",
+                "trigName": ["talk to professor"],
                 "needStates": ["triggeredTalkToProf"],
                 "needStatesValue": [false],
                 "needItems": [null],
@@ -103,7 +103,7 @@
                 "actionsValue": [null]
             }, 
             {
-                "trigName": "ready",
+                "trigName": ["ready"],
                 "needStates": [null],
                 "needStatesValue": [null],
                 "needItems": [null],
@@ -116,7 +116,7 @@
                 "actionsValue": [2]
             },
             {
-                "trigName": "look around",
+                "trigName": ["look around"],
                 "needStates": ["solvedTutorial"],
                 "needStatesValue": [false],
                 "needItems": [null],
@@ -163,7 +163,7 @@
         ],
         "objects": [
             {
-                "objName": "bench",
+                "objName": ["bench"],
                 "lookAt": "The bench is covered by moss and bird s***... It hasn’t been used in some time. The paint has almost fallen off. This is not the place professor Kraysee would hide something.",
                 "needStates": [null],
                 "needStatesValue": [null],
@@ -171,7 +171,7 @@
                 "newStatesValue": [null]
             },
             {
-                "objName": "trash bin",
+                "objName": ["trash bin"],
                 "lookAt": "The trash bin is full of … well... trash. Who would have thought? But wait! A PET bottle! Easy money, if you can stand getting it out with your bare hands…",
                 "needStates": ["ownBottle"],
                 "needStatesValue": [false],
@@ -179,7 +179,7 @@
                 "newStatesValue": [true]
             },
             {
-                "objName": "staircase",
+                "objName": ["staircase"],
                 "lookAt": "You go down the staircase. In front of you is a door.",
                 "needStates": [null],
                 "needStatesValue": [null],
@@ -187,8 +187,8 @@
                 "newStatesValue": [true]
             },
             {
-                "objName": "door",
-                "lookAt": "The door looks old and rusty, with colonial time decorations and emblems engraved into it.",
+                "objName": ["door"],
+                "lookAt": "The door looks old and rusty, with colonial time decorations and emblems engraved into it. They look pretty boring to be honest. <br>You have to find the box the professor hid in a different place.",
                 "needStates": [null],
                 "needStatesValue": [null],
                 "newStates": [null],
@@ -197,7 +197,7 @@
         ],
         "triggers": [
             {
-                "trigName": "find box",
+                "trigName": ["find box"],
                 "needStates": [null],
                 "needStatesValue": [null],
                 "needItems": [null],
@@ -210,7 +210,7 @@
                 "actionsValue": [null]
             },
             {
-                "trigName": "open door",
+                "trigName": ["open door"],
                 "needStates": [null],
                 "needStatesValue": [null],
                 "needItems": ["KEY NOT IMPLEMENTED YET"],
@@ -223,13 +223,52 @@
                 "actionsValue": [null]
             },
             {
-                "trigName": "hit door",
+                "trigName": ["hit door"],
                 "needStates": [null],
                 "needStatesValue": [null],
                 "needItems": [null],
                 "needItemsRoomId": [null],
                 "accept": "You hit the door with all your force! But unfortunately nothing happens.",
                 "fail": null,
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+            {
+                "trigName": ["go back"],
+                "needStates": [null],
+                "needStatesValue": [null],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "You walk back to the front of the elephant. You should probably look around more.",
+                "fail": null,
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+            {
+                "trigName": ["look at bush"],
+                "needStates": [null],
+                "needStatesValue": [null],
+                "needItems": [null],
+                "needItemsRoomId": [null],
+                "accept": "It seems very suspicious. It is to far away to see more from here. You should go there.",
+                "fail": null,
+                "newStates": [null],
+                "newStatesValue": [null],
+                "actions": [null],
+                "actionsValue": [null]
+            },
+            {
+                "trigName": ["wash hand"],
+                "needStates": [null],
+                "needStatesValue": [null],
+                "needItems": ["bottle"],
+                "needItemsRoomId": [2],
+                "accept": "There is no water nearby, so you have to live with your dirty hands for now.",
+                "fail": "You don't need to wash your hands all the time. In this game there is no global virus.",
                 "newStates": [null],
                 "newStatesValue": [null],
                 "actions": [null],
@@ -264,22 +303,38 @@
         ],
         "objects": [
             {
-                "objName": "box",
-                "lookAt": "The box is secured with tape that contains the words “It’s prime time!” repeated multiple times written all over it. <br>The word prime stands out with a blue color.",
+                "objName": ["box", "hidden object"],
+                "lookAt": "The box is secured with tape that contains the words “It’s prime time!” repeated multiple times written all over it. <br>The word prime stands out with a blue color. <br>This is the box the professor talked about. You should open it and see whats inside.",
                 "needStates": [null],
                 "needStatesValue": [null],
+                "newStates": [null],
+                "newStatesValue": [null]
+            },
+            {
+                "objName": ["gps"],
+                "lookAt": "This is not a regular GPS device. It is able to beam you to certain districts. The professor probably modified it.",
+                "needStates": ["triggeredOpenBox", "solvedPinCode"],
+                "needStatesValue": [true, false],
+                "newStates": [null],
+                "newStatesValue": [null]
+            },
+            {
+                "objName": ["phone"],
+                "lookAt": "It is an old phone without an integrated gps.. you should try starting it.",
+                "needStates": ["triggeredOpenBox", "solvedPinCode"],
+                "needStatesValue": [true, false],
                 "newStates": [null],
                 "newStatesValue": [null]
             }
         ],
         "triggers": [
             {
-                "trigName": "open box",
+                "trigName": ["open box", "pick up box", "use box"],
                 "needStates": ["solvedPinCode"],
                 "needStatesValue": [false],
                 "needItems": [null],
                 "needItemsRoomId": [null],
-                "accept": "Inside the box is a piece of paper with a riddle drawn on it, an old T9 mobile phone and a GPS device. <br>You pick up the GPS device and mobile phone. Bonkers! <br>But what now? Does the phone even work?",
+                "accept": "Inside the box is a piece of paper with a riddle drawn on it, an old T9 mobile phone and a GPS device. <br>You pick up the GPS device and mobile phone. Bonkers! <br>But what now? You should try to start it to see if it works.",
                 "fail": "You feel like there is nothing more to the box. The riddle was solved and you already have the phone and GPS device.",
                 "newStates": ["triggeredOpenBox", "ownGps"],
                 "newStatesValue": [true, true],
@@ -287,7 +342,7 @@
                 "actionsValue": [null]
             },
             {
-                "trigName": "start phone",
+                "trigName": ["start phone", "activate phone", "use phone", "open phone"],
                 "needStates": ["triggeredOpenBox","solvedPinCode"],
                 "needStatesValue": [true, false],
                 "needItems": [null],
@@ -321,7 +376,7 @@
         ],
         "objects": [
             {
-                "objName": "salesman",
+                "objName": ["salesman"],
                 "lookAt": "He looks kind of tired. He also looks back at you. This silence feels very awkward but you continue to stare at him. Maybe talking helps.",
                 "needStates": [null],
                 "needStatesValue": [null],
@@ -329,7 +384,7 @@
                 "newStatesValue": [null]
             },
             {
-                "objName": "stands",
+                "objName": ["stands"],
                 "lookAt": "The flea market stretches itself out pretty far along the riverside. Very present are stands with piles of clothes and ones with many toys. The latter usually surrounded by excited children, pulling at their parents sleeves after finding a toy, that has caught their interest. <br>Closeby you witness an elderly couple, hands behind their backs as they lean forward to inspect a dusty vinyl. The noise level is steady with a few people laughing and raising their voice, to underline their bargaining attempts.",
                 "needStates": [null],
                 "needStatesValue": [null],
@@ -339,7 +394,7 @@
         ],
         "triggers": [
             {
-                "trigName": "steal chest",
+                "trigName": ["steal chest"],
                 "needStates": ["triggeredStealChest"],
                 "needStatesValue": [false],
                 "needItems": [null],
@@ -352,7 +407,7 @@
                 "actionsValue": [null]
             },
             {
-                "trigName": "put it back",
+                "trigName": ["put it back"],
                 "needStates": [null],
                 "needStatesValue": [null],
                 "needItems": [null],
@@ -365,7 +420,7 @@
                 "actionsValue": [null]
             },
             {
-                "trigName": "talk to salesman",
+                "trigName": ["talk to salesman", "speak to salesman"],
                 "needStates": ["triggeredTalkToSalesman"],
                 "needStatesValue": [false],
                 "needItems": [null],
@@ -378,7 +433,7 @@
                 "actionsValue": [null]
             },
             {
-                "trigName": "bargain",
+                "trigName": ["bargain"],
                 "needStates": ["solvedBargain", "triggeredTalkToSalesman"],
                 "needStatesValue": [false, true],
                 "needItems": [null],
@@ -391,7 +446,7 @@
                 "actionsValue": ["riddle"]
             },
 	        {
-                "trigName": "picture",
+                "trigName": ["picture"],
                 "needStates": ["solvedBargain", "triggeredPicture"],
                 "needStatesValue": [true, false],
                 "needItems": ["chest"],
@@ -433,7 +488,7 @@
         ],
         "triggers": [
             {
-                "trigName": "open door",
+                "trigName": ["open door"],
                 "needStates": [null],
                 "needStatesValue": [null],
                 "needItems": [null],
@@ -477,7 +532,7 @@
         ],
         "triggers": [
             {
-                "trigName": "climb construction",
+                "trigName": ["climb construction"],
                 "needStates": ["triggeredUseCrate", "triggeredClimbConstruction"],
                 "needStatesValue": [true, false],
                 "needItems": [null],
@@ -490,7 +545,7 @@
                 "actionsValue": [null]
             },
             {
-                "trigName": "use crate",
+                "trigName": ["use crate"],
                 "needStates": [null],
                 "needStatesValue": [null],
                 "needItems": ["crate"],
@@ -503,7 +558,7 @@
                 "actionsValue": ["crate"]
             },
             {
-                "trigName": "jump",
+                "trigName": ["jump"],
                 "needStates": ["triggeredClimbConstruction"],
                 "needStatesValue": [true],
                 "needItems": [null],
@@ -516,7 +571,7 @@
                 "actionsValue": [8]
             },
             {
-                "trigName": "climb down",
+                "trigName": ["climb down"],
                 "needStates": ["triggeredClimbConstruction"],
                 "needStatesValue": [true],
                 "needItems": [null],
@@ -566,7 +621,7 @@
         ],
         "objects": [
             {
-                "objName": "fuse box",
+                "objName": ["fuse box"],
                 "lookAt": "The fuse box is huge and you are amazed by it. <br>Opening it with bare hands is not possible, there is some mechanism behind it. Maybe this becomes a difficult riddle you have to solve in order to achieve your goals or maybe you can just crack it open..",
                 "needStates": ["sawFuseBox"],
                 "needStatesValue": [false],
@@ -576,7 +631,7 @@
         ],
         "triggers": [
             {
-                "trigName": "use crowbar",
+                "trigName": ["use crowbar"],
                 "needStates": ["sawFuseBox", "triggeredUseCrowbar"],
                 "needStatesValue": [true, false],
                 "needItems": ["crowbar"],
@@ -589,7 +644,7 @@
                 "actionsValue": ["crowbar"]
             },
             {
-                "trigName": "open fuse box",
+                "trigName": ["open fuse box"],
                 "needStates": ["sawFuseBox", "triggeredUseCrowbar"],
                 "needStatesValue": [true, true],
                 "needItems": [null],
@@ -602,7 +657,7 @@
                 "actionsValue": [null]
             },
             {
-                "trigName": "cut blue",
+                "trigName": ["cut blue"],
                 "needStates": ["triggeredOpenFuseBox", "triggeredCutBlue"],
                 "needStatesValue": [true, false],
                 "needItems": [null],
@@ -615,7 +670,7 @@
                 "actionsValue": [null]
             },
             {
-                "trigName": "cut red",
+                "trigName": ["cut red"],
                 "needStates": ["triggeredOpenFuseBox", "triggeredCutRed"],
                 "needStatesValue": [true, false],
                 "needItems": [null],
@@ -628,7 +683,7 @@
                 "actionsValue": [null]
             },
             {
-                "trigName": "cut both",
+                "trigName": ["cut both"],
                 "needStates": ["triggeredOpenFuseBox", "triggeredCutBlue", "triggeredCutRed"],
                 "needStatesValue": [true, false, false],
                 "needItems": [null],
@@ -672,7 +727,7 @@
         ],
         "triggers": [
             {
-                "trigName": "open door",
+                "trigName": ["open door"],
                 "needStates": [null],
                 "needStatesValue": [null],
                 "needItems": [null],
@@ -685,7 +740,7 @@
                 "actionsValue": [null]
             },
             {
-                "trigName": "use pot",
+                "trigName": ["use pot"],
                 "needStates": ["triggeredCutRed"],
                 "needStatesValue": [true],
                 "needItems": ["pot"],
@@ -698,7 +753,7 @@
                 "actionsValue": ["pot", 10]
             },
             {
-                "trigName": "climb down",
+                "trigName": ["climb down"],
                 "needStates": [null],
                 "needStatesValue": [null],
                 "needItems": [null],
@@ -711,7 +766,7 @@
                 "actionsValue": [6]
             },
             {
-                "trigName": "crawl",
+                "trigName": ["crawl"],
                 "needStates": ["triggeredCutBlue"],
                 "needStatesValue": [false],
                 "needItems": [null],
@@ -724,7 +779,7 @@
                 "actionsValue": [null]
             },
             {
-                "trigName": "use rope",
+                "trigName": ["use rope"],
                 "needStates": ["triggeredCrawl", "triggeredCutRed"],
                 "needStatesValue": [true, true],
                 "needItems": [null],
@@ -763,7 +818,7 @@
         ],
         "objects": [
             {
-                "objName": "painting",
+                "objName": ["painting"],
                 "lookAt": "You take a closer look at the painting and you notice there is a tiny bit of red paint on one of the corners.<br> The paint is fresh and it has not dried yet. The person that has left this stain was approximatly 5 minutes before you here.<br>You inspect the paint even further and you smell it. It smells like nail polish.<br>",
                 "needStates": [null],
                 "needStatesValue": [null],
@@ -773,7 +828,7 @@
         ],
         "triggers": [
             {
-                "trigName": "balcony",
+                "trigName": ["balcony"],
                 "needStates": [null],
                 "needStatesValue": [null],
                 "needItems": [null],
@@ -815,7 +870,7 @@
         ],
         "triggers": [
             {
-                "trigName": "balcony",
+                "trigName": ["balcony"],
                 "needStates": [null],
                 "needStatesValue": [null],
                 "needItems": [null],
@@ -848,7 +903,7 @@
         ],
         "objects": [
             {
-                "objName": "elephant",
+                "objName": ["elephant"],
                 "lookAt": "You look at the elephant and you feel your anger rising. You want to throw something at the elephant.<br>",
                 "needStates": [null],
                 "needStatesValue": [null],
@@ -856,7 +911,7 @@
                 "newStatesValue": [null]
             },
             {
-                "objName": "zebra",
+                "objName": ["zebra"],
                 "lookAt": "Zebras have a really cool looking fur. The white stripes remind you of a band. You can't remember their name though.",
                 "needStates": [null],
                 "needStatesValue": [null],
@@ -866,7 +921,7 @@
         ],
         "triggers": [
             {
-                "trigName": "throw",
+                "trigName": ["throw"],
                 "needStates": [null],
                 "needStatesValue": [null],
                 "needItems": ["bottle"],
@@ -899,7 +954,7 @@
         ],
         "objects": [
             {
-                "objName": "boat",
+                "objName": ["boat"],
                 "lookAt": "This is written in the text attached to the boat:<i>Boats have served as transportation since the earliest times.<br><i>Circumstantial evidence, such as the early settlement of Australia over 40,000 years ago, findings in Crete dated 130,000 years ago,<br>and in Flores dated to 900,000 years ago, suggest that boats have been used since prehistoric times.<br>The earliest boats are thought to have been dugouts, and the oldest boats found by archaeological excavation date from around 7,000–10,000 years ago.<br>The oldest recovered boat in the world, the Pesse canoe, found in the Netherlands,<br>is a dugout made from the hollowed tree trunk of a Pinus sylvestris that was constructed somewhere between 8200 and 7600 BC.<br>The boat in this exhibition was found in the river 'Weser' that floats through Bremen. Some contents from the ship could be restored and are displayed here.<br>The boat itself is an approximate reconstuction of the wrack that was found.<br></i>So this boat might be important but it is not the original. So maybe I can find a more authentic artefact.<br>",
                 "needStates": [null],
                 "needStatesValue": [null],
@@ -907,7 +962,7 @@
                 "newStatesValue": [null]
             },
             {
-                "objName": "chest",
+                "objName": ["chest"],
                 "lookAt": "The box is made out of wood and is already rotten. I really don't feel like touching it. But after taking a really close look I can see a writting burned into the box.<br> It says: <i>With the blood of our enemies. Shining like the sea in the moonlight.</i><br><br><b>Suddenly you receive a message on your mobile phone.</b><br>",
                 "needStates": [null],
                 "needStatesValue": [null],
@@ -938,7 +993,7 @@
         ],
         "objects": [
             {
-                "objName": "mammoth",
+                "objName": ["mammoth"],
                 "lookAt": "You look at the mammoth and you feel so scared that you want to throw something at it.<br>",
                 "needStates": [null],
                 "needStatesValue": [null],
@@ -946,7 +1001,7 @@
                 "newStatesValue": [null]
             },
             {
-                "objName": "zebra",
+                "objName": ["zebra"],
                 "lookAt": "Zebras have a really cool looking fur. The white stripes remind you of a band. You can't remember their name though.",
                 "needStates": [null],
                 "needStatesValue": [null],
@@ -956,7 +1011,7 @@
         ],
         "triggers": [
             {
-                "trigName": "throw",
+                "trigName": ["throw"],
                 "needStates": [null],
                 "needStatesValue": [null],
                 "needItems": ["bottle"],
@@ -989,7 +1044,7 @@
         ],
         "objects": [
             {
-                "objName": "left",
+                "objName": ["left"],
                 "lookAt": "You walk slowly to the left side when suddenly you bump into something. <br>You touch it and you immediately get disgusted by the feel of it but there is no other way to find out what it is. So you continue and it seems to be a chest with something burned into it. <br>You should touch the writting more.",
                 "needStates": ["sawRight"],
                 "needStatesValue": [false],
@@ -997,7 +1052,7 @@
                 "newStatesValue": [true]
             },
             {
-                "objName": "right",
+                "objName": ["right"],
                 "lookAt": "You walk slowly to the right side. Suddenly you notice the statue from before. Was it always standing here? <br> You start investigating the statue in the darkness by touching it. <br> Out of a sudden you get blinded by a light, did you just found a secret mechanism? <br> As your eyes start to see again you realise that the statue is actually a security officer looking weirdly at you. You should run away.",
                 "needStates": ["sawRight"],
                 "needStatesValue": [false],
@@ -1005,7 +1060,7 @@
                 "newStatesValue": [true]
             },
             {
-                "objName": "chest",
+                "objName": ["chest"],
                 "lookAt": "The box is made out of wood and is already rotten. I really don't feel like touching it. But after taking a really close look I can see a writting burned into the box.<br> It says: <i>With the blood of our enemies. Shining like the sea in the moonlight.</i><br><br><b>Suddenly you receive a message on your mobile phone.</b><br>",
                 "needStates": ["sawRight"],
                 "needStatesValue": [false],
@@ -1013,7 +1068,7 @@
                 "newStatesValue": [true]
             },
             {
-                "objName": "statue",
+                "objName": ["statue"],
                 "lookAt": "You move closer to the statue and you quickly realise that it is moving. You are very scared.<br>...<br>It is not a statue, it is a security officer!<br>He notices you.<br>What should you do now?",
                 "needStates": ["sawRight"],
                 "needStatesValue": [false],
@@ -1023,7 +1078,7 @@
         ],
         "triggers": [
             {
-                "trigName": "run",
+                "trigName": ["run"],
                 "needStates": ["sawRight"],
                 "needStatesValue": [true],
                 "needItems": [null],
@@ -1036,7 +1091,7 @@
                 "actionsValue": [5]
             },
             {
-                "trigName": "hide",
+                "trigName": ["hide"],
                 "needStates": ["sawRight"],
                 "needStatesValue": [true],
                 "needItems": [null],
@@ -1049,7 +1104,7 @@
                 "actionsValue": [5]
             },
             {
-                "trigName": "talk",
+                "trigName": ["talk"],
                 "needStates": ["sawRight"],
                 "needStatesValue": [true],
                 "needItems": [null],
@@ -1062,7 +1117,7 @@
                 "actionsValue": [5]
             },
             {
-                "trigName": "hit",
+                "trigName": ["hit"],
                 "needStates": ["sawRight"],
                 "needStatesValue": [true],
                 "needItems": [null],

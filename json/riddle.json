@@ -15,7 +15,7 @@
         "roomId": 3,
         "rightAnswer": "2375",
         "rightText": "Congrats! You have now solved the riddle and are able to use the mobile phone. While you solved the riddle you moved unconscious to the entrance of the park. And you received a message on your new phone!",
-        "falseText": "Mhh... That number didn't work. Try another number.",
+        "falseText": "Mhh... That number didn't work. Try another number. You can <b>exit</b> the riddle mode to look for more clues.",
         "descri": "Now for the phone. You start it, but you need a 4-digit pin to unlock it. Maybe the piece of paper can help? Your task is to solve the riddle. <br>Hint: It’s prime time!",  
     	"newStates": ["solvedPinCode"],
         "newStatesValue": [true],

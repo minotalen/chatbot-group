@@ -7,8 +7,7 @@
 import { closeSuggestions, userInput } from './suggestions.mjs';
 import { getSettingValue } from './settings.mjs';
 
-
-let socket = io.connect('https://' + document.domain + ':' + location.port),
+let socket = io.connect("http://127.0.0.1:5000"),
   sendButton = document.getElementById('send-button'),
   typeIndicator = document.getElementById('type-indicator'),
   userName, 

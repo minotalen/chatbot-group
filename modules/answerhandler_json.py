@@ -259,7 +259,8 @@ def findAnswer(username, msg, roomId=-1):
                 return (printLocations(username), getRoomName(roomId), 'gps')
         elif "phone" in msg:
             if database.get_user_state_value(username, 'solvedPinCode') == True:
-                return ('Phone started  <em>Type manual to open usage instructions</em><br>You are now chatting with the professor. <br>' + 'You have ' + str(getSizeofMessagequeue(username)) + ' new messages in your mailbox', getRoomName(roomId), 'phone')
+                newMessages = printRecentMessage(username)
+                return ('Phone started  <em>Type manual to open usage instructions</em><br>You are now chatting with the professor. <br><br>' + newMessages, getRoomName(roomId), 'phone')
         else: ("Do you want to start or open something you do not posses?", getRoomName(roomId), 'game')
 
 

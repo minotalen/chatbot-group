@@ -59,13 +59,9 @@ def handleAnswer(msg: str, username: str, level: int, roomId: int = -1) -> str:
 
     intent = askProf(msg)
     if intent == 1:
-        return printRecentMessage(username)
-    elif intent == 2:
         return getMessageRange(username)
-    elif intent == 3:
-        return tellAnswer(msg)
-    elif intent == 4:
-        return "print recent message: print the oldest message in you mailbox you havent read <br> messages retrievable: to show possible messages with ids from your mailbox <br> message [id] : to show specific message from mailbox <br> ask professor: : to ask the professor something<br> exit phone: to exit the phone"    
+    elif intent == 2:
+        return "show messages: to show possible messages with ids from your mailbox <br> message [id] : to show specific message from mailbox <br> exit phone: to exit the phone"    
     
     #only the last ten words of the msg to prevent long gpt-2 calculation
     msg = " ".join(re.findall(r'\w+', msg)[-8:])
@@ -89,8 +85,7 @@ msg: the message of the user
 Returns: a number which represent a intent of the user // -1 if no intent is found
 """
 def askProf(msg: str) -> int:
-    choices = ["print recent message",
-               "messages retrieve", "ask professor:", "manual"]
+    choices = ["show messages", "manual"]
     return classifyIntent(msg, choices)
   
 
@@ -206,7 +201,7 @@ Returns: the last sent message of the prof (from the messagequeue)
 """
 def printRecentMessage(username: str) -> str:
     updateMessagequeue(username)
-    return "you have no new messages yet" if messagequeue.empty() else messagequeue.get()
+    return "That is it for now. Do you have any questions?" if messagequeue.empty() else messagequeue.get()
 
 """
 @author:: Max Petendra

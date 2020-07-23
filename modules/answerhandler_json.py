@@ -9,7 +9,7 @@ import database_SQLite as database
 import data_json_functions as djf
 from gps import handleGPS, printLocations
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
-from phone import handleAnswer, getSizeofMessagequeue, get_generated_answer, formatHTMLText
+from phone import handleAnswer, printRecentMessage, get_generated_answer, formatHTMLText, updateMessagequeue
 from riddlemode import checkAnswer
 import logging_time as l
 import audio as audio
@@ -143,6 +143,10 @@ def findAnswer(username, msg, roomId=-1):
                                 altRoom = altAction[0]
                             elif altAction[1] is not None:
                                 altMode = altAction[1]
+                                if altMode == "phone":
+                                    updateMessagequeue(username)
+                                    newMessages = printRecentMessage(username)
+                                    return (elem['accept'] + '<br>' + newMessages, getRoomName(altRoom), altMode, altSender)
                             elif altAction[2] is not None: altSender = altAction[2]
 
                     return (elem['accept'], getRoomName(altRoom), altMode, altSender)
@@ -253,7 +257,9 @@ def findAnswer(username, msg, roomId=-1):
     # START PHONE: Der Handymodus wird gestartet
     elif intentID == 7:
         if database.get_user_state_value(username, 'solvedPinCode') == True:
-            return ('Phone started  <em>Type manual to open usage instructions</em><br>You are now chatting with the professor. <br>' + 'You have ' + str(getSizeofMessagequeue(username)) + ' new messages in your mailbox', getRoomName(roomId), 'phone')
+            newMessages = printRecentMessage(username)
+
+            return ('Phone started  <em>Type manual to open usage instructions</em><br>You are now chatting with the professor. <br><br>' + newMessages, getRoomName(roomId), 'phone')
 
     # START GPS DEVICE
     elif intentID == 8:

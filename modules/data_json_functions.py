@@ -117,22 +117,27 @@ def get_inventory(room_ID_0, username) -> str:
     if items_db is None:
         return "Your Inventory is empty"
 
-    item_str = "Your inventory contains: "
+    item_str = "Your inventory contains: <br><ul>"
     index = 0
     size = len(items_db)
     l.log_time("items_number: " + str(size))  # logging
     for i in items_db:
         item_name ,room_ID_1 = i
-        if index == 0:
-            item_str = item_str + item_name
-        elif index < size-1:
-            item_str = item_str + ", " + item_name
-        elif index == size-1:
-            item_str = item_str + " and " + item_name
-        else:
-            item_str = item_str + " ERROR!!! " + item_name
-            
-        index += 1
+        item_str = item_str + "<li>" + item_name + " from room " + room_ID_1 + "</li>" 
         
+
+        # if index == 0:
+        #     item_str = item_str + item_name
+        # elif index < size-1:
+        #     item_str = item_str + ", " + item_name
+        # elif index == size-1:
+        #     item_str = item_str + " and " + item_name
+        # else:
+        #     item_str = item_str + " ERROR!!! " + item_name
+            
+        # index += 1
+        
+    item_str = item_str + "</ul>"
+
     return item_str
 

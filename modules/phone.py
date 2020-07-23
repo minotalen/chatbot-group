@@ -92,7 +92,7 @@ def askProf(msg: str) -> int:
     choices = ["print recent message",
                "messages retrieve", "ask professor:", "manual"]
     return classifyIntent(msg, choices)
-
+  
 
 """
 @author:: Max Petendra, Katja Schneider, Henriette Mattke

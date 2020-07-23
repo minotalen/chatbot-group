@@ -38,7 +38,8 @@ def answerHandler(inputjson, username):
     obj = json.loads(inputjson)
     
     # When the mode is phone and player inputs exit phone
-    if str(obj['mode']) == 'phone' and classifyIntent(str(obj['message'].lower()), ['exit phone']) == 1:
+    if str(obj['mode']) == 'phone' and classifyMessage(str(obj['message'].lower()), {
+    "exit": ["exit","leave","shut down","close"]}) == "exit":
         answer = ('You stop looking at the bad quality of your phone',
                 getRoomName(getRoomId(str(obj['room']))), 'game')
 
@@ -48,7 +49,8 @@ def answerHandler(inputjson, username):
             str(obj['room']))), getRoomName(getRoomId(str(obj['room']))), 'phone']
 
     # When the mode is gps and player inputs exit gps
-    elif str(obj['mode']) == 'gps' and classifyIntent(str(obj['message'].lower()), ['exit gps']) == 1:
+    elif str(obj['mode']) == 'gps' and classifyMessage(str(obj['message'].lower()), {
+    "exit": ["exit","leave","shut down","close"]}) == "exit":
         answer = ('Your gps device is now turned off',
                 getRoomName(getRoomId(str(obj['room']))), 'game')
 

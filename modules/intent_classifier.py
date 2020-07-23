@@ -27,7 +27,7 @@ def classifyMessage(msg: str, intent_dict: dict=standard_intent_dic) -> str:
         # only return if input matches partially with at least 90% 
         if best_match[1] >= 90:
             return str(synonym_key)
-    return "no idea"
+    return -1
 
 
 """

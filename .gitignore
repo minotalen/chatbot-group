@@ -3,6 +3,9 @@
 .idea/
 .vs/
 
+# Data
+data/*
+
 # Vagrant
 .vagrant/
 

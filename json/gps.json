@@ -13,6 +13,11 @@
             "locationName": "Überseestadtmuseum",
             "neededStates": ["triggeredPicture"],
             "startRoomId": 5
+        },
+        {
+            "locationName": "Altstadt",
+            "neededStates": ["sawChest"],
+            "startRoomId": 15
         }
     ]
 }

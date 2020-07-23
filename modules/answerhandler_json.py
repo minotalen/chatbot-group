@@ -9,6 +9,7 @@ import database_SQLite as database
 import data_json_functions as djf
 from gps import handleGPS, printLocations
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
+from intent_classifier import classifyMessage
 from phone import handleAnswer, printRecentMessage, get_generated_answer, formatHTMLText, updateMessagequeue
 from riddlemode import checkAnswer
 import logging_time as l
@@ -117,8 +118,8 @@ def findAnswer(username, msg, roomId=-1):
     if roomId == -1:
         raise ValueError("Invalid room id!")
 
-    choices = ["go to", "look at", "pick up", "inventory", "current room",
-               "about chatbot:", "start phone", "start gps", "help assistant:"]
+    #choices = ["go to", "look at", "pick up", "inventory", "current room",
+               #"about chatbot:", "start phone", "start gps", "help assistant:"]
 
     elemCount = -1
     # TRIGGER: Raumspezifische Trigger werden zuerst überprüft // please write docs in english :''(
@@ -154,10 +155,11 @@ def findAnswer(username, msg, roomId=-1):
                 elif name in msg:
                     return (elem['fail'], getRoomName(roomId), 'game')
 
-    intentID = classifyIntent(msg, choices)
+    #intentID = classifyIntent(msg, choices)
+    intentID = classifyMessage(msg)
 
     # GO TO: Es kann zu anliegenden Räumen oder Objekten gegangen werden
-    if intentID == 1:
+    if intentID == "go to":
         elemCount = -1
         # RÄUME
         if rooms[roomId]['connections'][0]:
@@ -183,7 +185,7 @@ def findAnswer(username, msg, roomId=-1):
                         return (elem['lookAt'], getRoomName(roomId), 'game')
 
     # LOOK AT: Items und Objekte im Raum können angeschaut werden. ansonsten wird LOOK AROUND die Raumbeschreibungs ausgegeben
-    elif intentID == 2:
+    elif intentID == "look at":
         elemCount = -1
         # ITEMS
         if rooms[roomId]['items'][0] is not None:
@@ -230,7 +232,7 @@ def findAnswer(username, msg, roomId=-1):
             return (getRoomDescription(roomId), getRoomName(roomId), 'game') 
 
     # PICK UP: Hebt ein item auf und gibt den Text zurück
-    elif intentID == 3:
+    elif intentID == "pick up":
         if rooms[roomId]['items'][0] is not None:
             elemCount = -1
             for elem in rooms[roomId]['items']:
@@ -243,18 +245,29 @@ def findAnswer(username, msg, roomId=-1):
                     return (elem['pickUp'], getRoomName(roomId), 'game')
 
     # INVENTORY: NOCH NICHT FERTIG. BAUSTELLE
-    elif intentID == 4:
+    elif intentID == "inventory":
         return (djf.get_inventory(roomId, username), getRoomName(roomId), 'game', 'inventory')
 
     # CURRENT ROOM: Gibt den Raumtext nochmal aus
-    elif intentID == 5:
+    elif intentID == "current room":
         return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
+    
+    # START DEVICE: Eines der Geräte wird geöffnet
+    elif intentID == "start":
+        if "gps" in msg:
+            if database.get_user_state_value(username, 'ownGps') == True:
+                return (printLocations(username), getRoomName(roomId), 'gps')
+        elif "phone" in msg:
+            if database.get_user_state_value(username, 'solvedPinCode') == True:
+                return ('Phone started  <em>Type manual to open usage instructions</em><br>You are now chatting with the professor. <br>' + 'You have ' + str(getSizeofMessagequeue(username)) + ' new messages in your mailbox', getRoomName(roomId), 'phone')
+        else: ("Do you want to start or open something you do not posses?", getRoomName(roomId), 'game')
 
-    # ABOUT: Beantwortet Fragen zum Chatbot
+
+
+    '''# ABOUT: Beantwortet Fragen zum Chatbot
     elif intentID == 6:
-        return (aboutHandler(msg), getRoomName(roomId), 'game')
-
-    # START PHONE: Der Handymodus wird gestartet
+        return (aboutHandler(msg), getRoomName(roomId), 'game')'''    
+    '''# START PHONE: Der Handymodus wird gestartet
     elif intentID == 7:
         if database.get_user_state_value(username, 'solvedPinCode') == True:
             newMessages = printRecentMessage(username)
@@ -264,11 +277,11 @@ def findAnswer(username, msg, roomId=-1):
     # START GPS DEVICE
     elif intentID == 8:
         if database.get_user_state_value(username, 'ownGps') == True:
-            return (printLocations(username), getRoomName(roomId), 'gps')
+            return (printLocations(username), getRoomName(roomId), 'gps')'''
 
-    # HELP ASSISTANT
+    '''# HELP ASSISTANT
     elif intentID == 9:
-        return ('sorry no help assistant yet implemented', getRoomName(roomId), 'game')
+        return ('sorry no help assistant yet implemented', getRoomName(roomId), 'game')'''
 
     # Wenn nichts erkannt wurde
     return ("I have no idea what you want", getRoomName(roomId), 'game')

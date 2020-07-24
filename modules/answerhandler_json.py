@@ -194,7 +194,7 @@ def findAnswer(username, msg, roomId=-1):
             for elem in rooms[roomId]['items']:
                 elemCount += 1
 
-                if elem['itemName'] in msg and djf.checkNeededStates(rooms[roomId]['items'][elemCount], username):
+                if elem['itemName'] in msg:
 
                     return (elem['lookAt'], getRoomName(roomId), 'game')
         

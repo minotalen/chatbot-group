@@ -60,6 +60,7 @@ Last modified: 21.07.2020
 .chat-message-user,
 .chat-message-bot,
 .chat-message-inventory,
+.chat-message-disclaimer, 
 .ticontainer {
   margin: 1rem;
   padding: 0.25rem 0.5rem;
@@ -86,6 +87,10 @@ Last modified: 21.07.2020
   text-transform: uppercase;
 }
 
+.chat-message-disclaimer {
+  border-radius: var(--border-radius);
+  background-color: var(--color-mode-surface);
+}
 
 
 #chat-input-user {
@@ -244,6 +249,7 @@ mark {
   .chat-message-user,
   .chat-message-bot,
   .chat-message-inventory,
+  .chat-message-disclaimer,
   .ticontainer {
     margin: 0.5rem;
   }

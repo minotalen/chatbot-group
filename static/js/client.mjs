@@ -176,6 +176,7 @@ function printMessage(msg) {
  * @param {Function} callback Function to call after message has been written.
  * @param {String} tag Storage for the tag currently being parsed
  * @param {Int} reverseIndex Index from the end of the string to insert content inbetween tags
+ * @param {Int} height // TODO
  */
 function writeEachChar(elem, msg, callback, tag = '', reverseIndex = 0, height) { 
   // initially set height to element height

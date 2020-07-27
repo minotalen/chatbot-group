@@ -23,7 +23,7 @@ def send_index_page():
     if username:
 
         print(username)
-        if username:  # database.is_user_logged_in(username):
+        if username:
             return redirect(url_for('send_play_page', username=username))
 
     return redirect(url_for('login'))
@@ -108,7 +108,7 @@ def send_profile_page():
     username = session.get('username')
 
     if username:
-        return render_template('user.html', username=username)
+        return render_template('profile.html', username=username)
     else:
         print('no user is logged in (username source: session)')
         return redirect(url_for('login'))

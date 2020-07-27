@@ -1,6 +1,7 @@
 import sys
 import json
 import pandas as pd
+import random
 from nltk import tokenize
 from pathlib import Path
 
@@ -293,7 +294,19 @@ def findAnswer(username, msg, roomId=-1):
 
     else:
         ### Hier kommt der statische Output hin
-        return ("I have no idea what you want", getRoomName(roomId), 'game')
+        noIdeaList = ["Talk with a little more respect.",
+        "You should stop messing around and get to the point.",
+        "Are you speaking some kind of alien language?",
+        "You should read before you talk.",
+        "Who taught you to talk like that?",
+        "Is that supposed to be funny?",
+        "Computer says no!",
+        "There is no time for such shenanigans.",
+        "If you want to get your degree, you have to write better instructions.",
+        "You might want to rephrase that.",
+        "English, " + username + ", do you speak it?",
+        "There is a time and place for this."]
+        return (random.choice(noIdeaList), getRoomName(roomId), 'game')
 
 
 """

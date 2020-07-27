@@ -177,16 +177,30 @@ function printMessage(msg) {
  * @param {String} tag Storage for the tag currently being parsed
  * @param {Int} reverseIndex Index from the end of the string to insert content inbetween tags
  */
-function writeEachChar(elem, msg, callback, tag = '', reverseIndex = 0) {
+function writeEachChar(elem, msg, callback, tag = '', reverseIndex = 0, height) { 
+  // initially set height to element height
+  if(height == undefined) {
+    height = elem.getBoundingClientRect().height;
+  }
+
   if (msg.length > 0) {
     let c = msg.charAt(0), html, speed = 30;
+
+    if(elem.getBoundingClientRect().height - height > 0) {
+      // scroll to bottom on line break
+      let chat = document.getElementById('chat-content-container');
+      chat.scrollTop = chat.scrollHeight - chat.clientHeight;
+
+      height = elem.getBoundingClientRect().height;
+    }
+    
 
     if (c == '<') {
       // begin of HTML tag -> start parsing tag
       tag = '<';
       msg = msg.slice(1, msg.length);
 
-      writeEachChar(elem, msg, callback, tag, reverseIndex);
+      writeEachChar(elem, msg, callback, tag, reverseIndex, height);
     } else if (c == '>') {
       // end of HTML tag -> apply tag depending on cases
       tag += '>';
@@ -197,14 +211,14 @@ function writeEachChar(elem, msg, callback, tag = '', reverseIndex = 0) {
         elem.innerHTML += tag;
         tag = '';
 
-        writeEachChar(elem, msg, callback, tag, reverseIndex);
+        writeEachChar(elem, msg, callback, tag, reverseIndex, height);
       } else if (tag.includes('/')) {
         // closing tag parsed -> remove it
         // jump behind closing tag
         reverseIndex -= tag.length;
         tag = '';
 
-        writeEachChar(elem, msg, callback, tag, reverseIndex);
+        writeEachChar(elem, msg, callback, tag, reverseIndex, height);
       } else {
         html = elem.innerHTML;
 
@@ -217,7 +231,7 @@ function writeEachChar(elem, msg, callback, tag = '', reverseIndex = 0) {
         reverseIndex += tag.length + 1;
         tag = '';
 
-        writeEachChar(elem, msg, callback, tag, reverseIndex);
+        writeEachChar(elem, msg, callback, tag, reverseIndex, height);
       }
 
     } else if (tag != '') {
@@ -225,7 +239,7 @@ function writeEachChar(elem, msg, callback, tag = '', reverseIndex = 0) {
       tag += c;
       msg = msg.slice(1, msg.length);
 
-      writeEachChar(elem, msg, callback, tag, reverseIndex);
+      writeEachChar(elem, msg, callback, tag, reverseIndex, height);
     } else {
       html = elem.innerHTML;
       msg = msg.slice(1, msg.length);
@@ -237,7 +251,7 @@ function writeEachChar(elem, msg, callback, tag = '', reverseIndex = 0) {
         + html.substring(html.length - reverseIndex, html.length);
 
       setTimeout(() => {
-        writeEachChar(elem, msg, callback, tag, reverseIndex);
+        writeEachChar(elem, msg, callback, tag, reverseIndex, height);
       }, speed);
     }
   } else {

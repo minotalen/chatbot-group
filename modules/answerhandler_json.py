@@ -286,8 +286,14 @@ def findAnswer(username, msg, roomId=-1):
     elif intentID == 9:
         return ('sorry no help assistant yet implemented', getRoomName(roomId), 'game')'''
 
-    # Wenn nichts erkannt wurde
-    return ("I have no idea what you want", getRoomName(roomId), 'game')
+    # Wenn nichts erkannt wurde "No idea"
+    if json.loads(database.get_settings_by_username(username))['gpt2Output']:
+        ### Hier kommt die GPT2 antwort rein
+        return ("GPT2 please input here", getRoomName(roomId),'game')
+
+    else:
+        ### Hier kommt der statische Output hin
+        return ("I have no idea what you want", getRoomName(roomId), 'game')
 
 
 """

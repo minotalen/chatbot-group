@@ -5108,3 +5108,178 @@ time spent: 8.963667869567871
 ---------------------------------------
  * Detected change in '/home/max/chatbot-group/modules/phone.py', reloading
  * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 240-353-666
+0.0 - start
+0.001234292984008789 - classify-Intent
+0.0012831687927246094 - end
+time spent: 0.002616405487060547
+---------------------------------------
+0.0 - start
+0.0042877197265625 - classify-Intent
+0.028838634490966797 - end
+time spent: 0.03327369689941406
+---------------------------------------
+0.0 - start
+0.022550106048583984 - end
+time spent: 0.023007869720458984
+---------------------------------------
+0.0 - start
+0.02255082130432129 - end
+time spent: 0.022800922393798828
+---------------------------------------
+0.0 - start
+0.0016255378723144531 - classify-Intent
+0.006997108459472656 - end
+time spent: 0.008716106414794922
+---------------------------------------
+0.0 - start
+0.002466917037963867 - classify-Intent
+0.015839576721191406 - end
+time spent: 0.018488407135009766
+---------------------------------------
+0.0 - start
+0.009750604629516602 - classify-Intent
+0.0010480880737304688 - check
+0.0002620220184326172 - filter
+0.04333996772766113 - typeofwords
+0.00016379356384277344 - wordsandtype
+8.034706115722656e-05 - listofchoices
+3.8623809814453125e-05 - pre-loop
+0.005927324295043945 - pre-checkSimilarity
+2.681346893310547 - post-checkSimilarity
+0.0051305294036865234 - pre-checkSimilarity
+0.7852926254272461 - post-checkSimilarity
+0.04384589195251465 - pre-checkSimilarity
+0.7596626281738281 - post-checkSimilarity
+0.0070798397064208984 - pre-checkSimilarity
+0.45670628547668457 - post-checkSimilarity
+0.03717494010925293 - pre-checkSimilarity
+1.0128276348114014 - post-checkSimilarity
+0.0057713985443115234 - pre-checkSimilarity
+0.4686574935913086 - post-checkSimilarity
+0.05079507827758789 - pre-checkSimilarity
+0.31298160552978516 - post-checkSimilarity
+0.05235147476196289 - pre-checkSimilarity
+0.2517588138580322 - post-checkSimilarity
+0.07776999473571777 - pre-checkSimilarity
+1.121105670928955 - post-checkSimilarity
+0.011226654052734375 - pre-checkSimilarity
+0.7956376075744629 - post-checkSimilarity
+0.02413034439086914 - pre-checkSimilarity
+0.24204802513122559 - post-checkSimilarity
+0.006744384765625 - pre-checkSimilarity
+1.2253992557525635 - post-checkSimilarity
+0.006027936935424805 - pre-checkSimilarity
+0.7965521812438965 - post-checkSimilarity
+0.04796457290649414 - end
+time spent: 11.34672474861145
+---------------------------------------
+0.0 - start
+0.002908945083618164 - classify-Intent
+0.00024890899658203125 - check
+0.000171661376953125 - filter
+0.03966403007507324 - typeofwords
+0.0002276897430419922 - wordsandtype
+0.0001735687255859375 - listofchoices
+0.0001361370086669922 - pre-loop
+0.12720298767089844 - pre-checkSimilarity
+0.19638562202453613 - post-checkSimilarity
+0.020136117935180664 - pre-checkSimilarity
+0.13980889320373535 - post-checkSimilarity
+0.014413833618164062 - pre-checkSimilarity
+0.4432649612426758 - post-checkSimilarity
+0.03566575050354004 - pre-checkSimilarity
+0.22902131080627441 - post-checkSimilarity
+0.01838850975036621 - pre-checkSimilarity
+0.40331196784973145 - post-checkSimilarity
+0.014544248580932617 - pre-checkSimilarity
+0.24647974967956543 - post-checkSimilarity
+0.009649515151977539 - pre-checkSimilarity
+0.14744305610656738 - post-checkSimilarity
+0.00013709068298339844 - post-loop
+0.0020194053649902344 - end
+time spent: 2.0915215015411377
+---------------------------------------
+0.0 - start
+0.003008604049682617 - classify-Intent
+2.497070074081421 - end
+time spent: 2.5001888275146484
+---------------------------------------
+0.0 - start
+0.008907794952392578 - classify-Intent
+0.04181981086730957 - end
+time spent: 0.050908803939819336
+---------------------------------------
+0.0 - start
+0.007755756378173828 - classify-Intent
+0.02450847625732422 - end
+time spent: 0.032387495040893555
+---------------------------------------
+0.0 - start
+0.004810333251953125 - classify-Intent
+0.03350377082824707 - end
+time spent: 0.038461923599243164
+---------------------------------------
+0.0 - start
+0.005532979965209961 - classify-Intent
+0.03411269187927246 - end
+time spent: 0.03975272178649902
+---------------------------------------
+0.0 - start
+0.002107381820678711 - classify-Intent
+0.0017199516296386719 - items_number: 1
+0.01769089698791504 - end
+time spent: 0.021832704544067383
+---------------------------------------
+0.0 - start
+0.0036840438842773438 - classify-Intent
+0.012160062789916992 - end
+time spent: 0.01620769500732422
+---------------------------------------
+0.0 - start
+0.0031669139862060547 - classify-Intent
+2.612161874771118 - end
+time spent: 2.615431070327759
+---------------------------------------
+0.0 - start
+0.005671262741088867 - classify-Intent
+0.01639842987060547 - end
+time spent: 0.022449970245361328
+---------------------------------------
+0.0 - start
+0.010643720626831055 - end
+time spent: 0.010973453521728516
+---------------------------------------
+0.0 - start
+0.004889249801635742 - classify-Intent
+0.0046350955963134766 - end
+time spent: 0.009875059127807617
+---------------------------------------
+0.0 - start
+0.021970272064208984 - end
+time spent: 0.022225618362426758
+---------------------------------------
+0.0 - start
+0.0053212642669677734 - classify-Intent
+0.0003485679626464844 - check
+0.0002849102020263672 - filter
+0.05418848991394043 - typeofwords
+0.0002086162567138672 - wordsandtype
+0.00014734268188476562 - listofchoices
+0.00010418891906738281 - pre-loop
+0.017662525177001953 - pre-checkSimilarity
+1.3872497081756592 - post-checkSimilarity
+0.019369840621948242 - pre-checkSimilarity
+0.9998388290405273 - post-checkSimilarity
+0.02657628059387207 - pre-checkSimilarity
+0.9058835506439209 - post-checkSimilarity
+0.09038925170898438 - pre-checkSimilarity
+1.0778355598449707 - post-checkSimilarity
+0.028820276260375977 - pre-checkSimilarity
+1.1561245918273926 - post-checkSimilarity
+0.03392767906188965 - post-loop
+0.0016443729400634766 - end
+time spent: 5.805988550186157
+---------------------------------------

@@ -5338,3 +5338,22 @@ time spent: 1.61165189743042
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 132-614-185
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/modules/database_SQLite.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.0034482479095458984 - end
+time spent: 0.003788471221923828
+---------------------------------------
+0.0 - start
+0.003452301025390625 - end
+time spent: 0.0036163330078125
+---------------------------------------

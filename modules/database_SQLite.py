@@ -9,7 +9,7 @@ import json
 
 def execute_database(query, arguments):
     # Connect to database
-    conn = sqlite3.connect("../data/elephanture.db")
+    conn = sqlite3.connect("data/elephanture.db")
     # create a cursor
     c = conn.cursor()
     try:

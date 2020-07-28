@@ -1,6 +1,7 @@
 import sys
 import json
 import pandas as pd
+import random
 from nltk import tokenize
 from pathlib import Path
 
@@ -9,7 +10,8 @@ import database_SQLite as database
 import data_json_functions as djf
 from gps import handleGPS, printLocations
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
-from phone import handleAnswer, getSizeofMessagequeue, get_generated_answer, formatHTMLText
+from intent_classifier import classifyMessage
+from phone import handleAnswer, printRecentMessage, get_generated_answer, formatHTMLText, updateMessagequeue
 from riddlemode import checkAnswer
 import logging_time as l
 import audio as audio
@@ -17,6 +19,7 @@ import audio as audio
 with open('json/rooms.json', encoding="utf8") as allLevels:
     data = json.load(allLevels)
     rooms = data['rooms']
+
 
 """
 @author Max Petendra
@@ -30,16 +33,16 @@ username: the username of the user currently playing
 
 Returns the json from the client
 """
-
-
 def answerHandler(inputjson, username):
+
     l.log_start()  # logging
     obj = json.loads(inputjson)
-
+    
     # When the mode is phone and player inputs exit phone
-    if str(obj['mode']) == 'phone' and classifyIntent(str(obj['message'].lower()), ['exit phone']) == 1:
+    if str(obj['mode']) == 'phone' and classifyMessage(str(obj['message'].lower()), {
+    "exit": ["exit","leave","shut down","close"]}) == "exit":
         answer = ('You stop looking at the bad quality of your phone',
-                  getRoomName(getRoomId(str(obj['room']))), 'game')
+                getRoomName(getRoomId(str(obj['room']))), 'game')
 
     # When the mode is phone
     elif str(obj['mode']) == 'phone':
@@ -47,9 +50,10 @@ def answerHandler(inputjson, username):
             str(obj['room']))), getRoomName(getRoomId(str(obj['room']))), 'phone']
 
     # When the mode is gps and player inputs exit gps
-    elif str(obj['mode']) == 'gps' and classifyIntent(str(obj['message'].lower()), ['exit gps']) == 1:
+    elif str(obj['mode']) == 'gps' and classifyMessage(str(obj['message'].lower()), {
+    "exit": ["exit","leave","shut down","close"]}) == "exit":
         answer = ('Your gps device is now turned off',
-                  getRoomName(getRoomId(str(obj['room']))), 'game')
+                getRoomName(getRoomId(str(obj['room']))), 'game')
 
     # When the mode is gps
     elif str(obj['mode']) == 'gps':
@@ -58,8 +62,7 @@ def answerHandler(inputjson, username):
         if cur_room_id == gpsTriple[1]:
             answer = [gpsTriple[0], getRoomName(gpsTriple[1]), gpsTriple[2]]
         else:
-            answer = [gpsTriple[0] + "<br>" + getRoomIntroduction(gpsTriple[1]), getRoomName(gpsTriple[1]),
-                      gpsTriple[2]]
+            answer = [gpsTriple[0] + "<br>" + getRoomIntroduction(gpsTriple[1]), getRoomName(gpsTriple[1]), gpsTriple[2]]
 
     # When the mode is riddle
     elif str(obj['mode']) == 'riddle':
@@ -69,8 +72,8 @@ def answerHandler(inputjson, username):
 
     # When mode is game
     else:
-        # l.log_time('remove_tables')
-        # database.remove_unused_tables()
+        #l.log_time('remove_tables')
+        #database.remove_unused_tables()
         answer = findAnswer(username, str(
             obj['message'].lower()), getRoomId(str(obj['room'])))
 
@@ -79,23 +82,25 @@ def answerHandler(inputjson, username):
     else:
         print("added nothing to training data")
 
-    # text to spreech if it is turned on in the setting @author Max Petendra
-    if json.loads(database.get_settings_by_username(username))['readMessages']: audio.playSound(
-        formatHTMLText(answer[0])[0:200])
-
+    #text to spreech if it is turned on in the setting @author Max Petendra
+    if json.loads(database.get_settings_by_username(username))['readMessages']: audio.playSound(formatHTMLText(answer[0])[0:200])
+        
+    
+    
     # json wird wieder zusammen gepackt
     l.log_time('end')  # logging
     l.log_end()  # logging
 
-    # Check if a differnt sender is given
-    if len(answer) <= 3:
-        newSender = "bot"
-    else:
-        newSender = answer[3]
 
-    # regular return statment
-    return json.dumps(
-        {"level": 1, "sender": newSender, "room": answer[1], "items": [], "mode": answer[2], "message": answer[0]})
+    #Check if a differnt sender is given
+    if len(answer) <= 3: newSender = "bot"
+    else: newSender = answer[3]
+        
+
+    #regular return statment
+    return json.dumps({"level": 1, "sender": newSender, "room": answer[1], "items": [], "mode": answer[2], "message": answer[0]})
+       
+        
 
 
 """
@@ -112,14 +117,12 @@ roomId = the current id of the room the player is in (default = -1 if no id is g
 
 Returns a triple if the reply message of the chatbot the room id and the 
 """
-
-
 def findAnswer(username, msg, roomId=-1):
     if roomId == -1:
         raise ValueError("Invalid room id!")
 
-    choices = ["go to", "look at", "pick up", "inventory", "current room",
-               "about chatbot:", "start phone", "start gps", "help assistant:"]
+    #choices = ["go to", "look at", "pick up", "inventory", "current room",
+               #"about chatbot:", "start phone", "start gps", "help assistant:"]
 
     elemCount = -1
     # TRIGGER: Raumspezifische Trigger werden zuerst überprüft // please write docs in english :''(
@@ -128,15 +131,14 @@ def findAnswer(username, msg, roomId=-1):
             elemCount += 1
             for name in elem['trigName']:
                 if name in msg and djf.checkNeededStates(rooms[roomId]['triggers'][elemCount],
-                                                         username) and djf.checkNeededItems(
-                    rooms[roomId]['triggers'][elemCount], username):
+                                                                 username) and djf.checkNeededItems(rooms[roomId]['triggers'][elemCount], username):
 
                     djf.updateStates(rooms[roomId]['triggers']
-                                     [elemCount], username)
+                                 [elemCount], username)
 
                     altMode = 'game'
                     altRoom = roomId
-                    altSender = 'bot'
+                    altSender ='bot'
                     if elem['actions'][0] is not None:
                         for action, actionValue in zip(elem['actions'], elem['actionsValue']):
                             altAction = djf.doAction(
@@ -145,18 +147,22 @@ def findAnswer(username, msg, roomId=-1):
                                 altRoom = altAction[0]
                             elif altAction[1] is not None:
                                 altMode = altAction[1]
-                            elif altAction[2] is not None:
-                                altSender = altAction[2]
+                                if altMode == "phone":
+                                    updateMessagequeue(username)
+                                    newMessages = printRecentMessage(username)
+                                    return (elem['accept'] + '<br>' + newMessages, getRoomName(altRoom), altMode, altSender)
+                            elif altAction[2] is not None: altSender = altAction[2]
 
                     return (elem['accept'], getRoomName(altRoom), altMode, altSender)
-
+            
                 elif name in msg:
                     return (elem['fail'], getRoomName(roomId), 'game')
 
-    intentID = classifyIntent(msg, choices)
+    #intentID = classifyIntent(msg, choices)
+    intentID = classifyMessage(msg)
 
     # GO TO: Es kann zu anliegenden Räumen oder Objekten gegangen werden
-    if intentID == 1:
+    if intentID == "go to":
         elemCount = -1
         # RÄUME
         if rooms[roomId]['connections'][0]:
@@ -182,16 +188,17 @@ def findAnswer(username, msg, roomId=-1):
                         return (elem['lookAt'], getRoomName(roomId), 'game')
 
     # LOOK AT: Items und Objekte im Raum können angeschaut werden. ansonsten wird LOOK AROUND die Raumbeschreibungs ausgegeben
-    elif intentID == 2:
+    elif intentID == "look at":
         elemCount = -1
         # ITEMS
         if rooms[roomId]['items'][0] is not None:
             for elem in rooms[roomId]['items']:
                 elemCount += 1
 
-                if elem['itemName'] in msg and djf.checkNeededStates(rooms[roomId]['items'][elemCount], username):
-                    return (elem['lookAt'], getRoomName(roomId), 'game')
+                if elem['itemName'] in msg:
 
+                    return (elem['lookAt'], getRoomName(roomId), 'game')
+        
         # LOOK AT ITEMS IN INVENTORY
         for i in database.get_all_user_items(username):
             if i[0] in msg:
@@ -214,10 +221,10 @@ def findAnswer(username, msg, roomId=-1):
 
         if json.loads(database.get_settings_by_username(username))['gpt2Output']:
             # room discription from json
-            raw_desc_sentences = tokenize.sent_tokenize(formatHTMLText(getRoomDescription(roomId)))
+            raw_desc_sentences = tokenize.sent_tokenize(formatHTMLText(getRoomDescription(roomId))) 
 
             # take last 3 sentences from input
-            if len(raw_desc_sentences) > 3: raw_desc_sentences = raw_desc_sentences[-3:]
+            if len(raw_desc_sentences) > 3 : raw_desc_sentences = raw_desc_sentences[-3:]
             raw_desc_sentences = " ".join(raw_desc_sentences)
 
             # with a generated text added by gpt2 on context of the room discription 
@@ -225,10 +232,10 @@ def findAnswer(username, msg, roomId=-1):
 
             return (gen_description, getRoomName(roomId), 'game')
         else:
-            return (getRoomDescription(roomId), getRoomName(roomId), 'game')
+            return (getRoomDescription(roomId), getRoomName(roomId), 'game') 
 
-            # PICK UP: Hebt ein item auf und gibt den Text zurück
-    elif intentID == 3:
+    # PICK UP: Hebt ein item auf und gibt den Text zurück
+    elif intentID == "pick up":
         if rooms[roomId]['items'][0] is not None:
             elemCount = -1
             for elem in rooms[roomId]['items']:
@@ -241,35 +248,65 @@ def findAnswer(username, msg, roomId=-1):
                     return (elem['pickUp'], getRoomName(roomId), 'game')
 
     # INVENTORY: NOCH NICHT FERTIG. BAUSTELLE
-    elif intentID == 4:
+    elif intentID == "inventory":
         return (djf.get_inventory(roomId, username), getRoomName(roomId), 'game', 'inventory')
 
     # CURRENT ROOM: Gibt den Raumtext nochmal aus
-    elif intentID == 5:
+    elif intentID == "current room":
         return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
+    
+    # START DEVICE: Eines der Geräte wird geöffnet
+    elif intentID == "start":
+        if "gps" in msg:
+            if database.get_user_state_value(username, 'ownGps') == True:
+                return (printLocations(username), getRoomName(roomId), 'gps')
+        elif "phone" in msg:
+            if database.get_user_state_value(username, 'solvedPinCode') == True:
+                newMessages = printRecentMessage(username)
+                return ('Phone started  <em>Type manual to open usage instructions</em><br>You are now chatting with the professor. <br><br>' + newMessages, getRoomName(roomId), 'phone')
+        else: ("Do you want to start or open something you do not posses?", getRoomName(roomId), 'game')
 
-    # ABOUT: Beantwortet Fragen zum Chatbot
+
+
+    '''# ABOUT: Beantwortet Fragen zum Chatbot
     elif intentID == 6:
-        return (aboutHandler(msg), getRoomName(roomId), 'game')
-
-    # START PHONE: Der Handymodus wird gestartet
+        return (aboutHandler(msg), getRoomName(roomId), 'game')'''    
+    '''# START PHONE: Der Handymodus wird gestartet
     elif intentID == 7:
         if database.get_user_state_value(username, 'solvedPinCode') == True:
-            return (
-            'Phone started  <em>Type manual to open usage instructions</em><br>You are now chatting with the professor. <br>' + 'You have ' + str(
-                getSizeofMessagequeue(username)) + ' new messages in your mailbox', getRoomName(roomId), 'phone')
+            newMessages = printRecentMessage(username)
+
+            return ('Phone started  <em>Type manual to open usage instructions</em><br>You are now chatting with the professor. <br><br>' + newMessages, getRoomName(roomId), 'phone')
 
     # START GPS DEVICE
     elif intentID == 8:
         if database.get_user_state_value(username, 'ownGps') == True:
-            return (printLocations(username), getRoomName(roomId), 'gps')
+            return (printLocations(username), getRoomName(roomId), 'gps')'''
 
-    # HELP ASSISTANT
+    '''# HELP ASSISTANT
     elif intentID == 9:
-        return ('sorry no help assistant yet implemented', getRoomName(roomId), 'game')
+        return ('sorry no help assistant yet implemented', getRoomName(roomId), 'game')'''
 
-    # Wenn nichts erkannt wurde
-    return ("I have no idea what you want", getRoomName(roomId), 'game')
+    # Wenn nichts erkannt wurde "No idea"
+    if json.loads(database.get_settings_by_username(username))['gpt2Output']:
+        ### Hier kommt die GPT2 antwort rein
+        return ("GPT2 please input here", getRoomName(roomId),'game')
+
+    else:
+        ### Hier kommt der statische Output hin
+        noIdeaList = ["Talk with a little more respect.",
+        "You should stop messing around and get to the point.",
+        "Are you speaking some kind of alien language?",
+        "You should read before you talk.",
+        "Who taught you to talk like that?",
+        "Is that supposed to be funny?",
+        "Computer says no!",
+        "There is no time for such shenanigans.",
+        "If you want to get your degree, you have to write better instructions.",
+        "You might want to rephrase that.",
+        "English, " + username + ", do you speak it?",
+        "There is a time and place for this."]
+        return (random.choice(noIdeaList), getRoomName(roomId), 'game')
 
 
 """
@@ -282,14 +319,11 @@ roomName : the roomName the player wants to know the id from
 
 Returns the roodId specified by the room name (-1 if no roodId is found)
 """
-
-
 def getRoomId(roomName: str) -> int:
     for count in range(0, len(rooms)):
         if rooms[count]['roomName'] in roomName:
             return int(rooms[count]['id'])
     return -1
-
 
 # Get the current room
 
@@ -308,6 +342,8 @@ def getRoomDescription(id: int) -> str:
     return rooms[id]['descri']
 
 
+
+
 """
 @author Max Petendra
 @state 10.06.20
@@ -318,8 +354,6 @@ msg = the user message
 
 Returns a answer for the interrogative of the player
 """
-
-
 def aboutHandler(msg: str) -> str:
     if "who has" in msg:
         return "I am programmed by student members of the Chatbots:Talk-To-Me Team"

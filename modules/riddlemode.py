@@ -1,6 +1,7 @@
 import json
 import database_SQLite as database
 import data_json_functions as djf
+from phone import printRecentMessage, updateMessagequeue
 
 helpText = "Hello dear adventurer! You are currently in riddle mode. Your quest is to type the right answer to continue the game. If you want to leave the riddle mode to continue exploring the world, please type 'go back' or 'exit'"
 
@@ -67,7 +68,10 @@ def RiddleOne(msg, roomId, username):
                 altAction = djf.doAction(action, actionValue, roomId, username)
                 if altAction[0] is not None: altRoom = altAction[0]
         
-        return [rightText, altRoom, "phone"]
+        updateMessagequeue(username)
+        newMessages = printRecentMessage(username)
+
+        return [rightText + "<br><br>" + newMessages, altRoom, "phone"]
     
     else: return [falseText, roomId, "riddle"]
 
@@ -79,16 +83,16 @@ def RiddleTwo(msg, roomId, username):
     else: numbersonly = -1
     print(numbermsg+ " "+str(numbersonly))
 
-    rightAnswer = riddles[1]['rightAnswer']
-    rightText = riddles[1]['rightText']
-    falseText = riddles[1]['falseText']
+    rightAnswer = riddles[2]['rightAnswer']
+    rightText = riddles[2]['rightText']
+    falseText = riddles[2]['falseText']
 
 
     if rightAnswer == numbermsg :
-        djf.updateStates(riddles[1],username)
+        djf.updateStates(riddles[2],username)
         altRoom = roomId
-        if riddles[1]['actions'][0] is not None:
-            for action, actionValue in zip(riddles[1]['actions'], riddles[1]['actionsValue']):
+        if riddles[2]['actions'][0] is not None:
+            for action, actionValue in zip(riddles[2]['actions'], riddles[2]['actionsValue']):
                 altAction = djf.doAction(action, actionValue, roomId, username)
                 if altAction[0] is not None: altRoom = altAction[0]
         

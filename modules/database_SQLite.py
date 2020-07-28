@@ -639,4 +639,12 @@ def get_settings_by_username(username: str):
 
 
 
-#update_user_settings("Dinh", '{ "name":"Dinh", "age":30, "city":"New York"}')
+"""
+save all the user who've played our game into "users" table. For example:
+=================================================
+user_room_id | user_id         | room_id        |
+-------------+-----------------+----------------+
+1            | 1               |1               |
+-------------+-----------------+----------------+
+"""
+

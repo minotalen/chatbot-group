@@ -290,7 +290,10 @@ def findAnswer(username, msg, roomId=-1):
     # Wenn nichts erkannt wurde "No idea"
     if json.loads(database.get_settings_by_username(username))['gpt2Output']:
         ### Hier kommt die GPT2 antwort rein
-        return ("GPT2 please input here", getRoomName(roomId),'game')
+        endings = ["Unfortunately, ", "You try, but ","I am sorry doing "+msg+" is not allowed here, because ","There is no way this works, ","There is no reason you should do that, "]
+        randomEnding = random.choice(endings)
+        gpt2Input = msg + " " + randomEnding
+        return (randomEnding + get_generated_answer(gpt2Input,18), getRoomName(roomId),'game')
 
     else:
         ### Hier kommt der statische Output hin

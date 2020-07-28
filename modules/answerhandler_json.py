@@ -95,8 +95,9 @@ def answerHandler(inputjson, username):
     #Check if a differnt sender is given
     if len(answer) <= 3: newSender = "bot"
     else: newSender = answer[3]
-        
 
+    database.update_user_room(username, getRoomId(answer[1]))
+    
     #regular return statment
     return json.dumps({"level": 1, "sender": newSender, "room": answer[1], "items": [], "mode": answer[2], "message": answer[0]})
        
@@ -172,7 +173,6 @@ def findAnswer(username, msg, roomId=-1):
                 for name in elem['conNames']:
                     if name in msg and djf.checkNeededStates(rooms[roomId]['connections'][elemCount], username):
                         roomId = int(elem['conRoomId'])
-
                         return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
 
             elemCount = -1

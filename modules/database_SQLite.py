@@ -83,7 +83,6 @@ def does_user_exist(username):
     query = """SELECT * FROM users WHERE user_name = ?"""
     fetch = execute_database(query, (username,))
     user = fetch[1]
-    print(user)
     if user is None or not user:
         return False
 
@@ -678,14 +677,9 @@ def does_user_room_exist(username:str):
     query = """SELECT * FROM user_room WHERE user_id = ?"""
     fetch = execute_database(query, (get_user_id(username),))
     user_room_id = fetch[1]
-    print(user_room_id)
-
-    if user_room_id is None or not user_room_id:
-        return False
-    if user_room_id[0] is not None:
-        return True
-    else:
-        return False
+    if user_room_id is None or not user_room_id: return False
+    if user_room_id[0] is not None: return True
+    else: return False
 
 def delete_user_room(username: str) :
     user_id = get_user_id(username)
@@ -695,6 +689,16 @@ def delete_user_room(username: str) :
             fetch = execute_database(query, (user_id,))
     else: print("Failed to update user_room because user does not exist") 
         
+def get_user_room(username: str):
+    if does_user_room_exist(username):
+        query = """SELECT * FROM user_room WHERE user_id= ?"""
+        fetch = execute_database(query, (get_user_id(username), ))
+        result = fetch[1][0]
+        return result[2]
+    else:
+        print("There is no such username that can update a login")
+        return None;
+
 
 
 

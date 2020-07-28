@@ -5357,3 +5357,264 @@ time spent: 0.003788471221923828
 0.003452301025390625 - end
 time spent: 0.0036163330078125
 ---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.0051882266998291016 - end
+time spent: 0.005598783493041992
+---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.0064296722412109375 - end
+time spent: 0.006584882736206055
+---------------------------------------
+0.0 - start
+0.006527423858642578 - end
+time spent: 0.006727933883666992
+---------------------------------------
+0.0 - start
+0.002599954605102539 - end
+time spent: 0.002717733383178711
+---------------------------------------
+0.0 - start
+0.0033943653106689453 - end
+time spent: 0.003579378128051758
+---------------------------------------
+0.0 - start
+0.010126829147338867 - end
+time spent: 0.010379552841186523
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.0041806697845458984 - end
+time spent: 0.004348039627075195
+---------------------------------------
+0.0 - start
+0.0027806758880615234 - end
+time spent: 0.0029468536376953125
+---------------------------------------
+0.0 - start
+0.013658523559570312 - end
+time spent: 0.014081716537475586
+---------------------------------------
+0.0 - start
+0.008617401123046875 - end
+time spent: 0.009724617004394531
+---------------------------------------
+0.0 - start
+0.023797035217285156 - end
+time spent: 0.024006128311157227
+---------------------------------------
+0.0 - start
+0.002413034439086914 - end
+time spent: 0.0025420188903808594
+---------------------------------------
+0.0 - start
+8.837290525436401 - end
+time spent: 8.837809562683105
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.003359079360961914 - end
+time spent: 0.0034623146057128906
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.009835004806518555 - end
+time spent: 0.011385917663574219
+---------------------------------------
+0.0 - start
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.005143880844116211 - end
+time spent: 0.005357980728149414
+---------------------------------------
+0.0 - start
+0.01872420310974121 - end
+time spent: 0.01892685890197754
+---------------------------------------
+0.0 - start
+0.012185811996459961 - end
+time spent: 0.012486457824707031
+---------------------------------------
+0.0 - start
+0.009580373764038086 - end
+time spent: 0.009737968444824219
+---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.0025153160095214844 - end
+time spent: 0.0026938915252685547
+---------------------------------------
+0.0 - start
+0.015125036239624023 - end
+time spent: 0.01546335220336914
+---------------------------------------
+0.0 - start
+0.0463261604309082 - classify-Intent
+0.006676435470581055 - end
+time spent: 0.053530216217041016
+---------------------------------------
+0.0 - start
+8.29871153831482 - end
+time spent: 8.2988600730896
+---------------------------------------
+0.0 - start
+0.00995945930480957 - end
+time spent: 0.010059595108032227
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.002237081527709961 - end
+time spent: 0.0023310184478759766
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.005789041519165039 - end
+time spent: 0.006242513656616211
+---------------------------------------
+0.0 - start
+0.012948751449584961 - end
+time spent: 0.013073205947875977
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.0031919479370117188 - end
+time spent: 0.0033288002014160156
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.009979963302612305 - end
+time spent: 0.010202646255493164
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.0026116371154785156 - end
+time spent: 0.0027379989624023438
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.010344743728637695 - end
+time spent: 0.010581016540527344
+---------------------------------------
+0.0 - start
+0.015087604522705078 - end
+time spent: 0.015256166458129883
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.005728244781494141 - end
+time spent: 0.006726741790771484
+---------------------------------------
+0.0 - start
+0.004660606384277344 - end
+time spent: 0.00478816032409668
+---------------------------------------
+0.0 - start
+0.014760971069335938 - end
+time spent: 0.0149383544921875
+---------------------------------------
+0.0 - start
+0.004283905029296875 - end
+time spent: 0.004422903060913086
+---------------------------------------
+0.0 - start
+0.004230022430419922 - end
+time spent: 0.004411220550537109
+---------------------------------------

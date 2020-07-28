@@ -5,7 +5,7 @@ import json
 import threading
 
 sys.path.insert(1, '/modules')
-from modules.answerhandler_json import answerHandler
+from modules.answerhandler_json import answerHandler, getRoomName
 import modules.database_SQLite as database
 
 app = Flask(__name__, static_url_path='/static')
@@ -178,12 +178,19 @@ def mapsUsernameToSession(payload):
 
     user_sessions.append({"user": username, "sid": request.sid}) 
 
-    initial_data = {"level": 0, "sender": "bot", "room": "startgame", "mode": "game", 
+    
+    if database.does_user_room_exist(username):
+         room = getRoomName(database.get_user_room(username))
+         print(room)
+    else: room = "startgame"     
+    
+
+    initial_data = {"level": 0, "sender": "bot", "room": room, "mode": "game", 
                     "message": "Welcome "+ username + "!"} 
     json_data = json.dumps(initial_data) 
     send(json_data, json=True) 
 
-    intro_text = {"level": 0, "sender": "bot", "room": "startgame", "mode": "game", "message": "current room"} 
+    intro_text = {"level": 0, "sender": "bot", "room": room, "mode": "game", "message": "current room"} 
     json_data = json.dumps(intro_text) 
     send(answerHandler(json_data, get_username_by_sid(request.sid)), json=True) 
 

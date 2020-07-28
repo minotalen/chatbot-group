@@ -197,14 +197,14 @@ def findAnswer(username, msg, roomId=-1):
 
                 if elem['itemName'] in msg:
 
-                    return (elem['lookAt'], getRoomName(roomId), 'game')
+                    return (elem['lookAt'] + " "+ get_generated_answer(elem['lookAt'],22), getRoomName(roomId), 'game')
         
         # LOOK AT ITEMS IN INVENTORY
         for i in database.get_all_user_items(username):
             if i[0] in msg:
                 for elem in rooms[i[1]]['items']:
                     if elem['itemName'] == i[0]:
-                        return (elem['lookAt'], getRoomName(roomId), 'game', 'inventory')
+                        return (elem['lookAt'] + " "+ get_generated_answer(elem['lookAt'],22), getRoomName(roomId), 'game', 'inventory')
 
         elemCount = -1
         # OBJEKTE
@@ -217,7 +217,7 @@ def findAnswer(username, msg, roomId=-1):
                         djf.updateStates(
                             rooms[roomId]['objects'][elemCount], username)
 
-                        return (elem['lookAt'], getRoomName(roomId), 'game')
+                        return (elem['lookAt'] + " "+ get_generated_answer(elem['lookAt'],22), getRoomName(roomId), 'game')
 
         if json.loads(database.get_settings_by_username(username))['gpt2Output']:
             # room discription from json

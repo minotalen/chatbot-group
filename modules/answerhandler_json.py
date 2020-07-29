@@ -337,7 +337,7 @@ def get_gpt2_intro(intro_text: str, username: str):
         raw_desc_sentences = " ".join(raw_desc_sentences)
 
         # with a generated text added by gpt2 on context of the room discription 
-        return intro_text + ' ### ' + get_generated_answer(raw_desc_sentences, 55)
+        return intro_text + ' ' + get_generated_answer(raw_desc_sentences, 55)
     else:
         return intro_text
 

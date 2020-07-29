@@ -173,7 +173,7 @@ def findAnswer(username, msg, roomId=-1):
                 for name in elem['conNames']:
                     if name in msg and djf.checkNeededStates(rooms[roomId]['connections'][elemCount], username):
                         roomId = int(elem['conRoomId'])
-                        return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
+                        return (get_gpt2_intro(getRoomIntroduction(roomId), username), getRoomName(roomId), 'game')
 
             elemCount = -1
         # OBJEKTE
@@ -219,20 +219,20 @@ def findAnswer(username, msg, roomId=-1):
 
                         return (elem['lookAt'] + " "+ get_generated_answer(elem['lookAt'],22), getRoomName(roomId), 'game')
 
-        if json.loads(database.get_settings_by_username(username))['gpt2Output']:
-            # room discription from json
-            raw_desc_sentences = tokenize.sent_tokenize(formatHTMLText(getRoomDescription(roomId))) 
+        # if json.loads(database.get_settings_by_username(username))['gpt2Output']:
+        #     # room discription from json
+        #     raw_desc_sentences = tokenize.sent_tokenize(formatHTMLText(getRoomDescription(roomId))) 
 
-            # take last 3 sentences from input
-            if len(raw_desc_sentences) > 3 : raw_desc_sentences = raw_desc_sentences[-3:]
-            raw_desc_sentences = " ".join(raw_desc_sentences)
+        #     # take last 3 sentences from input
+        #     if len(raw_desc_sentences) > 3 : raw_desc_sentences = raw_desc_sentences[-3:]
+        #     raw_desc_sentences = " ".join(raw_desc_sentences)
 
-            # with a generated text added by gpt2 on context of the room discription 
-            gen_description = getRoomDescription(roomId) + ' ' + get_generated_answer(raw_desc_sentences, 55)
+        #     # with a generated text added by gpt2 on context of the room discription 
+        #     gen_description = getRoomDescription(roomId) + ' ' + get_generated_answer(raw_desc_sentences, 55)
 
-            return (gen_description, getRoomName(roomId), 'game')
-        else:
-            return (getRoomDescription(roomId), getRoomName(roomId), 'game') 
+        #     return (gen_description, getRoomName(roomId), 'game')
+        # else:
+        return (getRoomDescription(roomId), getRoomName(roomId), 'game') 
 
     # PICK UP: Hebt ein item auf und gibt den Text zurück
     elif intentID == "pick up":
@@ -253,7 +253,7 @@ def findAnswer(username, msg, roomId=-1):
 
     # CURRENT ROOM: Gibt den Raumtext nochmal aus
     elif intentID == "current room":
-        return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
+        return (get_gpt2_intro(getRoomIntroduction(roomId), username), getRoomName(roomId), 'game')
     
     # START DEVICE: Eines der Geräte wird geöffnet
     elif intentID == "start":
@@ -311,6 +311,35 @@ def findAnswer(username, msg, roomId=-1):
         "There is a time and place for this."]
         return (random.choice(noIdeaList), getRoomName(roomId), 'game')
 
+
+
+"""
+@author Max Petendra, Jakob Hackstein
+@state 29.07.20
+Generate gpt2 output with context of current intro text
+Parameters
+----------
+intro_text: the intro text of current room
+username : username of the current player
+
+Returns intro text with gpt2 generated output if setting is enabled
+"""
+def get_gpt2_intro(intro_text: str, username: str):
+
+    json_string = database.get_settings_by_username(username)
+
+    if json_string is not None and json.loads(json_string)['gpt2Output']:
+        # room description from json
+        raw_desc_sentences = tokenize.sent_tokenize(formatHTMLText(intro_text)) 
+
+        # take last 3 sentences from input
+        if len(raw_desc_sentences) > 3 : raw_desc_sentences = raw_desc_sentences[-3:]
+        raw_desc_sentences = " ".join(raw_desc_sentences)
+
+        # with a generated text added by gpt2 on context of the room discription 
+        return intro_text + ' ### ' + get_generated_answer(raw_desc_sentences, 55)
+    else:
+        return intro_text
 
 """
 @author Max Petendra

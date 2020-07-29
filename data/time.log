@@ -5645,3 +5645,129 @@ time spent: 0.012707948684692383
 0.011726617813110352 - end
 time spent: 0.012132644653320312
 ---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.017856121063232422 - end
+time spent: 0.017856121063232422
+---------------------------------------
+0.0 - start
+0.01140737533569336 - end
+time spent: 0.01140737533569336
+---------------------------------------
+0.0 - start
+0.016387224197387695 - end
+time spent: 0.016387224197387695
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.919739007949829 - end
+time spent: 2.919739007949829
+---------------------------------------
+0.0 - start
+0.7742557525634766 - end
+time spent: 0.7742557525634766
+---------------------------------------
+0.0 - start
+0.013003110885620117 - end
+time spent: 0.013003110885620117
+---------------------------------------
+0.0 - start
+0.6700952053070068 - end
+time spent: 0.6700952053070068
+---------------------------------------
+0.0 - start
+2.011378288269043 - end
+time spent: 2.011378288269043
+---------------------------------------
+0.0 - start
+0.6492624282836914 - end
+time spent: 0.6492624282836914
+---------------------------------------
+0.0 - start
+0.014863967895507812 - end
+time spent: 0.014863967895507812
+---------------------------------------
+0.0 - start
+0.021327495574951172 - end
+time spent: 0.021825075149536133
+---------------------------------------
+0.0 - start
+0.015352249145507812 - classify-Intent
+0.004426479339599609 - end
+time spent: 0.019778728485107422
+---------------------------------------
+0.0 - start
+2.1308155059814453 - end
+time spent: 2.1308155059814453
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.7166943550109863 - end
+time spent: 2.7166943550109863
+---------------------------------------
+0.0 - start
+1.9512619972229004 - end
+time spent: 1.9512619972229004
+---------------------------------------
+0.0 - start
+1.9467921257019043 - end
+time spent: 1.9467921257019043
+---------------------------------------
+0.0 - start
+0.021262168884277344 - end
+time spent: 0.021262168884277344
+---------------------------------------
+0.0 - start
+0.014383792877197266 - classify-Intent
+0.0034716129302978516 - end
+time spent: 0.017855405807495117
+---------------------------------------
+0.0 - start
+1.9279515743255615 - end
+time spent: 1.9279515743255615
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.5256259441375732 - end
+time spent: 2.5256259441375732
+---------------------------------------
+0.0 - start
+0.022319316864013672 - end
+time spent: 0.022815942764282227
+---------------------------------------
+0.0 - start
+0.01441192626953125 - classify-Intent
+0.003443479537963867 - end
+time spent: 0.017855405807495117
+---------------------------------------
+0.0 - start
+1.9460484981536865 - end
+time spent: 1.9460484981536865
+---------------------------------------
+0.0 - start
+2.005322217941284 - end
+time spent: 2.0058178901672363
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.6740658283233643 - end
+time spent: 2.6740658283233643
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat

@@ -635,6 +635,7 @@ def get_settings_by_username(username: str):
         return json_string
     else:
         print('user does not exist')
+        return None
 
 
 

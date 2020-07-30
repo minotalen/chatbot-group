@@ -173,7 +173,10 @@ def findAnswer(username, msg, roomId=-1):
                 for name in elem['conNames']:
                     if name in msg and djf.checkNeededStates(rooms[roomId]['connections'][elemCount], username):
                         roomId = int(elem['conRoomId'])
-                        return (get_gpt2_intro(getRoomIntroduction(roomId), username), getRoomName(roomId), 'game')
+                        # Do not generate if intro is played
+                        if roomId > 1:
+                            return (get_gpt2_intro(getRoomIntroduction(roomId), username), getRoomName(roomId), 'game')
+                        return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
 
             elemCount = -1
         # OBJEKTE
@@ -253,7 +256,9 @@ def findAnswer(username, msg, roomId=-1):
 
     # CURRENT ROOM: Gibt den Raumtext nochmal aus
     elif intentID == "current room":
-        return (get_gpt2_intro(getRoomIntroduction(roomId), username), getRoomName(roomId), 'game')
+        if roomId > 1:
+            return (get_gpt2_intro(getRoomIntroduction(roomId), username), getRoomName(roomId), 'game')
+        return (getRoomIntroduction(roomId), getRoomName(roomId), 'game')
     
     # START DEVICE: Eines der Geräte wird geöffnet
     elif intentID == "start":
@@ -337,7 +342,7 @@ def get_gpt2_intro(intro_text: str, username: str):
         raw_desc_sentences = " ".join(raw_desc_sentences)
 
         # with a generated text added by gpt2 on context of the room discription 
-        return intro_text + ' ' + get_generated_answer(raw_desc_sentences, 55)
+        return intro_text + ' # ' + get_generated_answer(raw_desc_sentences, 55)
     else:
         return intro_text
 

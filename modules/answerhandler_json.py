@@ -298,7 +298,7 @@ def findAnswer(username, msg, roomId=-1):
         endings = ["Unfortunately, ", "You try, but ","I am sorry doing "+msg+" is not allowed here, because ","There is no way this works, ","There is no reason you should do that, "]
         randomEnding = random.choice(endings)
         gpt2Input = msg + " " + randomEnding
-        return (randomEnding + get_generated_answer(gpt2Input,18), getRoomName(roomId),'game')
+        return (randomEnding + get_generated_answer(gpt2Input,22), getRoomName(roomId),'game')
 
     else:
         ### Hier kommt der statische Output hin

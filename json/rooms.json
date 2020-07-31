@@ -499,7 +499,7 @@
                 "trigName": ["picture", "photo", "use phone", "camera"],
                 "needStates": ["solvedBargain", "triggeredPicture"],
                 "needStatesValue": [true, false],
-                "needItems": ["chest"],
+                "needItems": ["totem"],
                 "needItemsRoomId": [4],
                 "accept": "You send Prof K. a picture of the ancient chest. And he writes a message back.",
                 "fail": "What picture are you talking about?",

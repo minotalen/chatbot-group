@@ -62,7 +62,7 @@ def answerHandler(inputjson, username):
         if cur_room_id == gpsTriple[1]:
             answer = [gpsTriple[0], getRoomName(gpsTriple[1]), gpsTriple[2]]
         else:
-            answer = [gpsTriple[0] + "<br>" + getRoomIntroduction(gpsTriple[1]), getRoomName(gpsTriple[1]), gpsTriple[2]]
+            answer = [gpsTriple[0] + "<br>" + get_gpt2_intro(getRoomIntroduction(gpsTriple[1]), username), getRoomName(gpsTriple[1]), gpsTriple[2]]
 
     # When the mode is riddle
     elif str(obj['mode']) == 'riddle':
@@ -331,20 +331,22 @@ Returns intro text with gpt2 generated output if setting is enabled
 """
 def get_gpt2_intro(intro_text: str, username: str):
 
-    json_string = database.get_settings_by_username(username)
+    # json_string = database.get_settings_by_username(username)
 
-    if json_string is not None and json.loads(json_string)['gpt2Output']:
-        # room description from json
-        raw_desc_sentences = tokenize.sent_tokenize(formatHTMLText(intro_text)) 
+    # if json_string is not None and json.loads(json_string)['gpt2Output']:
+    
+    # room description from json
+    raw_desc_sentences = tokenize.sent_tokenize(formatHTMLText(intro_text)) 
 
-        # take last 3 sentences from input
-        if len(raw_desc_sentences) > 3 : raw_desc_sentences = raw_desc_sentences[-3:]
-        raw_desc_sentences = " ".join(raw_desc_sentences)
+    # take last 3 sentences from input
+    if len(raw_desc_sentences) > 3 : raw_desc_sentences = raw_desc_sentences[-3:]
+    raw_desc_sentences = " ".join(raw_desc_sentences)
 
-        # with a generated text added by gpt2 on context of the room discription 
-        return intro_text + ' # ' + get_generated_answer(raw_desc_sentences, 55)
-    else:
-        return intro_text
+    # with a generated text added by gpt2 on context of the room discription 
+    return intro_text + ' ' + get_generated_answer(raw_desc_sentences, 55)
+    
+    # else:
+    #     return intro_text
 
 """
 @author Max Petendra

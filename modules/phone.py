@@ -22,6 +22,9 @@ with open('json/questions.json', encoding="utf8") as questions:
     rec_json = json.load(questions)
     questions = rec_json['questions']
 
+with open('data/profanity.txt') as p:
+    profanity_list=[word for line in p for word in line.split()]
+
 # Initialize tokenizer
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 # Load gpt2 model
@@ -67,8 +70,9 @@ def handleAnswer(msg: str, username: str, level: int, roomId: int = -1) -> str:
     #only the last ten words of the msg to prevent long gpt-2 calculation
     msg = " ".join(re.findall(r'\w+', msg)[-8:])
 
-    #censor bad words
-    answer = profanity.censor(get_generated_answer(msg))
+    # censor bad words @development - dont filter swear words, put them in profanity.txt instead
+    # answer = profanity.censor(get_generated_answer(msg))
+    answer = get_generated_answer(msg)
 
     #returns the answer of the prof if it is not empty
     return [answer, rustyprof][not answer]
@@ -148,13 +152,16 @@ def get_generated_answer(input_context: str, output_tokens: int = 25, add_punct:
         input_context = input_context + '.'
     input_context = formatHTMLText(input_context)
 
+    # Encoded bad words from profanity.txt
+    bad_words_ids = [tokenizer.encode(bad_word, add_prefix_space=True) for bad_word in profanity_list]
+
     # Encode input with gpt2 tokenizer
     input_tokens = len(input_context.split())
     input_ids = tokenizer.encode(input_context, return_tensors='pt')
 
     n_tokens = input_tokens + output_tokens
     print("GPT2 is trying to generate text for {} tokens".format(n_tokens))
-    outputs = model.generate(input_ids=input_ids, max_length=input_tokens+output_tokens, do_sample=True)
+    outputs = model.generate(input_ids=input_ids, max_length=input_tokens+output_tokens, do_sample=True, bad_words_ids=bad_words_ids)
 
     # Postprocessing string
     decoded_text = tokenizer.decode(outputs[0]).format()
@@ -176,14 +183,14 @@ answer: input string
 returns: complete sentences or one sentence + ending
 """
 def cut_sentences(answer):
-    answer = answer.replace('\n', ' ').replace('\"', '')
+    answer = answer.replace('\n', ' ').replace('\"', '').replace('<|endoftext|>', '')
     sentences = tokenize.sent_tokenize(answer)
 
     if not sentences[-1][-1] in '.!?':
         if len(sentences) > 1:
             sentences = sentences[:-1]
         else:
-            sentences.append('... what was is saying?')
+            sentences.append('... what was I saying?')
     return " ".join(sentences)
 
 

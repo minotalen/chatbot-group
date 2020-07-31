@@ -137,22 +137,16 @@ Parameters
 ----------
 msg: the message of the user
 output_len: must me a integer if set default it is 25
+add_punct: default true adds punctuation to input_context
 
 Returns: a string as an answer
 """
-def get_generated_answer(input_context: str, output_tokens: int = 25) -> str:
+def get_generated_answer(input_context: str, output_tokens: int = 25, add_punct: bool = True) -> str:
 
     # add . if sentence doesnt end with a punctuation
-    if tokenize.sent_tokenize(input_context)[-1][-1] not in "?.,!":
+    if add_punct and tokenize.sent_tokenize(input_context)[-1][-1] not in "?.,!":
         input_context = input_context + '.'
     input_context = formatHTMLText(input_context)
-
-    # text = text_generator(input_context, max_length=int(20))[0].get('generated_text')
-    # for char in "?\n": text = text.replace(char,'')
-    # proftext = re.sub(input_context, '', text)
-    # splittext = re.split('(?<=[,.!?]) +', proftext)
-    # if len(splittext) > 1: print(re.sub(splittext[-1], '', proftext))
-    # print(proftext)
 
     # Encode input with gpt2 tokenizer
     input_tokens = len(input_context.split())
@@ -164,21 +158,34 @@ def get_generated_answer(input_context: str, output_tokens: int = 25) -> str:
 
     # Postprocessing string
     decoded_text = tokenizer.decode(outputs[0]).format()
-    decoded_text = decoded_text.replace('\n', ' ').replace('  ', ' ').replace('|', '')
-    # better filter for special chars?
-    decoded_text = re.sub('\"\'', '', decoded_text)
     answer = decoded_text[len(input_context):]
 
-    # split into sentences and slice unfinished // returns rustyprof if exception is thrown
-    try:
-        def formatstart(msg): return msg[2:] if msg[0:2] == '. ' else (
-            msg.strip() if msg[0] == ' ' else msg)
-        sentences = tokenize.sent_tokenize(answer)
+    return cut_sentences(answer)
+
+
+"""
+@author:: Jakob Hackstein
+@state: 31.07.20
+Cut generated sentences by GPT2 into complete sentences. Removes special 
+character " and line breaks.
+
+Parameters
+----------
+answer: input string
+
+returns: complete sentences or one sentence + ending
+"""
+def cut_sentences(answer):
+    answer = answer.replace('\n', ' ').replace('\"', '')
+    sentences = tokenize.sent_tokenize(answer)
+
+    if not sentences[-1][-1] in '.!?':
         if len(sentences) > 1:
-            return [answer, formatstart(re.sub(sentences[-1], '', answer)).rstrip()][len(answer) > 2]
-        return [answer, formatstart(answer).rstrip()][len(answer) > 2]
-    except:
-        return rustyprof
+            sentences = sentences[:-1]
+        else:
+            sentences.append('... what was is saying?')
+    return " ".join(sentences)
+
 
 """
 @author:: Max Petendra, Jakob Hackstein

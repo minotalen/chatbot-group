@@ -41,7 +41,7 @@ def answerHandler(inputjson, username):
     # When the mode is phone and player inputs exit phone
     if str(obj['mode']) == 'phone' and classifyMessage(str(obj['message'].lower()), {
     "exit": ["exit","leave","shut down","close"]}) == "exit":
-        answer = ('You stop looking at the bad quality of your phone',
+        answer = ('You stop looking at the bad quality of your phone.',
                 getRoomName(getRoomId(str(obj['room']))), 'game')
 
     # When the mode is phone
@@ -200,14 +200,14 @@ def findAnswer(username, msg, roomId=-1):
 
                 if elem['itemName'] in msg:
 
-                    return (elem['lookAt'] + " "+ get_generated_answer(elem['lookAt'],22), getRoomName(roomId), 'game')
+                    return (elem['lookAt'] + " "+ get_generated_answer(elem['lookAt'], 25), getRoomName(roomId), 'game')
         
         # LOOK AT ITEMS IN INVENTORY
         for i in database.get_all_user_items(username):
             if i[0] in msg:
                 for elem in rooms[i[1]]['items']:
                     if elem['itemName'] == i[0]:
-                        return (elem['lookAt'] + " "+ get_generated_answer(elem['lookAt'],22), getRoomName(roomId), 'game', 'inventory')
+                        return (elem['lookAt'] + " "+ get_generated_answer(elem['lookAt'], 25), getRoomName(roomId), 'game', 'inventory')
 
         elemCount = -1
         # OBJEKTE
@@ -220,7 +220,7 @@ def findAnswer(username, msg, roomId=-1):
                         djf.updateStates(
                             rooms[roomId]['objects'][elemCount], username)
 
-                        return (elem['lookAt'] + " "+ get_generated_answer(elem['lookAt'],22), getRoomName(roomId), 'game')
+                        return (elem['lookAt'] + " "+ get_generated_answer(elem['lookAt'], 25), getRoomName(roomId), 'game')
 
         # if json.loads(database.get_settings_by_username(username))['gpt2Output']:
         #     # room discription from json
@@ -298,7 +298,7 @@ def findAnswer(username, msg, roomId=-1):
         endings = ["Unfortunately, ", "You try, but ","I am sorry doing "+msg+" is not allowed here, because ","There is no way this works, ","There is no reason you should do that, "]
         randomEnding = random.choice(endings)
         gpt2Input = msg + " " + randomEnding
-        return (randomEnding + get_generated_answer(gpt2Input,22), getRoomName(roomId),'game')
+        return (randomEnding + get_generated_answer(gpt2Input, 25, False), getRoomName(roomId),'game')
 
     else:
         ### Hier kommt der statische Output hin

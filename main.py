@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_socketio import SocketIO, send, emit
 import json
 import threading
+import re
 
 sys.path.insert(1, '/modules')
 from modules.answerhandler_json import answerHandler, getRoomName
@@ -64,13 +65,14 @@ def signup():
         password = request.form['password']
         r_password = request.form['repeat-password']
 
-        print('username: ' + username)
-        print('password: ' + password)
-        print('repeat password: ' + r_password)
-
         if password != r_password:
             return render_template('signup.html',
                                    error_message='Entered passwords do not match. Please make sure to enter identical passwords.')
+        
+        if not (re.search('^[a-zA-Z0-9]+$', username) and re.search('^[a-zA-Z0-9]+$', password)):
+            return render_template('signup.html',
+                                   error_message='Entered username and password may only contain characters from A-z and 0-9.')
+
         userExists = database.does_user_exist(username)
         if not userExists:
             database.add_user(username, password)

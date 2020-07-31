@@ -107,7 +107,7 @@ def print_all_messages(username):
 
     while newMSG != "That is it for now. Do you have any questions?":
         newMSG = printRecentMessage(username)
-        newMessages += newMSG
+        newMessages += newMSG + "<br><br>"
     
     return newMessages
 

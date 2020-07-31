@@ -159,6 +159,9 @@ def get_generated_answer(input_context: str, output_tokens: int = 25, add_punct:
     input_tokens = len(input_context.split())
     input_ids = tokenizer.encode(input_context, return_tensors='pt')
 
+    if input_tokens > 120:
+        return ""
+
     n_tokens = input_tokens + output_tokens
     print("GPT2 is trying to generate text for {} tokens".format(n_tokens))
     outputs = model.generate(input_ids=input_ids, max_length=input_tokens+output_tokens, do_sample=True, bad_words_ids=bad_words_ids)

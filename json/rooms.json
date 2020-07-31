@@ -512,7 +512,7 @@
     },
     {
         "id": 5,
-        "location": "Outside of Überseestadtmuseum",
+        "location": "Überseestadtmuseum",
         "roomName": "In front of Überseestadtmuseum",
         "intro": "You are now at the Überseestadtmuseum, it's getting dark outside. Your new task is to find out more about the ancient totem you found. Look for hints concerning colonialism.",
         "descri": "You are standing at the entrance of the Überseestadt-Museum. The building looks ancient and is very big. This is a place where historical moments are captured. <br>The doors are very big and wide. And they look very nice even though they are clearly very old. <br>On the left side is a construction site going on, but it seems inactive at the moment. On the right hand side you can see a window.",
@@ -554,7 +554,7 @@
     },
     {
         "id": 6,
-        "location": "Outside of Überseestadtmuseum",
+        "location": "Überseestadtmuseum",
         "roomName": "Construction Site",
         "intro": "You make your way to the construction site. While you move around the museum you notice a crate that is small enough for you to climb on.<br>",
         "descri": "The museum and the constuction site are next to each other. There is only a small distance between them. You also notice the big balcony of the museum that fills the space between the museum and construction side.",
@@ -589,7 +589,7 @@
         ],
         "triggers": [
             {
-                "trigName": ["climb construction", "climb site"],
+                "trigName": ["climb construction", "climb site", "climb up"],
                 "needStates": ["triggeredUseCrate", "triggeredClimbConstruction"],
                 "needStatesValue": [true, false],
                 "needItems": [null],
@@ -657,7 +657,7 @@
     },
     {
         "id": 7,
-        "location": "Outside of Überseestadtmuseum",
+        "location": "Überseestadtmuseum",
         "roomName": "Fuse box",
         "intro": "You make your way down the right hand side of the museum. You notice that the window you saw is actually a big fuse box and it is not even as high as you thought.<br>Maybe your eyes should be checked.",
         "descri": "This side of the museum is incredibly dirty. Cardboard suggests that there might be homeless people living here.<br>I cannot describe all of the dirt I see here but for example a thick piece of cardboard that lays in a puddle totally soaked. <br>Everything in your body goes against touching it.<br>There is also a rusty old crowbar laying around.",
@@ -769,7 +769,7 @@
     },
     {
         "id": 8,
-        "location": "Outside of Überseestadtmuseum",
+        "location": "Überseestadtmuseum",
         "roomName": "Balcony",
         "intro": "This is a balcony with a nice view. You remember your spectecular jump to get here.",
         "descri": "There is a plant pot on the balcony and a glass door right in front of you.<br>Also there seems to be a shaft that is just big enough for you to crawl through.<br>",
@@ -779,6 +779,12 @@
                 "conRoomId": 6,
                 "needStates": [null],
                 "needStatesValue": [null]
+            },
+            {
+                "conNames": ["inside", "glass door", "museum"],
+                "conRoomId": 10,
+                "needStates": ["triggeredUsePot"],
+                "needStatesValue": [true]
             }
         ],
         "items": [
@@ -798,12 +804,12 @@
         "triggers": [
             {
                 "trigName": ["open door", "open glass"],
-                "needStates": [null],
-                "needStatesValue": [null],
+                "needStates": ["triggeredUsePot"],
+                "needStatesValue": [false],
                 "needItems": [null],
                 "needItemsRoomId": [null],
                 "accept": "You try to open the door. Unfortunately this door is locked aswell.<br>",
-                "fail": null,
+                "fail": "The glass door is shattered to pieces. You can go through it but be careful with all the glass.",
                 "newStates": [null],
                 "newStatesValue": [null],
                 "actions": [null],
@@ -817,8 +823,8 @@
                 "needItemsRoomId": [8],
                 "accept": "You feel the need to throw something.<br>You take the plant pot and throw it through the glass door.<br><em>shatter noise</em><br>You smashed the glass door and the pot broke too.<br><br>You manage to squeeze through the shattered door without hurting yourself.<br>You are now inside of the museum.<br><br>For some odd reason you can't switch the lights on. Maybe this has something to do with the wires you cut.<br> You can barely see anything at all.<br> You think you can see 2 exhibitions.<br> One is to your right and the other one is in front of you.<br>",
                 "fail": "You feel the need to throw something.<br>You take the plant pot and you are about to throw it through the glass door.<br>You think about it for a second.<br>You decide against smashing the door because you fear that someone might see you with the light on. Also there is probably an alarm installed.<br>",
-                "newStates": [null],
-                "newStatesValue": [null],
+                "newStates": ["triggeredUsePot"],
+                "newStatesValue": [true],
                 "actions": ["removeItem", "changeLocation"],
                 "actionsValue": ["pot", 10]
             },
@@ -856,8 +862,8 @@
                 "needItemsRoomId": [null],
                 "accept": "You climb down the rope inside the museum. <br><br>You see alot of paintings and various exhibitions of past centuries.<br>There are 2 exhibitions you want to take a closer look at, and one painting that has caught your eye.<br>",
                 "fail": "You think about climbing down but than you remember all those agent movies with the red lasers.. <br>You fear the alarm going off, so you crawl back to the balcony.",
-                "newStates": [null],
-                "newStatesValue": [null],
+                "newStates": ["triggeredCrawl"],
+                "newStatesValue": [false],
                 "actions": ["changeLocation"],
                 "actionsValue": [9]
             }
@@ -865,7 +871,7 @@
     },
     {
         "id": 9,
-        "location": "Inside of Überseestadtmuseum",
+        "location": "Überseestadtmuseum",
         "roomName": "Hallway",
         "intro": "You see alot of paintings and various exhibitions of past centuries.<br>There are 2 exhibitions you want to take a closer look at, and one painting that has caught your eye.<br>",
         "descri": "To your right you see an exhibition with african animals.<br>In front of you is another exhibition",
@@ -877,7 +883,7 @@
                 "needStatesValue": [null]
             },
             {
-                "conNames": ["in front", "forward", "century", "boats"],
+                "conNames": ["front", "forward", "century", "boats", "straight"],
                 "conRoomId": 12,
                 "needStates": [null],
                 "needStatesValue": [null]
@@ -914,7 +920,7 @@
     },
     {
         "id": 10,
-        "location": "Inside of Überseestadtmuseum",
+        "location": "Überseestadtmuseum",
         "roomName": "Dark Hallway",
         "intro": "For some odd reason you can't switch the lights on. Maybe this has something to do with the wires you cut.<br> You can barely see anything at all.<br> You think you can see 2 exhibitions.<br> One is to your right and the other one is in front of you.<br>",
         "descri": "You cannot see anything else except the exhibitions.",
@@ -926,7 +932,7 @@
                 "needStatesValue": [null]
             },
             {
-                "conNames": ["in front", "forward", "boats"],
+                "conNames": ["front", "forward", "boats", "straight"],
                 "conRoomId": 14,
                 "needStates": [null],
                 "needStatesValue": [null]
@@ -956,7 +962,7 @@
     },
     {
         "id": 11,
-        "location": "Inside of Überseestadtmuseum",
+        "location": "Überseestadtmuseum",
         "roomName": "African animals exhibition",
         "intro": "You go to the exhibition to your right. <br> It is a showcase of african animals. At nighttime alone in the museum those animals look incredibly scary. I hope they don't come alive like they did in the movie with Adam Sandler.<br> Maybe I am in a movie? Maybe I am Adam Sandler??? Okay, I should definitely sleep more.<br> I should investigate further.<br>",
         "descri": "You can see a showcase with some african animals that are stuffed to look like they are alive. There is a zebra and... <b>oh no an elephant.</b> I really have enough of this particular animal.<br>",
@@ -1007,7 +1013,7 @@
     },
     {
         "id": 12,
-        "location": "Inside of Überseestadtmuseum",
+        "location": "Überseestadtmuseum",
         "roomName": "18th century exhibition",
         "intro": "You are now close enough to inspect the exhibition. This part of the museum is dedicated to trading in the 18th century.<br>You can see different kinds of old boats. One particular boat has a description text attached.<br> There is a lot to look at here.<br>",
         "descri": "You can see different kinds of old boats. One particular boat has a description text attached. There is also an old wooden chest, that looks like taken straight from a pirate movie.<br>",
@@ -1046,7 +1052,7 @@
     },
     {
         "id": 13,
-        "location": "Inside of Überseestadtmuseum",
+        "location": "Überseestadtmuseum",
         "roomName": "Monster exhibition",
         "intro": "You go to the exhibition to your right. <br> As you get closer you see weird silhouettes in different shapes and sizes. You hope they don't come alive and try to eat you.<br> They look terrifying. Maybe this quest from professor Kraysee wasn't a good decision.<br> You take all your courage and decide to investigate further.<br>",
         "descri": "There is a monster shown with a weird zebra-like pattern and... <b>oh no a mammoth without horns.</b> I really have enough of this museum.<br>",
@@ -1097,7 +1103,7 @@
     },
     {
         "id": 14,
-        "location": "Inside of Überseestadtmuseum",
+        "location": "Überseestadtmuseum",
         "roomName": "Boats exhibition",
         "intro": "You are now close enough to inspect the exhibition. There are big constructs staying in front of you. They look like boats. At least you hope so..<br> There is also an odd statue standing around here, you didn't noticed it before.",
         "descri": "You can see different kinds of old boats. You could move left to the one closest to you or a bigger one to your right. You can't see any details that would help you to decide.",

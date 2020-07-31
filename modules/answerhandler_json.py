@@ -150,7 +150,7 @@ def findAnswer(username, msg, roomId=-1):
                                 altMode = altAction[1]
                                 if altMode == "phone":
                                     updateMessagequeue(username)
-                                    newMessages = printRecentMessage(username)
+                                    newMessages = djf.print_all_messages(username)
                                     return (elem['accept'] + '<br>' + newMessages, getRoomName(altRoom), altMode, altSender)
                             elif altAction[2] is not None: altSender = altAction[2]
 
@@ -204,10 +204,11 @@ def findAnswer(username, msg, roomId=-1):
         
         # LOOK AT ITEMS IN INVENTORY
         for i in database.get_all_user_items(username):
-            if i[0] in msg:
-                for elem in rooms[i[1]]['items']:
-                    if elem['itemName'] == i[0]:
-                        return (elem['lookAt'] + " "+ get_generated_answer(elem['lookAt'], 25), getRoomName(roomId), 'game', 'inventory')
+            if i is not None:
+                if i[0] in msg:
+                    for elem in rooms[i[1]]['items']:
+                        if elem['itemName'] == i[0]:
+                            return (elem['lookAt'] + " "+ get_generated_answer(elem['lookAt'], 25), getRoomName(roomId), 'game', 'inventory')
 
         elemCount = -1
         # OBJEKTE
@@ -267,7 +268,7 @@ def findAnswer(username, msg, roomId=-1):
                 return (printLocations(username), getRoomName(roomId), 'gps')
         elif "phone" in msg:
             if database.get_user_state_value(username, 'solvedPinCode') == True:
-                newMessages = printRecentMessage(username)
+                newMessages = djf.print_all_messages(username)
                 return ('Phone started  <em>Type manual to open usage instructions</em><br>You are now chatting with the professor. <br><br>' + newMessages, getRoomName(roomId), 'phone')
         else: ("Do you want to start or open something you do not posses?", getRoomName(roomId), 'game')
 
@@ -360,7 +361,7 @@ Returns the roodId specified by the room name (-1 if no roodId is found)
 """
 def getRoomId(roomName: str) -> int:
     for count in range(0, len(rooms)):
-        if rooms[count]['roomName'] in roomName:
+        if roomName in rooms[count]['roomName']:
             return int(rooms[count]['id'])
     return -1
 

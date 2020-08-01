@@ -297,9 +297,8 @@ def findAnswer(username, msg, roomId=-1):
     if json.loads(database.get_settings_by_username(username))['gpt2Output']:
         ### Hier kommt die GPT2 antwort rein
         endings = ["Unfortunately, ", "You try, but ","I am sorry doing "+msg+" is not allowed here, because ","There is no way this works, ","There is no reason you should do that, "]
-        randomEnding = random.choice(endings)
-        gpt2Input = msg + " " + randomEnding
-        return (randomEnding + get_generated_answer(gpt2Input, 25, False), getRoomName(roomId),'game')
+        gpt2Input = random.choice(endings) # use ending only as input, begin has to be correct sentence
+        return (gpt2Input + get_generated_answer(gpt2Input, 25, False), getRoomName(roomId),'game')
 
     else:
         ### Hier kommt der statische Output hin
@@ -344,7 +343,7 @@ def get_gpt2_intro(intro_text: str, username: str):
     raw_desc_sentences = " ".join(raw_desc_sentences)
 
     # with a generated text added by gpt2 on context of the room discription 
-    return intro_text + ' ' + get_generated_answer(raw_desc_sentences, 55)
+    return intro_text + ' ' + get_generated_answer(raw_desc_sentences, 55, False)
     
     # else:
     #     return intro_text

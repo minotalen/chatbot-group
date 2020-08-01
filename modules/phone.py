@@ -141,14 +141,14 @@ Parameters
 ----------
 msg: the message of the user
 output_len: must me a integer if set default it is 25
-add_punct: default true adds punctuation to input_context
+phone_mode: default true, adds punctuation to input_context
 
 Returns: a string as an answer
 """
-def get_generated_answer(input_context: str, output_tokens: int = 25, add_punct: bool = True) -> str:
+def get_generated_answer(input_context: str, output_tokens: int = 25, phone_mode: bool = True) -> str:
 
     # add . if sentence doesnt end with a punctuation
-    if add_punct and tokenize.sent_tokenize(input_context)[-1][-1] not in "?.,!":
+    if phone_mode and tokenize.sent_tokenize(input_context)[-1][-1] not in "?.,!":
         input_context = input_context + '.'
     input_context = formatHTMLText(input_context)
 
@@ -170,7 +170,7 @@ def get_generated_answer(input_context: str, output_tokens: int = 25, add_punct:
     decoded_text = tokenizer.decode(outputs[0]).format()
     answer = decoded_text[len(input_context):]
 
-    return cut_sentences(answer)
+    return cut_sentences(answer, phone_mode)
 
 
 """
@@ -182,18 +182,21 @@ character " and line breaks.
 Parameters
 ----------
 answer: input string
+phone_mode: bool creates different endings if sentences cannot be completed
 
 returns: complete sentences or one sentence + ending
 """
-def cut_sentences(answer):
+def cut_sentences(answer: str, phone_mode: bool):
     answer = answer.replace('\n', ' ').replace('\"', '').replace('<|endoftext|>', '')
     sentences = tokenize.sent_tokenize(answer)
 
     if not sentences[-1][-1] in '.!?':
         if len(sentences) > 1:
             sentences = sentences[:-1]
-        else:
+        elif phone_mode:
             sentences.append('... what was I saying?')
+        else:
+            sentences.append('... whatever.')
     return " ".join(sentences)
 
 

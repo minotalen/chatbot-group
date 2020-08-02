@@ -88,33 +88,29 @@ Last modified: 21.07.2020
   --color-mode-suggestion-highlight: var(--color-surface-light);
 }
 
-/* Light 
-[data-mode="riddle"] {
+[data-theme="light"][data-mode="riddle"] {
   --color-message-user: darkred; 
   --border-input: 2px solid darkred; 
   --color-mode-surface: #FBEFEF ;
   --color-text-placeholder: #ff6d74;
 }
 
-[data-mode="phone"] {
+[data-theme="light"][data-mode="phone"] {
   --color-message-user: darkblue; 
   --border-input: 2px solid darkblue; 
   --color-mode-surface: #EFF5FB ;
   --color-text-placeholder: #61a8e8;
 }
 
-[data-mode="gps"] {
+[data-theme="light"][data-mode="gps"] {
   --color-message-user: #9e9900; 
   --border-input: 2px solid #9e9900; 
   --color-mode-surface: #FBFBEF ;
   --color-text-placeholder: #ffe562;
 
 }
-*/
 
-/*dark*/
-
-[data-mode="riddle"] {
+[data-theme="dark"][data-mode="riddle"] {
   --color-message-user: #ff6d74; 
   --border-input: 2px solid #ff6d74; /*textfeld zum tippen*/
   --color-mode-surface: darkred;
@@ -122,7 +118,7 @@ Last modified: 21.07.2020
 
 }
 
-[data-mode="phone"] {
+[data-theme="dark"][data-mode="phone"] {
   --color-message-user: #61a8e8; 
   --border-input: 2px solid #61a8e8; /*textfeld zum tippen*/
   --color-mode-surface: darkblue;
@@ -130,7 +126,7 @@ Last modified: 21.07.2020
 }
 
 
-[data-mode="gps"] {
+[data-theme="dark"][data-mode="gps"] {
   --color-message-user: #ffe562; 
   --border-input: 2px solid #ffe562; /*textfeld zum tippen*/
   --color-mode-surface: #9e9900 ;

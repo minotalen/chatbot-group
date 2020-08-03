@@ -3,9 +3,10 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_socketio import SocketIO, send, emit
 import json
 import threading
+import re
 
 sys.path.insert(1, '/modules')
-from modules.answerhandler_json import answerHandler
+from modules.answerhandler_json import answerHandler, getRoomName
 import modules.database_SQLite as database
 
 app = Flask(__name__, static_url_path='/static')
@@ -23,7 +24,7 @@ def send_index_page():
     if username:
 
         print(username)
-        if username:  # database.is_user_logged_in(username):
+        if username:
             return redirect(url_for('send_play_page', username=username))
 
     return redirect(url_for('login'))
@@ -64,13 +65,14 @@ def signup():
         password = request.form['password']
         r_password = request.form['repeat-password']
 
-        print('username: ' + username)
-        print('password: ' + password)
-        print('repeat password: ' + r_password)
-
         if password != r_password:
             return render_template('signup.html',
                                    error_message='Entered passwords do not match. Please make sure to enter identical passwords.')
+        
+        if not (re.search('^[a-zA-Z0-9]+$', username) and re.search('^[a-zA-Z0-9]+$', password)):
+            return render_template('signup.html',
+                                   error_message='Entered username and password may only contain characters from A-z and 0-9.')
+
         userExists = database.does_user_exist(username)
         if not userExists:
             database.add_user(username, password)
@@ -108,7 +110,7 @@ def send_profile_page():
     username = session.get('username')
 
     if username:
-        return render_template('user.html', username=username)
+        return render_template('profile.html', username=username)
     else:
         print('no user is logged in (username source: session)')
         return redirect(url_for('login'))
@@ -178,12 +180,19 @@ def mapsUsernameToSession(payload):
 
     user_sessions.append({"user": username, "sid": request.sid}) 
 
-    initial_data = {"level": 0, "sender": "bot", "room": "startgame", "mode": "game", 
+    
+    if database.does_user_room_exist(username):
+         room = getRoomName(database.get_user_room(username))
+         print(room)
+    else: room = "startgame"     
+    
+
+    initial_data = {"level": 0, "sender": "bot", "room": room, "mode": "game", 
                     "message": "Welcome "+ username + "!"} 
     json_data = json.dumps(initial_data) 
     send(json_data, json=True) 
 
-    intro_text = {"level": 0, "sender": "bot", "room": "startgame", "mode": "game", "message": "current room"} 
+    intro_text = {"level": 0, "sender": "bot", "room": room, "mode": "game", "message": "current room"} 
     json_data = json.dumps(intro_text) 
     send(answerHandler(json_data, get_username_by_sid(request.sid)), json=True) 
 
@@ -222,4 +231,4 @@ def update_settings_by_jsondata(payload):
 
 if __name__ == "__main__":
     print("Trying to start server...")
-    socketio.run(app, port='5000', host='0.0.0.0', debug=True)
+    socketio.run(app, host='0.0.0.0', debug=True)

@@ -5108,3 +5108,2176 @@ time spent: 8.963667869567871
 ---------------------------------------
  * Detected change in '/home/max/chatbot-group/modules/phone.py', reloading
  * Restarting with stat
+<<<<<<< Updated upstream
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 240-353-666
+0.0 - start
+0.001234292984008789 - classify-Intent
+0.0012831687927246094 - end
+time spent: 0.002616405487060547
+---------------------------------------
+0.0 - start
+0.0042877197265625 - classify-Intent
+0.028838634490966797 - end
+time spent: 0.03327369689941406
+---------------------------------------
+0.0 - start
+0.022550106048583984 - end
+time spent: 0.023007869720458984
+---------------------------------------
+0.0 - start
+0.02255082130432129 - end
+time spent: 0.022800922393798828
+---------------------------------------
+0.0 - start
+0.0016255378723144531 - classify-Intent
+0.006997108459472656 - end
+time spent: 0.008716106414794922
+---------------------------------------
+0.0 - start
+0.002466917037963867 - classify-Intent
+0.015839576721191406 - end
+time spent: 0.018488407135009766
+---------------------------------------
+0.0 - start
+0.009750604629516602 - classify-Intent
+0.0010480880737304688 - check
+0.0002620220184326172 - filter
+0.04333996772766113 - typeofwords
+0.00016379356384277344 - wordsandtype
+8.034706115722656e-05 - listofchoices
+3.8623809814453125e-05 - pre-loop
+0.005927324295043945 - pre-checkSimilarity
+2.681346893310547 - post-checkSimilarity
+0.0051305294036865234 - pre-checkSimilarity
+0.7852926254272461 - post-checkSimilarity
+0.04384589195251465 - pre-checkSimilarity
+0.7596626281738281 - post-checkSimilarity
+0.0070798397064208984 - pre-checkSimilarity
+0.45670628547668457 - post-checkSimilarity
+0.03717494010925293 - pre-checkSimilarity
+1.0128276348114014 - post-checkSimilarity
+0.0057713985443115234 - pre-checkSimilarity
+0.4686574935913086 - post-checkSimilarity
+0.05079507827758789 - pre-checkSimilarity
+0.31298160552978516 - post-checkSimilarity
+0.05235147476196289 - pre-checkSimilarity
+0.2517588138580322 - post-checkSimilarity
+0.07776999473571777 - pre-checkSimilarity
+1.121105670928955 - post-checkSimilarity
+0.011226654052734375 - pre-checkSimilarity
+0.7956376075744629 - post-checkSimilarity
+0.02413034439086914 - pre-checkSimilarity
+0.24204802513122559 - post-checkSimilarity
+0.006744384765625 - pre-checkSimilarity
+1.2253992557525635 - post-checkSimilarity
+0.006027936935424805 - pre-checkSimilarity
+0.7965521812438965 - post-checkSimilarity
+0.04796457290649414 - end
+time spent: 11.34672474861145
+---------------------------------------
+0.0 - start
+0.002908945083618164 - classify-Intent
+0.00024890899658203125 - check
+0.000171661376953125 - filter
+0.03966403007507324 - typeofwords
+0.0002276897430419922 - wordsandtype
+0.0001735687255859375 - listofchoices
+0.0001361370086669922 - pre-loop
+0.12720298767089844 - pre-checkSimilarity
+0.19638562202453613 - post-checkSimilarity
+0.020136117935180664 - pre-checkSimilarity
+0.13980889320373535 - post-checkSimilarity
+0.014413833618164062 - pre-checkSimilarity
+0.4432649612426758 - post-checkSimilarity
+0.03566575050354004 - pre-checkSimilarity
+0.22902131080627441 - post-checkSimilarity
+0.01838850975036621 - pre-checkSimilarity
+0.40331196784973145 - post-checkSimilarity
+0.014544248580932617 - pre-checkSimilarity
+0.24647974967956543 - post-checkSimilarity
+0.009649515151977539 - pre-checkSimilarity
+0.14744305610656738 - post-checkSimilarity
+0.00013709068298339844 - post-loop
+0.0020194053649902344 - end
+time spent: 2.0915215015411377
+---------------------------------------
+0.0 - start
+0.003008604049682617 - classify-Intent
+2.497070074081421 - end
+time spent: 2.5001888275146484
+---------------------------------------
+0.0 - start
+0.008907794952392578 - classify-Intent
+0.04181981086730957 - end
+time spent: 0.050908803939819336
+---------------------------------------
+0.0 - start
+0.007755756378173828 - classify-Intent
+0.02450847625732422 - end
+time spent: 0.032387495040893555
+---------------------------------------
+0.0 - start
+0.004810333251953125 - classify-Intent
+0.03350377082824707 - end
+time spent: 0.038461923599243164
+---------------------------------------
+0.0 - start
+0.005532979965209961 - classify-Intent
+0.03411269187927246 - end
+time spent: 0.03975272178649902
+---------------------------------------
+0.0 - start
+0.002107381820678711 - classify-Intent
+0.0017199516296386719 - items_number: 1
+0.01769089698791504 - end
+time spent: 0.021832704544067383
+---------------------------------------
+0.0 - start
+0.0036840438842773438 - classify-Intent
+0.012160062789916992 - end
+time spent: 0.01620769500732422
+---------------------------------------
+0.0 - start
+0.0031669139862060547 - classify-Intent
+2.612161874771118 - end
+time spent: 2.615431070327759
+---------------------------------------
+0.0 - start
+0.005671262741088867 - classify-Intent
+0.01639842987060547 - end
+time spent: 0.022449970245361328
+---------------------------------------
+0.0 - start
+0.010643720626831055 - end
+time spent: 0.010973453521728516
+---------------------------------------
+0.0 - start
+0.004889249801635742 - classify-Intent
+0.0046350955963134766 - end
+time spent: 0.009875059127807617
+---------------------------------------
+0.0 - start
+0.021970272064208984 - end
+time spent: 0.022225618362426758
+---------------------------------------
+0.0 - start
+0.0053212642669677734 - classify-Intent
+0.0003485679626464844 - check
+0.0002849102020263672 - filter
+0.05418848991394043 - typeofwords
+0.0002086162567138672 - wordsandtype
+0.00014734268188476562 - listofchoices
+0.00010418891906738281 - pre-loop
+0.017662525177001953 - pre-checkSimilarity
+1.3872497081756592 - post-checkSimilarity
+0.019369840621948242 - pre-checkSimilarity
+0.9998388290405273 - post-checkSimilarity
+0.02657628059387207 - pre-checkSimilarity
+0.9058835506439209 - post-checkSimilarity
+0.09038925170898438 - pre-checkSimilarity
+1.0778355598449707 - post-checkSimilarity
+0.028820276260375977 - pre-checkSimilarity
+1.1561245918273926 - post-checkSimilarity
+0.03392767906188965 - post-loop
+0.0016443729400634766 - end
+time spent: 5.805988550186157
+---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 132-614-185
+0.0 - start
+0.0045468807220458984 - end
+time spent: 0.004679203033447266
+---------------------------------------
+0.0 - start
+0.03307628631591797 - end
+time spent: 0.03331756591796875
+---------------------------------------
+0.0 - start
+0.015300512313842773 - end
+time spent: 0.01550912857055664
+---------------------------------------
+0.0 - start
+4.548375368118286 - end
+time spent: 4.548500061035156
+---------------------------------------
+0.0 - start
+0.022734642028808594 - end
+time spent: 0.022980451583862305
+---------------------------------------
+0.0 - start
+0.0072481632232666016 - end
+time spent: 0.007392168045043945
+---------------------------------------
+0.0 - start
+0.01198124885559082 - end
+time spent: 0.012215852737426758
+---------------------------------------
+0.0 - start
+0.0034754276275634766 - end
+time spent: 0.003585338592529297
+---------------------------------------
+0.0 - start
+0.006781339645385742 - end
+time spent: 0.0068972110748291016
+---------------------------------------
+0.0 - start
+0.017948389053344727 - end
+time spent: 0.01808762550354004
+---------------------------------------
+0.0 - start
+1.2534797191619873 - end
+time spent: 1.2537124156951904
+---------------------------------------
+0.0 - start
+1.6115081310272217 - end
+time spent: 1.61165189743042
+---------------------------------------
+ * Detected change in '/home/canhdinh/Desktop/Bachelor Project/chatbot-group/modules/database_SQLite.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 132-614-185
+<<<<<<< Updated upstream
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/modules/database_SQLite.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.0034482479095458984 - end
+time spent: 0.003788471221923828
+---------------------------------------
+0.0 - start
+0.003452301025390625 - end
+time spent: 0.0036163330078125
+---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.0051882266998291016 - end
+time spent: 0.005598783493041992
+---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.0064296722412109375 - end
+time spent: 0.006584882736206055
+---------------------------------------
+0.0 - start
+0.006527423858642578 - end
+time spent: 0.006727933883666992
+---------------------------------------
+0.0 - start
+0.002599954605102539 - end
+time spent: 0.002717733383178711
+---------------------------------------
+0.0 - start
+0.0033943653106689453 - end
+time spent: 0.003579378128051758
+---------------------------------------
+0.0 - start
+0.010126829147338867 - end
+time spent: 0.010379552841186523
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/main.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.0041806697845458984 - end
+time spent: 0.004348039627075195
+---------------------------------------
+0.0 - start
+0.0027806758880615234 - end
+time spent: 0.0029468536376953125
+---------------------------------------
+0.0 - start
+0.013658523559570312 - end
+time spent: 0.014081716537475586
+---------------------------------------
+0.0 - start
+0.008617401123046875 - end
+time spent: 0.009724617004394531
+---------------------------------------
+0.0 - start
+0.023797035217285156 - end
+time spent: 0.024006128311157227
+---------------------------------------
+0.0 - start
+0.002413034439086914 - end
+time spent: 0.0025420188903808594
+---------------------------------------
+0.0 - start
+8.837290525436401 - end
+time spent: 8.837809562683105
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.003359079360961914 - end
+time spent: 0.0034623146057128906
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.009835004806518555 - end
+time spent: 0.011385917663574219
+---------------------------------------
+0.0 - start
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.005143880844116211 - end
+time spent: 0.005357980728149414
+---------------------------------------
+0.0 - start
+0.01872420310974121 - end
+time spent: 0.01892685890197754
+---------------------------------------
+0.0 - start
+0.012185811996459961 - end
+time spent: 0.012486457824707031
+---------------------------------------
+0.0 - start
+0.009580373764038086 - end
+time spent: 0.009737968444824219
+---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.0025153160095214844 - end
+time spent: 0.0026938915252685547
+---------------------------------------
+0.0 - start
+0.015125036239624023 - end
+time spent: 0.01546335220336914
+---------------------------------------
+0.0 - start
+0.0463261604309082 - classify-Intent
+0.006676435470581055 - end
+time spent: 0.053530216217041016
+---------------------------------------
+0.0 - start
+8.29871153831482 - end
+time spent: 8.2988600730896
+---------------------------------------
+0.0 - start
+0.00995945930480957 - end
+time spent: 0.010059595108032227
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.002237081527709961 - end
+time spent: 0.0023310184478759766
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.005789041519165039 - end
+time spent: 0.006242513656616211
+---------------------------------------
+0.0 - start
+0.012948751449584961 - end
+time spent: 0.013073205947875977
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.0031919479370117188 - end
+time spent: 0.0033288002014160156
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.009979963302612305 - end
+time spent: 0.010202646255493164
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.0026116371154785156 - end
+time spent: 0.0027379989624023438
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.010344743728637695 - end
+time spent: 0.010581016540527344
+---------------------------------------
+0.0 - start
+0.015087604522705078 - end
+time spent: 0.015256166458129883
+---------------------------------------
+ * Detected change in '/home/max/chatbot-group/modules/answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.005728244781494141 - end
+time spent: 0.006726741790771484
+---------------------------------------
+0.0 - start
+0.004660606384277344 - end
+time spent: 0.00478816032409668
+---------------------------------------
+0.0 - start
+0.014760971069335938 - end
+time spent: 0.0149383544921875
+---------------------------------------
+0.0 - start
+0.004283905029296875 - end
+time spent: 0.004422903060913086
+---------------------------------------
+0.0 - start
+0.004230022430419922 - end
+time spent: 0.004411220550537109
+---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 125-290-662
+0.0 - start
+0.0027725696563720703 - end
+time spent: 0.003180265426635742
+---------------------------------------
+0.0 - start
+0.0057184696197509766 - end
+time spent: 0.005871295928955078
+---------------------------------------
+0.0 - start
+0.0069997310638427734 - end
+time spent: 0.007261753082275391
+---------------------------------------
+0.0 - start
+0.0035047531127929688 - end
+time spent: 0.004567146301269531
+---------------------------------------
+0.0 - start
+0.012467145919799805 - end
+time spent: 0.012707948684692383
+---------------------------------------
+0.0 - start
+0.011726617813110352 - end
+time spent: 0.012132644653320312
+---------------------------------------
+<<<<<<< Updated upstream
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.017856121063232422 - end
+time spent: 0.017856121063232422
+---------------------------------------
+0.0 - start
+0.01140737533569336 - end
+time spent: 0.01140737533569336
+---------------------------------------
+0.0 - start
+0.016387224197387695 - end
+time spent: 0.016387224197387695
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.919739007949829 - end
+time spent: 2.919739007949829
+---------------------------------------
+0.0 - start
+0.7742557525634766 - end
+time spent: 0.7742557525634766
+---------------------------------------
+0.0 - start
+0.013003110885620117 - end
+time spent: 0.013003110885620117
+---------------------------------------
+0.0 - start
+0.6700952053070068 - end
+time spent: 0.6700952053070068
+---------------------------------------
+0.0 - start
+2.011378288269043 - end
+time spent: 2.011378288269043
+---------------------------------------
+0.0 - start
+0.6492624282836914 - end
+time spent: 0.6492624282836914
+---------------------------------------
+0.0 - start
+0.014863967895507812 - end
+time spent: 0.014863967895507812
+---------------------------------------
+0.0 - start
+0.021327495574951172 - end
+time spent: 0.021825075149536133
+---------------------------------------
+0.0 - start
+0.015352249145507812 - classify-Intent
+0.004426479339599609 - end
+time spent: 0.019778728485107422
+---------------------------------------
+0.0 - start
+2.1308155059814453 - end
+time spent: 2.1308155059814453
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.7166943550109863 - end
+time spent: 2.7166943550109863
+---------------------------------------
+0.0 - start
+1.9512619972229004 - end
+time spent: 1.9512619972229004
+---------------------------------------
+0.0 - start
+1.9467921257019043 - end
+time spent: 1.9467921257019043
+---------------------------------------
+0.0 - start
+0.021262168884277344 - end
+time spent: 0.021262168884277344
+---------------------------------------
+0.0 - start
+0.014383792877197266 - classify-Intent
+0.0034716129302978516 - end
+time spent: 0.017855405807495117
+---------------------------------------
+0.0 - start
+1.9279515743255615 - end
+time spent: 1.9279515743255615
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.5256259441375732 - end
+time spent: 2.5256259441375732
+---------------------------------------
+0.0 - start
+0.022319316864013672 - end
+time spent: 0.022815942764282227
+---------------------------------------
+0.0 - start
+0.01441192626953125 - classify-Intent
+0.003443479537963867 - end
+time spent: 0.017855405807495117
+---------------------------------------
+0.0 - start
+1.9460484981536865 - end
+time spent: 1.9460484981536865
+---------------------------------------
+0.0 - start
+2.005322217941284 - end
+time spent: 2.0058178901672363
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.6740658283233643 - end
+time spent: 2.6740658283233643
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+<<<<<<< Updated upstream
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+3.61209774017334 - end
+time spent: 3.6125943660736084
+---------------------------------------
+0.0 - start
+1.806896448135376 - end
+time spent: 1.806896448135376
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.4707531929016113 - end
+time spent: 2.4712483882904053
+---------------------------------------
+0.0 - start
+2.383774995803833 - end
+time spent: 2.383774995803833
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.5435268878936768 - end
+time spent: 2.5435268878936768
+---------------------------------------
+0.0 - start
+0.11257052421569824 - end
+time spent: 0.11306619644165039
+---------------------------------------
+0.0 - start
+0.010945320129394531 - end
+time spent: 0.010945320129394531
+---------------------------------------
+0.0 - start
+1.5617866516113281 - end
+time spent: 1.5617866516113281
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.691232919692993 - end
+time spent: 2.691232919692993
+---------------------------------------
+0.0 - start
+0.013835430145263672 - end
+time spent: 0.013835430145263672
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+1.988619327545166 - end
+time spent: 1.988619327545166
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.04209542274475098 - end
+time spent: 0.042591094970703125
+---------------------------------------
+0.0 - start
+0.007575035095214844 - end
+time spent: 0.007575035095214844
+---------------------------------------
+0.0 - start
+0.013471364974975586 - end
+time spent: 0.013471364974975586
+---------------------------------------
+0.0 - start
+0.014695882797241211 - end
+time spent: 0.014695882797241211
+---------------------------------------
+0.0 - start
+2.4157938957214355 - end
+time spent: 2.416290283203125
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.366032600402832 - end
+time spent: 2.366032600402832
+---------------------------------------
+0.0 - start
+0.00595545768737793 - end
+time spent: 0.006443500518798828
+---------------------------------------
+0.0 - start
+0.011606931686401367 - end
+time spent: 0.011606931686401367
+---------------------------------------
+0.0 - start
+0.09158754348754883 - end
+time spent: 0.09158754348754883
+---------------------------------------
+0.0 - start
+0.18623876571655273 - end
+time spent: 0.18673467636108398
+---------------------------------------
+0.0 - start
+0.1483750343322754 - end
+time spent: 0.1483750343322754
+---------------------------------------
+0.0 - start
+0.10589766502380371 - end
+time spent: 0.10589766502380371
+---------------------------------------
+0.0 - start
+0.1944730281829834 - end
+time spent: 0.19496655464172363
+---------------------------------------
+0.0 - start
+0.18030166625976562 - end
+time spent: 0.18030166625976562
+---------------------------------------
+0.0 - start
+0.20124030113220215 - end
+time spent: 0.2017374038696289
+---------------------------------------
+0.0 - start
+0.10844588279724121 - end
+time spent: 0.10844588279724121
+---------------------------------------
+0.0 - start
+0.010882377624511719 - end
+time spent: 0.011378288269042969
+---------------------------------------
+0.0 - start
+1.7563543319702148 - end
+time spent: 1.7563543319702148
+---------------------------------------
+0.0 - start
+1.7402095794677734 - end
+time spent: 1.7402095794677734
+=======
+=======
+=======
+=======
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+0.0 - start
+0.025985002517700195 - end
+time spent: 0.02698493003845215
+---------------------------------------
+0.0 - start
+0.010992050170898438 - end
+time spent: 0.010992050170898438
+---------------------------------------
+0.0 - start
+0.016990184783935547 - end
+time spent: 0.016990184783935547
+---------------------------------------
+0.0 - start
+0.009994268417358398 - end
+time spent: 0.009994268417358398
+---------------------------------------
+>>>>>>> Stashed changes
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+0.0 - start
+0.010993003845214844 - end
+time spent: 0.010993003845214844
+---------------------------------------
+0.0 - start
+0.005608320236206055 - end
+time spent: 0.005608320236206055
+---------------------------------------
+0.0 - start
+0.038968563079833984 - end
+time spent: 0.038968563079833984
+---------------------------------------
+0.0 - start
+0.06197500228881836 - end
+time spent: 0.06296372413635254
+---------------------------------------
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+0.0 - start
+0.0059967041015625 - end
+time spent: 0.006995677947998047
+---------------------------------------
+0.0 - start
+0.021987199783325195 - end
+time spent: 0.021987199783325195
+---------------------------------------
+0.0 - start
+0.0059967041015625 - end
+time spent: 0.00699615478515625
+---------------------------------------
+0.0 - start
+0.005036592483520508 - end
+time spent: 0.005036592483520508
+---------------------------------------
+0.0 - start
+0.009994745254516602 - end
+time spent: 0.009994745254516602
+---------------------------------------
+0.0 - start
+0.005793333053588867 - end
+time spent: 0.005793333053588867
+---------------------------------------
+0.0 - start
+0.003998279571533203 - end
+time spent: 0.003998279571533203
+---------------------------------------
+0.0 - start
+0.8235280513763428 - end
+time spent: 0.8235280513763428
+---------------------------------------
+0.0 - start
+0.7145764827728271 - end
+time spent: 0.7145764827728271
+---------------------------------------
+0.0 - start
+0.7955307960510254 - end
+time spent: 0.7965304851531982
+---------------------------------------
+0.0 - start
+0.006097555160522461 - end
+time spent: 0.006097555160522461
+---------------------------------------
+0.0 - start
+0.8215289115905762 - end
+time spent: 0.8215289115905762
+---------------------------------------
+ * Detected change in 'E:\\Users\\Kriwü\\Documents\\Unistuff\\Chatbot\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Detected change in 'E:\\Users\\Kriwü\\Documents\\Unistuff\\Chatbot\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with windowsapi reloader
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+0.0 - start
+0.010993242263793945 - end
+time spent: 0.010993242263793945
+---------------------------------------
+0.0 - start
+0.005996227264404297 - end
+time spent: 0.005996227264404297
+---------------------------------------
+0.0 - start
+0.004271030426025391 - end
+time spent: 0.004271030426025391
+---------------------------------------
+0.0 - start
+0.8435056209564209 - end
+time spent: 0.8435056209564209
+---------------------------------------
+0.0 - start
+0.7460837364196777 - end
+time spent: 0.7460837364196777
+---------------------------------------
+ * Detected change in 'E:\\Users\\Kriwü\\Documents\\Unistuff\\Chatbot\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Detected change in 'E:\\Users\\Kriwü\\Documents\\Unistuff\\Chatbot\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+0.0 - start
+0.008994579315185547 - end
+time spent: 0.008994579315185547
+---------------------------------------
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+0.0 - start
+0.0139923095703125 - end
+time spent: 0.0139923095703125
+---------------------------------------
+0.0 - start
+0.0059967041015625 - end
+time spent: 0.0059967041015625
+---------------------------------------
+0.0 - start
+0.0049779415130615234 - end
+time spent: 0.0049779415130615234
+---------------------------------------
+0.0 - start
+0.005984306335449219 - end
+time spent: 0.00698399543762207
+---------------------------------------
+0.0 - start
+0.48672008514404297 - end
+time spent: 0.48672008514404297
+---------------------------------------
+0.0 - start
+2.6020395755767822 - end
+time spent: 2.6020395755767822
+---------------------------------------
+0.0 - start
+1.2209031581878662 - end
+time spent: 1.2209031581878662
+---------------------------------------
+ * Detected change in 'E:\\Users\\Kriwü\\Documents\\Unistuff\\Chatbot\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Detected change in 'E:\\Users\\Kriwü\\Documents\\Unistuff\\Chatbot\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+0.0 - start
+0.007995843887329102 - end
+time spent: 0.007995843887329102
+---------------------------------------
+ * Detected change in 'E:\\Users\\Kriwü\\Documents\\Unistuff\\Chatbot\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with windowsapi reloader
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+0.0 - start
+0.009006738662719727 - end
+time spent: 0.009006738662719727
+---------------------------------------
+0.0 - start
+0.012992620468139648 - end
+time spent: 0.012992620468139648
+---------------------------------------
+0.0 - start
+0.005721330642700195 - end
+time spent: 0.005721330642700195
+---------------------------------------
+0.0 - start
+0.00499725341796875 - end
+time spent: 0.00499725341796875
+---------------------------------------
+0.0 - start
+0.0049970149993896484 - end
+time spent: 0.0049970149993896484
+---------------------------------------
+0.0 - start
+2.5618464946746826 - end
+time spent: 2.5618464946746826
+---------------------------------------
+0.0 - start
+0.5896484851837158 - end
+time spent: 0.5896484851837158
+---------------------------------------
+0.0 - start
+1.531153678894043 - end
+time spent: 1.532130479812622
+---------------------------------------
+0.0 - start
+0.9504392147064209 - end
+time spent: 0.9504392147064209
+---------------------------------------
+0.0 - start
+0.9044814109802246 - end
+time spent: 0.9054806232452393
+---------------------------------------
+0.0 - start
+0.9594495296478271 - end
+time spent: 0.9594495296478271
+---------------------------------------
+0.0 - start
+0.8115344047546387 - end
+time spent: 0.8115344047546387
+---------------------------------------
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+0.0 - start
+3.118745803833008 - end
+time spent: 3.118745803833008
+---------------------------------------
+0.0 - start
+2.36600661277771 - end
+time spent: 2.36600661277771
+---------------------------------------
+0.0 - start
+0.09007596969604492 - end
+time spent: 0.09007596969604492
+---------------------------------------
+0.0 - start
+1.0208463668823242 - end
+time spent: 1.0208463668823242
+---------------------------------------
+0.0 - start
+0.9974286556243896 - end
+time spent: 0.9984281063079834
+---------------------------------------
+0.0 - start
+1.281287670135498 - end
+time spent: 1.2822868824005127
+---------------------------------------
+0.0 - start
+1.0675718784332275 - end
+time spent: 1.0675718784332275
+---------------------------------------
+0.0 - start
+0.9754400253295898 - end
+time spent: 0.9754400253295898
+---------------------------------------
+0.0 - start
+0.9938356876373291 - end
+time spent: 0.9938356876373291
+---------------------------------------
+ * Restarting with windowsapi reloader
+ * Debugger is active!
+ * Debugger PIN: 193-025-165
+0.0 - start
+2.9865329265594482 - end
+time spent: 2.9865329265594482
+---------------------------------------
+0.0 - start
+3.037769317626953 - end
+time spent: 3.0387685298919678
+---------------------------------------
+0.0 - start
+0.006995201110839844 - end
+time spent: 0.006995201110839844
+---------------------------------------
+0.0 - start
+0.7447941303253174 - end
+time spent: 0.7447941303253174
+---------------------------------------
+0.0 - start
+1.1537437438964844 - end
+time spent: 1.1537437438964844
+---------------------------------------
+0.0 - start
+1.2577857971191406 - end
+time spent: 1.2577857971191406
+---------------------------------------
+0.0 - start
+1.1453430652618408 - end
+time spent: 1.1453430652618408
+---------------------------------------
+0.0 - start
+1.1820783615112305 - end
+time spent: 1.1820783615112305
+---------------------------------------
+0.0 - start
+1.1313509941101074 - end
+time spent: 1.1313509941101074
+---------------------------------------
+0.0 - start
+1.1123619079589844 - end
+time spent: 1.1133615970611572
+---------------------------------------
+0.0 - start
+1.1878254413604736 - end
+time spent: 1.1878254413604736
+---------------------------------------
+0.0 - start
+2.8968684673309326 - end
+time spent: 2.8978679180145264
+---------------------------------------
+0.0 - start
+1.2153842449188232 - end
+time spent: 1.2153842449188232
+---------------------------------------
+0.0 - start
+0.010004281997680664 - end
+time spent: 0.010004281997680664
+---------------------------------------
+0.0 - start
+1.2772555351257324 - end
+time spent: 1.2772555351257324
+---------------------------------------
+0.0 - start
+0.6336371898651123 - end
+time spent: 0.6336371898651123
+---------------------------------------
+0.0 - start
+0.5111258029937744 - end
+time spent: 0.5111258029937744
+---------------------------------------
+0.0 - start
+0.9414458274841309 - end
+time spent: 0.9414458274841309
+---------------------------------------
+0.0 - start
+0.29996705055236816 - end
+time spent: 0.29996705055236816
+---------------------------------------
+0.0 - start
+1.0629017353057861 - end
+time spent: 1.0629017353057861
+---------------------------------------
+0.0 - start
+1.1813123226165771 - end
+time spent: 1.1813123226165771
+---------------------------------------
+0.0 - start
+1.3342595100402832 - end
+time spent: 1.3342595100402832
+---------------------------------------
+0.0 - start
+1.2582793235778809 - end
+time spent: 1.2582793235778809
+---------------------------------------
+0.0 - start
+1.1589820384979248 - end
+time spent: 1.1589820384979248
+---------------------------------------
+0.0 - start
+1.2188091278076172 - end
+time spent: 1.2188091278076172
+---------------------------------------
+0.0 - start
+1.2802884578704834 - end
+time spent: 1.2802884578704834
+---------------------------------------
+0.0 - start
+1.1663315296173096 - end
+time spent: 1.1663315296173096
+---------------------------------------
+0.0 - start
+0.13494539260864258 - end
+time spent: 0.13494539260864258
+---------------------------------------
+0.0 - start
+0.2608494758605957 - end
+time spent: 0.2608494758605957
+---------------------------------------
+0.0 - start
+1.288280725479126 - end
+time spent: 1.288280725479126
+---------------------------------------
+0.0 - start
+1.814493179321289 - end
+time spent: 1.814493179321289
+---------------------------------------
+0.0 - start
+1.3228728771209717 - end
+time spent: 1.3228728771209717
+---------------------------------------
+0.0 - start
+1.281266450881958 - end
+time spent: 1.281266450881958
+---------------------------------------
+0.0 - start
+1.31524658203125 - end
+time spent: 1.31524658203125
+---------------------------------------
+0.0 - start
+1.352750539779663 - end
+time spent: 1.352750539779663
+---------------------------------------
+0.0 - start
+3.499504327774048 - end
+time spent: 3.499504327774048
+---------------------------------------
+0.0 - start
+1.288769245147705 - end
+time spent: 1.288769245147705
+---------------------------------------
+0.0 - start
+1.3908967971801758 - end
+time spent: 1.3918962478637695
+---------------------------------------
+0.0 - start
+1.2633717060089111 - end
+time spent: 1.2633717060089111
+---------------------------------------
+0.0 - start
+1.2302939891815186 - end
+time spent: 1.2302939891815186
+---------------------------------------
+0.0 - start
+1.1903181076049805 - end
+time spent: 1.1903181076049805
+---------------------------------------
+0.0 - start
+1.2852628231048584 - end
+time spent: 1.2852628231048584
+---------------------------------------
+0.0 - start
+1.3492262363433838 - end
+time spent: 1.3492262363433838
+---------------------------------------
+0.0 - start
+0.13592290878295898 - end
+time spent: 0.13592290878295898
+---------------------------------------
+0.0 - start
+1.3437144756317139 - end
+time spent: 1.3437144756317139
+---------------------------------------
+0.0 - start
+1.3037104606628418 - end
+time spent: 1.3037104606628418
+---------------------------------------
+0.0 - start
+1.3862054347991943 - end
+time spent: 1.387204885482788
+---------------------------------------
+0.0 - start
+1.3592207431793213 - end
+time spent: 1.3592207431793213
+---------------------------------------
+0.0 - start
+1.4466736316680908 - end
+time spent: 1.4476728439331055
+---------------------------------------
+0.0 - start
+1.3502869606018066 - end
+time spent: 1.3512866497039795
+---------------------------------------
+0.0 - start
+1.3659307956695557 - end
+time spent: 1.3659307956695557
+---------------------------------------
+0.0 - start
+1.285761833190918 - end
+time spent: 1.285761833190918
+---------------------------------------
+0.0 - start
+1.3132734298706055 - end
+time spent: 1.3132734298706055
+---------------------------------------
+0.0 - start
+1.3718202114105225 - end
+time spent: 1.3718202114105225
+---------------------------------------
+0.0 - start
+1.32826566696167 - end
+time spent: 1.32826566696167
+---------------------------------------
+0.0 - start
+1.3162496089935303 - end
+time spent: 1.3162496089935303
+---------------------------------------
+0.0 - start
+1.1640434265136719 - end
+time spent: 1.1640434265136719
+---------------------------------------
+0.0 - start
+1.4263672828674316 - end
+time spent: 1.4263672828674316
+---------------------------------------
+0.0 - start
+1.3107526302337646 - end
+time spent: 1.3107526302337646
+---------------------------------------
+0.0 - start
+1.271270990371704 - end
+time spent: 1.271270990371704
+---------------------------------------
+0.0 - start
+1.374213457107544 - end
+time spent: 1.374213457107544
+---------------------------------------
+0.0 - start
+1.208815336227417 - end
+time spent: 1.208815336227417
+---------------------------------------
+0.0 - start
+1.2712714672088623 - end
+time spent: 1.2712714672088623
+---------------------------------------
+0.0 - start
+1.3542377948760986 - end
+time spent: 1.3542377948760986
+---------------------------------------
+0.0 - start
+1.2842636108398438 - end
+time spent: 1.2852628231048584
+---------------------------------------
+0.0 - start
+1.3842060565948486 - end
+time spent: 1.3842060565948486
+---------------------------------------
+0.0 - start
+1.4011962413787842 - end
+time spent: 1.4011962413787842
+---------------------------------------
+0.0 - start
+1.3892042636871338 - end
+time spent: 1.3892042636871338
+---------------------------------------
+0.0 - start
+1.342231035232544 - end
+time spent: 1.342231035232544
+---------------------------------------
+0.0 - start
+1.4391756057739258 - end
+time spent: 1.4391756057739258
+---------------------------------------
+0.0 - start
+1.2542634010314941 - end
+time spent: 1.2542634010314941
+---------------------------------------
+0.0 - start
+0.72658371925354 - end
+time spent: 0.72658371925354
+---------------------------------------
+0.0 - start
+1.3152461051940918 - end
+time spent: 1.3152461051940918
+---------------------------------------
+0.0 - start
+1.4871482849121094 - end
+time spent: 1.4871482849121094
+---------------------------------------
+0.0 - start
+1.259277582168579 - end
+time spent: 1.259277582168579
+---------------------------------------
+0.0 - start
+1.5511114597320557 - end
+time spent: 1.5511114597320557
+---------------------------------------
+0.0 - start
+1.2407941818237305 - end
+time spent: 1.2407941818237305
+---------------------------------------
+0.0 - start
+1.3262393474578857 - end
+time spent: 1.3262393474578857
+---------------------------------------
+0.0 - start
+1.3172435760498047 - end
+time spent: 1.3172435760498047
+---------------------------------------
+0.0 - start
+1.26914381980896 - end
+time spent: 1.26914381980896
+---------------------------------------
+0.0 - start
+1.3472278118133545 - end
+time spent: 1.3472278118133545
+---------------------------------------
+0.0 - start
+1.3382327556610107 - end
+time spent: 1.3382327556610107
+---------------------------------------
+0.0 - start
+1.3192448616027832 - end
+time spent: 1.3192448616027832
+---------------------------------------
+0.0 - start
+1.3037564754486084 - end
+time spent: 1.3037564754486084
+---------------------------------------
+0.0 - start
+1.5491116046905518 - end
+time spent: 1.5491116046905518
+---------------------------------------
+0.0 - start
+1.294257640838623 - end
+time spent: 1.294257640838623
+---------------------------------------
+0.0 - start
+1.337583065032959 - end
+time spent: 1.337583065032959
+---------------------------------------
+0.0 - start
+1.310758352279663 - end
+time spent: 1.310758352279663
+---------------------------------------
+0.0 - start
+1.2626774311065674 - end
+time spent: 1.2626774311065674
+---------------------------------------
+0.0 - start
+1.277268409729004 - end
+time spent: 1.277268409729004
+---------------------------------------
+0.0 - start
+1.2442867755889893 - end
+time spent: 1.2442867755889893
+---------------------------------------
+0.0 - start
+1.3427329063415527 - end
+time spent: 1.3427329063415527
+---------------------------------------
+0.0 - start
+1.3042521476745605 - end
+time spent: 1.3042521476745605
+---------------------------------------
+0.0 - start
+1.4071934223175049 - end
+time spent: 1.4071934223175049
+---------------------------------------
+0.0 - start
+1.258789300918579 - end
+time spent: 1.258789300918579
+---------------------------------------
+0.0 - start
+1.2623839378356934 - end
+time spent: 1.2623839378356934
+---------------------------------------
+0.0 - start
+1.022414207458496 - end
+time spent: 1.023413896560669
+---------------------------------------
+0.0 - start
+0.9289846420288086 - end
+time spent: 0.9289846420288086
+---------------------------------------
+0.0 - start
+1.1593353748321533 - end
+time spent: 1.1593353748321533
+---------------------------------------
+0.0 - start
+1.3577301502227783 - end
+time spent: 1.3577301502227783
+---------------------------------------
+0.0 - start
+1.2452855110168457 - end
+time spent: 1.2452855110168457
+---------------------------------------
+0.0 - start
+1.2897717952728271 - end
+time spent: 1.290771245956421
+---------------------------------------
+0.0 - start
+1.044400691986084 - end
+time spent: 1.044400691986084
+---------------------------------------
+0.0 - start
+0.006995201110839844 - end
+time spent: 0.006995201110839844
+---------------------------------------
+0.0 - start
+1.1118617057800293 - end
+time spent: 1.1128616333007812
+---------------------------------------
+0.0 - start
+1.0119314193725586 - end
+time spent: 1.0119314193725586
+---------------------------------------
+0.0 - start
+1.3242411613464355 - end
+time spent: 1.3242411613464355
+---------------------------------------
+0.0 - start
+1.079376459121704 - end
+time spent: 1.079376459121704
+---------------------------------------
+0.0 - start
+1.1873199939727783 - end
+time spent: 1.1873199939727783
+>>>>>>> Stashed changes
+---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+3.007885217666626 - end
+time spent: 3.0083816051483154
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.63874888420105 - end
+time spent: 2.63874888420105
+---------------------------------------
+0.0 - start
+0.013391256332397461 - end
+time spent: 0.013887643814086914
+---------------------------------------
+0.0 - start
+0.7422893047332764 - end
+time spent: 0.7422893047332764
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+0.03952741622924805 - end
+time spent: 0.03952741622924805
+---------------------------------------
+0.0 - start
+0.01735997200012207 - end
+time spent: 0.01735997200012207
+---------------------------------------
+0.0 - start
+0.010447025299072266 - end
+time spent: 0.010447025299072266
+---------------------------------------
+0.0 - start
+0.011903524398803711 - end
+time spent: 0.012399673461914062
+---------------------------------------
+0.0 - start
+3.8624284267425537 - end
+time spent: 3.8624284267425537
+---------------------------------------
+0.0 - start
+0.010961055755615234 - end
+time spent: 0.010961055755615234
+---------------------------------------
+0.0 - start
+0.5139968395233154 - end
+time spent: 0.5139968395233154
+---------------------------------------
+0.0 - start
+1.584291934967041 - end
+time spent: 1.584291934967041
+---------------------------------------
+0.0 - start
+0.3052031993865967 - end
+time spent: 0.3052031993865967
+---------------------------------------
+0.0 - start
+0.009919404983520508 - end
+time spent: 0.01041555404663086
+---------------------------------------
+0.0 - start
+0.010416507720947266 - end
+time spent: 0.010416507720947266
+---------------------------------------
+0.0 - start
+0.600642204284668 - end
+time spent: 0.600642204284668
+---------------------------------------
+0.0 - start
+0.06985187530517578 - end
+time spent: 0.07034778594970703
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+3.2813374996185303 - end
+time spent: 3.2813374996185303
+---------------------------------------
+0.0 - start
+0.027675628662109375 - end
+time spent: 0.027675628662109375
+---------------------------------------
+0.0 - start
+0.8237040042877197 - end
+time spent: 0.8237040042877197
+---------------------------------------
+0.0 - start
+0.8451826572418213 - end
+time spent: 0.8456788063049316
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.771061420440674 - end
+time spent: 2.771061420440674
+---------------------------------------
+0.0 - start
+0.025290727615356445 - end
+time spent: 0.025786399841308594
+---------------------------------------
+0.0 - start
+0.8259708881378174 - end
+time spent: 0.8259708881378174
+---------------------------------------
+0.0 - start
+0.7891030311584473 - end
+time spent: 0.7891030311584473
+---------------------------------------
+0.0 - start
+0.9374387264251709 - end
+time spent: 0.9374387264251709
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.4106056690216064 - end
+time spent: 2.4111015796661377
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.7464306354522705 - end
+time spent: 2.7464306354522705
+---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.455129861831665 - end
+time spent: 2.455129861831665
+---------------------------------------
+0.0 - start
+0.02655482292175293 - end
+time spent: 0.02655482292175293
+---------------------------------------
+0.0 - start
+0.8203823566436768 - end
+time spent: 0.8203823566436768
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.580625534057617 - end
+time spent: 2.580625534057617
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.5216128826141357 - end
+time spent: 2.5216128826141357
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+1.9502720832824707 - end
+time spent: 1.9507677555084229
+---------------------------------------
+0.0 - start
+0.7420158386230469 - end
+time spent: 0.7420158386230469
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.2726709842681885 - end
+time spent: 2.2726709842681885
+---------------------------------------
+0.0 - start
+0.8326771259307861 - end
+time spent: 0.8326771259307861
+---------------------------------------
+0.0 - start
+0.025455951690673828 - end
+time spent: 0.025954246520996094
+---------------------------------------
+0.0 - start
+0.8803894519805908 - end
+time spent: 0.8803894519805908
+---------------------------------------
+0.0 - start
+0.7950785160064697 - end
+time spent: 0.7950785160064697
+---------------------------------------
+0.0 - start
+0.8372483253479004 - end
+time spent: 0.837744951248169
+---------------------------------------
+0.0 - start
+0.8372147083282471 - end
+time spent: 0.8377103805541992
+---------------------------------------
+0.0 - start
+0.8089613914489746 - end
+time spent: 0.8089613914489746
+---------------------------------------
+0.0 - start
+0.7643272876739502 - end
+time spent: 0.7643272876739502
+---------------------------------------
+0.0 - start
+0.8099215030670166 - end
+time spent: 0.8099215030670166
+---------------------------------------
+0.0 - start
+0.009986400604248047 - end
+time spent: 0.009986400604248047
+---------------------------------------
+0.0 - start
+0.845466136932373 - end
+time spent: 0.845466136932373
+---------------------------------------
+0.0 - start
+0.8584885597229004 - end
+time spent: 0.8584885597229004
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.5169825553894043 - end
+time spent: 2.5169825553894043
+---------------------------------------
+0.0 - start
+0.8243510723114014 - end
+time spent: 0.8243510723114014
+---------------------------------------
+0.0 - start
+0.8484146595001221 - end
+time spent: 0.8484146595001221
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.5716586112976074 - end
+time spent: 2.5721547603607178
+---------------------------------------
+0.0 - start
+0.0 - start
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.766494035720825 - end
+time spent: 2.7669897079467773
+---------------------------------------
+0.0 - start
+0.821019172668457 - end
+time spent: 0.821019172668457
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.667314291000366 - end
+time spent: 2.667314291000366
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.575603723526001 - end
+time spent: 2.575603723526001
+---------------------------------------
+0.0 - start
+0.7906234264373779 - end
+time spent: 0.7906234264373779
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.4347357749938965 - end
+time spent: 2.4347357749938965
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.513169527053833 - end
+time spent: 2.513169527053833
+---------------------------------------
+0.0 - start
+0.83290696144104 - end
+time spent: 0.83290696144104
+---------------------------------------
+0.0 - start
+0.8392305374145508 - end
+time spent: 0.8392305374145508
+---------------------------------------
+0.0 - start
+0.8196449279785156 - end
+time spent: 0.820141077041626
+---------------------------------------
+0.0 - start
+0.8438577651977539 - end
+time spent: 0.8438577651977539
+---------------------------------------
+0.0 - start
+0.8184492588043213 - end
+time spent: 0.8184492588043213
+---------------------------------------
+0.0 - start
+0.7908158302307129 - end
+time spent: 0.7908158302307129
+---------------------------------------
+0.0 - start
+0.02725958824157715 - end
+time spent: 0.02725958824157715
+---------------------------------------
+0.0 - start
+0.8451783657073975 - end
+time spent: 0.8456742763519287
+---------------------------------------
+0.0 - start
+0.8472306728363037 - end
+time spent: 0.8472306728363037
+---------------------------------------
+0.0 - start
+0.8535816669464111 - end
+time spent: 0.8535816669464111
+---------------------------------------
+0.0 - start
+0.7887008190155029 - end
+time spent: 0.7887008190155029
+---------------------------------------
+0.0 - start
+0.8099672794342041 - end
+time spent: 0.8099672794342041
+---------------------------------------
+0.0 - start
+0.8180468082427979 - end
+time spent: 0.8180468082427979
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.35158109664917 - end
+time spent: 2.35158109664917
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.03459095954895 - end
+time spent: 2.03459095954895
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.4381985664367676 - end
+time spent: 2.4381985664367676
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.5158183574676514 - end
+time spent: 2.5163142681121826
+---------------------------------------
+0.0 - start
+1.8560309410095215 - end
+time spent: 1.8560309410095215
+---------------------------------------
+0.0 - start
+0.7896320819854736 - end
+time spent: 0.7896320819854736
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+5.666303634643555 - end
+time spent: 5.666303634643555
+---------------------------------------
+0.0 - start
+1.100128173828125 - end
+time spent: 1.100128173828125
+---------------------------------------
+0.0 - start
+1.0163030624389648 - end
+time spent: 1.0163030624389648
+---------------------------------------
+0.0 - start
+0.9438872337341309 - end
+time spent: 0.9443836212158203
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.6275618076324463 - end
+time spent: 2.6275618076324463
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+3.1019606590270996 - end
+time spent: 3.10245680809021
+---------------------------------------
+0.0 - start
+0.8123984336853027 - end
+time spent: 0.8128931522369385
+---------------------------------------
+0.0 - start
+0.8930215835571289 - end
+time spent: 0.8930215835571289
+---------------------------------------
+0.0 - start
+0.815422534942627 - end
+time spent: 0.8159189224243164
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.502197027206421 - end
+time spent: 2.502197027206421
+---------------------------------------
+0.0 - start
+0.8534970283508301 - end
+time spent: 0.8534970283508301
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.6493422985076904 - end
+time spent: 2.6493422985076904
+---------------------------------------
+0.0 - start
+0.7791080474853516 - end
+time spent: 0.7791080474853516
+---------------------------------------
+0.0 - start
+0.774254322052002 - end
+time spent: 0.774254322052002
+---------------------------------------
+0.0 - start
+0.7692952156066895 - end
+time spent: 0.7692952156066895
+---------------------------------------
+0.0 - start
+0.8962705135345459 - end
+time spent: 0.8962705135345459
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.4182381629943848 - end
+time spent: 2.4182381629943848
+---------------------------------------
+0.0 - start
+0.8430535793304443 - end
+time spent: 0.8435494899749756
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\phone.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.4496474266052246 - end
+time spent: 2.4496474266052246
+---------------------------------------
+0.0 - start
+0.856698751449585 - end
+time spent: 0.8611626625061035
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.7737460136413574 - end
+time spent: 2.7742416858673096
+---------------------------------------
+0.0 - start
+0.8829998970031738 - end
+time spent: 0.8829998970031738
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.5150532722473145 - end
+time spent: 2.515549898147583
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.5575900077819824 - end
+time spent: 2.5575900077819824
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+2.5843863487243652 - end
+time spent: 2.5843863487243652
+---------------------------------------
+0.0 - start
+0.8343987464904785 - end
+time spent: 0.8348946571350098
+---------------------------------------
+0.0 - start
+0.7856390476226807 - end
+time spent: 0.7856390476226807
+---------------------------------------
+0.0 - start
+0.8514425754547119 - end
+time spent: 0.8514425754547119
+---------------------------------------
+0.0 - start
+1.8371739387512207 - end
+time spent: 1.8371739387512207
+---------------------------------------
+0.0 - start
+1.830840826034546 - end
+time spent: 1.830840826034546
+---------------------------------------
+0.0 - start
+0.88199782371521 - end
+time spent: 0.88199782371521
+---------------------------------------
+0.0 - start
+0.01835036277770996 - end
+time spent: 0.01835036277770996
+---------------------------------------
+0.0 - start
+0.8994026184082031 - end
+time spent: 0.8994026184082031
+---------------------------------------
+0.0 - start
+0.8766391277313232 - end
+time spent: 0.8766391277313232
+---------------------------------------
+0.0 - start
+0.8521556854248047 - end
+time spent: 0.8521556854248047
+---------------------------------------
+0.0 - start
+1.8768622875213623 - end
+time spent: 1.8768622875213623
+---------------------------------------
+0.0 - start
+2.217118263244629 - end
+time spent: 2.217118263244629
+---------------------------------------
+0.0 - start
+2.2850430011749268 - end
+time spent: 2.2855398654937744
+---------------------------------------
+0.0 - start
+1.8990297317504883 - end
+time spent: 1.8990297317504883
+---------------------------------------
+0.0 - start
+1.916898488998413 - end
+time spent: 1.9173946380615234
+---------------------------------------
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 662-722-174
+0.0 - start
+1.8011457920074463 - end
+time spent: 1.8011457920074463
+---------------------------------------
+0.0 - start
+0.6661281585693359 - end
+time spent: 0.6666231155395508
+---------------------------------------
+0.0 - start
+0.016451597213745117 - end
+time spent: 0.016451597213745117
+---------------------------------------
+0.0 - start
+0.028767108917236328 - end
+time spent: 0.029263019561767578
+---------------------------------------
+0.0 - start
+0.8498775959014893 - end
+time spent: 0.8503737449645996
+---------------------------------------
+0.0 - start
+0.8085699081420898 - end
+time spent: 0.8085699081420898
+---------------------------------------
+ * Detected change in 'F:\\SmartGit-Repositories\\chatbot-group\\modules\\answerhandler_json.py', reloading
+ * Restarting with stat

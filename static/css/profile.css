@@ -1,0 +1,207 @@
+/*
+Styling for user profile page
+Authors: Kevin Katzkowski, Jeffrey Pillmann
+Last modified: 29.06.2020
+*/
+
+.user-bar {
+  height: 6rem;
+  padding: 1rem 3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: var(--color-surface);
+}
+
+.user-bar .user-account {
+  border: none;
+  box-shadow: none;
+}
+
+.user-bar .user-name {
+  margin-left: 2rem;
+}
+
+.settings-container {
+  width: 100%;
+  padding: 2rem 3rem;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-container h3 {
+  padding: 0.25rem 0;
+}
+
+.settings-container>div {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  align-items: center;
+}
+
+.settings-container button.secondary {
+  width: 6rem;
+  padding: 0.25rem 0;
+}
+
+/* .theme-radio-buttons {
+  display: flex;
+}
+
+.theme-radio-buttons div {
+  margin: 0 0 0 2rem;
+} */
+
+/* Show Suggestions Toggle Switch */
+
+input[type="checkbox"].settings {
+  font-size: 1.2rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 2.25rem;
+  height: 1.25rem;
+  background: var(--color-surface-dark);
+  border-radius: var(--border-radius);
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+input[type="checkbox"].settings:checked {
+  background: var(--color-primary);
+}
+
+input[type="checkbox"].settings:after {
+  position: absolute;
+  content: "";
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: var(--border-radius);
+  background: var(--color-surface-light);
+  -webkit-box-shadow: var(--box-shadow-glow);
+  box-shadow: var(--box-shadow-glow);
+  -webkit-transform: scale(.7);
+  transform: scale(.7);
+  left: 0;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+input[type="checkbox"].settings:checked:after {
+  left: calc(100% - 1.25rem);
+}
+
+/* Select Theme Radio buttons */
+
+.theme-radio-buttons {
+  display: flex;
+  box-sizing: border-box;
+  border: var(--border-default);
+}
+
+.theme-radio-buttons div {
+  box-sizing: border-box;
+  display: flex;
+  align-content: center;
+}
+
+.theme-radio-buttons input {
+  position: absolute;
+  height: 0;
+  width: 0;
+  border: 0;
+}
+
+.theme-radio-buttons label {
+  position: relative;
+  background-color: var(--color-surface-dark);
+  color: var(--color-text);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 0.25rem 1rem;
+  transition: all 0.1s ease-in-out;
+}
+
+.theme-radio-buttons div:not(:first-child) {
+  border-left: var(--border-default);
+}
+
+.theme-radio-buttons input[type="radio"]:checked~label {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+@media only screen and (max-width: 600px) {
+
+  .user-bar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .account-display {
+    display: flex;
+  }
+
+  .avatar.large {
+    min-width: 60px;
+    width: 60px;
+    min-height: 60px;
+    height: 60px;
+  }
+
+  .user-name {
+    font-size: 1.2rem;
+  }
+
+  .setting-content {
+    justify-content: start;
+  }
+
+  .settings-container {
+    height: auto;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .settings-container>div {
+    margin: 0.75rem 0;
+  }
+
+  .settings-container button {
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 0.5rem 0.25rem;
+  }
+
+  input[type="checkbox"].settings {
+    width: 2.5rem;
+    height: 1.5rem;
+  }
+
+  input[type="checkbox"].settings:after {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  input[type="checkbox"].settings:checked:after {
+    left: calc(100% - 1.5rem);
+  }
+
+  .settings-container>.theme-select {
+    flex-direction: column;
+  }
+
+  .settings-container>.theme-select p {
+    margin-bottom: 1rem;
+  }
+}

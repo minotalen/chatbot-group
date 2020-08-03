@@ -4,18 +4,33 @@
             "str_message": "You are wondering why this all happens? It's simple: I want you to feel research. Experience what it means to be a historian. Uncover secrets and hidden truths. <br>My hope is that it will inspire and motivate you to do great things, no matter the cost. <br>Back on track: Have you noticed the elephant statue right in front of you? No? <br>Okay you just got exmatriculated. <br>Just kidding! I want you to find out everything about this monument and the time it was built. Don’t hold back, it might become quite the adventure. <br>Now, head over to the flea market near the Schlachte and look for an ancient artifact. You’ll know what I mean when you see it. <br>Use the GPS device that you just received to travel there. Good luck.<br>Oh and if there is any question, don't hesitate to send me a message with your new phone.",
             "user_state": "solvedPinCode"
         },
-	    {
+        {
             "id": 2,
-            "str_message": "Congrats, you found the item.<br>Oh you found something interesting. Do you mind sending me a picture? <br>This is an old phone model so you have to close it first to take the picture. Don't ask me why, just do it.",
-            "user_state": "solvedBargain"
+            "str_message": "Hello there. I am currently making tofu. Do you know any good recipes by chance?",
+            "user_state": "triggeredTalkToSalesman"
         },
 	    {
             "id": 3,
-            "str_message": "Thank you. Very cool. You completed the research study. We are very proud of you. Please fill out the questionaire or start the next version of the game!<br><br> I did some research and I found out that this chest has indeed some kind of connections to the colonialism. In fact this chest was once in possession of the Atikuku tribe. The Überseestadtmuseum has an exhibition about the Atikuku's. You should go there and investigate.",
+            "str_message": "Congrats, you found the item.<br>Oh you found something interesting. Do you mind sending me a picture? <br>This is an old phone model so you have to close it first to take the picture. Don't ask me why, just do it.",
+            "user_state": "triggeredOpenChest"
+        },
+	    {
+            "id": 4,
+            "str_message": "Thank you. Very cool.<br> I did some research and I found out that this chest has indeed some kind of connections to the colonialism. In fact this chest was once in possession of the Atikuku tribe. The Überseestadtmuseum has an exhibition about the Atikuku's. You should go there and investigate.",
             "user_state": "triggeredPicture"
         },
         {
-            "id": 4,
+            "id": 5,
+            "str_message": "You know what really annoys me? People that don't wash their hands after going to the bathroom. You are not like that right?",
+            "user_state": "ownCrate"
+        },
+        {
+            "id": 6,
+            "str_message": "You made it into the museum, for some reason im proud of you. Even though this really wasn't a hard task at all.<br>Okay. Let's take a look at the next steps you need to take in order to find out more about the colonial history in regards to the elephant monument. <br>You should scout for anything that could be related to the monument and the Atikuku tribe.<br>Message me once you found something interesting.<br><br>Good luck.",
+            "user_state": "msgInMuseum"
+        },
+        {
+            "id": 7,
             "str_message": "You actually found something useful. I'm impressed.<br> With this new information we are one step closer to finding out about the secret that is lying underneath the elephant monument.<br> Earlier today I did some research and I noticed that there are some very interesting facts about the ROLAND and the SCHNOOR.<br> I have a friend that is working as a night watch in the ALTSTADT. Maybe you should ask him if he could give you a tour.<br> You will definetly learn something and perhaps it will help us to solve this mystery.<br><br><br>Good luck.<br>",
             "user_state": "sawChest"
         }

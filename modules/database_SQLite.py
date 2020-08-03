@@ -83,7 +83,6 @@ def does_user_exist(username):
     query = """SELECT * FROM users WHERE user_name = ?"""
     fetch = execute_database(query, (username,))
     user = fetch[1]
-
     if user is None or not user:
         return False
 
@@ -636,7 +635,72 @@ def get_settings_by_username(username: str):
         return json_string
     else:
         print('user does not exist')
+        return None
 
 
 
-#update_user_settings("Dinh", '{ "name":"Dinh", "age":30, "city":"New York"}')
+"""
+save all the user who've played our game into "users" table. For example:
+=================================================
+user_room_id | user_id         | room_id        |
+-------------+-----------------+----------------+
+1            | 1               |1               |
+-------------+-----------------+----------------+
+"""
+
+def insert_user_room(username: str , room_id: int):
+    if does_user_exist(username):
+        query = """ INSERT INTO user_room VALUES (?, ?, ?)"""
+        fetch = execute_database(query, (None, get_user_id(username), room_id))
+        e = fetch[0]
+        if e is not None:
+            print("Failed to add room_id into user_room table", e)
+        else:
+            print("Successfully added room into user_room table")
+    else:
+        print("User doesn't exist in 'users' table")
+
+
+#@author Canh Dinh, Max
+def update_user_room(username: str, room_id: int):
+    if does_user_exist(username):
+        if does_user_room_exist(username):
+            query = """UPDATE user_room SET room_id = ? WHERE user_id= ?"""
+            fetch = execute_database(query, (room_id, get_user_id(username),)  )
+            if  fetch[0] is not None: ("Failed update user room_id")
+            else: print("user room_id in user_room updated successful")
+        else: insert_user_room(username, room_id)
+    else: delete_user_room(username)
+             
+
+def does_user_room_exist(username:str):
+      # Query to database
+    query = """SELECT * FROM user_room WHERE user_id = ?"""
+    fetch = execute_database(query, (get_user_id(username),))
+    user_room_id = fetch[1]
+    if user_room_id is None or not user_room_id: return False
+    if user_room_id[0] is not None: return True
+    else: return False
+
+def delete_user_room(username: str) :
+    user_id = get_user_id(username)
+    if does_user_room_exist(username):
+        if user_id != -1:
+            query = """DELETE FROM user_room WHERE user_id = ?"""
+            fetch = execute_database(query, (user_id,))
+    else: print("Failed to update user_room because user does not exist") 
+        
+def get_user_room(username: str):
+    if does_user_room_exist(username):
+        query = """SELECT * FROM user_room WHERE user_id= ?"""
+        fetch = execute_database(query, (get_user_id(username), ))
+        result = fetch[1][0]
+        return result[2]
+    else:
+        print("There is no such username that can update a login")
+        return None;
+
+
+
+
+

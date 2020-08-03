@@ -7,6 +7,7 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel
 from better_profanity import profanity
 from nltk import tokenize
 from intentclassificator import classifyIntent, writeMessagetoTrainingData
+from intent_classifier import classifyMessage
 
 # from transformers import pipeline
 # text_generator = pipeline("text-generation")
@@ -20,6 +21,9 @@ with open('json/recmessages.json', encoding="utf8") as messages:
 with open('json/questions.json', encoding="utf8") as questions:
     rec_json = json.load(questions)
     questions = rec_json['questions']
+
+with open('data/profanity.txt') as p:
+    profanity_list=[word for line in p for word in line.split()]
 
 # Initialize tokenizer
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
@@ -58,20 +62,17 @@ def handleAnswer(msg: str, username: str, level: int, roomId: int = -1) -> str:
         return querytuple[1]
 
     intent = askProf(msg)
-    if intent == 1:
-        return printRecentMessage(username)
-    elif intent == 2:
+    if intent == "show message":
         return getMessageRange(username)
-    elif intent == 3:
-        return tellAnswer(msg)
-    elif intent == 4:
-        return "print recent message: print the oldest message in you mailbox you havent read <br> messages retrievable: to show possible messages with ids from your mailbox <br> message [id] : to show specific message from mailbox <br> ask professor: : to ask the professor something<br> exit phone: to exit the phone"    
-    
+    elif intent == "manual":
+        return "show messages: to show possible messages with ids from your mailbox <br> message [id] : to show specific message from mailbox <br> exit phone: to exit the phone"    
+
     #only the last ten words of the msg to prevent long gpt-2 calculation
     msg = " ".join(re.findall(r'\w+', msg)[-8:])
 
-    #censor bad words
-    answer = profanity.censor(get_generated_answer(msg))
+    # censor bad words @development - dont filter swear words, put them in profanity.txt instead
+    # answer = profanity.censor(get_generated_answer(msg))
+    answer = get_generated_answer(msg)
 
     #returns the answer of the prof if it is not empty
     return [answer, rustyprof][not answer]
@@ -89,10 +90,16 @@ msg: the message of the user
 Returns: a number which represent a intent of the user // -1 if no intent is found
 """
 def askProf(msg: str) -> int:
-    choices = ["print recent message",
-               "messages retrieve", "ask professor:", "manual"]
-    return classifyIntent(msg, choices)
+    phone_intent_dic = {
+    "show message": ["show messages","available messages","all messages","messages retrievable","msg"],
+    "manual": ["manual","handbook","how to","help", "instructions"],
+    }
+    intentID = classifyMessage(msg, phone_intent_dic)
 
+    return intentID
+    #choices = ["show messages", "manual"]
+    #return classifyIntent(msg, choices)
+  
 
 """
 @author:: Max Petendra, Katja Schneider, Henriette Mattke
@@ -134,48 +141,64 @@ Parameters
 ----------
 msg: the message of the user
 output_len: must me a integer if set default it is 25
+phone_mode: default true, adds punctuation to input_context
 
 Returns: a string as an answer
 """
-def get_generated_answer(input_context: str, output_tokens: int = 25) -> str:
+def get_generated_answer(input_context: str, output_tokens: int = 25, phone_mode: bool = True) -> str:
 
     # add . if sentence doesnt end with a punctuation
-    if tokenize.sent_tokenize(input_context)[-1][-1] not in "?.,!":
+    if phone_mode and tokenize.sent_tokenize(input_context)[-1][-1] not in "?.,!":
         input_context = input_context + '.'
     input_context = formatHTMLText(input_context)
 
-    # text = text_generator(input_context, max_length=int(20))[0].get('generated_text')
-    # for char in "?\n": text = text.replace(char,'')
-    # proftext = re.sub(input_context, '', text)
-    # splittext = re.split('(?<=[,.!?]) +', proftext)
-    # if len(splittext) > 1: print(re.sub(splittext[-1], '', proftext))
-    # print(proftext)
+    # Encoded bad words from profanity.txt
+    bad_words_ids = [tokenizer.encode(bad_word, add_prefix_space=True) for bad_word in profanity_list]
 
     # Encode input with gpt2 tokenizer
     input_tokens = len(input_context.split())
     input_ids = tokenizer.encode(input_context, return_tensors='pt')
 
+    if input_tokens > 120:
+        return ""
+
     n_tokens = input_tokens + output_tokens
     print("GPT2 is trying to generate text for {} tokens".format(n_tokens))
-    outputs = model.generate(input_ids=input_ids, max_length=input_tokens+output_tokens, do_sample=True)
+    outputs = model.generate(input_ids=input_ids, max_length=input_tokens+output_tokens, do_sample=True, bad_words_ids=bad_words_ids)
 
     # Postprocessing string
     decoded_text = tokenizer.decode(outputs[0]).format()
-    decoded_text = decoded_text.replace('\n', ' ').replace('  ', ' ').replace('|', '')
-    # better filter for special chars?
-    decoded_text = re.sub('\"\'', '', decoded_text)
     answer = decoded_text[len(input_context):]
 
-    # split into sentences and slice unfinished // returns rustyprof if exception is thrown
-    try:
-        def formatstart(msg): return msg[2:] if msg[0:2] == '. ' else (
-            msg.strip() if msg[0] == ' ' else msg)
-        sentences = tokenize.sent_tokenize(answer)
+    return cut_sentences(answer, phone_mode)
+
+
+"""
+@author:: Jakob Hackstein
+@state: 31.07.20
+Cut generated sentences by GPT2 into complete sentences. Removes special 
+character " and line breaks.
+
+Parameters
+----------
+answer: input string
+phone_mode: bool creates different endings if sentences cannot be completed
+
+returns: complete sentences or one sentence + ending
+"""
+def cut_sentences(answer: str, phone_mode: bool):
+    answer = answer.replace('\n', ' ').replace('\"', '').replace('<|endoftext|>', '')
+    sentences = tokenize.sent_tokenize(answer)
+
+    if not sentences[-1][-1] in '.!?':
         if len(sentences) > 1:
-            return [answer, formatstart(re.sub(sentences[-1], '', answer)).rstrip()][len(answer) > 2]
-        return [answer, formatstart(answer).rstrip()][len(answer) > 2]
-    except:
-        return rustyprof
+            sentences = sentences[:-1]
+        elif phone_mode:
+            sentences.append('... what was I saying?')
+        else:
+            sentences.append('... whatever.')
+    return " ".join(sentences)
+
 
 """
 @author:: Max Petendra, Jakob Hackstein
@@ -206,7 +229,7 @@ Returns: the last sent message of the prof (from the messagequeue)
 """
 def printRecentMessage(username: str) -> str:
     updateMessagequeue(username)
-    return "you have no new messages yet" if messagequeue.empty() else messagequeue.get()
+    return "That is it for now. Do you have any questions?" if messagequeue.empty() else messagequeue.get()
 
 """
 @author:: Max Petendra

@@ -1,6 +1,7 @@
 import json
 import database_SQLite as database
 import logging_time as l
+from phone import printRecentMessage
 
 
 """
@@ -99,6 +100,16 @@ def doAction(actionName, actionParam, roomId, username):
         print("The Sender's name is now: " + str(actionParam))
         return(None, None, actionParam) 
     
+# Prints all received messages when entering the phone mode
+def print_all_messages(username):
+    newMessages = ""
+    newMSG = ""
+
+    while newMSG != "That is it for now. Do you have any questions?":
+        newMSG = printRecentMessage(username)
+        newMessages += newMSG + "<br><br>"
+    
+    return newMessages
 
 # adds a item the user just picked up to the database
 def add_to_inventory(item_name: str, room_ID, username):
@@ -117,22 +128,27 @@ def get_inventory(room_ID_0, username) -> str:
     if items_db is None:
         return "Your Inventory is empty"
 
-    item_str = "Your inventory contains: "
-    index = 0
+    item_str = "Your inventory contains: <br><ul>"
+    #index = 0
     size = len(items_db)
     l.log_time("items_number: " + str(size))  # logging
     for i in items_db:
         item_name ,room_ID_1 = i
-        if index == 0:
-            item_str = item_str + item_name
-        elif index < size-1:
-            item_str = item_str + ", " + item_name
-        elif index == size-1:
-            item_str = item_str + " and " + item_name
-        else:
-            item_str = item_str + " ERROR!!! " + item_name
-            
-        index += 1
+        item_str = item_str + "<li>" + item_name + "</li>" 
         
+
+        # if index == 0:
+        #     item_str = item_str + item_name
+        # elif index < size-1:
+        #     item_str = item_str + ", " + item_name
+        # elif index == size-1:
+        #     item_str = item_str + " and " + item_name
+        # else:
+        #     item_str = item_str + " ERROR!!! " + item_name
+            
+        # index += 1
+        
+    item_str = item_str + "</ul>"
+
     return item_str
 

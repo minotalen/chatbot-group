@@ -1,6 +1,7 @@
 import json
 import database_SQLite as database
 from intentclassificator import classifyIntent
+from intent_classifier import classifyMessage
 
 # open json for messages from prof
 with open('json/gps.json', encoding="utf8") as gps:
@@ -30,16 +31,21 @@ def handleGPS(msg: str, username: str, level: int, roomId: int = -1):
     if roomId == -1: raise ValueError("Invalid Room Id Parameter")
     else: resultRoomId = -1
 
-    intentID = classifyIntent(msg, ["go to", "beam to", "print locations"])
+    gps_intent_dic = {
+    "beam": ["go","beam","walk","teleport","travel"],
+    "locations": ["print locations","show locations","possible locations","locations"],
+    }
+
+    intentID = classifyMessage(msg, gps_intent_dic)
     print("intentID", intentID)
-    if intentID == 1 or intentID == 2:
+    if intentID == "beam":
         possibleLocations = getPossibleLocations(username)
         intentID = classifyIntent(msg, possibleLocations)
         if intentID != -1:
             for location in locations:
                 if location.get("locationName") == possibleLocations[intentID - 1]:
                     resultRoomId = location.get("startRoomId")
-    elif intentID == 3:
+    elif intentID == "locations":
         return (printLocations(username), roomId, 'gps')
 
     # if location has not changed -> stay in gps mode

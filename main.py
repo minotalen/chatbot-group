@@ -208,11 +208,11 @@ def disconnect():
     print(user_sessions)
     print("You are disconneced from the server")
 
-
+'''
 @socketio.on_error()
 def error_handler(e):
     raise Exception("Some error happened, no further notice")
-
+'''
 
 def get_username_by_sid(sid):
     for users in user_sessions:

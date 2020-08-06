@@ -1,10 +1,10 @@
 {
     "rooms": [
-    {
+     {
         "id": 0,
         "location": "University",
         "roomName": "startgame",
-        "intro": "<em>To start the game, type in '<b>go to</b> intro'</em>",
+        "intro": "To start the game, type: go to intro",
         "descri": "",
         "connections": [
             {
@@ -18,18 +18,18 @@
         "objects": [null],
         "triggers": [null]
     },
-    {
+     {
         "id": 1,
         "location": "University",
         "roomName": "professors office",
-        "intro": "… you are in Professor Kraysee's office and wait for him to call you up.<br>The nervousness rises with each second passing.<br><b>Player:</b> Will this be my last hour as a student of the university of Bremen? …<br><em>Type in '<b>look around</b>' to get details of the room.</em><br><em> Type in '<b>ready</b>' if you already played the tutorial.</em>",
-        "descri": "Professor Kraysee's office looks like it hasn't been tidied up for over a decade. You can see alot of interesting things laying around in his office but nothing all too useful.<br>He looks at you and you and begins to chat …<br><em>type in '<b>talk to</b> professor' to talk to a person</em>",
+        "intro": "...you are in Professor Kraysee's office and you wait for him to call you up.<br>The nervousness rises with each second passing.<br>Will this be my last hour as a student of the university of Bremen?...<br>type in '<b>look around</b>' to get details of the room.<br>type in '<b>ready</b>' if you already played the tutorial.",
+        "descri": "Professor Kraysee's office looks like it hasn't been tidied up for over a decade. You can see alot of interesting things laying around in his office but nothing all too useful.<br>He looks at you and you begin to chat...<br>type in '<b>talk to professor</b>' to talk to a person",
         "connections": [null],
         "items": [null],
         "objects": [
             {
                 "objName": ["door"],
-                "lookAt": "You are now standing in front of the door.<br> <em>Type in '<b>open</b> door' to exit the office.</em><br>",
+                "lookAt": "You are now standing in front of the door.<br> Type in '<b>open</b> door' to exit the office.<br>",
                 "needStates": ["ownNotes", "sawDoor"],
                 "needStatesValue": [true, false],
                 "newStates": ["sawDoor"],
@@ -43,8 +43,8 @@
                 "needStatesValue": [true, false],
                 "needItems": [null],
                 "needItemsRoomId": [null],
-                "accept": "You walk out of the room.<br><br><b>Player:</b> Yes! I did it! I’m so glad, the Professor gave me a second chance! Or should I say third? Well, this doesn’t matter anymore. Actually, let’s take a look at the notes he handed me.<br><br><em>Type in '<b>look at</b> notes' to inspect an item or object.</em>" ,
-                "fail": "<em>You already opened the door. </em>",
+                "accept": "<em>You walk out of the room.</em><br><br>Yes! We did it! I’m so glad the Professor gave me a second chance! Or should I say third? Well, this doesn’t matter. Actually, let’s take a look at the notes he handed me.<br><br>type in '<b>look at</b> notes' to inspect an item or object." ,
+                "fail": "<em>You already opened the door</em>",
                 "newStates": ["triggeredOpenDoor"],
                 "newStatesValue": [true],
                 "actions": [null],
@@ -56,8 +56,8 @@
                 "needStatesValue": [true, false],
                 "needItems": [null],
                 "needItemsRoomId": [null],
-                "accept": "You are now in front of the safe. Your riddle senses are tingling.<br><em>You now have entered the <b>riddle mode</b></em><br><em>Here you have to type in the correct answer to solve the current riddle. </em><br><em>Type in '<b>help</b>' to receive an explanation of the riddle. </em><br><em>Type in '<b>exit</b>' to leave the riddle mode. You can re-enter it by going to the safe.</em>",
-                "fail": "<em>You already opened it. </em>",
+                "accept": "<em>You are now in front of the safe. Your riddle senses are tingling.</em><br>You now have entered the <b>riddle mode</b><br>Here you have to type in the correct answer to solve the current riddle. <br>type in '<b>help</b>' to receive an explanation of the riddle. <br>type in '<b>exit</b>' to leave the riddle mode. You can re-enter it by going to the safe." ,
+                "fail": "<em>You already opened it</em>",
                 "newStates": [null],
                 "newStatesValue": [null],
                 "actions": ["changeMode"],
@@ -69,8 +69,8 @@
                 "needStatesValue": [true, false],
                 "needItems": [null],
                 "needItemsRoomId": [null],
-                "accept": "You receive some notes.<br><b>Professor Kraysee:</b> If you solve this next riddle, I'll give you the chance to start your quest. <br><b>Player:</b> Thank you Professor! I will not disappoint you, I promise!<br><em>Type in '<b>go to</b> door' to go to the exit.</em>" ,
-                "fail": "<em>You already got the notes. </em>",
+                "accept": "You receive some notes.</b><br><b>Professor Kraysee:</b> If you solve this next riddle I will give you the chance to start your quest. <b>Player:</b> Thank you Professor! I will not disappoint you, I promise!<br>Type in '<b>go to</b> door' to go to the exit." ,
+                "fail": "<em>You already got the notes</em>",
                 "newStates": ["ownNotes"],
                 "newStatesValue": [true],
                 "actions": [null],
@@ -82,7 +82,7 @@
                 "needStatesValue": [true],
                 "needItems": [null],
                 "needItemsRoomId": [null],
-                "accept": "You take a look at the notes. <br> You manage to read the notes, even though your eyes are watery and the Professor's handwriting is awful, to say the least.<br><br><br><em>Go to the elephant monument in the Nelson-Mandela-Park;<br>There you'll have to find a hidden box.<br>Once you found it, you'll have to solve a riddle.<br>If you manage to solve the riddle, I will contact you.<br>Good luck, you will need it.</em><br><br>- Kraysee<br><br>There’s nothing on the back of the paper but a stain at the bottom of the front page.<br>You taste it.<br><br><b>Player:</b> Ugh. I hate chocolate! Professor Kraysee always eats lots and lots of chocolate; No wonder there are stains on every paper we receive…<br><br><em>Type in '<b>ready</b>' to start your journey.<br></em>" ,
+                "accept": "You take a look at the notes. <br> You manage to read the notes, even though your eyes are watery and your Professors handwriting is awful, to say the least.<br><br><br>'Go to the elephant monument in the Nelson-Mandela-Park,<br>there you will have to find a hidden box.<br>Once you found it, you will have to solve a riddle.<br>If you manage to solve the riddle I will contact you.<br>Good luck, you will need it.'<br><br>- Kraysee<br><br><em>There’s nothing on the back of the paper. But there’s a stain on the bottom of the front page.</em><br><em>You taste it.</em><br><em>Chocolate.</em><br><br>Ugh. I hate chocolate! Professor Kraysee always eats lots and lots of chocolate, no wonder there are stains on every paper we receive…<br><br>Type in '<b>ready</b>' to start your journey.<br>" ,
                 "fail": "<em>You already looked at the notes.</em>",
                 "newStates": ["solvedTutorial"],
                 "newStatesValue": [true],
@@ -95,7 +95,7 @@
                 "needStatesValue": [false],
                 "needItems": [null],
                 "needItemsRoomId": [null],
-                "accept": "<b>Professor Kraysee:</b> … I’ve told you, this was your last chance! You already cheated once on your bachelor thesis.<br> <b>Player:</b> But Professor Kraysee, I really need my degree!<br><b>Professor Kraysee:</b> I know that. And I also know that I would ruin your life, if I would make you fail. But I need to follow the rules.<br> <b>Player:</b> … <br> <em>The Player’s eyes get wet …</em><br><b>Professor Kraysee:</b> Alright, at second look I may have a task for you. I give you a very last chance for your bachelor thesis. I choose the topic and I conduct your research. If you successfully complete what I ask for, I'll let you pass. This way you'll get your degree even though you cheated. But this will be a difficult task and I’m not sure whether you'll be able to do it or not.<br><b>Player:</b> Please please please. I will do anything!<br><em>Not literally!</em><br><b>Professor Kraysee:</b> Alright, where are my notes? I think they are in the safe over there. Can you get them for me? The code should be 4115. <br><em>Type in '<b>go to</b> safe' to continue.</em>" ,
+                "accept": "Professor Kraysee:</b> … I’ve told you, this was your last chance! You already cheated once on your bachelor thesis.<br> <b>Player:</b> But Professor Kraysee, I really need my degree!<br><b>Professor Kraysee:</b> I know that. And I also know that I would ruin your life if I would make you fail. But I need to follow the rules.<br> <b>Player:</b> … <br> <em>Player’s eyes getting wet..</em><br><b>Professor Kraysee:</b> Alright, look I may have a task for you. I give you a very last chance for your bachelor thesis. I choose the topic and I conduct your research. If you successfully complete what I ask for I will let you pass. This way you will get your degree even though you cheated. But this will be a difficult tasks and I’m not sure whether you will be able to do it or not.<br><b>Player:</b> Please please please. I will do anything!<br> <em>Not literally!</em><br><b>Professor Kraysee:</b> Alright, where are my notes? I think they are in the safe over there. Can you get them for me? The code should be 4115. <br>Type in '<b>go to</b> safe' to continue." ,
                 "fail": "<em>You already talked with the professor.</em>",
                 "newStates": ["triggeredTalkToProf"],
                 "newStatesValue": [true],
@@ -108,7 +108,7 @@
                 "needStatesValue": [null],
                 "needItems": [null],
                 "needItemsRoomId": [null],
-                "accept": "You're now standing in front of the elephant monument in the Nelson Mandela Park. Your task is to find the hidden box to solve the riddle the professor gave you." ,
+                "accept": "You are now standing in front of the elephant monument in the Nelson Mandela Park. Your task is to find the hidden box to solve the riddle the professor gave you." ,
                 "fail": null,
                 "newStates": [null],
                 "newStatesValue": [null],
@@ -121,7 +121,7 @@
                 "needStatesValue": [false],
                 "needItems": [null],
                 "needItemsRoomId": [null],
-                "accept": "TEST TEST TESTProfessor Kraysee's office looks like it hasn't been tidied up for over a decade. You can see alot of interesting things laying around in his office but nothing all too useful.<br>He looks at you and you and begins to chat …<br><em>type in '<b>talk to</b> professor' to talk to a person</em>" ,
+                "accept": "Professor Kraysee's office looks like it hasn't been tidied up for over a decade. You can see alot of interesting things laying around in his office but nothing all too useful.<br>He looks at you and you begin to chat...<br>type in '<b>talk to professor</b>' to talk to a person" ,
                 "fail": "<em>You already played the tutorial, please type in '<b>ready</b>' to continue the game</em>.",
                 "newStates": [null],
                 "newStatesValue": [null],
@@ -134,7 +134,7 @@
         "id": 2,
         "location": "Nelson Mandela Park",
         "roomName": "elephant monument",
-        "intro": "You're now standing in front of the elephant monument in the Nelson Mandela Park. Your task is to find the hidden box to solve the riddle the professor gave you.",
+        "intro": "You are now standing in front of the elephant monument in the Nelson Mandela Park. Your task is to find the hidden box to solve the riddle the professor gave you.",
         "descri": "There is a bench, a trash bin and a strange looking bush near the monument. You also notice a small staircase leading below the base of the monument.",
         "connections": [
             {

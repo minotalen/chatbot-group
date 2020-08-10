@@ -3,7 +3,7 @@ import database_SQLite as database
 import data_json_functions as djf
 from phone import printRecentMessage, updateMessagequeue
 
-helpText = "Hello dear adventurer! You are currently in riddle mode. Your quest is to type the right answer to continue the game. If you want to leave the riddle mode to continue exploring the world, please type 'go back' or 'exit'"
+helpText = "Hello dear adventurer! You are currently in riddle mode. Your quest is to type the right number to continue the game.<br>If you want to leave the riddle mode to continue exploring the world, please type 'go back' or 'exit'<br>If you want an explanation, type 'what'."
 
 #Beim öffnen der .py wird die Rätsel JSON geladen
 with open('json/riddle.json', encoding="utf8") as allRiddles:

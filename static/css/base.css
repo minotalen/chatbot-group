@@ -154,6 +154,24 @@ nav button.secondary {
   text-transform: uppercase;
 }
 
+footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0rem;
+}
+
+footer p {
+	text-align: center;
+	margin: 2rem 8rem;
+}
+footer p:last-child {
+	opacity: 0.5;
+}
+
+footer a {
+	text-decoration: none;
+}
+
 .user-name {
   margin-right: 0.5rem;
   align-self: center;

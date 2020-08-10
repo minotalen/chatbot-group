@@ -63,12 +63,9 @@ h1.page-heading {
 
 
 footer {
-	padding: 0 1rem;
-}
-
-footer p {
-	text-align: center;
-	margin: 2rem 8rem;
+	position:relative;
+	padding: 1rem 1rem;
+	width: auto;
 }
 
 #content-area {
@@ -121,7 +118,6 @@ footer p {
 }
 
 
-
 p {
   padding: 0.25rem 1rem;
   margin-bottom: 1rem;
@@ -130,6 +126,7 @@ p {
 p:last-child {
   margin-bottom: 0;
 }
+
 @media only screen and (max-width: 600px) {
 	
 	footer {

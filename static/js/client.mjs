@@ -20,7 +20,9 @@ let socket = io.connect("http://127.0.0.1:5000"),
   msg,
   messageQueue = [],
   userMessageSendingAllowed = true,
-  botMessagePrintingAllowed = true;
+  botMessagePrintingAllowed = true,
+  chat = document.getElementById('chat-content-container');
+    
 
 
 socket.on('connect', function () {
@@ -30,6 +32,8 @@ socket.on('connect', function () {
 });
 
 // responsiveVoice.enableWindowClickHook();
+
+
 
 
 /**
@@ -113,8 +117,7 @@ function printMessageQueueHead() {
  * @param {String} msg the message to print 
  */
 function printMessage(msg) {
-  let chat = document.getElementById('chat-content-container'),
-    elem = window.document.createElement('li');
+  let elem = window.document.createElement('li');
 
   // set message type depending on sender 
   switch (senderName) {
@@ -189,9 +192,7 @@ function writeEachChar(elem, msg, callback, tag = '', reverseIndex = 0, height) 
 
     if(elem.getBoundingClientRect().height - height > 0) {
       // scroll to bottom on line break
-      let chat = document.getElementById('chat-content-container');
       chat.scrollTop = chat.scrollHeight - chat.clientHeight;
-
       height = elem.getBoundingClientRect().height;
     }
     

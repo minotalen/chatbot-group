@@ -20,8 +20,13 @@ body {
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: 2.25rem;
   color: var(--color-text);
+}
+
+h1#brand {
+  font-size: 1.5rem;
+  width: 8rem;
 }
 
 h2 {
@@ -68,6 +73,7 @@ nav {
   justify-content: space-between;
 
   background-color: var(--color-background);
+  z-index: 10;
 }
 
 nav h2 {
@@ -75,7 +81,8 @@ nav h2 {
 }
 
 nav ul {
-  justify-self: stretch;
+  text-align: center;
+  flex-grow: 1;
 }
 
 nav ul li:last-child {
@@ -98,7 +105,7 @@ nav ul li {
 
 nav ul li a {
   display: block;
-  padding: 0.25rem 3rem;
+
 
   color: var(--gradient-primary);
 
@@ -107,12 +114,16 @@ nav ul li a {
   transition: .2s;
 }
 
+nav ul li:not(:last-child) a {
+  padding: 0.25rem 3rem;
+}
+
 nav ul li:hover>a {
   text-decoration: none;
   transition: .2s;
 }
 
-nav ul li:hover {
+nav ul li:hover:not(:last-child) {
   text-decoration: none;
   background-color: var(--color-surface);
 
@@ -122,10 +133,11 @@ nav ul li:hover {
 
 }
 
-.user-account {
+nav .user-account {
+  width: 8rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   border-radius: var(--border-radius);
   transition: .5s;
 }
@@ -189,6 +201,8 @@ button.primary {
   transition: 0.2s;
 }
 
+button#play-cta:hover,
+button#play-cta:active,
 button.primary:hover,
 button.primary:active {
   background-color: var(--color-primary);
@@ -248,7 +262,7 @@ input[type="radio"] {
   background-color: var(--color-primary);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   #hamburger {
     display: block;
   }
@@ -266,9 +280,19 @@ input[type="radio"] {
   }
 
   nav ul {
-    display: block;
+    display: none;
+    visibility: hidden;
+    opacity: 0;
     justify-self: normal;
     margin-top: 0.7rem;
+    transition: 0.5s linear;
+  }
+
+  nav ul.expanded {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s linear;
   }
 
   nav ul li {
@@ -281,6 +305,7 @@ input[type="radio"] {
   }
 
   .container {
+    z-index: 20;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -297,7 +322,7 @@ input[type="radio"] {
     display: none;
   }
 
-  /* #toggle:checked~ul li:last-child {
+  nav ul li:last-child {
     display: block;
-  } */
+  }
 }

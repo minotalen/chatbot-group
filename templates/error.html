@@ -20,7 +20,6 @@
   <link rel="stylesheet" href="../static/css/colors.css">
   <link rel="stylesheet" href="../static/css/error.css">
 
-  <!-- TODO change title -->
   <title>Error {{ error_code }}</title>
 </head>
 
@@ -29,25 +28,19 @@
     <div class="menu-bar">
       <h1 id="brand">Elephanture</h1>
 
-      <!-- Hamburger Menu -->
       <label for="toggle" id="hamburger">&#9776;</label>
       <input type="checkbox" id="toggle" />
     </div>
 
     <ul id="nav-links">
       <li><a href="{{ url_for('send_play_page', username= username) }}">Play</a></li>
-      <!--- TODO do not redirect without user name -->
-      <li><a href="#">About</a></li>
-      <li><a href="#">More</a></li>
-      <li></li>
-    </ul>
+      <li><a href="https://elephanture.informatik.uni-bremen.de/#about">About</a></li>
 
-    <!-- <div class="user-account">
-      <p class="user-name">Santa Claus</p>
-      <div class="avatar small"></div>
-    </div> -->
-
-    <button class="secondary">Log In</button>
+      <li class="user-account secondary">
+          <a class="link-profile" href="{{ url_for('send_profile_page', username= username) }}">{{ username }}
+          </a>
+      </li>
+  </ul>
 
   </nav>
   <div class="container error">

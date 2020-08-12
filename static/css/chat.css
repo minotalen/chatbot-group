@@ -1,16 +1,12 @@
 /* 
 Main stylesheet for chat layout
 Authors: Kevin Katzkowski, mon janssen, Jeffrey Pillmann
-Last modified: 21.07.2020
+Last modified: 12.08.2020
 */
 
 #chat-content-container {
   position: relative;
-  /* height: 100%; */
-  /* height: -webkit-fill-available; */
-  /* 15.5rem = content-container (top + bot) + top-bar + est. input (3.5rem) */
   height: calc(100vh - 15.5rem);
-  /* TODO browser with calc() support */
   background-color: var(--color-mode-background);
 
   scrollbar-color: var(--color-mode-primary) var(--color-mode-background);
@@ -24,7 +20,6 @@ Last modified: 21.07.2020
 }
 
 #chat-content-container::-webkit-scrollbar-track {
-  /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0); */
   padding-right: 0.25rem;
   margin: 1rem 0;
   background-color: none;
@@ -118,8 +113,6 @@ Last modified: 21.07.2020
   color: var(--color-text-placeholder);
 }
 
-/* does not work properly in Chrome -> grey instead of #fff */
-
 #chat-input-user input[type="text"]::selection {
   color: var(--color-message-bot);
   background-color: var(--color-input-selection);
@@ -130,9 +123,7 @@ Last modified: 21.07.2020
   margin: 0 0 0 1rem;
 
   flex-basis: calc(12.5% - 1rem);
-  /* size before flex */
 }
-
 
 form#chat-input-form {
   display: flex;
@@ -142,7 +133,6 @@ form#chat-input-form {
 }
 
 #chat-input-user-window {
-  /* TODO rename: window -> container */
   flex-basis: 87.5%;
   background-color: var(--color-mode-suggestion-background);
   border-radius: var(--border-radius);
@@ -184,12 +174,10 @@ mark {
   font-size: 80%;
   font-weight: bold;
   color: var(--color-suggestion-heading);
-  /* was color-text-placeholder */
   padding: 0 1rem;
 }
 
 /* type indicator */
-
 .tiblock {
   align-items: center;
   display: flex;
@@ -235,12 +223,10 @@ mark {
   -webkit-animation-delay: 400ms;
 }
 
-/* TODO comment code below */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   #chat-content-container {
     height: 100%;
     margin-top: 0;
-    /* TODO: Calculate margin-bottin in JS */
     margin-bottom: 2.75rem;
     border-radius: 0;
     border-radius: var(--border-radius);

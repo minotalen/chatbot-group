@@ -20,15 +20,11 @@ user_sessions = []
 
 @app.route('/')
 def send_index_page():
-    return render_template('index.html')
-    # username = session.get('username')
-    # if username:
-
-    #     print(username)
-    #     if username:
-    #         return redirect(url_for('send_play_page', username=username))
-
-    # return redirect(url_for('login'))
+    username = session.get('username')
+    if username:
+        return render_template('index.html', username=username)
+    else:
+        return render_template('index.html', username="Log in")
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -51,10 +47,8 @@ def login():
     else:
         username = session.get('username')
         if username:
-
             print(username)
-            if username:
-                return redirect(url_for('send_play_page', username=username))
+            return redirect(url_for('send_play_page', username=username))
         else:
             return render_template('login.html')
 

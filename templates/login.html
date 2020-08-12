@@ -4,7 +4,7 @@
 <!--
   Login page
   Authors: Kevin Katzkowski
-  Last modified: 02.07.2020
+  Last modified: 12.08.2020
 -->
 
 <head>
@@ -21,7 +21,6 @@
   <link rel="stylesheet" href="../static/css/user.css">
   <link rel="stylesheet" href="../static/css/login-signup.css">
 
-  <!-- TODO change title -->
   <title>Login</title>
 </head>
 
@@ -30,25 +29,19 @@
     <div class="menu-bar">
       <h1 id="brand">Elephanture</h1>
 
-      <!-- Hamburger Menu -->
       <label for="toggle" id="hamburger">&#9776;</label>
       <input type="checkbox" id="toggle" />
     </div>
 
     <ul id="nav-links">
       <li><a href="{{ url_for('send_play_page', username= username) }}">Play</a></li>
-      <!--- TODO do not redirect without user name -->
-      <li><a href="#">About</a></li>
-      <li><a href="#">More</a></li>
-      <li></li>
-    </ul>
+      <li><a href="https://elephanture.informatik.uni-bremen.de/#about">About</a></li>
 
-    <!-- <div class="user-account">
-      <p class="user-name">Santa Claus</p>
-      <div class="avatar small"></div>
-    </div> -->
-
-    <button class="secondary">Log In</button>
+      <li class="user-account secondary">
+          <a class="link-profile" href="{{ url_for('send_profile_page', username= username) }}">Log in
+          </a>
+      </li>
+  </ul>
 
   </nav>
 

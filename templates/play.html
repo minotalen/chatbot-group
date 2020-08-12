@@ -2,9 +2,9 @@
 <html lang="en" data-theme data-mode="game">
 
 <!--
-  Chat interface page
+  Game play page
   Authors: Kevin Katzkowski, Jeffrey Pillmann
-  Last modified: 14.07.2020
+  Last modified: 12.08.2020
 -->
 
 <head>
@@ -21,7 +21,6 @@
   <link rel="stylesheet" href="../static/css/chat.css">
   <link rel="stylesheet" href="../static/css/login-signup.css">
 
-  <!-- TODO change title -->
   <title>Elephanture</title>
 </head>
 
@@ -31,24 +30,19 @@
     <div class="menu-bar">
       <h1 id="brand">Elephanture</h1>
 
-      <!-- Hamburger Menu -->
       <label for="toggle" id="hamburger">&#9776;</label>
       <input type="checkbox" id="toggle" />
     </div>
 
     <ul id="nav-links">
       <li><a href="{{ url_for('send_play_page', username= username) }}">Play</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">More</a></li>
-      <li><a href="#">{{ username }}</a></li>
-    </ul>
+      <li><a href="https://elephanture.informatik.uni-bremen.de/#about">About</a></li>
 
-    <a class="link-profile" href="{{ url_for('send_profile_page', username= username) }}">
-      <div class="user-account">
-        <p id="username" class="user-name">{{ username }}</p>
-        <div class="avatar small"></div>
-      </div>
-    </a>
+      <li class="user-account secondary">
+          <a class="link-profile" href="{{ url_for('send_profile_page', username= username) }}">{{ username }}
+          </a>
+      </li>
+  </ul>
 
   </nav>
 

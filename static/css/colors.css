@@ -4,13 +4,10 @@ Authors: Kevin Katzkowski, Jeffrey Pillmann
 Last modified: 21.07.2020
 */
 
-/* TODO swap primary colors between themes */
 [data-theme="light"] {
-  /* --color-primary: #365fc5; */
   --color-primary: #13A198;
   --color-onprimary: #9EA7B8;
   --gradient-primary: -webkit-linear-gradient(193deg, #6c91c9, #16697A);
-  /* --color-primary-dark: #16697A; */
 
   --color-background: #fff;
   --color-surface: #edf0f7;

@@ -1,7 +1,7 @@
 /**
  * Script for mobile layout.
  * Authors: Jeffrey Pillmann, Kevin Katzkowski
- * Updated: 09.08.2020
+ * Updated: 12.08.2020
  */
 
 const hamburgerMenu = document.getElementById('toggle');
@@ -16,7 +16,6 @@ hamburgerMenu.addEventListener('click', () => {
   if (hamburgerMenu.checked) {
     navlist.classList.add('expanded');
     container.style.filter = "brightness(50%)";
-    container.style.top = window.getComputedStyle(navbar, null).getPropertyValue('height');
   } else {
     container.style = "";
     navlist.classList.remove('expanded');

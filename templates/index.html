@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-mode="game">
-<!-- TODO remove data theme value -->
+<html lang="en" data-theme data-mode="game">
 
 <!--
-  Chat interface page
-  Authors: Kevin Katzkowski, Jeffrey Pillmann, Kristin Wünderlich
-  Last modified: 04.08.2020
+  Landing page
+  Authors: Kevin Katzkowski, Kristin Wünderlich
+  Last modified: 12.08.2020
 -->
 
 <head>
@@ -22,7 +21,6 @@
   <link rel="stylesheet" href="../static/css/chat.css">
   <link rel="stylesheet" href="../static/css/landing.css">
 
-  <!-- TODO change title -->
   <title>Elephanture</title>
 </head>
 
@@ -32,23 +30,17 @@
     <div class="menu-bar">
       <h1 id="brand">Elephanture</h1>
 
-      <!-- Hamburger Menu -->
       <label for="toggle" id="hamburger">&#9776;</label>
       <input type="checkbox" id="toggle" />
     </div>
 
     <ul id="nav-links">
       <li><a href="{{ url_for('send_play_page', username= username) }}">Play</a></li>
-      <li><a href="#content-area">About</a></li>
-      <!-- <li><a href="#">More</a></li> -->
-    
+      <li><a href="#about">About</a></li>
 
-      <li>
-        <div class="user-account">
-          <a class="link-profile" href="{{ url_for('send_profile_page', username= username) }}">
-            <button class="secondary">Log In</button>
+      <li class="user-account secondary">
+          <a class="link-profile" href="{{ url_for('send_profile_page', username= username) }}">{{ username }}
           </a>
-        </div>
       </li>
   </ul>
 
@@ -62,10 +54,8 @@
       </ul>
       <button id="play-cta" class="primary play-cta">Play</button>
     </section>
-  
-    <section id="content-area"></section>
 
-    <section id = "content-area">
+    <section id = "about">
       <div class="content-box left yellow">
         <h3>What is Elephanture?</h3>
         <p>	
@@ -117,7 +107,7 @@
           game by including state of the art technology like the GPT-2 model.
       </p>
       <p>
-        If you like to read our paper about said topic click <a href="#content-area">here</a>. 
+        If you like to read our paper about said topic click <a href="#about">here</a>. 
         And if you want to find out more about our University and our faculty click on this unsuspicous link <a>here</a>.
       </p>
       <p>
@@ -138,7 +128,7 @@
 
   
   <footer>
-    <h3>Elephanture</h3>
+    <h3>Elephanture <span id="created-by"> was created by</span></h3>
     <p>Canh Dinh Nguyen - Cedric Nering - Christopher Karapetrow - Henriette Mattke - Jakob Hackstein - Jeffrey Pillmann - Katja Schneider - Kevin Katzkowski - Kristin Wünderlich - Martin Strotmann - Max Petendra - Parima Hadi Soudarjani - Tobias Reichel</p>
     <p><a href="#">Legal Notice | Disclaimer</a></p>
   </footer>

@@ -23,6 +23,13 @@ section#landing-area {
 
 }
 
+.chat-message-user, 
+.chat-message-bot, 
+.chat-message-inventory, 
+.chat-message-disclaimer  {
+  margin: 1rem 0;
+}
+
 button#play-cta, #action-button button {
   margin: 2rem 0 1rem;
   padding: 0.5rem 0.75rem;
@@ -49,6 +56,7 @@ h1.page-heading {
 .container {
 	position: relative;
   margin: 4rem auto 0;
+  padding: 0 2rem;
   top: 0;
   right: auto;
   left: auto;
@@ -61,40 +69,21 @@ h1.page-heading {
 	overflow-y: visible;
 }
 
-
-footer {
-	position:relative;
-	padding: 1rem 1rem;
-	width: auto;
-}
-
-#content-area {
+#about {
  	padding: 0;
 	display: flex;
 	flex-direction: column;
-	margin:2rem 0rem;
+  margin: 2rem 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: .75s linear;
 }
-
-#action-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
-  height: 20rem;
-  background-color: var(--color-surface);
-}
-
-#action-button h1 {
-  text-align: center;
-}
-
 
 .content-box {
 	align-self: flex-start;
 	width: 70%;
 	background-color: #EECE90;
-	padding: 0.5rem;
+	padding: 0.5rem 0.75rem;
 	margin: 2rem 0rem;
 	border-radius: var(--border-radius);
 }
@@ -117,17 +106,40 @@ footer {
 	background-color: var(--color-section-orange);
 }
 
+.content-box h3, .content-box p {
+  padding: 0;
+}
 
-p {
-  padding: 0.25rem 1rem;
+#action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 20rem;
+  background-color: var(--color-surface);
+}
+
+#action-button h1 {
+  text-align: center;
+}
+
+footer {
+	position: relative;
+	padding: 1rem 1rem;
+	width: auto;
+}
+
+footer p {
+  padding: 0 1rem;
   margin-bottom: 1rem;
 }
 
-p:last-child {
+footer p:last-child {
   margin-bottom: 0;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
 	
 	footer {
 		text-align: center;
@@ -140,6 +152,7 @@ p:last-child {
   
   #chat-demo-container {
     min-width: 90%; 
+    padding: 0 0.5rem;
   }
 
 	.container {
@@ -149,17 +162,18 @@ p:last-child {
 		min-width: 0;
 	}
 	
-	#content-area{
+	#about{
 		padding: 0 0.5rem 0rem;
-	}
+  }
+  
 	.content-box{
 		width: 100%;
-		padding: 0;
-		
-	}
+  }
+  
 	.content-box.left {
 		align-self: center;
-	}
+  }
+  
 	.content-box.right {
 		align-self: center;
 	}

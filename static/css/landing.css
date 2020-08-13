@@ -127,7 +127,8 @@ h1.page-heading {
 footer {
 	position: relative;
 	padding: 1rem 1rem;
-	width: auto;
+  width: auto;
+  display: block;
 }
 
 footer p {
@@ -136,19 +137,29 @@ footer p {
 }
 
 footer p:last-child {
-  margin-bottom: 0;
+  margin: 1.5rem 0 0 0;
 }
 
-@media only screen and (max-width: 700px) {
-	
-	footer {
-		text-align: center;
-  }
+footer img.logo{
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+footer h3 {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0 1.5rem 0;
+}
+
+
+@media only screen and (max-width: 760px) {
 
   footer p {
     text-align: center;
     margin: 2rem 0;
   }
+
   
   #chat-demo-container {
     min-width: 90%; 

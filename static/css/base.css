@@ -26,7 +26,19 @@ h1 {
 
 h1#brand {
   font-size: 1.5rem;
-  width: 8rem;
+  /* width: 8rem; */
+}
+
+img.logo {
+  height: 2rem;
+  width: 2rem;
+  display: inline-block;
+  margin: 0 0.75rem 0 0;
+}
+
+div.menu-bar {
+  display: flex;
+  align-items: flex-start;
 }
 
 h2 {
@@ -47,7 +59,7 @@ a {
 }
 
 #hamburger {
-  font-size: 24px;
+  font-size: 1.5rem;
   z-index: 1;
   display: none;
 }
@@ -159,15 +171,29 @@ footer {
   position: absolute;
   width: 100%;
   bottom: 0;
+  display: flex;
+  padding: 0 2rem 1.25rem;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+footer img.logo {
+  width: 1.35rem;
+  height: 1.35rem;
 }
 
 footer p {
 	text-align: center;
-  margin: 0 auto 1.25rem;
+  margin: 0 auto;
   max-width: 900px;
 }
+
 footer p:last-child, footer span#created-by {
 	opacity: 0.5;
+}
+
+footer span#created-by {
+  margin: 0 0 0 0.75rem;
 }
 
 footer a {
@@ -253,9 +279,13 @@ input[type="radio"] {
   background-color: var(--color-primary);
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 760px) {
   #hamburger {
     display: block;
+  }
+
+  h1#brand {
+    display: none;
   }
 
   .menu-bar {

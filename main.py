@@ -67,6 +67,10 @@ def signup():
         if not (re.search('^[a-zA-Z0-9]+$', username) and re.search('^[a-zA-Z0-9]+$', password)):
             return render_template('signup.html',
                                    error_message='Entered username and password may only contain characters from A-z and 0-9.')
+        
+        if len(username) > 12:
+            return render_template('signup.html',
+                                   error_message='Your username cannot be longer than 12 characters')
 
         userExists = database.does_user_exist(username)
         if not userExists:

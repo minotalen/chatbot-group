@@ -124,7 +124,7 @@ input[type="checkbox"].settings:checked:after {
   color: var(--color-text);
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 760px) {
 
   .user-bar {
     display: flex;

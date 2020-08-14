@@ -58,7 +58,7 @@
       <ul id="chat-demo-container">
   
       </ul>
-      <button id="play-cta" class="primary play-cta">Play</button>
+      <button id="play-cta" class="primary play-cta" onclick="location.href='{{ url_for('send_play_page', username= username) }}'">Play</button>
     </section>
 
     <section id = "about">
@@ -112,9 +112,8 @@
           in this project we stuudy how to improve the traditional text adventure 
           game by including state of the art technology like the GPT-2 model.
       </p>
-      <p>
-        If you like to read our paper about said topic click <a href="#about">here</a>. 
-        And if you want to find out more about our University and our faculty click on this unsuspicous link <a>here</a>.
+      <p> 
+        If you want to find out more about our University or our faculty click on this link <a href="https://www.uni-bremen.de/">here</a>.
       </p>
       <p>
         This project is supervised by Dr. Rainer Malaka and 
@@ -129,7 +128,7 @@
   </div>
   <section id="action-button">
     <h1>Start playing right now!</h1>
-    <button type="button" class="primary">Play</button>
+    <button type="button" class="primary" onclick="location.href='{{ url_for('send_play_page', username= username) }}'" >Play</button>
   </section>
 
   

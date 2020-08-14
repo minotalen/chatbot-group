@@ -9,19 +9,19 @@ const chat = document.getElementById('chat-demo-container'),
 
 let demoMsg1 = {
   sender: "bot",
-  message:"Hello user and welcome!"
+  message:"Welcome adventurer. Are you ready to experience an immersive text adventure in the heart of the city <b>Bremen</b>?"
 },
   demoMsg2 = {
     sender: "user",
-    message:"How can you help me?"
+    message:"Can you tell me more about it?"
   },
   demoMsg3 = {
     sender: "bot",
-    message:"Lets play a game!"
+    message:"As a student you will discover the secrets behind the diamonds of the elephant monument. Let me tell you, it will not be easy. But the technology included makes every game run a one of a kind."
   },
   demoMsg4 = {
     sender: "user",
-    message:"Amazing idea!"
+    message:"This sounds exciting. I cannot wait to click the <b>play button</b> bellow."
   };
 
 

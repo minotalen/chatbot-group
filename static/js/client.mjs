@@ -1,7 +1,7 @@
 /**
  * Client-side script to receive, send and display messages.
- * Authors: Katja Schneider, Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modified: 12.08.2020
+ * Authors: Kevin Katzkowski, mon janssen, Jeffrey Pillmann
+ * Last modified: 14.08.2020
  */
 
 import { closeSuggestions, userInput } from './suggestions.mjs';
@@ -31,17 +31,12 @@ socket.on('connect', function () {
   socket.emit('username', userName);
 });
 
-// responsiveVoice.enableWindowClickHook();
-
-
-
 
 /**
  * Display received message from socket in chat interface.
  */
 socket.on('json', (json) => {
   // console.log('message received');
-  
   messageQueue.push(json);
   printMessageQueueHead();
 });
@@ -100,10 +95,6 @@ function printMessageQueueHead() {
     updateMode();
     updateRoomName();
     updateCurrentLevel(levelID);
-
-    // if (getSettingValue('readMessages')){
-    //   responsiveVoice.speak(msg.replace(/<[^>]*>?|\.{3}/gm, ' '), "UK English Female", {pitch:0.99, rate:1.15});
-    // } 
   
     printMessage(msg);
   } else if (messageQueue.length <= 0) {
@@ -348,10 +339,8 @@ window.addEventListener('click', (evt) => {
 
 
 window.addEventListener('keyup', (evt) => {
-  evt.preventDefault(); // ???????
+  evt.preventDefault();
 });
 
 
-export {
-  sendButton
-}
+export { sendButton };

@@ -20,9 +20,9 @@ if(showSuggestions) {
     setSettingValue('showSuggestions', showSuggestions.checked);
   }, false);
 
-  readMessages.addEventListener('click', () => {
-    setSettingValue('readMessages', readMessages.checked);
-  }, false);
+  // readMessages.addEventListener('click', () => {
+  //   setSettingValue('readMessages', readMessages.checked);
+  // }, false);
 
   gpt2Output.addEventListener('click', () => {
     setSettingValue('gpt2Output', gpt2Output.checked);
@@ -49,7 +49,7 @@ if(showSuggestions) {
  */
 function updateDisplayedSettings() {
   setDisplayedValue(showSuggestions, getSettingValue('showSuggestions'));
-  setDisplayedValue(readMessages, getSettingValue('readMessages'));
+  // setDisplayedValue(readMessages, getSettingValue('readMessages'));
   setDisplayedValue(gpt2Output, getSettingValue('gpt2Output'));
   setDisplayedValue(
     document.getElementById(getSettingValue('userTheme')), 

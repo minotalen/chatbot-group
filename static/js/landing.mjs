@@ -21,7 +21,7 @@ let demoMsg1 = {
   },
   demoMsg4 = {
     sender: "user",
-    message:"This sounds exciting. I cannot wait to click the <b>play button</b> bellow."
+    message:"This sounds exciting. I cannot wait to click the <b>play button</b> below."
   };
 
 

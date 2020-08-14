@@ -46,6 +46,7 @@ Last modified: 14.08.2020
 }
 
 .user-bar button.secondary {
+  margin: 0.5rem 0 0;
   padding: 0.25rem 0.5rem;
 }
 

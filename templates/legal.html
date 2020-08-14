@@ -18,7 +18,8 @@
   <!-- CSS files -->
   <link rel="stylesheet" href="../static/css/colors.css">
   <link rel="stylesheet" href="../static/css/base.css">
-  <link rel="stylesheet" href="../static/css/landing.css">
+  <link rel="stylesheet" href="../static/css/profile.css">
+  <link rel="stylesheet" href="../static/css/legal.css">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="../static/img/elephanture.svg" sizes="any">
@@ -31,7 +32,9 @@
   <nav>
     <div class="menu-bar">
       <img class="logo" src="../static/img/elephanture.svg">
-      <h1 id="brand">Elephanture</h1>
+      <a href="{{ url_for('send_index_page') }}">
+        <h1 id="brand">Elephanture</h1>
+      </a>
 
       <label for="toggle" id="hamburger">&#9776;</label>
       <input type="checkbox" id="toggle" />
@@ -51,7 +54,7 @@
 
   <div class="container">
   	<h2>Legal Notice</h2>
-  	<p>Elephanture is a Bachelor Project by the University of Bremen.<br></p>
+  	<p>Elephanture is a Bachelor Project by the University of Bremen.</p>
   	<h3>Contact:<br></h3>
   	<p>Nina Wenig<br>
   	Universität Bremen<br>
@@ -67,7 +70,7 @@
   
   <footer>
     <img class="logo" src="../static/img/elephanture.svg">
-    <p>Legal Notice | Disclaimer</p>
+    <p><a href="{{ url_for('legal') }}">Legal Notice | Disclaimer</a></p>
   </footer>
 
 

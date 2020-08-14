@@ -30,7 +30,9 @@
   <nav>
     <div class="menu-bar">
       <img class="logo" src="../static/img/elephanture.svg">
-      <h1 id="brand">Elephanture</h1>
+      <a href="{{ url_for('send_index_page') }}">
+        <h1 id="brand">Elephanture</h1>
+      </a>
 
       <label for="toggle" id="hamburger">&#9776;</label>
       <input type="checkbox" id="toggle" />
@@ -52,16 +54,15 @@
       <img src="../static/img/placeholdericon.svg" alt="Sorry!" class="icon">
     </div>
     <h1 class="error-heading">Error {{ error_code }}</h1>
-    <!-- <p>The page you are looking for might have been removed, had it´s name changed, is temporarily unavailable, or does not exist.</p> -->
     <p>{{ error }}</p>
-    <a href="{{ url_for('login') }}">
+    <a href="{{ url_for('send_index_page') }}">
       <button id="home-button" type="button" class="primary">Back to home</button>
     </a>
   </div>
   
   <footer>
     <img class="logo" src="../static/img/elephanture.svg">
-    <p>Legal Notice | Disclaimer</p>
+    <p><a href="{{ url_for('legal') }}">Legal Notice | Disclaimer</a></p>
   </footer>
 
   <script type="module" src="../static/js/settings.mjs"></script>

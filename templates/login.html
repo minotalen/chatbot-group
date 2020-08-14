@@ -30,7 +30,9 @@
   <nav>
     <div class="menu-bar">
       <img class="logo" src="../static/img/elephanture.svg">
-      <h1 id="brand">Elephanture</h1>
+      <a href="{{ url_for('send_index_page') }}">
+        <h1 id="brand">Elephanture</h1>
+      </a>
 
       <label for="toggle" id="hamburger">&#9776;</label>
       <input type="checkbox" id="toggle" />
@@ -68,7 +70,7 @@
   
   <footer>
     <img class="logo" src="../static/img/elephanture.svg">
-    <p>Legal Notice | Disclaimer</p>
+    <p><a href="{{ url_for('legal') }}">Legal Notice | Disclaimer</a></p>
   </footer>
 
   <!-- load custom javascript -->

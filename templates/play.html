@@ -32,7 +32,9 @@
   <nav>
     <div class="menu-bar">
       <img class="logo" src="../static/img/elephanture.svg">
-      <h1 id="brand">Elephanture</h1>
+      <a href="{{ url_for('send_index_page') }}">
+        <h1 id="brand">Elephanture</h1>
+      </a>
 
       <label for="toggle" id="hamburger">&#9776;</label>
       <input type="checkbox" id="toggle" />
@@ -59,7 +61,7 @@
 
     <ul id="chat-content-container">
         
-      <li class="chat-message-disclaimer">We take no responsibility for AI generated text. <a href="legal.html">Learn why</a></li>
+      <li class="chat-message-disclaimer">We take no responsibility for AI generated text. <a href="{{ url_for('legal') }}">Learn why</a></li>
 
       <!-- new messages are added below -->
 
@@ -94,7 +96,7 @@
   
   <footer>
     <img class="logo" src="../static/img/elephanture.svg">
-    <p>Legal Notice | Disclaimer</p>
+    <p><a href="{{ url_for('legal') }}">Legal Notice | Disclaimer</a></p>
   </footer>
 
 

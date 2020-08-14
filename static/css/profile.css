@@ -1,11 +1,10 @@
 /*
 Styling for user profile page
 Authors: Kevin Katzkowski, Jeffrey Pillmann
-Last modified: 12.08.2020
+Last modified: 14.08.2020
 */
 
 .user-bar {
-  height: 6rem;
   padding: 1rem 3rem;
 
   display: flex;
@@ -44,6 +43,10 @@ Last modified: 12.08.2020
 .settings-container button.secondary {
   width: 6rem;
   padding: 0.25rem 0;
+}
+
+.user-bar button.secondary {
+  padding: 0.25rem 0.5rem;
 }
 
 input[type="checkbox"].settings {

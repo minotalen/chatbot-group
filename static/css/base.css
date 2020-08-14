@@ -85,6 +85,10 @@ nav {
   z-index: 10;
 }
 
+nav a {
+  text-decoration: none;
+}
+
 nav h2 {
   padding: 0 2rem;
 }
@@ -280,6 +284,11 @@ input[type="radio"] {
 }
 
 @media only screen and (max-width: 760px) {
+  footer {
+    display: none;
+  }
+
+
   #hamburger {
     display: block;
   }

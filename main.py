@@ -140,11 +140,23 @@ def logout():
         print('no user is logged in (username source: session)')
         return redirect(url_for('login'))
 
+@app.route('/legal')
+def legal():
+    username = session.get('username')
+    if username:
+        return render_template('legal.html', username=username)
+    else:
+        return render_template('legal.html', username="Log in")
 
 @app.errorhandler(404)
 def show_error_page(error, error_code=404):
     print(error)
-    return render_template('error.html', error=error, error_code=error_code)
+    username = session.get('username')
+    if username:
+        return render_template('error.html', error=error, error_code=error_code,username=username)
+    else:
+        return render_template('error.html', error=error, error_code=error_code,username="Log in")
+    
 
 @app.errorhandler(500)
 def handle_error_500(error):
@@ -156,14 +168,6 @@ def handle_error_500(error):
 def handleJson(payload):
     print("sending: " + payload)
     try:
-        """
-        que = Queue.Queue()
-
-        t = Thread(target=lambda q, arg1: q.put(foo(arg1)), args=(payload, get_username_by_sid(request.sid)))
-        t.start()
-        t.join()
-        send(que.get(), json=True)
-        """
         send(answerHandler(payload, get_username_by_sid(request.sid)), json=True)
     except:
         obj = json.loads(payload)

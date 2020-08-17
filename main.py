@@ -22,12 +22,9 @@ user_sessions = []
 def send_index_page():
     username = session.get('username')
     if username:
-
-        print(username)
-        if username:
-            return redirect(url_for('send_play_page', username=username))
-
-    return redirect(url_for('login'))
+        return render_template('index.html', username=username)
+    else:
+        return render_template('index.html', username="Log in")
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -50,10 +47,8 @@ def login():
     else:
         username = session.get('username')
         if username:
-
             print(username)
-            if username:
-                return redirect(url_for('send_play_page', username=username))
+            return redirect(url_for('send_play_page', username=username))
         else:
             return render_template('login.html')
 
@@ -72,6 +67,10 @@ def signup():
         if not (re.search('^[a-zA-Z0-9]+$', username) and re.search('^[a-zA-Z0-9]+$', password)):
             return render_template('signup.html',
                                    error_message='Entered username and password may only contain characters from A-z and 0-9.')
+        
+        if len(username) > 12:
+            return render_template('signup.html',
+                                   error_message='Your username cannot be longer than 12 characters')
 
         userExists = database.does_user_exist(username)
         if not userExists:
@@ -141,11 +140,23 @@ def logout():
         print('no user is logged in (username source: session)')
         return redirect(url_for('login'))
 
+@app.route('/legal')
+def legal():
+    username = session.get('username')
+    if username:
+        return render_template('legal.html', username=username)
+    else:
+        return render_template('legal.html', username="Log in")
 
 @app.errorhandler(404)
 def show_error_page(error, error_code=404):
     print(error)
-    return render_template('error.html', error=error, error_code=error_code)
+    username = session.get('username')
+    if username:
+        return render_template('error.html', error=error, error_code=error_code,username=username)
+    else:
+        return render_template('error.html', error=error, error_code=error_code,username="Log in")
+    
 
 @app.errorhandler(500)
 def handle_error_500(error):
@@ -157,14 +168,6 @@ def handle_error_500(error):
 def handleJson(payload):
     print("sending: " + payload)
     try:
-        """
-        que = Queue.Queue()
-
-        t = Thread(target=lambda q, arg1: q.put(foo(arg1)), args=(payload, get_username_by_sid(request.sid)))
-        t.start()
-        t.join()
-        send(que.get(), json=True)
-        """
         send(answerHandler(payload, get_username_by_sid(request.sid)), json=True)
     except:
         obj = json.loads(payload)
@@ -208,11 +211,11 @@ def disconnect():
     print(user_sessions)
     print("You are disconneced from the server")
 
-
+'''
 @socketio.on_error()
 def error_handler(e):
     raise Exception("Some error happened, no further notice")
-
+'''
 
 def get_username_by_sid(sid):
     for users in user_sessions:
@@ -231,4 +234,4 @@ def update_settings_by_jsondata(payload):
 
 if __name__ == "__main__":
     print("Trying to start server...")
-    socketio.run(app, port='5000', host='0.0.0.0', debug=True)
+    socketio.run(app, host='0.0.0.0', debug=True)

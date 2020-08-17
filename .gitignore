@@ -126,3 +126,9 @@ Scripts/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+
+# log-file
+/time.log
+
+#database
+/elephanture.db

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme data-mode="game">
+
+<!--
+  Landing page
+  Authors: Kevin Katzkowski, Kristin Wünderlich
+  Last modified: 12.08.2020
+-->
+
+<head>
+  <!-- required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no">
+
+  <!-- Google icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="../static/css/colors.css">
+  <link rel="stylesheet" href="../static/css/base.css">
+  <link rel="stylesheet" href="../static/css/chat.css">
+  <link rel="stylesheet" href="../static/css/landing.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../static/img/elephanture.svg" sizes="any">
+
+  <title>Elephanture</title>
+</head>
+
+<body>
+
+  <nav>
+    <div class="menu-bar">
+      <img class="logo" src="../static/img/elephanture.svg">
+      <a href="{{ url_for('send_index_page') }}">
+        <h1 id="brand">Elephanture</h1>
+      </a>
+
+      <label for="toggle" id="hamburger">&#9776;</label>
+      <input type="checkbox" id="toggle" />
+    </div>
+
+    <ul id="nav-links">
+      <li><a href="{{ url_for('send_play_page', username= username) }}">Play</a></li>
+      <li><a href="https://elephanture.informatik.uni-bremen.de/#about">About</a></li>
+
+      <li class="user-account secondary">
+          <a class="link-profile" href="{{ url_for('send_profile_page', username= username) }}">{{ username }}
+          </a>
+      </li>
+  </ul>
+
+  </nav>
+
+  <div class="container">
+    <section id="landing-area">
+      <h1 class="page-heading">A modern and unique textbased-AI game</h1>
+      <ul id="chat-demo-container">
+  
+      </ul>
+      <button id="play-cta" class="primary play-cta" onclick="location.href='{{ url_for('send_play_page', username= username) }}'">Play</button>
+    </section>
+
+    <section id = "about">
+      <div class="content-box left yellow">
+        <h3>What is Elephanture?</h3>
+        <p>	
+          Elephanture is a modern chatbot adventure game with a
+        story in combination with AI. It also has many features of
+        RPGs to make an immersive game experience.<br>
+      </p>
+      <p>
+        You can create an account to save your game state and
+        start your discovery.
+      </p>
+        
+      </div>
+      <div class="content-box right green">
+        <h3>Modern AI technology</h3>
+        <p>	
+          We are using the GPT-2 with a self-trained model for text
+        generation in the game. This is used for talking to the main NPC and to make object and environment descriptions
+        more interesting.<br>
+      </p>
+      <p>
+        Every time you will play a part of the game again, it will
+        feel different and consistantly give you new impressions
+        of the setting.
+      </p>  		
+      </div>
+      
+      <div class="content-box left blue">
+        <h3>Story</h3>
+        <p>
+          In the text adventure ‘Elephanture’ you are playing as a
+        student of the University of Bremen. To achieve your goal
+        of getting a bachelor degree, you need to overcome a lot
+        of obstacles and difficult riddles. On your mission, you
+        explore various parts of Bremen and get to know the city
+        and it's history.<br>
+      </p>
+      <p>
+        Will you be able to uncover the myth-enshrouded Elephant
+        Monument and it's secret about the blood diamonds?
+      </p>
+      </div>
+      
+      <div class="content-box right orange" >
+        <h3>Team - University of Bremen</h3>
+        <p>	
+          We are students from the University of Bremen and this is our Bachelor Project. Our research topic is “Chatbots” and 
+          in this project we study how to improve the traditional text adventure 
+          game by including state of the art technology like the GPT-2 model.
+      </p>
+      <p> 
+        If you want to find out more about our University or our faculty click on this link <a href="https://www.uni-bremen.de/">here</a>.
+      </p>
+      <p>
+        This project is supervised by Dr. Rainer Malaka and 
+        Dr. Nina Wenig.
+      </p>
+      
+        
+      </div>
+        
+    </section>
+   
+  </div>
+  <section id="action-button">
+    <h1>Start playing right now!</h1>
+    <button type="button" class="primary" onclick="location.href='{{ url_for('send_play_page', username= username) }}'" >Play</button>
+  </section>
+
+  
+  <footer>
+    
+    <h3><img class="logo" src="../static/img/elephanture.svg">Elephanture <span id="created-by"> was created by</span></h3>
+    <p>Canh Dinh Nguyen - Cedric Nering - Christopher Karapetrow - Henriette Mattke - Jakob Hackstein - Jeffrey Pillmann - Katja Schneider - Kevin Katzkowski - Kristin Wünderlich - Martin Strotmann - Max Petendra - Parima Hadi Soudarjani - Tobias Reichel</p>
+    <p><a href="{{ url_for('legal') }}">Legal Notice | Disclaimer</a></p>
+  </footer>
+
+
+
+  
+
+  <!-- load custom javascript -->
+  <script type="module" src="../static/js/landing.mjs"></script>
+  <script type="module" src="../static/js/settings.mjs"></script>
+  <script type="module" src="../static/js/mobile.mjs"></script>
+
+</body>
+
+</html>

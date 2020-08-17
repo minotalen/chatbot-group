@@ -20,34 +20,33 @@
   <link rel="stylesheet" href="../static/css/colors.css">
   <link rel="stylesheet" href="../static/css/error.css">
 
-  <!-- TODO change title -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../static/img/elephanture.svg" sizes="any">
+
   <title>Error {{ error_code }}</title>
 </head>
 
 <body>
   <nav>
     <div class="menu-bar">
-      <h1 id="brand">Elephanture</h1>
+      <img class="logo" src="../static/img/elephanture.svg">
+      <a href="{{ url_for('send_index_page') }}">
+        <h1 id="brand">Elephanture</h1>
+      </a>
 
-      <!-- Hamburger Menu -->
       <label for="toggle" id="hamburger">&#9776;</label>
       <input type="checkbox" id="toggle" />
     </div>
 
     <ul id="nav-links">
       <li><a href="{{ url_for('send_play_page', username= username) }}">Play</a></li>
-      <!--- TODO do not redirect without user name -->
-      <li><a href="#">About</a></li>
-      <li><a href="#">More</a></li>
-      <li></li>
-    </ul>
+      <li><a href="https://elephanture.informatik.uni-bremen.de/#about">About</a></li>
 
-    <!-- <div class="user-account">
-      <p class="user-name">Santa Claus</p>
-      <div class="avatar small"></div>
-    </div> -->
-
-    <button class="secondary">Log In</button>
+      <li class="user-account secondary">
+          <a class="link-profile" href="{{ url_for('send_profile_page', username= username) }}">{{ username }}
+          </a>
+      </li>
+  </ul>
 
   </nav>
   <div class="container error">
@@ -55,12 +54,16 @@
       <img src="../static/img/placeholdericon.svg" alt="Sorry!" class="icon">
     </div>
     <h1 class="error-heading">Error {{ error_code }}</h1>
-    <!-- <p>The page you are looking for might have been removed, had it´s name changed, is temporarily unavailable, or does not exist.</p> -->
     <p>{{ error }}</p>
-    <a href="{{ url_for('login') }}">
+    <a href="{{ url_for('send_index_page') }}">
       <button id="home-button" type="button" class="primary">Back to home</button>
     </a>
   </div>
+  
+  <footer>
+    <img class="logo" src="../static/img/elephanture.svg">
+    <p><a href="{{ url_for('legal') }}">Legal Notice | Disclaimer</a></p>
+  </footer>
 
   <script type="module" src="../static/js/settings.mjs"></script>
   <script type="module" src="../static/js/mobile.mjs"></script>

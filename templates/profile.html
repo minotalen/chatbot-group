@@ -2,9 +2,9 @@
 <html lang="en" data-theme="light" data-mode="game">
 
 <!--
-  User account  page
+  User profile page
   Authors: Kevin Katzkowski, Jeffrey Pillmann
-  Last modified: 02.07.2020
+  Last modified: 12.08.2020
 -->
 
 <head>
@@ -20,62 +20,48 @@
   <link rel="stylesheet" href="../static/css/colors.css">
   <link rel="stylesheet" href="../static/css/profile.css">
 
-  <!-- TODO change title -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../static/img/elephanture.svg" sizes="any">
+
   <title>Elephanture</title>
 </head>
 
 <body>
   <nav>
     <div class="menu-bar">
-      <h1 id="brand">Elephanture</h1>
+      <img class="logo" src="../static/img/elephanture.svg">
+      <a href="{{ url_for('send_index_page') }}">
+        <h1 id="brand">Elephanture</h1>
+      </a>
 
-      <!-- Hamburger Menu -->
       <label for="toggle" id="hamburger">&#9776;</label>
       <input type="checkbox" id="toggle" />
     </div>
 
     <ul id="nav-links">
       <li><a href="{{ url_for('send_play_page', username= username) }}">Play</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">More</a></li>
-      <li><a href="#">{{ username }}</a></li>
-    </ul>
+      <li><a href="https://elephanture.informatik.uni-bremen.de/#about">About</a></li>
 
+      <li class="user-account secondary">
+          <a class="link-profile" href="{{ url_for('send_profile_page', username= username) }}">{{ username }}
+          </a>
+      </li>
+  </ul>
 
-    <a class="link-profile" href="{{ url_for('send_profile_page', username= username) }}">
-      <div class="user-account">
-        <p id="username" class="user-name">{{ username }}</p>
-        <div class="avatar small"></div>
-      </div>
-    </a>
+  </nav>
 
   </nav>
 
   <div class="container setting-content">
 
     <div class="user-bar">
-      <div class="user-account account-display">
-        <img class="avatar large">
-        <h1 class="user-name">{{ username }}</h1>
-      </div>
+      <h3>{{ username }}</h3>
 
-      <h4><a href="{{ url_for('logout') }}">LOG OUT</a></h4>
+      <h4><a href="{{ url_for('logout') }}"><button class="secondary">LOG OUT</button></a></h4>
     </div>
 
     <div class="settings-container">
-      <h3>Account</h3>
-      <div>
-        <p>Change Username</p>
-        <button id="change-username" class="secondary">Change</button>
-      </div>
-      <div>
-        <p>Delete your account</p>
-        <button id="delete-account" class="secondary">Delete</button>
-      </div>
-    </div>
-
-    <div class="settings-container">
-      <h3>Game</h3>
+      <h3>Settings</h3>
       <div>
         <p>Show input suggestions</p>
         <input type="checkbox" class="settings" id="show-suggestion"></input>
@@ -84,10 +70,10 @@
         <p>Text-to-speech</p>
         <input type="checkbox" class="settings" id="read-messages"></input>
       </div>
-      <div>
+      <!--<div>
         <p>Game version for study</p>
         <input id="gpt2-output" type="checkbox" class="settings"></input>
-      </div>
+      </div>-->
       <div class="theme-select">
         <p>Select theme</p>
         <div class="theme-radio-buttons">
@@ -105,15 +91,14 @@
           </div>
         </div>
       </div>
-
-      <div>
-        <p>Delete game progress</p>
-        <button id="delete-game-progress" class="secondary">Delete</button>
-
-      </div>
     </div>
 
   </div>
+   
+  <footer>
+    <img class="logo" src="../static/img/elephanture.svg">
+    <p><a href="{{ url_for('legal') }}">Legal Notice | Disclaimer</a></p>
+  </footer>
 
   <!-- load custom javascript -->
   <script type="module" src="../static/js/profile.mjs"></script>

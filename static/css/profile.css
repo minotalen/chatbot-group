@@ -1,11 +1,10 @@
 /*
 Styling for user profile page
 Authors: Kevin Katzkowski, Jeffrey Pillmann
-Last modified: 29.06.2020
+Last modified: 14.08.2020
 */
 
 .user-bar {
-  height: 6rem;
   padding: 1rem 3rem;
 
   display: flex;
@@ -15,13 +14,8 @@ Last modified: 29.06.2020
   background-color: var(--color-surface);
 }
 
-.user-bar .user-account {
-  border: none;
-  box-shadow: none;
-}
-
-.user-bar .user-name {
-  margin-left: 2rem;
+.user-bar h3 {
+  padding: 0;
 }
 
 .settings-container {
@@ -51,15 +45,10 @@ Last modified: 29.06.2020
   padding: 0.25rem 0;
 }
 
-/* .theme-radio-buttons {
-  display: flex;
+.user-bar button.secondary {
+  margin: 0.5rem 0 0;
+  padding: 0.25rem 0.5rem;
 }
-
-.theme-radio-buttons div {
-  margin: 0 0 0 2rem;
-} */
-
-/* Show Suggestions Toggle Switch */
 
 input[type="checkbox"].settings {
   font-size: 1.2rem;
@@ -101,8 +90,6 @@ input[type="checkbox"].settings:checked:after {
   left: calc(100% - 1.25rem);
 }
 
-/* Select Theme Radio buttons */
-
 .theme-radio-buttons {
   display: flex;
   box-sizing: border-box;
@@ -141,26 +128,11 @@ input[type="checkbox"].settings:checked:after {
   color: var(--color-text);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
 
   .user-bar {
     display: flex;
     flex-direction: column;
-  }
-
-  .account-display {
-    display: flex;
-  }
-
-  .avatar.large {
-    min-width: 60px;
-    width: 60px;
-    min-height: 60px;
-    height: 60px;
-  }
-
-  .user-name {
-    font-size: 1.2rem;
   }
 
   .setting-content {

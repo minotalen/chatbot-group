@@ -4,13 +4,10 @@ Authors: Kevin Katzkowski, Jeffrey Pillmann
 Last modified: 21.07.2020
 */
 
-/* TODO swap primary colors between themes */
 [data-theme="light"] {
-  /* --color-primary: #365fc5; */
   --color-primary: #13A198;
   --color-onprimary: #9EA7B8;
   --gradient-primary: -webkit-linear-gradient(193deg, #6c91c9, #16697A);
-  /* --color-primary-dark: #16697A; */
 
   --color-background: #fff;
   --color-surface: #edf0f7;
@@ -28,6 +25,11 @@ Last modified: 21.07.2020
   --color-message-bot-background: lightgreen;
   --color-message-inventory: var(--color-message-bot);
   --color-message-inventory-background: wheat;
+
+  --color-section-yellow: #EECE90;
+  --color-section-green: var(--color-message-bot-background);
+  --color-section-blue: #90EEE3;
+  --color-section-orange: #EEB290;
 
   --border-radius: 2px;
   --border-default: 2px solid var(--color-onprimary); /*var(--color-text);*/
@@ -68,6 +70,11 @@ Last modified: 21.07.2020
   --color-message-bot-background: darkgreen;
   --color-message-inventory: var(--color-message-bot);
   --color-message-inventory-background: sienna;
+
+  --color-section-yellow: #867553;
+  --color-section-green: var(--color-message-bot-background);
+  --color-section-blue: #436e69;
+  --color-section-orange: #775a49;
 
   --border-radius: 2px;
   --border-default: 2px solid var(--color-onprimary); /*onprimary*/

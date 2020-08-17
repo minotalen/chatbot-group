@@ -1,0 +1,18 @@
+/*
+Styling for legal information and disclaimer page
+Authors: Kevin Katzkowski
+Last modified: 14.08.2020
+*/
+
+.container {
+  padding: 1rem;
+}
+
+.container h2:not(:first-child) {
+  margin: 2rem 0 0 0;
+}
+
+.container h3 {
+  padding: 0;
+  margin: 1rem 0 0 0;
+}

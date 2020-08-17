@@ -1,17 +1,15 @@
 /*
-Styling for login and sign up form
+Styling for login and Signup form
 Authors: Kevin Katzkowski
-Last modified: 22.07.2020
+Last modified: 12.08.2020
 */
 
 .login,
 .signup {
   bottom: auto;
-
   display: flex;
   flex-direction: column;
   justify-content: start;
-
   width: 25rem;
   padding: 2rem;
 }
@@ -93,8 +91,7 @@ p.error-message {
   font-size: 0.9rem;
 }
 
-@media only screen and (max-width: 600px) {
-
+@media only screen and (max-width: 760px) {
   .login,
   .signup {
     position: absolute;
@@ -104,7 +101,6 @@ p.error-message {
     left: 0;
 
     width: auto;
-
     margin: 0 auto;
     border: none;
     box-shadow: none;

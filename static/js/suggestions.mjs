@@ -1,7 +1,7 @@
 /**
  * Chat input suggestion implementation.
  * Authors: Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modified: 06.06.2020
+ * Last modified: 12.08.2020
  */
 
 import { sendButton } from './client.mjs';
@@ -21,7 +21,7 @@ let suggestions = [{
     },
     {
       name: 'use [item in inventory]'
-    } // TODO shorter option: inventory item
+    } 
   ],
   userInput = document.getElementById('input-user'),
   chatForm = document.getElementById('chat-input-form'),
@@ -65,13 +65,10 @@ chatForm.addEventListener('submit', (evt) => {
 
 
 userInput.addEventListener('click', showSuggestions, false);
-
 userInput.addEventListener('keydown', toggleSuggestions, false);
-
 userInput.addEventListener('keyup', toggleSuggestions, false);
 
 
-// TODO find a better name for this function
 /**
  * Do not instantly reopen suggestion window after sending a message
  */
@@ -93,7 +90,7 @@ function filterType(suggestionText) {
   if (suggestionType) {
     // incomplete input, replace text field value and focus
     output = suggestionText.replace(`${suggestionType[0]}`, "");
-    console.log("text:", output, "type:", suggestionType[0]);
+    // console.log("text:", output, "type:", suggestionType[0]);
   } else {
     // complete input, send
     output = suggestionText;

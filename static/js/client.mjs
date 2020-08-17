@@ -1,7 +1,7 @@
 /**
  * Client-side script to receive, send and display messages.
- * Authors: Katja Schneider, Kevin Katzkowski, mon janssen, Jeffrey Pillmann
- * Last modified: 21.07.2020
+ * Authors: Kevin Katzkowski, mon janssen, Jeffrey Pillmann
+ * Last modified: 14.08.2020
  */
 
 import { closeSuggestions, userInput } from './suggestions.mjs';
@@ -9,7 +9,7 @@ import { getSettingValue } from './settings.mjs';
 
 
 
-let socket = io.connect('https://' + document.domain + ':' + location.port),
+let socket = io.connect("http://127.0.0.1:5000"),
   sendButton = document.getElementById('send-button'),
   typeIndicator = document.getElementById('type-indicator'),
   userName, 
@@ -20,24 +20,23 @@ let socket = io.connect('https://' + document.domain + ':' + location.port),
   msg,
   messageQueue = [],
   userMessageSendingAllowed = true,
-  botMessagePrintingAllowed = true;
+  botMessagePrintingAllowed = true,
+  chat = document.getElementById('chat-content-container');
+    
 
 
 socket.on('connect', function () {
-  console.log('connected client');
+  // console.log('connected client');
   userName = getSettingValue('username'); 
   socket.emit('username', userName);
 });
-
-// responsiveVoice.enableWindowClickHook();
 
 
 /**
  * Display received message from socket in chat interface.
  */
 socket.on('json', (json) => {
-  console.log('message received');
-  
+  // console.log('message received');
   messageQueue.push(json);
   printMessageQueueHead();
 });
@@ -55,7 +54,7 @@ function sendMessage() {
   let json, evt = 'json';
 
   if (!userMessageSendingAllowed) {
-    console.log('message sending forbidden, no message sent!');
+    // console.log('message sending forbidden, no message sent!');
     return;
   }
 
@@ -69,7 +68,7 @@ function sendMessage() {
     json = createJSON(msg);
     socket.emit(evt, json);
 
-    console.log('message ' + msg + ' has been sent!');
+    // console.log('message ' + msg + ' has been sent!');
     userInput.value = null;
     closeSuggestions();
 
@@ -77,7 +76,7 @@ function sendMessage() {
     userInput.focus();
     userMessageSendingAllowed = false;
   } else {
-    console.log('no message to send!');
+    // console.log('no message to send!');
   }
 }
 
@@ -96,10 +95,6 @@ function printMessageQueueHead() {
     updateMode();
     updateRoomName();
     updateCurrentLevel(levelID);
-
-    // if (getSettingValue('readMessages')){
-    //   responsiveVoice.speak(msg.replace(/<[^>]*>?|\.{3}/gm, ' '), "UK English Female", {pitch:0.99, rate:1.15});
-    // } 
   
     printMessage(msg);
   } else if (messageQueue.length <= 0) {
@@ -113,8 +108,7 @@ function printMessageQueueHead() {
  * @param {String} msg the message to print 
  */
 function printMessage(msg) {
-  let chat = document.getElementById('chat-content-container'),
-    elem = window.document.createElement('li');
+  let elem = window.document.createElement('li');
 
   // set message type depending on sender 
   switch (senderName) {
@@ -176,7 +170,7 @@ function printMessage(msg) {
  * @param {Function} callback Function to call after message has been written.
  * @param {String} tag Storage for the tag currently being parsed
  * @param {Int} reverseIndex Index from the end of the string to insert content inbetween tags
- * @param {Int} height // TODO
+ * @param {Int} height chat element height, required for auto scroll
  */
 function writeEachChar(elem, msg, callback, tag = '', reverseIndex = 0, height) { 
   // initially set height to element height
@@ -189,9 +183,7 @@ function writeEachChar(elem, msg, callback, tag = '', reverseIndex = 0, height) 
 
     if(elem.getBoundingClientRect().height - height > 0) {
       // scroll to bottom on line break
-      let chat = document.getElementById('chat-content-container');
       chat.scrollTop = chat.scrollHeight - chat.clientHeight;
-
       height = elem.getBoundingClientRect().height;
     }
     
@@ -311,7 +303,7 @@ function createJSON(msg) {
 
   // parse object into JSON String
   json = JSON.stringify(obj);
-  console.log('parsed JSON String: ' + json);
+  // console.log('parsed JSON String: ' + json);
 
   return json;
 }
@@ -333,7 +325,7 @@ function readJSON(json) {
   modeName = obj.mode;
   message = obj.message;
 
-  console.log('received message: ' + message);
+  // console.log('received message: ' + message);
   return message;
 }
 
@@ -347,10 +339,8 @@ window.addEventListener('click', (evt) => {
 
 
 window.addEventListener('keyup', (evt) => {
-  evt.preventDefault(); // ???????
+  evt.preventDefault();
 });
 
 
-export {
-  sendButton
-}
+export { sendButton };

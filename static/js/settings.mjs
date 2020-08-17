@@ -1,7 +1,7 @@
 /**
  * Settings implementation.
  * Authors: Kevin Katzkowski, Jeffrey Pillmann, Cedric Nering
- * Last modified: 14.07.2020
+ * Last modified: 12.08.2020
  */
 
 import { updateDisplayedSettings } from './profile.mjs';
@@ -47,7 +47,7 @@ async function getSettingsJSON(callback = undefined) {
       }
       catch (e) {
         updateDisplayedSettings();
-        console.log(e);
+        // console.log(e);
       }
       callback != undefined && callback(); 
     }
@@ -66,7 +66,7 @@ async function sendSettingsJSON() {
   xhr.addEventListener('readystatechange', () => {
     if (xhr.readyState === 4) {
       obj = JSON.parse(xhr.responseText);
-      console.log(obj);
+      // console.log(obj);
 
       updateSettingsObj(obj);
     }
@@ -88,7 +88,7 @@ function updateSettingsObj(obj) {
   settings.gpt2Output = obj.gpt2Output;
   settings.userTheme = obj.userTheme;
 
-  console.log('settings updated from database');
+  // console.log('settings updated from database');
   updateDisplayedSettings();
 }
 
@@ -98,7 +98,7 @@ function updateSettingsObj(obj) {
 function updateTheme() {
   let theme = getSettingValue('userTheme');
   const localStorageTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'system';
-  console.log('local storage theme: ' + localStorageTheme);
+  // console.log('local storage theme: ' + localStorageTheme);
   theme = theme != undefined ? theme : localStorageTheme;
 
 
@@ -114,11 +114,11 @@ function updateTheme() {
     document.documentElement.setAttribute('data-theme', 'light');
 
     if (theme == 'system') {
-      console.log('system theme preference not supported.');
+      // console.log('system theme preference not supported.');
     }
   }
   localStorage.setItem('theme', theme);
-  console.log(`theme was set to ${theme}`);
+  // console.log(`theme was set to ${theme}`);
 }
 
 

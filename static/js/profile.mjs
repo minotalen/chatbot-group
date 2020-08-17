@@ -1,39 +1,28 @@
 /**
- * Proile page implementation.
+ * Profile page implementation.
  * Authors: Kevin Katzkowski, Jeffrey Pillmann
- * Last modified: 14.07.2020
+ * Updated: 12.08.2020
  */
 
 import { getSettingValue, setSettingValue, updateTheme } from './settings.mjs';
 
 
-const changeUsername = document.getElementById('change-username'),
-deleteAccount = document.getElementById('delete-account'),
-showSuggestions = document.getElementById('show-suggestion'),
+const showSuggestions = document.getElementById('show-suggestion'),
 readMessages = document.getElementById('read-messages'),
 systemTheme = document.getElementById('system'),
 lightTheme = document.getElementById('light'),
 darkTheme = document.getElementById('dark'),
-deleteGameProgress = document.getElementById('delete-game-progress'),
 gpt2Output = document.getElementById('gpt2-output');
 
 
-if(changeUsername) {
-  changeUsername.addEventListener('click', () => {
-    console.log("changeUsername");
-  }, false);
-
-  deleteAccount.addEventListener('click', () => {
-    console.log("deleteAccount");
-  }, false);
-
+if(showSuggestions) {
   showSuggestions.addEventListener('click', () => {
     setSettingValue('showSuggestions', showSuggestions.checked);
   }, false);
 
-  readMessages.addEventListener('click', () => {
-    setSettingValue('readMessages', readMessages.checked);
-  }, false);
+  // readMessages.addEventListener('click', () => {
+  //   setSettingValue('readMessages', readMessages.checked);
+  // }, false);
 
   gpt2Output.addEventListener('click', () => {
     setSettingValue('gpt2Output', gpt2Output.checked);
@@ -53,10 +42,6 @@ if(changeUsername) {
     setSettingValue('userTheme', 'dark');
     updateTheme();
   }, false);
-
-  deleteGameProgress.addEventListener('click', () => {
-    console.log("deleteGameProgress");
-  }, false);
 }
 
 /**
@@ -64,7 +49,7 @@ if(changeUsername) {
  */
 function updateDisplayedSettings() {
   setDisplayedValue(showSuggestions, getSettingValue('showSuggestions'));
-  setDisplayedValue(readMessages, getSettingValue('readMessages'));
+  // setDisplayedValue(readMessages, getSettingValue('readMessages'));
   setDisplayedValue(gpt2Output, getSettingValue('gpt2Output'));
   setDisplayedValue(
     document.getElementById(getSettingValue('userTheme')), 
